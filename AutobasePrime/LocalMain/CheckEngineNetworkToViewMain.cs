@@ -45,7 +45,7 @@ namespace LocalMain
 			{
 				case EnumTagMember.TAG_MEMBER_alarm:				tag.alarm = (byte)value;			break;
 				case EnumTagMember.TAG_MEMBER_bFileSave:			tag.bFileSave = (byte)value;
-                                                                    TagLib.bNeedFileSaveList = true;   // ÆÄÀÏÀúÀå ¸ñ·ÏÀ» »õ·Î ¸¸µé¾î¾ß ÇÑ´Ù.
+                                                                    TagLib.bNeedFileSaveList = true;   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
                                                                     break;
 				case EnumTagMember.TAG_MEMBER_cAlarmType:			tag.cAlarmType = (byte)value;		break;
 				case EnumTagMember.TAG_MEMBER_port:				tag.port = (short)value;				break;
@@ -116,7 +116,7 @@ namespace LocalMain
 			{
 				case EnumTagMember.TAG_MEMBER_alarm:				tag.alarm = (sbyte)value;			break;
 				case EnumTagMember.TAG_MEMBER_bFileSave:			tag.bFileSave = (sbyte)value;
-                                                                    TagLib.bNeedFileSaveList = true;   // ÆÄÀÏÀúÀå ¸ñ·ÏÀ» »õ·Î ¸¸µé¾î¾ß ÇÑ´Ù.
+                                                                    TagLib.bNeedFileSaveList = true;   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
                                                                     break;
 				case EnumTagMember.TAG_MEMBER_cAlarmType:			tag.cAlarmType = (sbyte)value;		break;
 				case EnumTagMember.TAG_MEMBER_port:					tag.port = (short)value;			break;
@@ -265,7 +265,7 @@ namespace LocalMain
 				return;
 			}
 
-			// ÇØ´çµÇ´Â ÅÂ±×¸¦ Ã£À» ¼ö°¡ ¾ø´Ù.
+			// ï¿½Ø´ï¿½Ç´ï¿½ ï¿½Â±×¸ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		}
 
 		static Thread threadMain;
@@ -282,7 +282,7 @@ namespace LocalMain
 
 		public static void UnInit()
 		{
-			if(threadMain == null)	return;	// // ÃÊ±â ·Î±×ÀÎ¿¡¼­ ½ÇÆÐ½Ã °É¸²
+			if(threadMain == null)	return;	// // ï¿½Ê±ï¿½ ï¿½Î±ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ð½ï¿½ ï¿½É¸ï¿½
 
 			bEnd = true;
 			threadMain.Join(5000);
@@ -302,8 +302,8 @@ namespace LocalMain
                 
 				if(readyData != null)	continue;
 
-                // Timer¿¡¼­ COM+¸¦ »ç¿ëÇÏ¸é À©µµ¿ì ÃÖ¼ÒÈ­ µÇ¾ú´Ù°¡ È°¼ºÈ­°¡ Àß ¾ÈµÇ´Â °æ¿ì°¡ ÀÖ´Ù.
-				// ±×·¡¼­ Thread¿¡¼­ °ªÀ» ÀÐ¾î¿À°í Timer¿¡¼­´Â °ª¸¸ »ç¿ëÇÑ´Ù.
+                // Timerï¿½ï¿½ï¿½ï¿½ COM+ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½È­ ï¿½Ç¾ï¿½ï¿½Ù°ï¿½ È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ ï¿½ÈµÇ´ï¿½ ï¿½ï¿½ì°¡ ï¿½Ö´ï¿½.
+				// ï¿½×·ï¿½ï¿½ï¿½ Threadï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ Timerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 
                 readyData = (byte[])smNetworkToViewMain.GetItem();
 			}
@@ -313,42 +313,43 @@ namespace LocalMain
 		{
 			if(readyData == null)	return;
 
-			if(readyData != null) 
+			try
 			{
 				NetWorkProtocolRecv recv = new NetWorkProtocolRecv();
 
 				recv.Split(readyData, readyData.Length);
 
-				if((EnumNetworkCommand)recv.wCommand == EnumNetworkCommand.TAG_PROTECT_FLAG_CHANGE) 
+				if((EnumNetworkCommand)recv.wCommand == EnumNetworkCommand.TAG_PROTECT_FLAG_CHANGE)
 				{
 					ChangeProtectFlag(recv.sTag, (int)recv.fValue);
 				}
-				else if((EnumNetworkCommand)recv.wCommand == EnumNetworkCommand.TAG_VALUE_CHANGE) 
+				else if((EnumNetworkCommand)recv.wCommand == EnumNetworkCommand.TAG_VALUE_CHANGE)
 				{
 					ChangeTagValue(recv.sTag, recv.fValue);
-				} 
-				else if((EnumNetworkCommand)recv.wCommand == EnumNetworkCommand.ALARM_LIST_CONFIRM_ONE) 
+				}
+				else if((EnumNetworkCommand)recv.wCommand == EnumNetworkCommand.ALARM_LIST_CONFIRM_ONE)
 				{
 					FormAlarmEvent.AlarmListConfirmOneByNetWork(recv.sTag, recv.sString);
 				}
-				else if((EnumNetworkCommand)recv.wCommand == EnumNetworkCommand.ALARM_LIST_DELETE_ONE) 
+				else if((EnumNetworkCommand)recv.wCommand == EnumNetworkCommand.ALARM_LIST_DELETE_ONE)
 				{
 					FormAlarmEvent.AlarmListDeleteOneByNetWork(recv.sTag, recv.sString);
 				}
-				else if((EnumNetworkCommand)recv.wCommand == EnumNetworkCommand.TAG_MEMBER_CHANGED) 
+				else if((EnumNetworkCommand)recv.wCommand == EnumNetworkCommand.TAG_MEMBER_CHANGED)
 				{
 					ChangeTagMemberChanged(recv.sTag, recv.wTagMember, recv.fValue, recv.sString);
 				}
-				else {}
 			}
-
-			readyData = null;
+			finally
+			{
+				readyData = null;
+			}
 		}
 
 		public static void SendEventProgramToNetwork(byte[] data, int size)
 		{
             
-            /* OpenÀº Mutex °¡ ¾øÀ» ¶§ try catch°¡ ¹ß»ýÇÑ´Ù.
+            /* Openï¿½ï¿½ Mutex ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ try catchï¿½ï¿½ ï¿½ß»ï¿½ï¿½Ñ´ï¿½.
             System.Threading.Mutex gM1;
             try
             {

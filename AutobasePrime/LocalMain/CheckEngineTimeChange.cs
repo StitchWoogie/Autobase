@@ -21,7 +21,7 @@ namespace LocalMain
 		static DateTime tOld = DateTime.Now;
 
 		//----------------------------------------------------------------------------
-		//     	½Ã°£(ÃÊ/ºÐ/½Ã/ÀÏ/¿ù/³â)ÀÌ º¯°æ µÇ¾ú´ÂÁö¸¦ °Ë»çÇÑ´Ù.
+		//     	ï¿½Ã°ï¿½(ï¿½ï¿½/ï¿½ï¿½/ï¿½ï¿½/ï¿½ï¿½/ï¿½ï¿½/ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½.
 		//----------------------------------------------------------------------------
 		
 		public static async Task CheckTimeChange()
@@ -30,7 +30,7 @@ namespace LocalMain
 
 			if(tOld.Second != t.Second) 
 			{
-				SecCheckAI();	// ¼ö½Ã·Î ¾Æ³ª·Î±× ÀÔ·Â °ªÀ» ÀÐ¾îµÎ¾î¼­ 1ºÐµ¿¾ÈÀÇ ÀÚ·á·Î ¾´´Ù.
+				SecCheckAI();	// ï¿½ï¿½ï¿½Ã·ï¿½ ï¿½Æ³ï¿½ï¿½Î±ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½Î¾î¼­ 1ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 			}
 			if(tOld.Minute != t.Minute) 
 			{
@@ -38,7 +38,7 @@ namespace LocalMain
 
 				await SendEventToChild.SendEventChangeMinToChild();
 
-                GC.Collect();   // 2014-12-26 Ãß°¡ÇÔ. MessageDisplay¿¡¼­ Label ¿¡¼­ GDI+¿À·ù°¡ ³ª¼­ Ãß°¡ÇØ º½
+                GC.Collect();   // 2014-12-26 ï¿½ß°ï¿½ï¿½ï¿½. MessageDisplayï¿½ï¿½ï¿½ï¿½ Label ï¿½ï¿½ï¿½ï¿½ GDI+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½
 			}
 			if(tOld.Hour != t.Hour) 
 			{
@@ -50,12 +50,12 @@ namespace LocalMain
 				SendEventToChild.SendEventChangeDayToChild();
 				await CheckEngineDayChanged.WorkOnBeforeChangeDay(tOld);
 			}
-			if(tOld.Month != tOld.Month) 
+			if(tOld.Month != t.Month)
 			{
 				SendEventToChild.SendEventChangeMonthToChild();
 				CheckEngineSchedule.ScheduleChangeOnDateChanged();
 			}
-			if(tOld.Year != tOld.Year) 
+			if(tOld.Year != t.Year)
 			{
 				SendEventToChild.SendEventChangeYearToChild();
 				CheckEngineSchedule.ScheduleChangeOnDateChanged();
@@ -65,7 +65,7 @@ namespace LocalMain
 		}
 
 		//------------------------------------------------------------------------------
-		//	¼ö½Ã·Î ¾Æ³ª·Î±× ÀÔ·Â °ªÀ» ÀÐ¾î µÎ¾î¼­ 1ºÐ µ¿¾ÈÀÇ ÀÚ·á·Î ¾´´Ù.
+		//	ï¿½ï¿½ï¿½Ã·ï¿½ ï¿½Æ³ï¿½ï¿½Î±ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ ï¿½Î¾î¼­ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		//------------------------------------------------------------------------------
 
 		static void SecCheckAI()
@@ -81,23 +81,23 @@ namespace LocalMain
 
 				if(ai.act == 0)	continue;
 
-                if (ai.nScanCount == 0)  //Ã³À½ ½ÃÀÛ ½Ã ½ÃÀÛ°ªÀ» ÀúÀåÇØµÐ´Ù. 20250225 PSU;
+                if (ai.nScanCount == 0)  //Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Û°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÐ´ï¿½. 20250225 PSU;
                     ai.fMinInitial = ai.curr;
 
 				if(ai.IsPowerFactorTag()) 
-				{	// ¿ª·üÀÏ ¶§
-					ai.fMinHap += Math.Abs(ai.curr);	// ÇÕÀ» °è»êÇØ µÐ´Ù.
-					if(Math.Abs(ai.curr) < Math.Abs(ai.fMinMin))	ai.fMinMin = ai.curr;	// ÃÖ¼Ò°ªÀ» ¾Ë¾Æ³½´Ù.
-					if(Math.Abs(ai.curr) > Math.Abs(ai.fMinMax))	ai.fMinMax = ai.curr;	// ÃÖ´ë°ªÀ» ¾Ë¾Æ³½´Ù.
+				{	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+					ai.fMinHap += Math.Abs(ai.curr);	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð´ï¿½.
+					if(Math.Abs(ai.curr) < Math.Abs(ai.fMinMin))	ai.fMinMin = ai.curr;	// ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½Ë¾Æ³ï¿½ï¿½ï¿½.
+					if(Math.Abs(ai.curr) > Math.Abs(ai.fMinMax))	ai.fMinMax = ai.curr;	// ï¿½Ö´ë°ªï¿½ï¿½ ï¿½Ë¾Æ³ï¿½ï¿½ï¿½.
 				}
 				else 
 				{
-					ai.fMinHap += ai.curr;	// ÇÕÀ» °è»êÇØ µÐ´Ù.
-					if(ai.curr < ai.fMinMin)	ai.fMinMin = ai.curr;	// ÃÖ¼Ò°ªÀ» ¾Ë¾Æ³½´Ù.
-					if(ai.curr > ai.fMinMax)	ai.fMinMax = ai.curr;	// ÃÖ´ë°ªÀ» ¾Ë¾Æ³½´Ù.
+					ai.fMinHap += ai.curr;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð´ï¿½.
+					if(ai.curr < ai.fMinMin)	ai.fMinMin = ai.curr;	// ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½Ë¾Æ³ï¿½ï¿½ï¿½.
+					if(ai.curr > ai.fMinMax)	ai.fMinMax = ai.curr;	// ï¿½Ö´ë°ªï¿½ï¿½ ï¿½Ë¾Æ³ï¿½ï¿½ï¿½.
 				}
 
-				ai.nScanCount ++;			// Ä«¿îÆ®¸¦ Áõ°¡ ½ÃÅ²´Ù.
+				ai.nScanCount ++;			// Ä«ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å²ï¿½ï¿½.
 			}
 		}
 

@@ -75,6 +75,9 @@ namespace LocalMain
             {
                 _cts.Cancel();
                 _workerTask?.Wait(5000);  // 최대 5초 기다림
+                _cts.Dispose();
+                _cts = null;
+                _workerTask = null;
             }
         }
 
