@@ -513,6 +513,108 @@ for(i = 0; i < block_size; i++) {
 
 ---
 
+## CRITICAL-6: MAX_PORT INI 파일 입력값 미검증
+
+**심각도**: CRITICAL
+**영향**: 메모리 고갈 또는 비정상 동작
+
+**Scanmain.cpp:~352-356** - INI 파일에서 읽은 값 무검증 사용:
+```cpp
+MAX_PORT = _wtoi(retn);  // .inix 파일에서 읽음
+```
+
+사용자 편집 가능한 `.inix` 파일에서 `MaxPorts` 값을 읽어 검증 없이 사용합니다.
+- `999999` 설정 시: `new GLOBAL_PORT_STRUCT[999999]` → 수 GB 메모리 할당 시도
+- `0` 또는 음수 설정 시: 반복문 오동작
+- `MAX_SCAN_WRITE_LOCAL_ITEM_COUNT`도 동일한 문제
+
+### 수정 방법
+```cpp
+MAX_PORT = _wtoi(retn);
+if(MAX_PORT < 1)   MAX_PORT = 1;
+if(MAX_PORT > 256) MAX_PORT = 256;
+```
+
+---
+
+## HIGH-13: CreateThread 대신 _beginthreadex 사용 필요
+
+**심각도**: HIGH
+**영향**: CRT 메모리 누수
+
+**PortThread.cpp:58**:
+```cpp
+thread->handle = CreateThread(NULL, 0, PortThread_Common, pt, 0, &thread->id);
+```
+
+MFC/CRT 함수를 호출하는 스레드에서 `CreateThread`를 사용하면 CRT 내부의 per-thread 데이터가
+해제되지 않아 메모리가 누수됩니다. Microsoft는 CRT를 사용하는 스레드에서
+`_beginthreadex`를 사용할 것을 권장합니다.
+
+---
+
+## HIGH-14: WaitForSingleObject 타임아웃 후 핸들 강제 종료
+
+**심각도**: HIGH
+**영향**: 스레드 실행 중 핸들 해제 → 정의되지 않은 동작
+
+**PortThread.cpp:80-81**:
+```cpp
+WaitForSingleObject(thread->handle, 30000);  // 30초 대기
+CloseHandle(thread->handle);                  // 타임아웃되어도 무조건 닫음
+```
+
+프로토콜 DLL 내부에서 블로킹 호출(TCP 소켓 읽기 등) 중이면 30초 대기가 만료되고,
+스레드가 아직 실행 중인 상태에서 핸들이 닫힙니다. 이후 스레드가 `thread->bEnd = ON`을
+쓰면 해제된 메모리 접근이 됩니다.
+
+---
+
+## HIGH-15: GetWindowLong 64비트 포인터 잘림
+
+**심각도**: HIGH (64비트 빌드 시)
+**영향**: 64비트 환경에서 UI 크래시
+
+**Scanwork.cpp:563, 789 등 다수**:
+```cpp
+GetWindowLong(hwnd, 0);  // 32비트 값만 반환
+```
+
+64비트 빌드에서 `HGLOBAL` 포인터가 잘려 잘못된 메모리를 참조합니다.
+`GetWindowLongPtr`로 교체해야 합니다.
+
+---
+
+## MEDIUM-5: #pragma pack(push, 1) 포인터 포함 구조체
+
+**심각도**: MEDIUM
+**영향**: 성능 저하, 일부 아키텍처에서 비정렬 접근 폴트
+
+**plc_scan.h:20** - 헤더 전체에 1바이트 패킹 적용:
+```cpp
+#pragma pack(push, 1)
+```
+
+`LOCAL_PORT_STRUCT` 내의 포인터 멤버(`scanMethod*`, `timeout*`, `bufWORD*` 등)가
+비정렬 상태로 저장되어 성능이 저하됩니다. 프로토콜 통신 버퍼에만 패킹을 적용하고,
+포인터 포함 구조체는 기본 정렬을 사용하는 것이 바람직합니다.
+
+---
+
+## MEDIUM-6: PortThreadInit/UnInit 포트 인덱스 범위 미검사
+
+**심각도**: MEDIUM
+**영향**: 잘못된 포트 번호로 호출 시 배열 범위 초과 접근
+
+**PortThread.cpp:49, 65**:
+```cpp
+GLOBAL_PORT_STRUCT *pt = &portBuf[port];  // port 범위 검사 없음
+```
+
+`port >= MAX_PORT`인 경우 배열 범위를 벗어나 읽기/쓰기를 수행합니다.
+
+---
+
 ## 개선 권장 사항 우선순위
 
 | 순위 | 항목 | 심각도 | 예상 작업량 |
@@ -522,18 +624,24 @@ for(i = 0; i < block_size; i++) {
 | 3 | THREAD_PORT_STRUCT volatile 추가 | CRITICAL | 30분 |
 | 4 | VIP 스캔 static 변수 -> 포트별 변수 이동 | CRITICAL | 1시간 |
 | 5 | 재진입 플래그 InterlockedCompareExchange 적용 | CRITICAL | 30분 |
-| 6 | 네트워크 입력 strcpy 경계 검사 추가 | HIGH | 2시간 |
-| 7 | sprintf -> _snprintf 일괄 교체 | HIGH | 4시간 |
-| 8 | TCP 수신 버퍼 경계 검사 수정 | HIGH | 1시간 |
-| 9 | RetryConnect 소켓 누수 수정 | HIGH | 1시간 |
-| 10 | ScanServer 스레드 핸들 CloseHandle 추가 | HIGH | 30분 |
-| 11 | TCP connect() 타임아웃 설정 | HIGH | 1시간 |
-| 12 | PlcDeviceUnInit 반환값 초기화 | HIGH | 30분 |
-| 13 | RS-232 Busy-Wait -> 고해상도 타이머 교체 | HIGH | 2시간 |
-| 14 | PlcDeviceClearTCPIP 벌크 읽기 | HIGH | 30분 |
-| 15 | StackChar(5000) 버퍼 크기 검증/확대 | HIGH | 1시간 |
-| 16 | PortThread.cpp 레거시 코드 정리 | MEDIUM | 1시간 |
-| 17 | ScanServer 인증 메커니즘 추가 | MEDIUM | 설계 필요 |
+| 6 | MAX_PORT INI 입력값 범위 검증 추가 | CRITICAL | 30분 |
+| 7 | 네트워크 입력 strcpy 경계 검사 추가 | HIGH | 2시간 |
+| 8 | sprintf -> _snprintf 일괄 교체 | HIGH | 4시간 |
+| 9 | TCP 수신 버퍼 경계 검사 수정 | HIGH | 1시간 |
+| 10 | RetryConnect 소켓 누수 수정 | HIGH | 1시간 |
+| 11 | ScanServer 스레드 핸들 CloseHandle 추가 | HIGH | 30분 |
+| 12 | TCP connect() 타임아웃 설정 | HIGH | 1시간 |
+| 13 | PlcDeviceUnInit 반환값 초기화 | HIGH | 30분 |
+| 14 | CreateThread -> _beginthreadex 교체 | HIGH | 1시간 |
+| 15 | WaitForSingleObject 타임아웃 후 처리 개선 | HIGH | 1시간 |
+| 16 | GetWindowLong -> GetWindowLongPtr 교체 | HIGH | 2시간 |
+| 17 | RS-232 Busy-Wait -> 고해상도 타이머 교체 | HIGH | 2시간 |
+| 18 | PlcDeviceClearTCPIP 벌크 읽기 | HIGH | 30분 |
+| 19 | StackChar(5000) 버퍼 크기 검증/확대 | HIGH | 1시간 |
+| 20 | PortThread.cpp 레거시 코드 정리 | MEDIUM | 1시간 |
+| 21 | #pragma pack 포인터 구조체 분리 | MEDIUM | 설계 필요 |
+| 22 | 포트 인덱스 범위 검사 추가 | MEDIUM | 1시간 |
+| 23 | ScanServer 인증 메커니즘 추가 | MEDIUM | 설계 필요 |
 
 ---
 
@@ -547,4 +655,4 @@ C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`)와 멀티스레드
 컴파일러 버전 변경이나 메모리 레이아웃 변화 시 즉시 크래시로 이어질 수 있으므로
 **가장 먼저 수정해야 합니다**.
 
-총 발견 건수: **CRITICAL 5건, HIGH 12건, MEDIUM 4건** = 21건
+총 발견 건수: **CRITICAL 6건, HIGH 15건, MEDIUM 6건** = 27건
