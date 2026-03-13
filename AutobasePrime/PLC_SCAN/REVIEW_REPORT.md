@@ -731,6 +731,121 @@ Unicode 빌드에서 `char[]` 데이터를 `wchar_t[]`에 `memcpy`하면 문자 
 
 ---
 
+## CRITICAL-9: Modbus 프로토콜 수신 버퍼 범위 초과 읽기
+
+**심각도**: CRITICAL
+**영향**: 잘못된 PLC 데이터 저장, 프로세스 크래시
+
+**Modicon.cpp:198-199** - `sm->size`가 설정 파일에서 오는 값으로 범위 미검증:
+```cpp
+for(i = 0; i < sm->size; i++) {
+    PokeValue(pt, sm, address+i, pt->commRecvBuf[3+i*2+1]*256u+(BYTE)pt->commRecvBuf[3+i*2+0]);
+}
+```
+
+`sm->size`가 511 이상이면 `3 + sm->size*2`가 `MAX_RECV_BUF(1024)`를 초과하여
+`commRecvBuf` 배열 범위 밖을 읽습니다. 설정 파일 변조 또는 오입력으로 발생 가능합니다.
+
+---
+
+## CRITICAL-10: UDP 링버퍼 데이터 무단 덮어쓰기
+
+**심각도**: CRITICAL
+**영향**: PLC 데이터 무단 손실
+
+**Comudpip.cpp:339-343**:
+```cpp
+local->ring[local->pos_total] = imsi.data[i];
+local->pos_total++;
+local->pos_total %= MAX_UDPIP_RECV_BUF;
+```
+
+`pos_total`이 `pos_curr`을 따라잡아도 (버퍼 가득 참) 검사 없이 미소비 데이터를
+덮어씁니다. 고속 통신 환경에서 PLC 값이 무단 손실됩니다.
+
+---
+
+## HIGH-20: Pro_main.cpp 복사-붙여넣기 버그 (NULL 함수 포인터 크래시)
+
+**심각도**: HIGH
+**영향**: DLL 프로토콜 사용 시 워드 쓰기 크래시
+
+**Pro_main.cpp:1242** - `ProtocolWriteWord` 할당 후 `ProtocolWriteBit`를 검사:
+```cpp
+pt->dll.ProtocolWriteWord = (LPFNPROTOCOLWRITEWORD) GetProcAddress(pt->dll.hInst, sProc);
+if(pt->dll.ProtocolWriteBit == NULL) {   // BUG: ProtocolWriteWord를 검사해야 함
+```
+
+`ProtocolWriteWord`가 NULL이어도 검사를 통과하여, 실제 호출 시 **NULL 함수 포인터 호출로 즉시 크래시**합니다.
+
+---
+
+## HIGH-21: 16진수 주소 atoi 변환 손실
+
+**심각도**: HIGH
+**영향**: 16진수 주소 A-F 포함 시 잘못된 PLC 주소에 쓰기
+
+**Pro_main.cpp:392-394**:
+```cpp
+sprintf(buf, "%04X", address);    // 예: 0x00FF → "00FF"
+address = atoi(buf);              // atoi("00FF") → 0 (F에서 중단!)
+```
+
+16진수 문자(A-F)가 포함된 주소가 `atoi`에 의해 **잘못된 10진수로 변환**됩니다.
+예: 주소 `0x1A2B` → `"1A2B"` → `atoi` = `1` (A에서 중단).
+이는 **완전히 다른 PLC 주소에 쓰기 명령을 전달**하게 됩니다.
+
+---
+
+## HIGH-22: UDP 소켓 미해제 (Dead Code 버그)
+
+**심각도**: HIGH
+**영향**: 소켓 핸들 영구 누수
+
+**Comudpip.cpp:420-422**:
+```cpp
+local->nConnectNo = -1;            // -1로 설정
+if(local->nConnectNo != -1) {      // 항상 false!
+    conn = ...;
+    SocketUnPrepare(conn);          // 절대 실행되지 않음
+}
+```
+
+바로 위에서 `-1`로 설정한 값을 `-1이 아닌지` 검사하므로, `SocketUnPrepare`가 절대 호출되지 않아 소켓이 영구 누수됩니다.
+
+---
+
+## HIGH-23: 공유 메모리 보안 속성 없음 (로컬 공격 벡터)
+
+**심각도**: HIGH
+**영향**: 로컬 사용자가 PLC 데이터 직접 조작 가능
+
+**Scanfile.cpp:40**:
+```cpp
+hmmfInfo = CreateFileMapping((HANDLE)0xFFFFFFFF, NULL, PAGE_READWRITE, 0, size, name);
+```
+
+보안 속성이 `NULL`이고 이름이 예측 가능(`PlcScanPort000_MemoryWORD1` 등)하여,
+같은 시스템의 어떤 프로세스든 이 공유 메모리를 열어 PLC 값을 직접 읽기/쓰기할 수 있습니다.
+
+---
+
+## HIGH-24: ComDeviceNetClient 공유 메모리 무경계 memcpy
+
+**심각도**: HIGH
+**영향**: 공유 메모리 영역 밖 쓰기
+
+**ComDeviceNetClient.cpp:58**:
+```cpp
+sharePlcscanNetclient->size = count;
+memcpy(sharePlcscanNetclient->buf, buf, count);  // count 크기 미검증
+```
+
+`count`가 `buf`의 크기를 초과하면 공유 메모리 영역 밖에 쓰기를 하여
+다른 프로세스의 메모리를 손상시킵니다.
+
+---
+
 ## 개선 권장 사항 우선순위
 
 | 순위 | 항목 | 심각도 | 예상 작업량 |
@@ -743,6 +858,8 @@ Unicode 빌드에서 `char[]` 데이터를 `wchar_t[]`에 `memcpy`하면 문자 
 | 6 | VIP 스캔 static 변수 -> 포트별 변수 이동 | CRITICAL | 1시간 |
 | 7 | 재진입 플래그 InterlockedCompareExchange 적용 | CRITICAL | 30분 |
 | 8 | MAX_PORT INI 입력값 범위 검증 추가 | CRITICAL | 30분 |
+| 9 | **Modbus sm->size 범위 검증 추가** | CRITICAL | 30분 |
+| 10 | **UDP 링버퍼 Full 검사 추가** | CRITICAL | 1시간 |
 | 9 | 네트워크 입력 strcpy 경계 검사 추가 | HIGH | 2시간 |
 | 10 | sprintf -> _snprintf 일괄 교체 | HIGH | 4시간 |
 | 11 | TCP 수신 버퍼 경계 검사 수정 | HIGH | 1시간 |
@@ -760,10 +877,15 @@ Unicode 빌드에서 `char[]` 데이터를 `wchar_t[]`에 `memcpy`하면 문자 
 | 23 | RS-232 Busy-Wait -> 고해상도 타이머 교체 | HIGH | 2시간 |
 | 24 | PlcDeviceClearTCPIP 벌크 읽기 | HIGH | 30분 |
 | 25 | StackChar(5000) 버퍼 크기 검증/확대 | HIGH | 1시간 |
-| 26 | PortThread.cpp 레거시 코드 정리 | MEDIUM | 1시간 |
-| 27 | #pragma pack 포인터 구조체 분리 | MEDIUM | 설계 필요 |
-| 28 | 포트 인덱스 범위 검사 추가 | MEDIUM | 1시간 |
-| 29 | ScanServer 인증 메커니즘 추가 | MEDIUM | 설계 필요 |
+| 26 | **Pro_main.cpp ProtocolWriteWord NULL 검사 수정** | HIGH | 10분 |
+| 27 | **Pro_main.cpp 16진수 주소 atoi→strtol 교체** | HIGH | 30분 |
+| 28 | **UDP SocketUnPrepare Dead Code 수정** | HIGH | 30분 |
+| 29 | **공유 메모리 보안 속성(ACL) 설정** | HIGH | 2시간 |
+| 30 | **ComDeviceNetClient memcpy 크기 검증** | HIGH | 30분 |
+| 31 | PortThread.cpp 레거시 코드 정리 | MEDIUM | 1시간 |
+| 32 | #pragma pack 포인터 구조체 분리 | MEDIUM | 설계 필요 |
+| 33 | 포트 인덱스 범위 검사 추가 | MEDIUM | 1시간 |
+| 34 | ScanServer 인증 메커니즘 추가 | MEDIUM | 설계 필요 |
 
 ---
 
@@ -777,6 +899,8 @@ C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`), 멀티스레드/�
 가장 위험한 순서:
 1. **CRITICAL-7 (공유 메모리 동기화 부재)** - PLC 프로토콜 프레임 실시간 손상 가능
 2. **CRITICAL-8 (공유 메모리 데이터 삭제)** - 이중화 절체 시 데이터 소실
-3. **CRITICAL-1 (`delete[]` 문제)** - 힙 커럽션으로 프로세스 크래시
+3. **CRITICAL-9 (Modbus 버퍼 범위 초과)** - 잘못된 PLC 데이터 또는 크래시
+4. **CRITICAL-10 (UDP 링버퍼 덮어쓰기)** - 고속 통신 시 데이터 무단 손실
+5. **CRITICAL-1 (`delete[]` 문제)** - 힙 커럽션으로 프로세스 크래시
 
-총 발견 건수: **CRITICAL 8건, HIGH 19건, MEDIUM 6건** = 33건
+총 발견 건수: **CRITICAL 10건, HIGH 24건, MEDIUM 6건** = 40건
