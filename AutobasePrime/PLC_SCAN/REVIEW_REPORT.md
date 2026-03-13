@@ -325,6 +325,194 @@ char bThreadProtocolDrawWorking;  // 이것은 스레드 사용시 각 프로토
 
 ---
 
+## CRITICAL-4: VIP 스캔 위치 공유 변수 경쟁 조건
+
+**심각도**: CRITICAL
+**영향**: 안전 중요 데이터의 스캔 누락
+
+**Scanstat.cpp:952** - `CommStatusLocalOne()` 함수 내부의 static 변수:
+```cpp
+static int nScanPosBeforeVipScan = -1;
+```
+
+이 변수가 `static`으로 선언되어 **모든 포트가 단일 값을 공유**합니다.
+서로 다른 스레드에서 다른 포트를 스캔할 때 VIP 스캔 위치가 서로 덮어쓰기됩니다.
+VIP 스캔은 일반적으로 안전 중요(safety-critical) 고속 폴링 항목에 사용되므로,
+이 버그로 인해 **중요 데이터의 스캔이 누락될 수 있습니다**.
+
+### 수정 방법
+```cpp
+// static 제거하고 포트별 변수로 이동
+// GLOBAL_PORT_STRUCT에 nScanPosBeforeVipScan 필드 추가
+```
+
+---
+
+## CRITICAL-5: 재진입 방지 플래그 비원자적 연산
+
+**심각도**: CRITICAL
+**영향**: 쓰기 처리 함수의 동시 실행으로 데이터 손상
+
+**Scanstat.cpp:1041-1049**:
+```cpp
+static char flag = OFF;
+if(flag) return;  // void stack overflow
+flag = ON;
+// ... 처리 ...
+flag = OFF;
+```
+
+멀티코어 시스템에서 두 스레드가 동시에 `OFF`를 읽고 나서 둘 다 `ON`으로 설정할 수 있어,
+재진입 방지가 실패합니다. 쓰기 명령 처리 함수에서 이 문제가 발생하면
+PLC에 중복 쓰기 또는 잘못된 값이 전달될 수 있습니다.
+
+### 수정 방법
+```cpp
+// InterlockedCompareExchange 사용
+if(InterlockedCompareExchange((LONG*)&flag, ON, OFF) != OFF) return;
+```
+
+---
+
+## HIGH-5: `strcpy`를 통한 네트워크 입력 버퍼 오버플로우 (원격 공격 벡터)
+
+**심각도**: HIGH
+**영향**: 원격 코드 실행 가능성
+
+**Scanstat.cpp:1646,1666,1786** - 네트워크 수신 데이터를 경계 검사 없이 복사:
+```cpp
+strcpy(item.sExtraAddr, sExtraAddr);    // line 1646
+strcpy(item.sExtraAddr, recv->sExtra1); // line 1786
+```
+
+`sExtraAddr`/`recv->sExtra1`은 네트워크 프로토콜에서 파싱된 데이터이며,
+`item.sExtraAddr`의 크기 제한 없이 복사됩니다.
+악의적인 패킷으로 스택 버퍼 오버플로우를 유발할 수 있습니다.
+
+---
+
+## HIGH-6: `static int port` 공유 변수 (멀티스레드 포트 충돌)
+
+**심각도**: HIGH
+**영향**: 멀티포트 운용 시 스캔 순서 꼬임
+
+**Scanstat.cpp:1000**:
+```cpp
+static int port = 0;  // CommStatusLocal() 내부
+```
+
+이 변수가 현재 스캔 포트를 추적하는데, 여러 스레드가 동시에 접근하면
+포트 번호가 꼬여 잘못된 포트를 스캔하거나 특정 포트를 건너뛸 수 있습니다.
+
+---
+
+## HIGH-7: ScanServer 스레드 핸들 누수
+
+**심각도**: HIGH
+**영향**: 장기 운용 시 커널 핸들 고갈
+
+**ScanServerStatus.cpp:1154** - `CreateThread()` 호출 후 핸들 미반환:
+```cpp
+conn->hThread = CreateThread(NULL, 0, ServerThreadFunc, conn, 0, &conn->idThread);
+```
+
+스레드 종료 시 `CloseHandle()`이 호출되지 않고 핸들이 NULL로만 설정됩니다 (1172행).
+서버 재시작 시마다 커널 핸들이 누수되어, 장기 운용 시 시스템 리소스가 고갈됩니다.
+
+---
+
+## HIGH-8: TCP 연결 타임아웃 미설정 (블로킹 connect)
+
+**심각도**: HIGH
+**영향**: PLC 장애 시 통신 스레드 무한 대기
+
+**Comtcpip.cpp:130-191** - `connect()` 호출 전 SO_RCVTIMEO/SO_SNDTIMEO 미설정:
+```cpp
+if (connect(tcpip->socket, (PSOCKADDR)&dest_sin, sizeof(dest_sin)) == SOCKET_ERROR) {
+```
+
+원격 PLC가 응답하지 않으면 `connect()` 블로킹 호출이 OS 기본 타임아웃(수십 초~수 분)까지
+대기하며, 해당 포트의 모든 통신이 중단됩니다.
+
+---
+
+## HIGH-9: PlcDeviceUnInit 초기화되지 않은 반환값
+
+**심각도**: HIGH
+**영향**: 정의되지 않은 동작
+
+**Commmain.cpp:539-581** - switch 문에서 매칭되지 않는 경우:
+```cpp
+int PlcDeviceUnInit(DEVICE_STRUCT *device)
+{
+    int retn;
+    switch(device->nDeviceStyle) {
+        // ... 각 case에서 retn 설정 ...
+    }
+    return retn;  // 매칭 안 되면 초기화되지 않은 값 반환!
+}
+```
+
+`DEVICE_TYPE_NONE`이나 예상치 못한 값일 때 `retn`이 초기화되지 않은 스택 값을 반환하며,
+디바이스 `pData` 메모리도 해제되지 않아 메모리 누수가 발생합니다.
+
+---
+
+## HIGH-10: RS-232 Busy-Wait 스핀 루프 (CPU 100%)
+
+**심각도**: HIGH (성능)
+**영향**: CPU 코어 독점, 다른 포트 통신 지연
+
+**Com-232.cpp:360-373** - RTS/DTR 토글 타이밍을 빈 루프로 처리:
+```cpp
+for(i = 0; i < rs232->nEndDelayReadRTS; i++) {
+    for(int j = 0; j < 100; j++);   // 빈 루프!
+}
+```
+
+이 방식은 해당 CPU 코어를 100% 사용하며, 다른 통신 스레드를 기아(starvation) 상태로 만듭니다.
+고해상도 타이머(`QueryPerformanceCounter`) 또는 `Sleep(1)` 사용이 권장됩니다.
+
+---
+
+## HIGH-11: PlcDeviceGetInfoString 크기 제한 없는 버퍼 쓰기
+
+**심각도**: HIGH
+**영향**: 호출자 버퍼 오버플로우
+
+**Commmain.cpp:271-362**:
+```cpp
+void PlcDeviceGetInfoString(DEVICE_STRUCT *device, char *buf)
+{
+    sprintf(buf, "COM%d, %lu, %d, %d, %d", ...);
+    strcat(buf, info_crypto);  // 크기 제한 없음
+}
+```
+
+`buf`의 크기 파라미터가 없어, `sprintf`와 `strcat`이 호출자가 제공한 버퍼를 초과할 수 있습니다.
+
+---
+
+## HIGH-12: StackChar(5000) 블록 전송 버퍼 오버플로우 근접
+
+**심각도**: HIGH
+**영향**: 블록 크기 증가 시 힙 손상
+
+**ScanServerStatus.cpp:382-387 등 다수**:
+```cpp
+StackChar buf(5000);
+for(i = 0; i < block_size; i++) {
+    sprintf(imsi, "%02X", p[i]);
+    strcat(buf.data, imsi);   // 각 바이트당 2문자 추가
+}
+```
+
+`MAX_BLOCK_SEND_WORD=500`, `sizeof(NETWORK_PROTOCOL_BLOCK_WORD)=4`이면
+`block_size=2000`, 헥스 문자열=4000바이트 + prefix ≈ 5000바이트 근접.
+블록 크기가 조금만 증가하면 즉시 오버플로우됩니다.
+
+---
+
 ## 개선 권장 사항 우선순위
 
 | 순위 | 항목 | 심각도 | 예상 작업량 |
@@ -332,12 +520,20 @@ char bThreadProtocolDrawWorking;  // 이것은 스레드 사용시 각 프로토
 | 1 | `delete` -> `delete[]` 일괄 수정 | CRITICAL | 1시간 |
 | 2 | WRITE_WAIT_STRUCT CriticalSection 적용 | CRITICAL | 2시간 |
 | 3 | THREAD_PORT_STRUCT volatile 추가 | CRITICAL | 30분 |
-| 4 | sprintf -> _snprintf 일괄 교체 | HIGH | 4시간 |
-| 5 | TCP 수신 버퍼 경계 검사 수정 | HIGH | 1시간 |
-| 6 | RetryConnect 소켓 누수 수정 | HIGH | 1시간 |
-| 7 | PlcDeviceClearTCPIP 벌크 읽기 | HIGH | 30분 |
-| 8 | PortThread.cpp 레거시 코드 정리 | MEDIUM | 1시간 |
-| 9 | ScanServer 인증 메커니즘 추가 | MEDIUM | 설계 필요 |
+| 4 | VIP 스캔 static 변수 -> 포트별 변수 이동 | CRITICAL | 1시간 |
+| 5 | 재진입 플래그 InterlockedCompareExchange 적용 | CRITICAL | 30분 |
+| 6 | 네트워크 입력 strcpy 경계 검사 추가 | HIGH | 2시간 |
+| 7 | sprintf -> _snprintf 일괄 교체 | HIGH | 4시간 |
+| 8 | TCP 수신 버퍼 경계 검사 수정 | HIGH | 1시간 |
+| 9 | RetryConnect 소켓 누수 수정 | HIGH | 1시간 |
+| 10 | ScanServer 스레드 핸들 CloseHandle 추가 | HIGH | 30분 |
+| 11 | TCP connect() 타임아웃 설정 | HIGH | 1시간 |
+| 12 | PlcDeviceUnInit 반환값 초기화 | HIGH | 30분 |
+| 13 | RS-232 Busy-Wait -> 고해상도 타이머 교체 | HIGH | 2시간 |
+| 14 | PlcDeviceClearTCPIP 벌크 읽기 | HIGH | 30분 |
+| 15 | StackChar(5000) 버퍼 크기 검증/확대 | HIGH | 1시간 |
+| 16 | PortThread.cpp 레거시 코드 정리 | MEDIUM | 1시간 |
+| 17 | ScanServer 인증 메커니즘 추가 | MEDIUM | 설계 필요 |
 
 ---
 
@@ -350,3 +546,5 @@ C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`)와 멀티스레드
 특히 **CRITICAL-1 (`delete[]` 문제)**는 현재 운이 좋아서 문제가 발생하지 않는 것이며,
 컴파일러 버전 변경이나 메모리 레이아웃 변화 시 즉시 크래시로 이어질 수 있으므로
 **가장 먼저 수정해야 합니다**.
+
+총 발견 건수: **CRITICAL 5건, HIGH 12건, MEDIUM 4건** = 21건
