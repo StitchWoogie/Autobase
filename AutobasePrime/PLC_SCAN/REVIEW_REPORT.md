@@ -615,44 +615,168 @@ GLOBAL_PORT_STRUCT *pt = &portBuf[port];  // port 범위 검사 없음
 
 ---
 
+## CRITICAL-7: 공유 메모리 링버퍼 동기화 완전 부재
+
+**심각도**: CRITICAL
+**영향**: PLC 프로토콜 프레임 손상, 이중화 데이터 커럽션
+
+**PlcScanSharedMemory.cpp:46-81** - 공유 메모리 읽기/쓰기에 어떤 동기화도 없음:
+```cpp
+// WriteByte (line 50-52) - 비원자적 read-modify-write
+sharedMemory->send.buf[sharedMemory->send.target] = b;
+sharedMemory->send.target++;
+sharedMemory->send.target %= MAX_BUF;
+```
+
+**문제점**:
+- Mutex, Semaphore, CriticalSection 등 어떤 잠금 메커니즘도 없음
+- `target` 인덱스의 증가+모듈로가 비원자적이어서 읽기 프로세스가 중간 값을 볼 수 있음
+- `WriteBytes`에서 멀티바이트 쓰기가 읽기와 인터리브되어 **PLC 프레임이 중간에 잘릴 수 있음**
+- TOCTOU: `target == current` 검사와 실제 읽기 사이에 덮어쓰기 발생 가능
+
+이것은 SCADA 시스템에서 가장 위험한 유형의 버그입니다. 프로토콜 프레임이 부분적으로
+손상되면 PLC가 잘못된 명령을 수신할 수 있습니다.
+
+### 수정 방법
+```cpp
+// Named Mutex 또는 InterlockedExchange 기반 스핀락 사용
+HANDLE hMutex = CreateMutex(NULL, FALSE, L"PlcScanSharedMemory_Lock");
+WaitForSingleObject(hMutex, INFINITE);
+// ... 읽기/쓰기 ...
+ReleaseMutex(hMutex);
+```
+
+---
+
+## CRITICAL-8: 공유 메모리 Open 시 기존 데이터 무조건 삭제
+
+**심각도**: CRITICAL
+**영향**: 이중화 절체/재시작 시 통신 중인 데이터 전부 소실
+
+**PlcScanSharedMemory.cpp:24-30**:
+```cpp
+exist_flag = (GetLastError() == ERROR_ALREADY_EXISTS);  // 사용되지 않음!
+
+if(sharedMemory != NULL) {
+    ZeroMemory(sharedMemory, sizeof(SHARED_STRUCT));  // 무조건 초기화
+}
+```
+
+**문제점**: `exist_flag`를 계산하지만 **사용하지 않습니다**. 상대 프로세스가 이미 공유 메모리에
+유효한 PLC 데이터를 채워 놓은 상태에서 이 쪽에서 `Open()`을 호출하면 **모든 데이터가 삭제**됩니다.
+이중화 시스템에서 절체 또는 프로세스 재시작 시 진행 중인 통신 데이터가 소실됩니다.
+
+### 수정 방법
+```cpp
+if(!exist_flag) {
+    ZeroMemory(sharedMemory, sizeof(SHARED_STRUCT));  // 새로 생성한 경우만 초기화
+}
+```
+
+---
+
+## HIGH-16: CreateFileMapping 64비트 핸들 잘림
+
+**심각도**: HIGH
+**영향**: 64비트 빌드에서 공유 메모리 생성 실패
+
+**PlcScanSharedMemory.cpp:18**:
+```cpp
+hHandleFile = CreateFileMapping((HANDLE)0xFFFFFFFF, ...);
+```
+
+64비트에서 `0xFFFFFFFF`는 `0x00000000FFFFFFFF`로 확장되어 `INVALID_HANDLE_VALUE`(`0xFFFFFFFFFFFFFFFF`)와
+다른 값이 됩니다. `INVALID_HANDLE_VALUE` 매크로를 사용해야 합니다.
+
+---
+
+## HIGH-17: ComDeviceSharedMemory NULL 포인터 역참조
+
+**심각도**: HIGH
+**영향**: 공유 메모리 미초기화 시 크래시
+
+**ComDeviceSharedMemory.cpp:34,44,51**:
+```cpp
+if(!net->sharedMemory->IsOpen()) return 0;  // sharedMemory가 NULL이면 크래시
+```
+
+`PlcDeviceUnInitSharedMemory`(62행)에서는 NULL 검사를 하지만, Read/Write/Clear 함수에서는 하지 않습니다.
+
+---
+
+## HIGH-18: ScanWorkMemory ANSI/Unicode memcpy 타입 불일치
+
+**심각도**: HIGH
+**영향**: 문자열 데이터 손상, 초기화되지 않은 메모리 읽기
+
+**ScanWorkMemory.cpp:276**:
+```cpp
+TCHAR buf[256];          // Unicode 빌드시 wchar_t (512바이트)
+memcpy(buf, str->value, 255);  // str->value는 char[] (ANSI)
+buf[255] = 0;            // 바이트 오프셋 510이 아닌 255에 널 종료
+```
+
+Unicode 빌드에서 `char[]` 데이터를 `wchar_t[]`에 `memcpy`하면 문자 인코딩이 깨지며,
+`wcslen(buf)` 호출 시 초기화되지 않은 메모리를 읽을 수 있습니다.
+
+---
+
+## HIGH-19: ScanWorkMemory WM_DESTROY 주석 처리 → GlobalAlloc 누수
+
+**심각도**: HIGH
+**영향**: 메모리 뷰 윈도우 사용 시 메모리 지속 누수
+
+**ScanWorkMemory.cpp:1310-1338** - WM_CREATE에서 `GlobalAlloc`으로 할당한 메모리를
+해제하는 WM_DESTROY 핸들러가 전체 주석 처리되어 있어, 창을 열고 닫을 때마다 메모리가 누수됩니다.
+
+---
+
 ## 개선 권장 사항 우선순위
 
 | 순위 | 항목 | 심각도 | 예상 작업량 |
 |------|------|--------|-------------|
 | 1 | `delete` -> `delete[]` 일괄 수정 | CRITICAL | 1시간 |
 | 2 | WRITE_WAIT_STRUCT CriticalSection 적용 | CRITICAL | 2시간 |
-| 3 | THREAD_PORT_STRUCT volatile 추가 | CRITICAL | 30분 |
-| 4 | VIP 스캔 static 변수 -> 포트별 변수 이동 | CRITICAL | 1시간 |
-| 5 | 재진입 플래그 InterlockedCompareExchange 적용 | CRITICAL | 30분 |
-| 6 | MAX_PORT INI 입력값 범위 검증 추가 | CRITICAL | 30분 |
-| 7 | 네트워크 입력 strcpy 경계 검사 추가 | HIGH | 2시간 |
-| 8 | sprintf -> _snprintf 일괄 교체 | HIGH | 4시간 |
-| 9 | TCP 수신 버퍼 경계 검사 수정 | HIGH | 1시간 |
-| 10 | RetryConnect 소켓 누수 수정 | HIGH | 1시간 |
-| 11 | ScanServer 스레드 핸들 CloseHandle 추가 | HIGH | 30분 |
-| 12 | TCP connect() 타임아웃 설정 | HIGH | 1시간 |
-| 13 | PlcDeviceUnInit 반환값 초기화 | HIGH | 30분 |
-| 14 | CreateThread -> _beginthreadex 교체 | HIGH | 1시간 |
-| 15 | WaitForSingleObject 타임아웃 후 처리 개선 | HIGH | 1시간 |
-| 16 | GetWindowLong -> GetWindowLongPtr 교체 | HIGH | 2시간 |
-| 17 | RS-232 Busy-Wait -> 고해상도 타이머 교체 | HIGH | 2시간 |
-| 18 | PlcDeviceClearTCPIP 벌크 읽기 | HIGH | 30분 |
-| 19 | StackChar(5000) 버퍼 크기 검증/확대 | HIGH | 1시간 |
-| 20 | PortThread.cpp 레거시 코드 정리 | MEDIUM | 1시간 |
-| 21 | #pragma pack 포인터 구조체 분리 | MEDIUM | 설계 필요 |
-| 22 | 포트 인덱스 범위 검사 추가 | MEDIUM | 1시간 |
-| 23 | ScanServer 인증 메커니즘 추가 | MEDIUM | 설계 필요 |
+| 3 | **공유 메모리 링버퍼 동기화 추가** | CRITICAL | 3시간 |
+| 4 | **공유 메모리 Open 시 기존 데이터 보존** | CRITICAL | 30분 |
+| 5 | THREAD_PORT_STRUCT volatile 추가 | CRITICAL | 30분 |
+| 6 | VIP 스캔 static 변수 -> 포트별 변수 이동 | CRITICAL | 1시간 |
+| 7 | 재진입 플래그 InterlockedCompareExchange 적용 | CRITICAL | 30분 |
+| 8 | MAX_PORT INI 입력값 범위 검증 추가 | CRITICAL | 30분 |
+| 9 | 네트워크 입력 strcpy 경계 검사 추가 | HIGH | 2시간 |
+| 10 | sprintf -> _snprintf 일괄 교체 | HIGH | 4시간 |
+| 11 | TCP 수신 버퍼 경계 검사 수정 | HIGH | 1시간 |
+| 12 | RetryConnect 소켓 누수 수정 | HIGH | 1시간 |
+| 13 | ScanServer 스레드 핸들 CloseHandle 추가 | HIGH | 30분 |
+| 14 | TCP connect() 타임아웃 설정 | HIGH | 1시간 |
+| 15 | PlcDeviceUnInit 반환값 초기화 | HIGH | 30분 |
+| 16 | CreateThread -> _beginthreadex 교체 | HIGH | 1시간 |
+| 17 | WaitForSingleObject 타임아웃 후 처리 개선 | HIGH | 1시간 |
+| 18 | GetWindowLong -> GetWindowLongPtr 교체 | HIGH | 2시간 |
+| 19 | **CreateFileMapping INVALID_HANDLE_VALUE 사용** | HIGH | 10분 |
+| 20 | **ComDeviceSharedMemory NULL 검사 추가** | HIGH | 30분 |
+| 21 | **ScanWorkMemory ANSI/Unicode 불일치 수정** | HIGH | 1시간 |
+| 22 | **WM_DESTROY 핸들러 주석 해제** | HIGH | 30분 |
+| 23 | RS-232 Busy-Wait -> 고해상도 타이머 교체 | HIGH | 2시간 |
+| 24 | PlcDeviceClearTCPIP 벌크 읽기 | HIGH | 30분 |
+| 25 | StackChar(5000) 버퍼 크기 검증/확대 | HIGH | 1시간 |
+| 26 | PortThread.cpp 레거시 코드 정리 | MEDIUM | 1시간 |
+| 27 | #pragma pack 포인터 구조체 분리 | MEDIUM | 설계 필요 |
+| 28 | 포트 인덱스 범위 검사 추가 | MEDIUM | 1시간 |
+| 29 | ScanServer 인증 메커니즘 추가 | MEDIUM | 설계 필요 |
 
 ---
 
 ## 결론
 
 PLC_SCAN은 오랜 기간 산업 현장에서 검증된 안정적인 시스템이지만,
-C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`)와 멀티스레드 동기화 문제가
-잠재적으로 **힙 손상 및 통신 장애**를 유발할 수 있습니다.
+C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`), 멀티스레드/멀티프로세스 동기화 문제,
+**공유 메모리 무보호 접근** 등이 잠재적으로 **힙 손상, 통신 장애, 이중화 절체 실패**를
+유발할 수 있습니다.
 
-특히 **CRITICAL-1 (`delete[]` 문제)**는 현재 운이 좋아서 문제가 발생하지 않는 것이며,
-컴파일러 버전 변경이나 메모리 레이아웃 변화 시 즉시 크래시로 이어질 수 있으므로
-**가장 먼저 수정해야 합니다**.
+가장 위험한 순서:
+1. **CRITICAL-7 (공유 메모리 동기화 부재)** - PLC 프로토콜 프레임 실시간 손상 가능
+2. **CRITICAL-8 (공유 메모리 데이터 삭제)** - 이중화 절체 시 데이터 소실
+3. **CRITICAL-1 (`delete[]` 문제)** - 힙 커럽션으로 프로세스 크래시
 
-총 발견 건수: **CRITICAL 6건, HIGH 15건, MEDIUM 6건** = 27건
+총 발견 건수: **CRITICAL 8건, HIGH 19건, MEDIUM 6건** = 33건
