@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Remote|Win32">
+      <Configuration>Remote</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="영문|Win32">
+      <Configuration>영문</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{03EF9B4F-B6D4-4610-B4AF-E229E4B4A4E2}</ProjectGuid>
+    <RootNamespace>PLC_SCAN</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Remote|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='영문|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Remote|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='영문|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.28307.799</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\..\exe\Autobase48\</OutDir>
+    <IntDir>c:\obj\plc_scan\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='영문|Win32'">
+    <OutDir>d:\exe\cat32\english\</OutDir>
+    <IntDir>d:\obj\win95\plc_scan\english\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>d:\exe\cat32\hangul\</OutDir>
+    <IntDir>d:\obj\win95\plc_scan\hangul\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Remote|Win32'">
+    <OutDir>\\192.168.1.149\Autobase.Prime\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>d:\exe\cat32\hangul/PLC_SCAN.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\..\wintools\include;..\..\wintools\dll\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;COMPILE_HANGUL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;COMPILE_HANGUL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0412</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)pdb\$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='영문|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>d:\exe\cat32\english/PLC_SCAN.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\..\wintools\include;..\..\wintools\dll\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;COMPILE_ENGLISH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>d:\obj\win95\plc_scan\english/PLC_SCAN.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>d:\obj\win95\plc_scan\english/</AssemblerListingLocation>
+      <ObjectFileName>d:\obj\win95\plc_scan\english/</ObjectFileName>
+      <ProgramDataBaseFileName>d:\obj\win95\plc_scan\english/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;_DEBUG;COMPILE_ENGLISH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0412</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>d:\exe\cat32\english/PLC_SCAN.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>d:\exe\cat32\english/PLC_SCAN.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>d:\exe\cat32\hangul/PLC_SCAN.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;COMPILE_HANGUL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile>d:\obj\win95\plc_scan\hangul/PLC_SCAN.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>d:\obj\win95\plc_scan\hangul/</AssemblerListingLocation>
+      <ObjectFileName>d:\obj\win95\plc_scan\hangul/</ObjectFileName>
+      <ProgramDataBaseFileName>d:\obj\win95\plc_scan\hangul/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_AFXDLL;NDEBUG;COMPILE_HANGUL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0412</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>d:\exe\cat32\hangul/PLC_SCAN.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>d:\exe\cat32\hangul/PLC_SCAN.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Remote|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>d:\exe\cat32\hangul/PLC_SCAN.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\..\wintools\include;..\..\wintools\dll\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;COMPILE_HANGUL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;COMPILE_HANGUL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0412</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)pdb\$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Wintools\SOURCE\KWL\Kdialog.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\MODEM\Gatelib.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\MODEM\Modemlib.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\MODEM\Tcpiplib.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\MODEM\UdpipLib.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Bell.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Block.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CommaBlockString.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_16_12_5_1.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_16_15_13_1.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_16_15_2_1.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_SumBYTE.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_SumWORD.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoAES.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoARIA.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoCommunication.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoEngineAES.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoEngineARIA.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoTextReader.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Dataswap.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Findfile.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\fitblock.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\getdate.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Getdayhp.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\getfilesize.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\GetHurHp.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\GetLastErrorClass.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\GetMinHap.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\GetProgrammDirectory.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\gettime.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\HexBufToBYTE.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\HexBufToValue.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\HexBufToWORD.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\IsFileExists.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Language.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\MakeDirectory.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\MathRound.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\MemoryTextReader.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\sha1.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\SharedMemory.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\TextGetOneLine.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Timeout.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\TimeOutMiliSec.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\DrawUserListCtrl.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Fontdiag.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Garray.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Gcls.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\GetRadio.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Menubutn.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\MessageScreen.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Movewcnt.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Msgbox.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Opendiag.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Popbox2.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Poprect2.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Profile.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\ProfileUTF8.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Pushbox2.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Pushrec2.cpp" />
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\SetRadio.cpp" />
+    <ClCompile Include="..\CATLIB.SRC\ChangeUICulture.cpp" />
+    <ClCompile Include="..\CATLIB.SRC\MakeHtmlHelpPath.cpp" />
+    <ClCompile Include="..\Catlib.src\NetWorkProtocol.cpp" />
+    <ClCompile Include="..\Catlib.src\ShareProtect.cpp" />
+    <ClCompile Include="..\Catlib.src\SystemStatusMemory.cpp" />
+    <ClCompile Include="..\CATLIB.SRC\TagValue9.cpp" />
+    <ClCompile Include="..\CATLIB.SRC\TotalCfg9.cpp" />
+    <ClCompile Include="ComputerDual.cpp" />
+    <ClCompile Include="Device\Com-232.cpp" />
+    <ClCompile Include="Device\ComDeviceNetClient.cpp" />
+    <ClCompile Include="DEVICE\ComDeviceSharedMemory.cpp" />
+    <ClCompile Include="DEVICE\ComDeviceTcpServer.cpp" />
+    <ClCompile Include="Device\ComDeviceTele.cpp" />
+    <ClCompile Include="Device\Commmain.cpp" />
+    <ClCompile Include="Device\ComModem.cpp" />
+    <ClCompile Include="Device\Comtcpip.cpp" />
+    <ClCompile Include="Device\ComUDPIP.cpp" />
+    <ClCompile Include="DEVICE\PlcScanSharedMemory.cpp" />
+    <ClCompile Include="DialogComputerDualOption.cpp" />
+    <ClCompile Include="DialogConfigDevice.cpp" />
+    <ClCompile Include="DialogConfigDualOption.cpp" />
+    <ClCompile Include="DialogConfigScanServer.cpp" />
+    <ClCompile Include="DialogConfigTeleDevice.cpp" />
+    <ClCompile Include="DialogConfigTelOption.cpp" />
+    <ClCompile Include="DialogModemOption.cpp" />
+    <ClCompile Include="DialogModemSelect.cpp" />
+    <ClCompile Include="DialogMultiConfig.cpp" />
+    <ClCompile Include="DialogPortEdit.cpp" />
+    <ClCompile Include="DialogPortSelect.cpp" />
+    <ClCompile Include="DialogProtocolInformation.cpp" />
+    <ClCompile Include="DialogSystemInfo.cpp" />
+    <ClCompile Include="DialogWriteVirtual.cpp" />
+    <ClCompile Include="Plcwrite.cpp" />
+    <ClCompile Include="Plc_conf.cpp" />
+    <ClCompile Include="PokeSYSTEM.cpp" />
+    <ClCompile Include="PortThread.cpp" />
+    <ClCompile Include="Protocol\A0j2c214.cpp" />
+    <ClCompile Include="Protocol\Abplc5.cpp" />
+    <ClCompile Include="Protocol\adam.cpp" />
+    <ClCompile Include="Protocol\Bl_2300.cpp" />
+    <ClCompile Include="Protocol\Dpm2.cpp" />
+    <ClCompile Include="Protocol\Gantner.cpp" />
+    <ClCompile Include="Protocol\GESNP.cpp" />
+    <ClCompile Include="Protocol\Glofa.cpp" />
+    <ClCompile Include="Protocol\Gmpc.cpp" />
+    <ClCompile Include="Protocol\La250.cpp" />
+    <ClCompile Include="Protocol\Master-k.cpp" />
+    <ClCompile Include="Protocol\MastK10.cpp" />
+    <ClCompile Include="Protocol\MastK30.cpp" />
+    <ClCompile Include="Protocol\Mf2.cpp" />
+    <ClCompile Include="Protocol\Mj71e71.cpp" />
+    <ClCompile Include="Protocol\Modicon.cpp" />
+    <ClCompile Include="PROTOCOL\NetworkClientMulti.cpp" />
+    <ClCompile Include="Protocol\Omron.cpp" />
+    <ClCompile Include="Protocol\PCD.cpp" />
+    <ClCompile Include="Protocol\PCD_SBUS.cpp" />
+    <ClCompile Include="Protocol\PM-B.cpp" />
+    <ClCompile Include="Protocol\Pm_170e.cpp" />
+    <ClCompile Include="Protocol\Pro_lib.cpp" />
+    <ClCompile Include="Protocol\Pro_main.cpp" />
+    <ClCompile Include="Protocol\PT-L.cpp" />
+    <ClCompile Include="Protocol\RLink.cpp" />
+    <ClCompile Include="Protocol\sp30.cpp" />
+    <ClCompile Include="Protocol\Spc-300.cpp" />
+    <ClCompile Include="Protocol\Tmtc.cpp" />
+    <ClCompile Include="Protocol\Wr3380.cpp" />
+    <ClCompile Include="Scanconf.cpp" />
+    <ClCompile Include="ScanDay.cpp" />
+    <ClCompile Include="ScanEdit.cpp" />
+    <ClCompile Include="Scanenum.cpp" />
+    <ClCompile Include="Scanfile.cpp" />
+    <ClCompile Include="ScanHelp.cpp" />
+    <ClCompile Include="Scanmain.cpp" />
+    <ClCompile Include="ScanServerStatus.cpp" />
+    <ClCompile Include="ScanServerTcpip.cpp" />
+    <ClCompile Include="ScanServerWork.cpp" />
+    <ClCompile Include="Scanstat.cpp" />
+    <ClCompile Include="ScanStationInfo.cpp" />
+    <ClCompile Include="Scanwork.cpp" />
+    <ClCompile Include="ScanWorkAllPortStatus.cpp" />
+    <ClCompile Include="ScanWorkCodeView.cpp" />
+    <ClCompile Include="Stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Remote|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='영문|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ThreadReceiver.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\catlib\totalcfg.h" />
+    <ClInclude Include="Device\Commmain.h" />
+    <ClInclude Include="DialogComputerDualOption.h" />
+    <ClInclude Include="DialogConfigDualOption.h" />
+    <ClInclude Include="DialogConfigScanServer.h" />
+    <ClInclude Include="DialogConfigTeleDevice.h" />
+    <ClInclude Include="DialogConfigTelOption.h" />
+    <ClInclude Include="DialogModemOption.h" />
+    <ClInclude Include="DialogModemSelect.h" />
+    <ClInclude Include="DialogMultiConfig.h" />
+    <ClInclude Include="DialogPortEdit.h" />
+    <ClInclude Include="DialogPortSelect.h" />
+    <ClInclude Include="DialogProtocolInformation.h" />
+    <ClInclude Include="DialogSystemInfo.h" />
+    <ClInclude Include="plc_scan.h" />
+    <ClInclude Include="Protocol\pro_dde.h" />
+    <ClInclude Include="Protocol\Pro_lib.h" />
+    <ClInclude Include="Protocol\Pro_main.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="ScanServer.h" />
+    <ClInclude Include="ThreadReceiver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
+    <Image Include="mainfram.ico" />
+    <Image Include="viewcode.ico" />
+    <Image Include="viewmem.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\exe\Autobase48\Win32Common.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Resource.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

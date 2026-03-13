@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="ServiceOdbc" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceOdbc.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceOdbc.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceOdbc.svc?xsd=xsd2" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceOdbc_GetDataSetFromOdbc_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataSetFromOdbc" />
+  </wsdl:message>
+  <wsdl:message name="IServiceOdbc_GetDataSetFromOdbc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataSetFromOdbcResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceOdbc_DataSetOdbcCommand_InputMessage">
+    <wsdl:part name="parameters" element="tns:DataSetOdbcCommand" />
+  </wsdl:message>
+  <wsdl:message name="IServiceOdbc_DataSetOdbcCommand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DataSetOdbcCommandResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceOdbc">
+    <wsdl:operation name="GetDataSetFromOdbc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOdbc/GetDataSetFromOdbc" message="tns:IServiceOdbc_GetDataSetFromOdbc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOdbc/GetDataSetFromOdbcResponse" message="tns:IServiceOdbc_GetDataSetFromOdbc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DataSetOdbcCommand">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOdbc/DataSetOdbcCommand" message="tns:IServiceOdbc_DataSetOdbcCommand_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOdbc/DataSetOdbcCommandResponse" message="tns:IServiceOdbc_DataSetOdbcCommand_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServiceOdbc" type="tns:IServiceOdbc">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDataSetFromOdbc">
+      <soap:operation soapAction="http://tempuri.org/IServiceOdbc/GetDataSetFromOdbc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DataSetOdbcCommand">
+      <soap:operation soapAction="http://tempuri.org/IServiceOdbc/DataSetOdbcCommand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceOdbc">
+    <wsdl:port name="BasicHttpBinding_IServiceOdbc" binding="tns:BasicHttpBinding_IServiceOdbc">
+      <soap:address location="http://localhost:63500/AutoWeb/Service/ServiceOdbc.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

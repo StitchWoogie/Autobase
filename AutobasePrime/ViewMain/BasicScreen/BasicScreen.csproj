@@ -1,0 +1,1168 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;COMPILE_HANGUL</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E50BFB46-52E6-4467-A4F8-C1B8FBB14CAA}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>BasicScreen</AssemblyName>
+    <AssemblyOriginatorKeyFile>autobase.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BasicScreen</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;COMPILE_HANGUL</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap">
+      <Name>System.Runtime.Serialization.Formatters.Soap</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\..\NetTools\NetTools.csproj">
+      <Name>NetTools</Name>
+      <Project>{D49B5268-4C34-44C6-B688-80653EE9A189}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\AutoLibLocal\AutoLibLocal.csproj">
+      <Name>AutoLibLocal</Name>
+      <Project>{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\AutoLib\AutoLib.csproj">
+      <Name>AutoLib</Name>
+      <Project>{DFE68F78-7DBA-45BC-AB91-FB685733205B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\DialogTag\DialogTag.csproj">
+      <Name>DialogTag</Name>
+      <Project>{12D7893A-DA46-4CCD-B919-29CE90C5B9CB}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DialogControl\DialogControl.csproj">
+      <Name>DialogControl</Name>
+      <Project>{EBA72834-6DBB-416C-8A89-76597EFC0DD2}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="kdymain\AnalogDigitalCommonDrawClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\BasicScreenTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="kdymain\ButtonCheck2.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="kdymain\ControlBoxDoGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\TagListViewColumn.cs" />
+    <Compile Include="kdymain\ViewAnalogInputAlarmLevelDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputDataDlgSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputDataMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputDetailDlgSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputDetailMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputHandInputDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputTrendDlgSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputTrendDlgTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogInputTrendMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogOutputDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogOutputDetailMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewAnalogOutputMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalInputData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalInputDataMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalInputDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalInputDetailDlgSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalInputDetailMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalInputHandInputDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalInputMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalInputTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalInputTrendDlgSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalInputTrendMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalOutputDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalOutputDetailMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewDigitalOutputMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewEventLogDetailMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewEventLogMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewGroupListMainNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewGroupTagListSettingDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewListAlarmDetailConfigSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewListAlarmDetailConfigSearch.Designer.cs">
+      <DependentUpon>ViewListAlarmDetailConfigSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kdymain\ViewListAlarmDetailDlgPriority.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewListAlarmDetailItemDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewListAlarmDetailItemDetail.Designer.cs">
+      <DependentUpon>ViewListAlarmDetailItemDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kdymain\ViewListAlarmDetailMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewListAlarmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewRegisteredGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewRegisteredGroupDataInputDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewRegisteredGroupDetailMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewRegisteredGroupMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewStringTagMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kdymain\ViewTagNamePosSearchDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="autobase.snk" />
+    <None Include="BasicScreen.snk" />
+    <EmbeddedResource Include="kdymain\AnalogDigitalCommonDrawClass.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AnalogDigitalCommonDrawClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\AnalogDigitalCommonDrawClass.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AnalogDigitalCommonDrawClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\AnalogDigitalCommonDrawClass.resx">
+      <DependentUpon>AnalogDigitalCommonDrawClass.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\AnalogDigitalCommonDrawClass.zh-CHS.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AnalogDigitalCommonDrawClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ButtonCheck2.resx">
+      <DependentUpon>ButtonCheck2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ControlBoxDoGroup.ja.resx">
+      <DependentUpon>ControlBoxDoGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ControlBoxDoGroup.ko.resx">
+      <DependentUpon>ControlBoxDoGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ControlBoxDoGroup.resx">
+      <DependentUpon>ControlBoxDoGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ControlBoxDoGroup.zh-CHS.resx">
+      <DependentUpon>ControlBoxDoGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputAlarmLevelDlg.ja.resx">
+      <DependentUpon>ViewAnalogInputAlarmLevelDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputAlarmLevelDlg.ko.resx">
+      <DependentUpon>ViewAnalogInputAlarmLevelDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputAlarmLevelDlg.resx">
+      <DependentUpon>ViewAnalogInputAlarmLevelDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputAlarmLevelDlg.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputAlarmLevelDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputData.ja.resx">
+      <DependentUpon>ViewAnalogInputData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputData.ko.resx">
+      <DependentUpon>ViewAnalogInputData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputData.resx">
+      <DependentUpon>ViewAnalogInputData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputData.vi.resx">
+      <DependentUpon>ViewAnalogInputData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputData.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDataDlgSetting.ja.resx">
+      <DependentUpon>ViewAnalogInputDataDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDataDlgSetting.ko.resx">
+      <DependentUpon>ViewAnalogInputDataDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDataDlgSetting.resx">
+      <DependentUpon>ViewAnalogInputDataDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDataDlgSetting.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputDataDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDataMain.ja.resx">
+      <DependentUpon>ViewAnalogInputDataMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDataMain.ko.resx">
+      <DependentUpon>ViewAnalogInputDataMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDataMain.resx">
+      <DependentUpon>ViewAnalogInputDataMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDataMain.vi.resx">
+      <DependentUpon>ViewAnalogInputDataMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDataMain.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputDataMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetail.ja.resx">
+      <DependentUpon>ViewAnalogInputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetail.ko.resx">
+      <DependentUpon>ViewAnalogInputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetail.resx">
+      <DependentUpon>ViewAnalogInputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetail.vi.resx">
+      <DependentUpon>ViewAnalogInputDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetail.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetailDlgSetting.ja.resx">
+      <DependentUpon>ViewAnalogInputDetailDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetailDlgSetting.ko.resx">
+      <DependentUpon>ViewAnalogInputDetailDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetailDlgSetting.resx">
+      <DependentUpon>ViewAnalogInputDetailDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetailDlgSetting.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputDetailDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetailMain.ja.resx">
+      <DependentUpon>ViewAnalogInputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetailMain.ko.resx">
+      <DependentUpon>ViewAnalogInputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetailMain.resx">
+      <DependentUpon>ViewAnalogInputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetailMain.vi.resx">
+      <DependentUpon>ViewAnalogInputDetailMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputDetailMain.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputHandInputDlg.ja.resx">
+      <DependentUpon>ViewAnalogInputHandInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputHandInputDlg.ko.resx">
+      <DependentUpon>ViewAnalogInputHandInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputHandInputDlg.resx">
+      <DependentUpon>ViewAnalogInputHandInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputHandInputDlg.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputHandInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputMain.ja.resx">
+      <DependentUpon>ViewAnalogInputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputMain.ko.resx">
+      <DependentUpon>ViewAnalogInputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputMain.resx">
+      <DependentUpon>ViewAnalogInputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputMain.vi.resx">
+      <DependentUpon>ViewAnalogInputMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputMain.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrend.ja.resx">
+      <DependentUpon>ViewAnalogInputTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrend.ko.resx">
+      <DependentUpon>ViewAnalogInputTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrend.resx">
+      <DependentUpon>ViewAnalogInputTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrend.vi.resx">
+      <DependentUpon>ViewAnalogInputTrend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrend.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendDlgSettings.ja.resx">
+      <DependentUpon>ViewAnalogInputTrendDlgSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendDlgSettings.ko.resx">
+      <DependentUpon>ViewAnalogInputTrendDlgSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendDlgSettings.resx">
+      <DependentUpon>ViewAnalogInputTrendDlgSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendDlgSettings.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputTrendDlgSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendDlgTime.ja.resx">
+      <DependentUpon>ViewAnalogInputTrendDlgTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendDlgTime.ko.resx">
+      <DependentUpon>ViewAnalogInputTrendDlgTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendDlgTime.resx">
+      <DependentUpon>ViewAnalogInputTrendDlgTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendDlgTime.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputTrendDlgTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendMain.ja.resx">
+      <DependentUpon>ViewAnalogInputTrendMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendMain.ko.resx">
+      <DependentUpon>ViewAnalogInputTrendMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendMain.resx">
+      <DependentUpon>ViewAnalogInputTrendMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendMain.vi.resx">
+      <DependentUpon>ViewAnalogInputTrendMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogInputTrendMain.zh-CHS.resx">
+      <DependentUpon>ViewAnalogInputTrendMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputDetail.ja.resx">
+      <DependentUpon>ViewAnalogOutputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputDetail.ko.resx">
+      <DependentUpon>ViewAnalogOutputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputDetail.resx">
+      <DependentUpon>ViewAnalogOutputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputDetail.vi.resx">
+      <DependentUpon>ViewAnalogOutputDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputDetail.zh-CHS.resx">
+      <DependentUpon>ViewAnalogOutputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputDetailMain.ja.resx">
+      <DependentUpon>ViewAnalogOutputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputDetailMain.ko.resx">
+      <DependentUpon>ViewAnalogOutputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputDetailMain.resx">
+      <DependentUpon>ViewAnalogOutputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputDetailMain.vi.resx">
+      <DependentUpon>ViewAnalogOutputDetailMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputDetailMain.zh-CHS.resx">
+      <DependentUpon>ViewAnalogOutputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputMain.ja.resx">
+      <DependentUpon>ViewAnalogOutputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputMain.ko.resx">
+      <DependentUpon>ViewAnalogOutputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputMain.resx">
+      <DependentUpon>ViewAnalogOutputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputMain.vi.resx">
+      <DependentUpon>ViewAnalogOutputMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewAnalogOutputMain.zh-CHS.resx">
+      <DependentUpon>ViewAnalogOutputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputData.ja.resx">
+      <DependentUpon>ViewDigitalInputData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputData.ko.resx">
+      <DependentUpon>ViewDigitalInputData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputData.resx">
+      <DependentUpon>ViewDigitalInputData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputData.vi.resx">
+      <DependentUpon>ViewDigitalInputData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputData.zh-CHS.resx">
+      <DependentUpon>ViewDigitalInputData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDataMain.ja.resx">
+      <DependentUpon>ViewDigitalInputDataMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDataMain.ko.resx">
+      <DependentUpon>ViewDigitalInputDataMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDataMain.resx">
+      <DependentUpon>ViewDigitalInputDataMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDataMain.vi.resx">
+      <DependentUpon>ViewDigitalInputDataMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDataMain.zh-CHS.resx">
+      <DependentUpon>ViewDigitalInputDataMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetail.ja.resx">
+      <DependentUpon>ViewDigitalInputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetail.ko.resx">
+      <DependentUpon>ViewDigitalInputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetail.resx">
+      <DependentUpon>ViewDigitalInputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetail.vi.resx">
+      <DependentUpon>ViewDigitalInputDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetail.zh-CHS.resx">
+      <DependentUpon>ViewDigitalInputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetailDlgSetting.ja.resx">
+      <DependentUpon>ViewDigitalInputDetailDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetailDlgSetting.ko.resx">
+      <DependentUpon>ViewDigitalInputDetailDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetailDlgSetting.resx">
+      <DependentUpon>ViewDigitalInputDetailDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetailDlgSetting.zh-CHS.resx">
+      <DependentUpon>ViewDigitalInputDetailDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetailMain.ja.resx">
+      <DependentUpon>ViewDigitalInputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetailMain.ko.resx">
+      <DependentUpon>ViewDigitalInputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetailMain.resx">
+      <DependentUpon>ViewDigitalInputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetailMain.vi.resx">
+      <DependentUpon>ViewDigitalInputDetailMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputDetailMain.zh-CHS.resx">
+      <DependentUpon>ViewDigitalInputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputHandInputDlg.ja.resx">
+      <DependentUpon>ViewDigitalInputHandInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputHandInputDlg.ko.resx">
+      <DependentUpon>ViewDigitalInputHandInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputHandInputDlg.resx">
+      <DependentUpon>ViewDigitalInputHandInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputHandInputDlg.zh-CHS.resx">
+      <DependentUpon>ViewDigitalInputHandInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputMain.ja.resx">
+      <DependentUpon>ViewDigitalInputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputMain.ko.resx">
+      <DependentUpon>ViewDigitalInputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputMain.resx">
+      <DependentUpon>ViewDigitalInputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputMain.vi.resx">
+      <DependentUpon>ViewDigitalInputMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputMain.zh-CHS.resx">
+      <DependentUpon>ViewDigitalInputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrend.ja.resx">
+      <DependentUpon>ViewDigitalInputTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrend.ko.resx">
+      <DependentUpon>ViewDigitalInputTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrend.resx">
+      <DependentUpon>ViewDigitalInputTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrend.vi.resx">
+      <DependentUpon>ViewDigitalInputTrend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrend.zh-CHS.resx">
+      <DependentUpon>ViewDigitalInputTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrendDlgSetting.ja.resx">
+      <DependentUpon>ViewDigitalInputTrendDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrendDlgSetting.ko.resx">
+      <DependentUpon>ViewDigitalInputTrendDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrendDlgSetting.resx">
+      <DependentUpon>ViewDigitalInputTrendDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrendDlgSetting.zh-CHS.resx">
+      <DependentUpon>ViewDigitalInputTrendDlgSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrendMain.ja.resx">
+      <DependentUpon>ViewDigitalInputTrendMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrendMain.ko.resx">
+      <DependentUpon>ViewDigitalInputTrendMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrendMain.resx">
+      <DependentUpon>ViewDigitalInputTrendMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrendMain.vi.resx">
+      <DependentUpon>ViewDigitalInputTrendMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalInputTrendMain.zh-CHS.resx">
+      <DependentUpon>ViewDigitalInputTrendMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputDetail.ja.resx">
+      <DependentUpon>ViewDigitalOutputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputDetail.ko.resx">
+      <DependentUpon>ViewDigitalOutputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputDetail.resx">
+      <DependentUpon>ViewDigitalOutputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputDetail.vi.resx">
+      <DependentUpon>ViewDigitalOutputDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputDetail.zh-CHS.resx">
+      <DependentUpon>ViewDigitalOutputDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputDetailMain.ja.resx">
+      <DependentUpon>ViewDigitalOutputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputDetailMain.ko.resx">
+      <DependentUpon>ViewDigitalOutputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputDetailMain.resx">
+      <DependentUpon>ViewDigitalOutputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputDetailMain.vi.resx">
+      <DependentUpon>ViewDigitalOutputDetailMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputDetailMain.zh-CHS.resx">
+      <DependentUpon>ViewDigitalOutputDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputMain.ja.resx">
+      <DependentUpon>ViewDigitalOutputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputMain.ko.resx">
+      <DependentUpon>ViewDigitalOutputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputMain.resx">
+      <DependentUpon>ViewDigitalOutputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputMain.vi.resx">
+      <DependentUpon>ViewDigitalOutputMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewDigitalOutputMain.zh-CHS.resx">
+      <DependentUpon>ViewDigitalOutputMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewEventLogDetailMain.ja.resx">
+      <DependentUpon>ViewEventLogDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewEventLogDetailMain.ko.resx">
+      <DependentUpon>ViewEventLogDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewEventLogDetailMain.resx">
+      <DependentUpon>ViewEventLogDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewEventLogDetailMain.vi.resx">
+      <DependentUpon>ViewEventLogDetailMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewEventLogDetailMain.zh-CHS.resx">
+      <DependentUpon>ViewEventLogDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewEventLogMain.ja.resx">
+      <DependentUpon>ViewEventLogMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewEventLogMain.ko.resx">
+      <DependentUpon>ViewEventLogMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewEventLogMain.resx">
+      <DependentUpon>ViewEventLogMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewEventLogMain.vi.resx">
+      <DependentUpon>ViewEventLogMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewEventLogMain.zh-CHS.resx">
+      <DependentUpon>ViewEventLogMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewGroupListMainNew.ja.resx">
+      <DependentUpon>ViewGroupListMainNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewGroupListMainNew.ko.resx">
+      <DependentUpon>ViewGroupListMainNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewGroupListMainNew.resx">
+      <DependentUpon>ViewGroupListMainNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewGroupListMainNew.vi.resx">
+      <DependentUpon>ViewGroupListMainNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewGroupListMainNew.zh-CHS.resx">
+      <DependentUpon>ViewGroupListMainNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewGroupTagListSettingDlg.ja.resx">
+      <DependentUpon>ViewGroupTagListSettingDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewGroupTagListSettingDlg.ko.resx">
+      <DependentUpon>ViewGroupTagListSettingDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewGroupTagListSettingDlg.resx">
+      <DependentUpon>ViewGroupTagListSettingDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewGroupTagListSettingDlg.zh-CHS.resx">
+      <DependentUpon>ViewGroupTagListSettingDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailConfigSearch.ko.resx">
+      <DependentUpon>ViewListAlarmDetailConfigSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailConfigSearch.resx">
+      <DependentUpon>ViewListAlarmDetailConfigSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailDlgPriority.ja.resx">
+      <DependentUpon>ViewListAlarmDetailDlgPriority.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailDlgPriority.ko.resx">
+      <DependentUpon>ViewListAlarmDetailDlgPriority.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailDlgPriority.resx">
+      <DependentUpon>ViewListAlarmDetailDlgPriority.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailDlgPriority.zh-CHS.resx">
+      <DependentUpon>ViewListAlarmDetailDlgPriority.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailItemDetail.resx">
+      <DependentUpon>ViewListAlarmDetailItemDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailMain.ja.resx">
+      <DependentUpon>ViewListAlarmDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailMain.ko.resx">
+      <DependentUpon>ViewListAlarmDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailMain.resx">
+      <DependentUpon>ViewListAlarmDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailMain.vi.resx">
+      <DependentUpon>ViewListAlarmDetailMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmDetailMain.zh-CHS.resx">
+      <DependentUpon>ViewListAlarmDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmMain.ja.resx">
+      <DependentUpon>ViewListAlarmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmMain.ko.resx">
+      <DependentUpon>ViewListAlarmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmMain.resx">
+      <DependentUpon>ViewListAlarmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmMain.vi.resx">
+      <DependentUpon>ViewListAlarmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewListAlarmMain.zh-CHS.resx">
+      <DependentUpon>ViewListAlarmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroup.ja.resx">
+      <DependentUpon>ViewRegisteredGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroup.ko.resx">
+      <DependentUpon>ViewRegisteredGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroup.resx">
+      <DependentUpon>ViewRegisteredGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroup.zh-CHS.resx">
+      <DependentUpon>ViewRegisteredGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupDataInputDlg.ja.resx">
+      <DependentUpon>ViewRegisteredGroupDataInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupDataInputDlg.ko.resx">
+      <DependentUpon>ViewRegisteredGroupDataInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupDataInputDlg.resx">
+      <DependentUpon>ViewRegisteredGroupDataInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupDataInputDlg.zh-CHS.resx">
+      <DependentUpon>ViewRegisteredGroupDataInputDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupDetailMain.ja.resx">
+      <DependentUpon>ViewRegisteredGroupDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupDetailMain.ko.resx">
+      <DependentUpon>ViewRegisteredGroupDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupDetailMain.resx">
+      <DependentUpon>ViewRegisteredGroupDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupDetailMain.vi.resx">
+      <DependentUpon>ViewRegisteredGroupDetailMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupDetailMain.zh-CHS.resx">
+      <DependentUpon>ViewRegisteredGroupDetailMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupMain.ja.resx">
+      <DependentUpon>ViewRegisteredGroupMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupMain.ko.resx">
+      <DependentUpon>ViewRegisteredGroupMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupMain.resx">
+      <DependentUpon>ViewRegisteredGroupMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupMain.vi.resx">
+      <DependentUpon>ViewRegisteredGroupMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewRegisteredGroupMain.zh-CHS.resx">
+      <DependentUpon>ViewRegisteredGroupMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewStringTagMain.ja.resx">
+      <DependentUpon>ViewStringTagMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewStringTagMain.ko.resx">
+      <DependentUpon>ViewStringTagMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewStringTagMain.resx">
+      <DependentUpon>ViewStringTagMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewStringTagMain.vi.resx">
+      <DependentUpon>ViewStringTagMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewStringTagMain.zh-CHS.resx">
+      <DependentUpon>ViewStringTagMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewTagNamePosSearchDlg.ja.resx">
+      <DependentUpon>ViewTagNamePosSearchDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewTagNamePosSearchDlg.ko.resx">
+      <DependentUpon>ViewTagNamePosSearchDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewTagNamePosSearchDlg.resx">
+      <DependentUpon>ViewTagNamePosSearchDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kdymain\ViewTagNamePosSearchDlg.zh-CHS.resx">
+      <DependentUpon>ViewTagNamePosSearchDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

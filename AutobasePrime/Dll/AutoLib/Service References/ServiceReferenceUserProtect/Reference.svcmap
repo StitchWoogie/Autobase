@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="c9e50605-6d53-4fa2-bce4-b4925a7ebde3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63500/AutoWeb/Service/ServiceUserProtect.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceUserProtect.wsdl" MetadataType="Wsdl" ID="ed0bcd7a-cef0-48b4-a0db-6cafb88db5bf" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceUserProtect.svc?wsdl" />
+    <MetadataFile FileName="ServiceUserProtect.xsd" MetadataType="Schema" ID="70061907-f284-4c17-86c6-87a7d061d09d" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceUserProtect.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceUserProtect1.xsd" MetadataType="Schema" ID="7ee4b267-38c3-45b1-8c7e-c11df21eda3e" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceUserProtect.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceUserProtect.disco" MetadataType="Disco" ID="465529ae-db8b-4b6b-91b9-deb257c79511" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceUserProtect.svc?disco" />
+    <MetadataFile FileName="ServiceUserProtect2.xsd" MetadataType="Schema" ID="d19083bc-965e-46d3-88de-7bb324d2fda2" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceUserProtect.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

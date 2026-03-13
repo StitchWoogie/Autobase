@@ -1,0 +1,602 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6B5954E6-5089-4209-8992-0187A564FAE9}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>PublicStudioLocalMain</AssemblyName>
+    <AssemblyOriginatorKeyFile>autobase.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PublicStudioLocalMain</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkProfile />
+    <PublishUrl>게시\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\EXE\Autobase48\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Name>System.EnterpriseServices</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\..\..\NetTools\NetTools.csproj">
+      <Name>NetTools</Name>
+      <Project>{D49B5268-4C34-44C6-B688-80653EE9A189}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpcUaClient.Ipc.Client\OpcUaClient.Ipc.Client.csproj">
+      <Project>{CB5C00CF-62E9-4689-A5D3-2F03B065A5D1}</Project>
+      <Name>OpcUaClient.Ipc.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoLibLocal\AutoLibLocal.csproj">
+      <Project>{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}</Project>
+      <Name>AutoLibLocal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoLib\AutoLib.csproj">
+      <Project>{DFE68F78-7DBA-45BC-AB91-FB685733205B}</Project>
+      <Name>AutoLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DialogHoliday\DialogHoliday.csproj">
+      <Project>{6E0B046D-EC82-46DC-95FC-2F46FDC17F15}</Project>
+      <Name>DialogHoliday</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DialogTag\DialogTag.csproj">
+      <Project>{12D7893A-DA46-4CCD-B919-29CE90C5B9CB}</Project>
+      <Name>DialogTag</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassPublic.cs" />
+    <Compile Include="FormRemoteAS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRemoteAS.Designer.cs">
+      <DependentUpon>FormRemoteAS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IOpcBrowseProvider.cs" />
+    <Compile Include="Resources.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\CommaScriptFileClass.cs" />
+    <Compile Include="Schedule\CommaScriptFileModel.cs" />
+    <Compile Include="Schedule\CommaScriptFileModelItem.cs" />
+    <Compile Include="Schedule\CommaScriptFileModelScript.cs" />
+    <Compile Include="Schedule\FormConfigScheduleDesignerModelModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigScheduleDesignerModelEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigScheduleDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigLocation.Designer.cs">
+      <DependentUpon>FormConfigLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Schedule\FormConfigLocationAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigLocationAdd.Designer.cs">
+      <DependentUpon>FormConfigLocationAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Schedule\FormConfigModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigModelItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigModelOne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigScheduleAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigScheduleAdditional.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigScheduleAdditionalAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormConfigScheduleWeek.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormModelChangeValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\LocationLib.cs" />
+    <Compile Include="Schedule\ScheduleLib.cs" />
+    <Compile Include="Recipe\FormConfigRecipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recipe\FormConfigRecipe.Designer.cs">
+      <DependentUpon>FormConfigRecipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recipe\FormConfigPreset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recipe\FormConfigPreset.Designer.cs">
+      <DependentUpon>FormConfigPreset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recipe\FormElectronicSignature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recipe\FormElectronicSignature.Designer.cs">
+      <DependentUpon>FormElectronicSignature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recipe\FormConfigRecipeStep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\RestApiMonitorService.cs" />
+    <Compile Include="RESTAPIMonitor\FormRestApiMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\FormRestApiMonitor.Designer.cs">
+      <DependentUpon>FormRestApiMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\SafeDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\FormApi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\FormApi.Designer.cs">
+      <DependentUpon>FormApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\FormRequestHeader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\FormRequestHeader.Designer.cs">
+      <DependentUpon>FormRequestHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\FormErrorReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\FormErrorReport.Designer.cs">
+      <DependentUpon>FormErrorReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\FormHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\FormHelp.Designer.cs">
+      <DependentUpon>FormHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RESTAPIMonitor\EncryptionHelper.cs" />
+    <Compile Include="RESTAPIMonitor\FileNameHelper.cs" />
+    <Compile Include="RESTAPIMonitor\UrlFomatter.cs" />
+    <EmbeddedResource Include="FormRemoteAS.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormRemoteAS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRemoteAS.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormRemoteAS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectItem.ja.resx">
+      <DependentUpon>FormSelectItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectItem.ko.resx">
+      <DependentUpon>FormSelectItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectItem.resx">
+      <DependentUpon>FormSelectItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectItem.zh-CHS.resx">
+      <DependentUpon>FormSelectItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recipe\FormConfigPreset.resx">
+      <DependentUpon>FormConfigPreset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recipe\FormConfigRecipe.resx">
+      <DependentUpon>FormConfigRecipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recipe\FormConfigRecipeStep.resx">
+      <DependentUpon>FormConfigRecipeStep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <DependentUpon>Resources.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleDesigner.ko.resx">
+      <DependentUpon>FormConfigScheduleDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleDesignerModelEditor.ko.resx">
+      <DependentUpon>FormConfigScheduleDesignerModelEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleDesignerModelModify.ko.resx">
+      <DependentUpon>FormConfigScheduleDesignerModelModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleDesignerModelModify.resx">
+      <DependentUpon>FormConfigScheduleDesignerModelModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleDesignerModelEditor.resx">
+      <DependentUpon>FormConfigScheduleDesignerModelEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleDesigner.resx">
+      <DependentUpon>FormConfigScheduleDesigner.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigLocation.ko.resx">
+      <DependentUpon>FormConfigLocation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigLocation.resx">
+      <DependentUpon>FormConfigLocation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigLocationAdd.ko.resx">
+      <DependentUpon>FormConfigLocationAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigLocationAdd.resx">
+      <DependentUpon>FormConfigLocationAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModel.ja.resx">
+      <DependentUpon>FormConfigModel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModel.ko.resx">
+      <DependentUpon>FormConfigModel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModel.resx">
+      <DependentUpon>FormConfigModel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModel.vi.resx">
+      <DependentUpon>FormConfigModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModel.zh-CHS.resx">
+      <DependentUpon>FormConfigModel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModelItem.ja.resx">
+      <DependentUpon>FormConfigModelItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModelItem.ko.resx">
+      <DependentUpon>FormConfigModelItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModelItem.resx">
+      <DependentUpon>FormConfigModelItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModelItem.vi.resx">
+      <DependentUpon>FormConfigModelItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModelItem.zh-CHS.resx">
+      <DependentUpon>FormConfigModelItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModelOne.ja.resx">
+      <DependentUpon>FormConfigModelOne.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModelOne.ko.resx">
+      <DependentUpon>FormConfigModelOne.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModelOne.resx">
+      <DependentUpon>FormConfigModelOne.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModelOne.vi.resx">
+      <DependentUpon>FormConfigModelOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigModelOne.zh-CHS.resx">
+      <DependentUpon>FormConfigModelOne.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigSchedule.ja.resx">
+      <DependentUpon>FormConfigSchedule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigSchedule.ko.resx">
+      <DependentUpon>FormConfigSchedule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigSchedule.resx">
+      <DependentUpon>FormConfigSchedule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigSchedule.vi.resx">
+      <DependentUpon>FormConfigSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigSchedule.zh-CHS.resx">
+      <DependentUpon>FormConfigSchedule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdd.ja.resx">
+      <DependentUpon>FormConfigScheduleAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdd.ko.resx">
+      <DependentUpon>FormConfigScheduleAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdd.resx">
+      <DependentUpon>FormConfigScheduleAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdd.vi.resx">
+      <DependentUpon>FormConfigScheduleAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdd.zh-CHS.resx">
+      <DependentUpon>FormConfigScheduleAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdditional.ja.resx">
+      <DependentUpon>FormConfigScheduleAdditional.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdditional.ko.resx">
+      <DependentUpon>FormConfigScheduleAdditional.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdditional.resx">
+      <DependentUpon>FormConfigScheduleAdditional.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdditional.vi.resx">
+      <DependentUpon>FormConfigScheduleAdditional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdditional.zh-CHS.resx">
+      <DependentUpon>FormConfigScheduleAdditional.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdditionalAdd.ja.resx">
+      <DependentUpon>FormConfigScheduleAdditionalAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdditionalAdd.ko.resx">
+      <DependentUpon>FormConfigScheduleAdditionalAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdditionalAdd.resx">
+      <DependentUpon>FormConfigScheduleAdditionalAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdditionalAdd.vi.resx">
+      <DependentUpon>FormConfigScheduleAdditionalAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleAdditionalAdd.zh-CHS.resx">
+      <DependentUpon>FormConfigScheduleAdditionalAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleWeek.ja.resx">
+      <DependentUpon>FormConfigScheduleWeek.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleWeek.ko.resx">
+      <DependentUpon>FormConfigScheduleWeek.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleWeek.resx">
+      <DependentUpon>FormConfigScheduleWeek.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleWeek.vi.resx">
+      <DependentUpon>FormConfigScheduleWeek.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormConfigScheduleWeek.zh-CHS.resx">
+      <DependentUpon>FormConfigScheduleWeek.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormModelChangeValue.ja.resx">
+      <DependentUpon>FormModelChangeValue.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormModelChangeValue.ko.resx">
+      <DependentUpon>FormModelChangeValue.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormModelChangeValue.resx">
+      <DependentUpon>FormModelChangeValue.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormModelChangeValue.zh-CHS.resx">
+      <DependentUpon>FormModelChangeValue.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RESTAPIMonitor\FormRestApiMonitor.resx">
+      <DependentUpon>FormRestApiMonitor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RESTAPIMonitor\FormRestApiMonitor.ko.resx">
+      <DependentUpon>FormRestApiMonitor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RESTAPIMonitor\FormApi.resx">
+      <DependentUpon>FormApi.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RESTAPIMonitor\FormApi.ko.resx">
+      <DependentUpon>FormApi.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RESTAPIMonitor\FormRequestHeader.resx">
+      <DependentUpon>FormRequestHeader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RESTAPIMonitor\FormRequestHeader.ko.resx">
+      <DependentUpon>FormRequestHeader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RESTAPIMonitor\FormHelp.resx">
+      <DependentUpon>FormHelp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="autobase.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

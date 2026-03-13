@@ -1,0 +1,612 @@
+================================================================================
+  AutobasePrime ISA-88 레시피 실행 흐름 설명서
+  (JSON 설정 → Import → 승인 → 실행)
+  작성일: 2026-03-03
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  1. 전체 흐름 요약                                                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  [JSON 설정 파일]
+       │
+       ▼
+  [CSV Import]  또는  [Studio UI에서 직접 편집]
+       │
+       ▼
+  [저장] ─── status = "draft" (초안)
+       │
+       ▼
+  [승인(Approve)] ─── 전자서명(비밀번호 확인 + 사유 입력)
+       │                status = "approved"
+       ▼
+  [실행] ─── Quick 모드: RecipeQuickDownload()
+       │     Standard 모드: BatchStart()  또는  RecipeDownload()
+       ▼
+  [결과 기록] ─── DB execution_log + batch_execution 테이블
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  2. Quick 모드 vs Standard 모드                                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ┌──────────────────┬──────────────────────┬───────────────────────────────┐
+  │     항목          │  Quick 모드           │  Standard 모드                │
+  ├──────────────────┼──────────────────────┼───────────────────────────────┤
+  │ 실행 함수         │ RecipeQuickDownload() │ BatchStart()                  │
+  │ 시작 조건         │ 무시                  │ Entry Expression 평가         │
+  │ 전이 조건         │ 무시                  │ Type+Priority 순 Transition   │
+  │ 종료 액션         │ 없음                  │ exit_actions_json 실행        │
+  │ 중단 액션         │ 없음                  │ abort_actions_json 실행       │
+  │ 대기시간          │ 무시                  │ wait_time_ms 대기             │
+  │ 타임아웃          │ 없음                  │ timeout_ms (기본 30초)        │
+  │ Unit 병렬실행     │ 미지원                │ Task.WhenAll 병렬 실행        │
+  │ 배치 기록         │ 없음                  │ Control Recipe 스냅샷 + 감사  │
+  │ 상태 머신         │ 없음                  │ BatchStateMachine (ISA-88)    │
+  │ Hold/Resume/Abort │ 미지원                │ 지원                          │
+  │ 전자서명          │ 미지원                │ 배치 시작/중단 시 서명 필요    │
+  │ UI에서 Step 편집  │ Items만 표시           │ 전체 조건/전이/액션 표시      │
+  │ 실행 로그 action  │ QUICK_DOWNLOAD         │ BATCH_START                  │
+  └──────────────────┴──────────────────────┴───────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  3. Quick 모드 실행 로직 (RecipeQuickDownload)                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  순서:
+  ① 레시피 로드 (DB)
+  ② 승인 상태 확인 (status == "approved" 필수)
+  ③ 모든 Step의 모든 Item 순차 태그값 쓰기
+     → PlcScan.SetTagValue(tag_name, set_value, false)
+  ④ 실행 로그 기록 (QUICK_DOWNLOAD / COMPLETED)
+
+  조건, 대기, 타임아웃, 전이 — 전부 무시
+  즉시 모든 태그에 값을 출력
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  4. Standard 모드 실행 로직 (BatchStart)                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ┌────────────────────────────────────────────────────────────────┐
+  │ 배치 시작 준비 단계                                            │
+  ├────────────────────────────────────────────────────────────────┤
+  │ ① 전자서명 확인 (비밀번호 + 사유)                              │
+  │ ② BatchId 자동 생성: "yyyyMMdd-HHmmss-NNN"                    │
+  │ ③ 상태 머신 초기화: Idle → Running                             │
+  │ ④ Master Recipe 로드 (DB)                                     │
+  │ ⑤ 승인 상태 확인 (status == "approved" 필수)                   │
+  │ ⑥ Control Recipe 스냅샷 생성 (JSON 직렬화 → DB 저장)          │
+  │ ⑦ Batch Execution 레코드 생성 (감사 추적)                     │
+  │ ⑧ 실행 계획 생성: Direct Steps + Unit Groups                  │
+  └────────────────────────────────────────────────────────────────┘
+                        │
+                        ▼
+  ┌────────────────────────────────────────────────────────────────┐
+  │ Phase A: Recipe 직속 Step 순차 실행                            │
+  │ (while 루프 — Transition 기반 흐름 제어)                       │
+  │                                                                │
+  │ s = 0                                                          │
+  │ while (s < DirectSteps.Count):                                 │
+  │   ├─ Hold/Abort 체크                                           │
+  │   ├─ ExecuteStepDownloadV2(step[s])                            │
+  │   └─ switch (result.Type):                                     │
+  │       ├─ Complete  → s++                                       │
+  │       ├─ Loop      → s = stepOrderIndex[targetStepOrder]       │
+  │       ├─ End       → s = Count (루프 탈출 + Unit 스킵)        │
+  │       ├─ Exception → 배치 실패                                 │
+  │       └─ Abort     → 배치 실패                                 │
+  └────────────────────────────────────────────────────────────────┘
+                        │
+                        ▼ (End 전이가 아닌 경우에만)
+  ┌────────────────────────────────────────────────────────────────┐
+  │ Phase B: Unit 병렬 실행                                        │
+  │ Task.WhenAll(Unit1, Unit2, ..., UnitN)                         │
+  │                                                                │
+  │ 각 Unit 내부: ExecuteUnitStepsAsync()                          │
+  │   └─ Phase A와 동일한 while 루프 + Transition 제어             │
+  │      (Loop 전이는 Unit 내부에서만 유효)                        │
+  └────────────────────────────────────────────────────────────────┘
+                        │
+                        ▼
+  ┌────────────────────────────────────────────────────────────────┐
+  │ 완료 처리                                                      │
+  │ ├─ 상태 머신: SetComplete()                                    │
+  │ ├─ 실행 로그: BATCH_START / COMPLETED                          │
+  │ ├─ DB: batch_execution.status = "complete"                     │
+  │ └─ DB: control_recipe.status = "completed"                     │
+  └────────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  5. 단일 Step 실행 순서 (ExecuteStepDownloadV2)                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ┌─────────────┐
+  │ ⓪ 안전 제한  │  Step 실행 총 횟수 확인 (TotalStepExecutions)
+  │  체크        │  10,000회 초과 시 → abort_actions 실행 → Exception
+  └──────┬──────┘
+         ▼
+  ┌─────────────┐
+  │ ① 시작 조건  │  StepState = WaitingEntry
+  │  (Entry)     │
+  │              │  entry_expression 또는 entry_condition_tag 정의 시:
+  │              │    while(true):
+  │              │      - 100ms 폴링
+  │              │      - Hold/Abort 체크 → 중단 시 abort_actions 실행
+  │              │      - entry_timeout_ms 초과 → abort_actions 실행 → Exception
+  │              │      - expression 평가 예외 → abort_actions → Exception (배치 실패)
+  │              │      - 조건 충족 시 → 감사 로그 기록 후 break
+  │              │  정의 안 됨: 즉시 통과
+  └──────┬──────┘
+         ▼
+  ┌─────────────┐
+  │ ② 태그 쓰기  │  StepState = Running
+  │  (Items)     │
+  │              │  step.items 순회:
+  │              │    PlcScan.SetTagValue(tag_name, set_value, false)
+  │              │  실패 시: abort_actions 실행 → Exception 반환
+  └──────┬──────┘
+         ▼
+  ┌─────────────┐
+  │ ③ 최소 대기  │
+  │  (Wait)      │  wait_time_ms > 0 이면 Task.Delay(wait_time_ms)
+  └──────┬──────┘
+         ▼
+  ┌─────────────┐
+  │ ④ 전이 목록  │  GetStepTransitions(step):
+  │  가져오기    │    transitions_json 있으면 → JSON 파싱
+  │              │    없으면 → BuildTransitionsFromLegacy() 자동 생성
+  │              │    정렬: Type 카테고리 → 같은 카테고리 내 priority
+  │              │      [Abort(0)] → [Exception(1)] → [Complete/Loop/End(2)]
+  │              │  전이 0개: exit_actions 실행 → Complete 반환
+  └──────┬──────┘
+         ▼
+  ┌──────────────────────────────────────────────────────────────┐
+  │ ⑤ 전이 평가 루프 (Transition Evaluation Loop)                │
+  │    StepState = Running                                       │
+  │                                                              │
+  │    전역 안전 제한 (매 반복 체크):                             │
+  │      - 전이 평가 횟수 > 1,000,000 → Exception                │
+  │      - 배치 총 시간 ≥ 24시간 → Exception                     │
+  │                                                              │
+  │    while(true):                                              │
+  │      ├─ Hold/Abort 체크 → 중단 시 abort_actions 실행         │
+  │      ├─ timeout_ms 초과 → abort_actions 실행 → Exception     │
+  │      │                                                       │
+  │      ├─ foreach (transition in transitions):                  │
+  │      │    ※ 평가 순서: Abort → Exception → Complete/Loop/End  │
+  │      │    ※ 같은 타입 내에서는 priority 순                    │
+  │      │                                                       │
+  │      │    expression 평가 (RecipeExpressionEvaluator)         │
+  │      │    expression 비어있으면 → 항상 true                   │
+  │      │    expression 평가 예외 → abort_actions → Exception (배치 실패)             │
+  │      │                                                       │
+  │      │    충족 시 type 별 처리:                               │
+  │      │    ┌──────────┬──────────────────────────────────────┐ │
+  │      │    │ Abort    │ abort_actions 실행 → 즉시 중단       │ │
+  │      │    │ Exception│ abort_actions 실행 → 배치 실패       │ │
+  │      │    │ Complete │ exit_actions 실행 → 다음 Step        │ │
+  │      │    │ Loop     │ 반복 카운터 확인 (max_loop_count)    │ │
+  │      │    │          │ 액션 없음 → 대상 Step 점프           │ │
+  │      │    │ End      │ exit_actions 실행 → 레시피 전체 종료 │ │
+  │      │    └──────────┴──────────────────────────────────────┘ │
+  │      │                                                       │
+  │      └─ 100ms 대기 후 재평가                                 │
+  └──────────────────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  6. 전이 조건 (Transition) 상세                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  6.1 TransitionType 열거형:
+
+    ┌───────────┬─────┬──────────────────────────────────────────────────────┐
+    │ 타입       │ 값  │ 동작                                                │
+    ├───────────┼─────┼──────────────────────────────────────────────────────┤
+    │ Complete  │  0  │ 정상 완료. exit_actions 실행 후 다음 Step으로 이동   │
+    │ Exception │  1  │ 예외 발생. abort_actions 실행 후 배치 실패 처리      │
+    │ Abort     │  2  │ 즉시 중단. abort_actions 실행 후 배치 중단 처리      │
+    │ Loop      │  3  │ target_step_order로 점프. max_loop_count 제한 적용   │
+    │ End       │  4  │ 레시피 전체 종료. 남은 Step + Unit 모두 건너뛰기     │
+    └───────────┴─────┴──────────────────────────────────────────────────────┘
+
+  6.2 StepTransition 필드:
+
+    ┌──────────────────┬──────────┬──────────────────────────────────────────┐
+    │ 필드              │ 기본값   │ 설명                                     │
+    ├──────────────────┼──────────┼──────────────────────────────────────────┤
+    │ priority          │ 0        │ 평가 순서 (낮을수록 먼저 평가)           │
+    │ expression        │ ""       │ 조건식 ($TAG > 10 && $DI == 1)           │
+    │ type              │ Complete │ TransitionType 열거형                    │
+    │ target_step_order │ -1       │ Loop 시 점프 대상 (-1 = 현재 Step 반복)  │
+    │ max_loop_count    │ 10       │ 최대 반복 횟수 (0 = 무제한)              │
+    │ description       │ ""       │ UI 표시용 설명                           │
+    └──────────────────┴──────────┴──────────────────────────────────────────┘
+
+  6.3 평가 순서 규칙 (★ 산업 안전 핵심):
+
+    평가 순서는 2단계로 결정됩니다:
+      1단계: TransitionType 카테고리 (강제)
+        ┌──────────┬──────────┬──────────────────────────────────┐
+        │ 카테고리  │ 타입      │ 이유                             │
+        ├──────────┼──────────┼──────────────────────────────────┤
+        │ 0 (최우선)│ Abort    │ 비상 정지는 항상 최우선 평가     │
+        │ 1        │ Exception│ 감시 조건 (RunningCondition)      │
+        │ 2        │ Complete │ 정상 완료 전이                    │
+        │ 2        │ Loop     │ 정상 분기 전이                    │
+        │ 2        │ End      │ 정상 종료 전이                    │
+        └──────────┴──────────┴──────────────────────────────────┘
+
+      2단계: 같은 카테고리 내에서 priority 순 (낮을수록 먼저)
+
+    기타 규칙:
+    - 같은 루프 반복에서 가장 먼저 충족된 전이만 실행
+    - expression이 비어있으면 항상 true (무조건 전이)
+    - expression 평가 중 예외 발생 시 → abort_actions → Exception (배치 실패)
+
+    ★ RunningCondition (Exception) 이 항상 Complete/Loop/End보다 먼저 평가됨
+      → 사용자가 priority를 잘못 설정해도 안전 감시가 보장됨
+
+  6.4 하위호환 (Legacy 자동 변환):
+    transitions_json이 비어있으면 기존 필드에서 자동 생성:
+    ┌──────────────────────┬────────────────────────────────────────────────┐
+    │ running_expression   │ → Exception (P0), 표현식 반전: !(expr)        │
+    │ exit_expression      │ → Complete (P10), 표현식 그대로               │
+    │ condition_tag/value  │ → Complete (P10), $TAG == value 형식          │
+    └──────────────────────┴────────────────────────────────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  7. 액션 (Actions) 실행 순서                                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  7.1 Exit Actions (exit_actions_json):
+    실행 시점: Complete, End 전이가 충족되었을 때
+    ★ Loop 전이 시에는 실행 안 함 (Loop는 정상 완료가 아님)
+    형식: [{"tag_name":"AO_VALVE","set_value":"0","value_type":"double"}, ...]
+    동작: 각 태그에 순차적으로 PlcScan.SetTagValue() 호출
+    UI 입력: $AO_VALVE=0;$DO_PUMP=0 (간략 표기)
+
+  7.2 Abort Actions (abort_actions_json):
+    실행 시점: Exception, Abort 전이 충족 / 타임아웃 / Hold→Abort / 태그 쓰기 실패
+    형식: Exit Actions와 동일
+    동작: 비상 정지, 밸브 닫기 등 안전 조치용
+
+  7.3 실행 순서 정리:
+    ┌───────────────────┬──────────────────┬─────────────────┐
+    │ 상황               │ 먼저 실행        │ 그 다음          │
+    ├───────────────────┼──────────────────┼─────────────────┤
+    │ 정상 완료          │ exit_actions     │ 다음 Step       │
+    │ 예외/중단          │ abort_actions    │ 배치 실패/중단  │
+    │ 태그 쓰기 실패     │ abort_actions    │ Exception 반환  │
+    │ 타임아웃           │ abort_actions    │ Exception 반환  │
+    │ Hold→Abort         │ abort_actions    │ Aborted 반환    │
+    │ Loop (반복)        │ (없음)           │ 대상 Step 점프  │
+    │ End (전체 종료)    │ exit_actions     │ 레시피 종료     │
+    │ Entry 타임아웃     │ abort_actions    │ Exception 반환  │
+    │ Step 실행횟수 초과  │ abort_actions    │ Exception 반환  │
+    │ 전이평가횟수 초과   │ abort_actions    │ Exception 반환  │
+    │ 배치 총시간 초과    │ abort_actions    │ Exception 반환  │
+    └───────────────────┴──────────────────┴─────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  8. 상태 머신 (BatchStateMachine)                                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+     ┌──────┐  Start()   ┌─────────┐
+     │ Idle │───────────▶│ Running │◀─────────────────────┐
+     └──────┘            └────┬────┘                      │
+                              │                            │
+                    Hold()    │           Restart()         │
+                              ▼           (자동전이)        │
+                        ┌──────────┐    ┌────────────┐     │
+                        │ Holding  │───▶│   Held     │─────┘
+                        └────┬─────┘    └──────┬─────┘
+                             │                 │
+                    Abort()  │                 │ Abort()
+                             ▼                 ▼
+                        ┌──────────┐
+                        │ Aborting │──▶ Aborted
+                        └──────────┘
+
+     Running ──── SetComplete() ──── ▶ Complete
+
+  상태 전이 규칙:
+    - Start:   Idle → Running
+    - Hold:    Running → Holding → Held (자동)
+    - Restart: Held → Restarting → Running (자동)
+    - Abort:   Running/Holding/Held/Restarting → Aborting → Aborted
+    - 실행 엔진의 CheckHoldAbort()에서 자동 전이 처리
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  9. JSON 설정 → Import → 승인 → 실행 상세 흐름                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  9.1 JSON 설정 파일 구조:
+    {
+      "recipes": [
+        {
+          "recipe_guid": "abc123...",
+          "recipe_name": "배합레시피A",
+          "recipe_mode": "standard",     ← "quick" 또는 "standard"
+          "version": 3,
+          "status": "draft",             ← 초기 상태
+          "steps": [
+            {
+              "step_order": 0,
+              "step_name": "온도설정",
+              "entry_expression": "$DI_READY == 1",
+              "transitions_json": "[{\"priority\":0, ...}]",
+              "exit_actions_json": "[{\"tag_name\":\"AO_VALVE\", ...}]",
+              "abort_actions_json": "[{\"tag_name\":\"DO_ESTOP\", ...}]",
+              "items": [
+                {"tag_name":"AO_TEMP","set_value":"80","value_type":"double"}
+              ]
+            }
+          ],
+          "units": [...]
+        }
+      ]
+    }
+
+  9.2 Import (CSV):
+    Studio UI → "CSV 가져오기" 버튼
+    ① OpenFileDialog로 CSV 파일 선택
+    ② RecipeCsvHelper.ImportFromCsv() 파싱
+    ③ GUID 자동 생성 (없으면)
+    ④ 중복 이름 확인 → 덮어쓰기 확인
+    ⑤ JSON 파일에 자동 저장 (SaveAllRecipesToJson)
+    ⑥ status = "draft" (미승인 상태)
+
+  9.3 승인 (Approve):
+    현재 Studio UI에서 status 표시:
+    ┌──────────┬──────────────┬──────────┐
+    │ status   │ 표시 색상     │ 실행 가능 │
+    ├──────────┼──────────────┼──────────┤
+    │ draft    │ 주황-빨강     │ ✕        │
+    │ approved │ 초록          │ ○        │
+    │ obsolete │ 회색          │ ✕        │
+    └──────────┴──────────────┴──────────┘
+
+    승인 시 전자서명 절차:
+    ① FormElectronicSignature 다이얼로그 표시
+    ② 현재 로그인 사용자 표시 (ReadOnly)
+    ③ 비밀번호 입력 → SHA-256 해시 비교
+    ④ 사유(Reason) 입력 (필수)
+    ⑤ 최대 5회 실패 시 자동 취소
+    ⑥ 서명 결과: "username|timestamp|action|reason"
+
+  9.4 실행:
+    승인된 레시피만 실행 가능:
+    if (recipe.status != "approved") → 실행 거부
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  10. 무한루프 보호 메커니즘 (다중 안전 계층)                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ★ 4단계 보호 계층 (어느 하나라도 초과 시 abort_actions 실행 → Exception)
+
+  ┌─────────────────────────┬────────────────┬──────────────────────────────┐
+  │ 보호 계층                │ 기본 제한값     │ 적용 범위                     │
+  ├─────────────────────────┼────────────────┼──────────────────────────────┤
+  │ ① Step별 Loop 카운터    │ max_loop_count │ 개별 전이 (sourceStep→target)│
+  │   (StepTransition 설정) │ (기본 10)      │                              │
+  │ ② Step 실행 총 횟수     │ 10,000회       │ 배치 전체                     │
+  │   (MaxTotalStepExec.)   │                │                              │
+  │ ③ 전이 평가 총 횟수     │ 1,000,000회    │ 배치 전체                     │
+  │   (MaxTotalTransEval.)  │                │                              │
+  │ ④ 배치 총 실행 시간     │ 24시간         │ 배치 전체                     │
+  │   (MaxBatchDurationHrs) │                │                              │
+  └─────────────────────────┴────────────────┴──────────────────────────────┘
+
+  10.1 Step별 Loop 카운터 (1차 보호):
+    반복 카운터: Dictionary<string, int>  키: "sourceStep->targetStep"
+
+    예시: Step 2 → Step 0 (max_loop_count = 10)
+      키 = "2->0"
+      1회차: count=1 (허용)
+      ...
+      10회차: count=10 (허용)
+      11회차: count=11 > max_loop_count=10 → Exception
+              abort_actions 실행 → 배치 실패
+
+    max_loop_count = 0: 무제한 (2차~4차 보호에 의존)
+
+  10.2 Step 실행 총 횟수 (2차 보호):
+    RecipeExecutionContext.TotalStepExecutions 카운터
+    ExecuteStepDownloadV2 진입 시마다 +1 증가
+    10,000회 초과 시 → abort_actions 실행 → Exception
+    (모든 Step의 모든 실행 합계, Loop에 의한 재실행 포함)
+
+  10.3 전이 평가 총 횟수 (3차 보호):
+    RecipeExecutionContext.TotalTransitionEvaluations 카운터
+    Transition Evaluation Loop 반복 시마다 +1 증가
+    1,000,000회 초과 시 → abort_actions 실행 → Exception
+    (100ms마다 1회 증가하므로 약 27.7시간 이상 무전이 시 발동)
+
+  10.4 배치 총 실행 시간 (4차 보호):
+    RecipeExecutionContext.StartTime 기준 경과 시간
+    24시간 초과 시 → abort_actions 실행 → Exception
+    (운영자 개입 없는 무한 실행 방지)
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  11. UI Hang 방지 설계                                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  - 실행 엔진은 async/await 기반으로 UI 스레드를 차단하지 않음
+  - 모든 폴링 루프에 await Task.Delay(100ms) 포함
+  - CancellationToken으로 즉시 중단 가능
+  - ManualResetEventSlim으로 Hold/Resume 대기 (스레드 블록 아님)
+  - Unit 병렬 실행: Task.WhenAll (비동기 병렬)
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  12. 코드 검증 결과 및 수정 사항                                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  [수정 1] End 전이 시 Unit 실행도 건너뛰기
+    파일: CheckEngineRecipe.cs
+    문제: End 전이가 Direct Steps에서 발생해도 Unit 실행이 계속됨
+    수정: recipeEnded 플래그 추가 → Unit 실행 조건에 !recipeEnded 추가
+
+  [수정 2] DataGridView DataError 핸들러 추가
+    파일: FormConfigRecipeStep.cs
+    문제: ComboBox 열에 잘못된 값 입력 시 Unhandled Exception 발생
+    수정: DataError 이벤트 핸들러 추가 (ThrowException = false)
+
+  [수정 3] Entry Expression 평가 try-catch 추가
+    파일: CheckEngineRecipe.cs
+    문제: 잘못된 entry_expression으로 인한 예외가 처리되지 않음
+    수정: try-catch 래핑 (실패 시 entryMet = false)
+
+  [수정 4] 전자서명 비밀번호 검증 LibrarySecurity 우회
+    파일: FormElectronicSignature.cs
+    문제: LibrarySecurity.bOK가 false일 때 ZipPassword256()이
+          "Library not initialized." 문자열을 반환하여 해시 비교 항상 실패
+    수정: ① 반환값에 "Library" 포함 시 비교 건너뛰기
+          ② 직접 SHA-256 해시 계산 (HashTool.StringToBytes 동일 인코딩)
+
+  [수정 5] Transition 평가 순서를 Type 기반으로 변경 (산업 안전)
+    파일: CheckEngineRecipe.cs
+    문제: priority 숫자만으로 정렬 시 사용자 설정 오류로 안전 감시가
+          정상 완료 전이보다 늦게 평가될 위험
+    수정: GetTypeCategory() + CompareTransitions() 추가
+          Abort(0) > Exception(1) > Complete/Loop/End(2)
+          같은 카테고리 내에서만 priority 순 정렬
+
+  [수정 6] Entry 타임아웃 시 abort_actions 실행 추가
+    파일: CheckEngineRecipe.cs
+    문제: Entry 타임아웃이 비정상 종료인데 abort_actions가 실행되지 않음
+    수정: entry_timeout_ms 초과 시 abort_actions 실행 후 Exception 반환
+
+  [수정 7] Loop 전이에서 exit_actions 제거
+    파일: CheckEngineRecipe.cs
+    문제: Loop는 정상 완료가 아닌데 exit_actions가 실행되어
+          밸브 닫기 등 종료 동작이 반복될 때마다 실행됨
+    수정: Loop case에서 exit_actions 호출 제거
+
+  [수정 8] 무한루프 다중 보호 추가
+    파일: CheckEngineRecipe.cs
+    문제: max_loop_count=0 (무제한) 설정 시 무한루프 위험
+    수정: 3개 전역 안전 제한 추가
+          ① MaxTotalStepExecutions = 10,000
+          ② MaxTotalTransitionEvaluations = 1,000,000
+          ③ MaxBatchDurationHours = 24
+
+  [수정 9] 전이/액션 감사 로그, Unit 실패 수집, 보수적 Expression 평가
+    파일: DataPostgres.cs, CheckEngineRecipe.cs
+    추가: ① history.transition_execution_log 테이블 + InsertTransitionLogAsync
+          ② ExecuteActions → best-effort + 태그별 실패 감사 로그
+          ③ 전이/Entry 충족/타임아웃/Loop제한/Expression오류 감사 기록
+          ④ Unit 병렬 실패 → 모든 실패 수집하여 집계 보고
+          ⑤ Expression 예외 → false 대신 abort_actions → Exception (보수적)
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  13. Phase 3 개선 사항 (감사 로그, 병렬 실패, 보수적 평가)                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  13.1 전이 레벨 감사 로그 (Transition-Level Audit Log):
+    새 테이블: history.transition_execution_log
+    필드: batch_id, step_order, step_name, transition_index, transition_type,
+          expression, evaluated_result, action_taken, unit_name, error_message,
+          username, machine_name, created_at
+    보호: UPDATE/DELETE 금지 RULE (변경 불가능한 감사 추적)
+
+    기록 대상:
+      ┌───────────────────────┬──────────────────────────────────────────┐
+      │ transition_type        │ 기록 시점                                │
+      ├───────────────────────┼──────────────────────────────────────────┤
+      │ Complete/Exception/   │ 전이 평가 결과 true인 모든 전이          │
+      │ Abort/Loop/End        │ (false는 미기록 — 노이즈 방지)           │
+      │ ENTRY_MET             │ 시작 조건 충족 시                        │
+      │ ENTRY_TIMEOUT         │ 시작 조건 타임아웃 시                    │
+      │ ENTRY_EXPRESSION_ERROR│ 시작 조건 표현식 평가 오류 시            │
+      │ TIMEOUT               │ 전이 조건 타임아웃 시                    │
+      │ EXPRESSION_ERROR      │ 전이 표현식 평가 오류 시                 │
+      │ LOOP_LIMIT            │ 반복 카운터 제한 초과 시                 │
+      │ ACTION_FAILURE        │ 개별 태그 SetTagValue 실패 시            │
+      │ UNIT_FAILURE          │ Unit 실행 실패 시                        │
+      └───────────────────────┴──────────────────────────────────────────┘
+
+    기록 방식: fire-and-forget (InsertTransitionLogFireAndForget)
+      → 배치 실행 성능에 영향 없음
+
+  13.2 액션 레벨 실패 감사 (Action-Level Failure Audit):
+    ExecuteActions 메서드 개선:
+      - 개별 태그 SetTagValue 실패해도 나머지 태그 계속 실행 (best-effort)
+      - 실패한 태그를 List<ActionFailureInfo>로 반환
+      - 각 태그 실패를 transition_execution_log에 개별 기록 (ACTION_FAILURE)
+    abort_actions: 안전 우선 — 일부 태그 실패해도 나머지 모두 시도
+    exit_actions: 동일 정책
+
+  13.3 Unit 병렬 실패 정책 — 모든 실패 수집:
+    변경 전: 첫 번째 Unit 실패 즉시 반환 (나머지 실패 무시)
+    변경 후: Task.WhenAll 완료 후 모든 Unit 실패를 수집하여 집계
+      - 개별 Unit 실패를 각각 transition_execution_log에 기록 (UNIT_FAILURE)
+      - 집계된 오류 메시지를 recipe_execution_log에 기록
+      - 단일 실패: "Unit 'A' 실패: ..."
+      - 복수 실패: "N개 Unit 실패: [Unit 'A' 실패: ...] [Unit 'B' 실패: ...]"
+
+  13.4 표현식 평가 정책 — 보수적 (Exception):
+    변경 전: 잘못된 표현식 → catch → false (건너뛰기)
+    변경 후: 잘못된 표현식 → abort_actions → Exception (배치 실패)
+    적용 범위:
+      - 전이 조건 expression 평가 예외
+      - 시작 조건 entry_expression 평가 예외
+      - CheckCondition (legacy 태그 비교) 예외
+    오류 메시지에 잘못된 표현식 원문 포함
+    감사 로그에 EXPRESSION_ERROR 또는 ENTRY_EXPRESSION_ERROR 기록
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  14. 파일별 역할 요약                                                       │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  DataPostgres.cs
+    └─ TransitionType, StepTransition, RecipeStepData, RecipeData
+    └─ DB 스키마, CRUD, 마이그레이션
+
+  RecipeJsonHelper.cs
+    └─ JSON ↔ DTO 변환
+    └─ Control Recipe 스냅샷 (ToJsonString/FromJsonString)
+    └─ 파일 Import/Export
+
+  CheckEngineRecipe.cs
+    └─ RecipeQuickDownload() — Quick 모드 실행
+    └─ BatchStart() — Standard 모드 배치 실행
+    └─ ExecuteStepDownloadV2() — 단일 Step 실행 (5단계)
+    └─ GetStepTransitions() — 전이 목록 (JSON 또는 Legacy)
+    └─ Hold/Restart/Abort — 배치 상태 제어
+
+  BatchStateMachine.cs
+    └─ BatchState 열거형 (ISA-88 상태)
+    └─ StepState 열거형 (Step 레벨 상태)
+    └─ 상태 전이 규칙 및 검증
+
+  FormConfigRecipe.cs (Studio UI)
+    └─ 레시피 목록/편집/저장
+    └─ CSV Import/Export
+    └─ 상태 표시 (draft/approved/obsolete)
+    └─ Step 미리보기 (전이 요약 표시)
+
+  FormConfigRecipeStep.cs (Step 편집 다이얼로그)
+    └─ Transitions DataGridView (Priority, Expression, Type, Target, MaxLoop)
+    └─ Entry Condition, Exit Actions, Abort Actions
+    └─ Quick 모드: 조건/액션 UI 숨김
+
+  FormElectronicSignature.cs (전자서명)
+    └─ 비밀번호 SHA-256 해시 검증
+    └─ 사유 입력
+    └─ 서명 결과 문자열 생성
+
+================================================================================
+  끝
+================================================================================

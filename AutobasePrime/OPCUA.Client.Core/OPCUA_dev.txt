@@ -1,0 +1,165 @@
+﻿프로젝트의 각 클래스 역할과 중요한 부분에 대한 상세한 설명입니다:
+________________________________________
+1. Core Layer (OPCUA.Client.Core)
+OpcUaRuntime
+•	역할: UI/타이머/레지스트리 의존성 없는 순수 런타임 엔진
+•	중요 기능:
+•	서버 수명 주기 관리 (Start, StopAsync)
+•	연결 제어 (ConnectAllAsync, ReconnectDeadServersAsync)
+•	런타임 쿼리 API (FindItem, TryGetUaData)
+•	쓰기 작업 (WriteValueAsync)
+OPCUAMember_server
+•	역할: 단일 OPC UA 서버 연결 표현
+•	중요 기능:
+•	세션 관리 (ServerInitAsync, ServerUninitAsync)
+•	엔드포인트 선택 및 인증서 검증
+•	구독 생성
+•	이벤트: StateChanged, ServerStateChanged, RuntimeLog
+OPCUAMember_group
+•	역할: 게시 간격을 가진 구독 그룹 표현
+•	중요 기능:
+•	구독 수명 주기 (CreateSubscriptionAsync, ClearSubscriptionAsync)
+•	모니터링 아이템 관리 (AddItem, RemoveItem)
+•	구독 재생성 (RecreateSubscriptionAsync)
+OPCUAMember_item
+•	역할: 단일 모니터링 아이템(태그) 표현
+•	중요 속성:
+•	sName: 아이템 이름
+•	sNode: NodeId
+•	dvDataValue: 캐시된 DataValue
+•	Quality, Timestamp
+•	이벤트: Updated (OPC UA 값 변경 시 발생)
+________________________________________
+2. Host Layer (OpcUa.Client.Host)
+OpcUaHost
+•	역할: OPC UA 클라이언트 수명 주기 관리 애플리케이션 호스트
+•	중요 기능:
+•	설정 로드/저장
+•	런타임 수명 주기 관리
+•	재연결 타이머 정책
+•	IPC 서버 호스팅
+•	CRUD 작업 (AddServerAsync, RemoveServerAsync, ModifyServerAsync 등)
+•	이벤트: ServersChanged, HostStateChanged
+OpcUaClientConfigManager
+•	역할: 서버/그룹/아이템 정의의 설정 관리자
+•	중요 기능:
+•	INI 파일 지속성 (UAServer.ini)
+•	설정의 CRUD 작업
+•	쉼표 구분 형식으로 저장
+OpcUaHostConfigBuilder
+•	역할: OPC UA ApplicationConfiguration 빌드
+•	중요 기능:
+•	PKI 디렉터리 설정
+•	보안 구성
+•	전송 할당량 설정
+________________________________________
+3. IPC Server Layer (OpcUa.Client.Ipc.Server)
+IpcServer
+•	역할: IPC 서버 파사드
+•	구성 요소: PipeListener, IpcDispatcher, RuntimeEventBridge, ClientRegistry
+PipeListener
+•	역할: 들어오는 IPC 연결을 위한 명명된 파이프 리스너
+•	중요 기능:
+•	클라이언트 연결 수락
+•	PipeClientContext 생성
+IpcDispatcher
+•	역할: 요청 핸들러 및 명령 디스패처
+•	지원 명령: Ping, GetRuntimeTree, ReadItem, WriteItem, UpdateItem, GetServers, GetGroups, GetItems
+RuntimeEventBridge
+•	역할: 런타임 이벤트를 IPC 클라이언트로 브리지
+•	중요 기능:
+•	런타임 이벤트 구독
+•	연결된 클라이언트에게 브로드캐스트
+•	처리 이벤트: ServerStateChanged, RuntimeLog, ItemUpdated (TagValueChanged)
+RuntimeSnapshot
+•	역할: 런타임 상태의 스냅샷 생성
+•	정적 메서드: Build() - GetRuntimeTreeResponse 생성
+________________________________________
+4. IPC Client Layer (OpcUaClient.Ipc.Client)
+IpcClient
+•	역할: 클라이언트측 IPC 통신 파사드
+•	중요 기능:
+•	연결 관리 (ConnectAsync)
+•	요청/응답 처리
+•	이벤트 디스패칭
+•	데이터 작업 (GetRuntimeTreeAsync, ReadItemAsync, WriteItemAsync)
+•	이벤트: TagValueChanged, ServerStateChanged, RuntimeLogReceived, Disconnected
+PipeConnection
+•	역할: 명명된 파이프 클라이언트 연결 래퍼
+•	중요 기능:
+•	파이프 연결
+•	메시지 송수신
+•	재연결
+•	이벤트: MessageReceived, Disconnected
+RequestManager
+•	역할: 대기 중인 요청 관리 및 응답 매칭
+EventDispatcher
+•	역할: 들어오는 이벤트를 적절한 핸들러로 디스패치
+________________________________________
+5. IPC Contracts Layer (OpcUaClient.Ipc.Contracts)
+IpcMessage
+•	역할: 공통 IPC 메시지 형식
+•	속성: Type, Command, RequestId, Payload, ResultCode, Error
+•	팩토리 메서드: CreateRequest, CreateResponse, CreateEvent
+IpcCommand
+•	역할: IPC 명령 열거
+•	값: Ping, GetRuntimeTree, ReadItem, WriteItem, UpdateItem, GetServers, GetGroups, GetItems, TagValueChanged, ServerStateChanged, RuntimeLog, RuntimeError
+JsonLengthPrefixSerializer
+•	역할: 파이프 스트림을 위한 길이 접두사가 있는 JSON 직렬화
+RuntimeTreeDtos
+•	역할: 런타임 트리 구조의 DTO (RuntimeServerNode, RuntimeGroupNode, RuntimeItemNode)
+EventDtos
+•	역할: 이벤트 데이터 전송 객체 (TagValueChangedEvent, ServerStateChangedEvent, RuntimeLogEvent)
+________________________________________
+6. UI Layer (OPCUA.Client.UI)
+FormOpcUaClient
+•	역할: OPC UA 클라이언트의 주요 Windows Forms UI
+•	중요 기능:
+•	서버/그룹/아이템 트리 표시
+•	값 모니터링
+•	설정 대화 상자
+•	백엔드: OpcUaHost 사용
+FormAddServer / FormAddGroup / FormAddItem
+•	역할: 각각 서버/그룹/아이템 추가 대화 상자
+FormWriteItem
+•	역할: 아이템에 값 쓰기 대화 상자
+FormCreatePki
+•	역할: PKI 인증서 관리
+________________________________________
+7. LocalMain Integration Files
+OpcUaIpcManager (LocalMain/OPCUA/OpcUaIpcManager.cs:1)
+•	역할: LocalMain의 IPC 클라이언트 연결 관리
+•	중요 기능:
+•	자동 재연결
+•	프로세스 관리
+•	캐시로 이벤트 라우팅
+•	주요 메서드: Start, Stop, EnsureConnectedOnceAsync, TryStartUiProcess
+OpcUaIpcBrowseProvider (LocalMain/OPCUA/OpcUaIpcBrowseProvider.cs:1)
+•	역할: 태그 선택 대화 상자용 브라우저 제공자
+•	구현: IOpcBrowseProvider
+OpcUaClientCache (LocalMain/OPCUA/OpcUaClientCache.cs:1)
+•	역할: 고성능 태그 값 캐시
+•	중요 기능:
+•	IPC 이벤트로부터 푸시 기반 캐시 업데이트
+•	O(1) 룩업
+•	주요 메서드: Update, TryGet, Clear, TryRequestWarmup
+OpcUaTagCache (LocalMain/OPCUA/OpcUaTagCache.cs:1)
+•	역할: 개별 태그의 캐시 항목 구조
+•	속성: Value, Quality, Timestamp, DeviceQuality, ValueString
+________________________________________
+아키텍처 요약
+계층 구조:
+1.	Core: 순수 비즈니스 로직 (UI 의존성 없음)
+2.	Host: 애플리케이션 수명 주기, 설정 지속성
+3.	IPC: 프로세스 분리 - 런타임은 별도 프로세스에서 실행
+4.	Contracts: IPC 통신용 공유 DTO 및 열거형
+5.	UI: 독립 실행형 클라이언트용 Windows Forms 인터페이스
+6.	LocalMain 통합: IPC를 통해 OPC UA 클라이언트를 주요 Autobase 애플리케이션에 통합
+핵심 디자인 패턴:
+•	Server-Group-Item 계층 구조 (3계층 데이터 모델)
+•	이벤트 기반 아키텍처 (구독 기반 값 업데이트)
+•	Named Pipe를 통한 IPC (프로세스 격리)
+•	푸시 기반 캐싱 (TagValueChangedEvent → OpcUaClientCache)
+•	설정 지속성 (INI 형식)
+•	인증서/PKI 관리 (OPC UA 보안)
+

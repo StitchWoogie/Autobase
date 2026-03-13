@@ -1,0 +1,1374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CheckUsername">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUsernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckUsernameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetThemeList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetThemeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PersonalGetThemeListResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetGroupList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetGroupListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PersonalGetGroupListResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetItemList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetItemListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PersonalGetItemListResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalAddOneItem2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="buffer" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="keywords" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="web_share" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="price" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalAddOneItem2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalAddOneItem2Result" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalCreateOneTheme">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalCreateOneThemeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalCreateOneThemeResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalChangeOneTheme">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newtitle" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalChangeOneThemeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalChangeOneThemeResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalChangeOneGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newtitle" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalChangeOneGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalChangeOneGroupResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalChangeOneItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newtitle" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalChangeOneItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalChangeOneItemResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetOneItemProperty2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetOneItemProperty2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalGetOneItemProperty2Result" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="keywords" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="price" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="web_share" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalSetOneItemProperty2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="keywords" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="price" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="web_share" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalSetOneItemProperty2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalSetOneItemProperty2Result" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalDeleteOneTheme">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalDeleteOneThemeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalDeleteOneThemeResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalDeleteOneGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalDeleteOneGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalDeleteOneGroupResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalDeleteOneItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalDeleteOneItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalDeleteOneItemResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalRenameKeywords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="keywords" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalRenameKeywordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalRenameKeywordsResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalIsItemExists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalIsItemExistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonalIsItemExistsResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetOneFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetOneFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PersonalGetOneFileResult" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetOneFile2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="theme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="group" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalGetOneFile2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PersonalGetOneFile2Result" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="price" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="download" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tCreate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="web_share" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchGetKeywordList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchGetKeywordListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchGetKeywordListResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchGetItemIds_2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="keyword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sorttype" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchGetItemIds_2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchGetItemIds_2Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchGetItemIdsWithUpdateTime">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="keyword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sorttype" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchGetItemIdsWithUpdateTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchGetItemIdsWithUpdateTimeResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchGetOneFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchGetOneFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchGetOneFileResult" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="information" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsFreeItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="item_id" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsFreeItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsFreeItemResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckCash">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="item_id" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckCashResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckCashResult" nillable="true" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CommentGet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="item_id" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CommentGetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CommentGetResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CommentAble">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="item_id" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CommentAbleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CommentAbleResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="score" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CommentAdd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pretable" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="item_id" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="score" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CommentAddResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CommentAddResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRemainCash">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="connection_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRemainCashResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetRemainCashResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="cash" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CheckUsernameSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUsername" />
+  </wsdl:message>
+  <wsdl:message name="CheckUsernameSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetThemeListSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalGetThemeList" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetThemeListSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalGetThemeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetGroupListSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalGetGroupList" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetGroupListSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalGetGroupListResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetItemListSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalGetItemList" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetItemListSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalGetItemListResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalAddOneItem2SoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalAddOneItem2" />
+  </wsdl:message>
+  <wsdl:message name="PersonalAddOneItem2SoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalAddOneItem2Response" />
+  </wsdl:message>
+  <wsdl:message name="PersonalCreateOneThemeSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalCreateOneTheme" />
+  </wsdl:message>
+  <wsdl:message name="PersonalCreateOneThemeSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalCreateOneThemeResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalChangeOneThemeSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalChangeOneTheme" />
+  </wsdl:message>
+  <wsdl:message name="PersonalChangeOneThemeSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalChangeOneThemeResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalChangeOneGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalChangeOneGroup" />
+  </wsdl:message>
+  <wsdl:message name="PersonalChangeOneGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalChangeOneGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalChangeOneItemSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalChangeOneItem" />
+  </wsdl:message>
+  <wsdl:message name="PersonalChangeOneItemSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalChangeOneItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetOneItemProperty2SoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalGetOneItemProperty2" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetOneItemProperty2SoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalGetOneItemProperty2Response" />
+  </wsdl:message>
+  <wsdl:message name="PersonalSetOneItemProperty2SoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalSetOneItemProperty2" />
+  </wsdl:message>
+  <wsdl:message name="PersonalSetOneItemProperty2SoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalSetOneItemProperty2Response" />
+  </wsdl:message>
+  <wsdl:message name="PersonalDeleteOneThemeSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalDeleteOneTheme" />
+  </wsdl:message>
+  <wsdl:message name="PersonalDeleteOneThemeSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalDeleteOneThemeResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalDeleteOneGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalDeleteOneGroup" />
+  </wsdl:message>
+  <wsdl:message name="PersonalDeleteOneGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalDeleteOneGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalDeleteOneItemSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalDeleteOneItem" />
+  </wsdl:message>
+  <wsdl:message name="PersonalDeleteOneItemSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalDeleteOneItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalRenameKeywordsSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalRenameKeywords" />
+  </wsdl:message>
+  <wsdl:message name="PersonalRenameKeywordsSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalRenameKeywordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalIsItemExistsSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalIsItemExists" />
+  </wsdl:message>
+  <wsdl:message name="PersonalIsItemExistsSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalIsItemExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetOneFileSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalGetOneFile" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetOneFileSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalGetOneFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetOneFile2SoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalGetOneFile2" />
+  </wsdl:message>
+  <wsdl:message name="PersonalGetOneFile2SoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalGetOneFile2Response" />
+  </wsdl:message>
+  <wsdl:message name="SearchGetKeywordListSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchGetKeywordList" />
+  </wsdl:message>
+  <wsdl:message name="SearchGetKeywordListSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchGetKeywordListResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchGetItemIds_2SoapIn">
+    <wsdl:part name="parameters" element="tns:SearchGetItemIds_2" />
+  </wsdl:message>
+  <wsdl:message name="SearchGetItemIds_2SoapOut">
+    <wsdl:part name="parameters" element="tns:SearchGetItemIds_2Response" />
+  </wsdl:message>
+  <wsdl:message name="SearchGetItemIdsWithUpdateTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchGetItemIdsWithUpdateTime" />
+  </wsdl:message>
+  <wsdl:message name="SearchGetItemIdsWithUpdateTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchGetItemIdsWithUpdateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchGetOneFileSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchGetOneFile" />
+  </wsdl:message>
+  <wsdl:message name="SearchGetOneFileSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchGetOneFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsFreeItemSoapIn">
+    <wsdl:part name="parameters" element="tns:IsFreeItem" />
+  </wsdl:message>
+  <wsdl:message name="IsFreeItemSoapOut">
+    <wsdl:part name="parameters" element="tns:IsFreeItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckCashSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckCash" />
+  </wsdl:message>
+  <wsdl:message name="CheckCashSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckCashResponse" />
+  </wsdl:message>
+  <wsdl:message name="CommentGetSoapIn">
+    <wsdl:part name="parameters" element="tns:CommentGet" />
+  </wsdl:message>
+  <wsdl:message name="CommentGetSoapOut">
+    <wsdl:part name="parameters" element="tns:CommentGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="CommentAbleSoapIn">
+    <wsdl:part name="parameters" element="tns:CommentAble" />
+  </wsdl:message>
+  <wsdl:message name="CommentAbleSoapOut">
+    <wsdl:part name="parameters" element="tns:CommentAbleResponse" />
+  </wsdl:message>
+  <wsdl:message name="CommentAddSoapIn">
+    <wsdl:part name="parameters" element="tns:CommentAdd" />
+  </wsdl:message>
+  <wsdl:message name="CommentAddSoapOut">
+    <wsdl:part name="parameters" element="tns:CommentAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRemainCashSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRemainCash" />
+  </wsdl:message>
+  <wsdl:message name="GetRemainCashSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRemainCashResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceLibrarySoap">
+    <wsdl:operation name="CheckUsername">
+      <wsdl:input message="tns:CheckUsernameSoapIn" />
+      <wsdl:output message="tns:CheckUsernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetThemeList">
+      <wsdl:input message="tns:PersonalGetThemeListSoapIn" />
+      <wsdl:output message="tns:PersonalGetThemeListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetGroupList">
+      <wsdl:input message="tns:PersonalGetGroupListSoapIn" />
+      <wsdl:output message="tns:PersonalGetGroupListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetItemList">
+      <wsdl:input message="tns:PersonalGetItemListSoapIn" />
+      <wsdl:output message="tns:PersonalGetItemListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalAddOneItem2">
+      <wsdl:input message="tns:PersonalAddOneItem2SoapIn" />
+      <wsdl:output message="tns:PersonalAddOneItem2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalCreateOneTheme">
+      <wsdl:input message="tns:PersonalCreateOneThemeSoapIn" />
+      <wsdl:output message="tns:PersonalCreateOneThemeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalChangeOneTheme">
+      <wsdl:input message="tns:PersonalChangeOneThemeSoapIn" />
+      <wsdl:output message="tns:PersonalChangeOneThemeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalChangeOneGroup">
+      <wsdl:input message="tns:PersonalChangeOneGroupSoapIn" />
+      <wsdl:output message="tns:PersonalChangeOneGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalChangeOneItem">
+      <wsdl:input message="tns:PersonalChangeOneItemSoapIn" />
+      <wsdl:output message="tns:PersonalChangeOneItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetOneItemProperty2">
+      <wsdl:input message="tns:PersonalGetOneItemProperty2SoapIn" />
+      <wsdl:output message="tns:PersonalGetOneItemProperty2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalSetOneItemProperty2">
+      <wsdl:input message="tns:PersonalSetOneItemProperty2SoapIn" />
+      <wsdl:output message="tns:PersonalSetOneItemProperty2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalDeleteOneTheme">
+      <wsdl:input message="tns:PersonalDeleteOneThemeSoapIn" />
+      <wsdl:output message="tns:PersonalDeleteOneThemeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalDeleteOneGroup">
+      <wsdl:input message="tns:PersonalDeleteOneGroupSoapIn" />
+      <wsdl:output message="tns:PersonalDeleteOneGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalDeleteOneItem">
+      <wsdl:input message="tns:PersonalDeleteOneItemSoapIn" />
+      <wsdl:output message="tns:PersonalDeleteOneItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalRenameKeywords">
+      <wsdl:input message="tns:PersonalRenameKeywordsSoapIn" />
+      <wsdl:output message="tns:PersonalRenameKeywordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalIsItemExists">
+      <wsdl:input message="tns:PersonalIsItemExistsSoapIn" />
+      <wsdl:output message="tns:PersonalIsItemExistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetOneFile">
+      <wsdl:input message="tns:PersonalGetOneFileSoapIn" />
+      <wsdl:output message="tns:PersonalGetOneFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetOneFile2">
+      <wsdl:input message="tns:PersonalGetOneFile2SoapIn" />
+      <wsdl:output message="tns:PersonalGetOneFile2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetKeywordList">
+      <wsdl:input message="tns:SearchGetKeywordListSoapIn" />
+      <wsdl:output message="tns:SearchGetKeywordListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetItemIds_2">
+      <wsdl:input message="tns:SearchGetItemIds_2SoapIn" />
+      <wsdl:output message="tns:SearchGetItemIds_2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetItemIdsWithUpdateTime">
+      <wsdl:input message="tns:SearchGetItemIdsWithUpdateTimeSoapIn" />
+      <wsdl:output message="tns:SearchGetItemIdsWithUpdateTimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetOneFile">
+      <wsdl:input message="tns:SearchGetOneFileSoapIn" />
+      <wsdl:output message="tns:SearchGetOneFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsFreeItem">
+      <wsdl:input message="tns:IsFreeItemSoapIn" />
+      <wsdl:output message="tns:IsFreeItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckCash">
+      <wsdl:input message="tns:CheckCashSoapIn" />
+      <wsdl:output message="tns:CheckCashSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CommentGet">
+      <wsdl:input message="tns:CommentGetSoapIn" />
+      <wsdl:output message="tns:CommentGetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CommentAble">
+      <wsdl:input message="tns:CommentAbleSoapIn" />
+      <wsdl:output message="tns:CommentAbleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CommentAdd">
+      <wsdl:input message="tns:CommentAddSoapIn" />
+      <wsdl:output message="tns:CommentAddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRemainCash">
+      <wsdl:input message="tns:GetRemainCashSoapIn" />
+      <wsdl:output message="tns:GetRemainCashSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceLibrarySoap" type="tns:WebServiceLibrarySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckUsername">
+      <soap:operation soapAction="http://tempuri.org/CheckUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetThemeList">
+      <soap:operation soapAction="http://tempuri.org/PersonalGetThemeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetGroupList">
+      <soap:operation soapAction="http://tempuri.org/PersonalGetGroupList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetItemList">
+      <soap:operation soapAction="http://tempuri.org/PersonalGetItemList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalAddOneItem2">
+      <soap:operation soapAction="http://tempuri.org/PersonalAddOneItem2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalCreateOneTheme">
+      <soap:operation soapAction="http://tempuri.org/PersonalCreateOneTheme" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalChangeOneTheme">
+      <soap:operation soapAction="http://tempuri.org/PersonalChangeOneTheme" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalChangeOneGroup">
+      <soap:operation soapAction="http://tempuri.org/PersonalChangeOneGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalChangeOneItem">
+      <soap:operation soapAction="http://tempuri.org/PersonalChangeOneItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetOneItemProperty2">
+      <soap:operation soapAction="http://tempuri.org/PersonalGetOneItemProperty2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalSetOneItemProperty2">
+      <soap:operation soapAction="http://tempuri.org/PersonalSetOneItemProperty2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalDeleteOneTheme">
+      <soap:operation soapAction="http://tempuri.org/PersonalDeleteOneTheme" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalDeleteOneGroup">
+      <soap:operation soapAction="http://tempuri.org/PersonalDeleteOneGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalDeleteOneItem">
+      <soap:operation soapAction="http://tempuri.org/PersonalDeleteOneItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalRenameKeywords">
+      <soap:operation soapAction="http://tempuri.org/PersonalRenameKeywords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalIsItemExists">
+      <soap:operation soapAction="http://tempuri.org/PersonalIsItemExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetOneFile">
+      <soap:operation soapAction="http://tempuri.org/PersonalGetOneFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetOneFile2">
+      <soap:operation soapAction="http://tempuri.org/PersonalGetOneFile2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetKeywordList">
+      <soap:operation soapAction="http://tempuri.org/SearchGetKeywordList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetItemIds_2">
+      <soap:operation soapAction="http://tempuri.org/SearchGetItemIds_2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetItemIdsWithUpdateTime">
+      <soap:operation soapAction="http://tempuri.org/SearchGetItemIdsWithUpdateTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetOneFile">
+      <soap:operation soapAction="http://tempuri.org/SearchGetOneFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsFreeItem">
+      <soap:operation soapAction="http://tempuri.org/IsFreeItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCash">
+      <soap:operation soapAction="http://tempuri.org/CheckCash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommentGet">
+      <soap:operation soapAction="http://tempuri.org/CommentGet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommentAble">
+      <soap:operation soapAction="http://tempuri.org/CommentAble" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommentAdd">
+      <soap:operation soapAction="http://tempuri.org/CommentAdd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRemainCash">
+      <soap:operation soapAction="http://tempuri.org/GetRemainCash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceLibrarySoap12" type="tns:WebServiceLibrarySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckUsername">
+      <soap12:operation soapAction="http://tempuri.org/CheckUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetThemeList">
+      <soap12:operation soapAction="http://tempuri.org/PersonalGetThemeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetGroupList">
+      <soap12:operation soapAction="http://tempuri.org/PersonalGetGroupList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetItemList">
+      <soap12:operation soapAction="http://tempuri.org/PersonalGetItemList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalAddOneItem2">
+      <soap12:operation soapAction="http://tempuri.org/PersonalAddOneItem2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalCreateOneTheme">
+      <soap12:operation soapAction="http://tempuri.org/PersonalCreateOneTheme" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalChangeOneTheme">
+      <soap12:operation soapAction="http://tempuri.org/PersonalChangeOneTheme" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalChangeOneGroup">
+      <soap12:operation soapAction="http://tempuri.org/PersonalChangeOneGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalChangeOneItem">
+      <soap12:operation soapAction="http://tempuri.org/PersonalChangeOneItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetOneItemProperty2">
+      <soap12:operation soapAction="http://tempuri.org/PersonalGetOneItemProperty2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalSetOneItemProperty2">
+      <soap12:operation soapAction="http://tempuri.org/PersonalSetOneItemProperty2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalDeleteOneTheme">
+      <soap12:operation soapAction="http://tempuri.org/PersonalDeleteOneTheme" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalDeleteOneGroup">
+      <soap12:operation soapAction="http://tempuri.org/PersonalDeleteOneGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalDeleteOneItem">
+      <soap12:operation soapAction="http://tempuri.org/PersonalDeleteOneItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalRenameKeywords">
+      <soap12:operation soapAction="http://tempuri.org/PersonalRenameKeywords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalIsItemExists">
+      <soap12:operation soapAction="http://tempuri.org/PersonalIsItemExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetOneFile">
+      <soap12:operation soapAction="http://tempuri.org/PersonalGetOneFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalGetOneFile2">
+      <soap12:operation soapAction="http://tempuri.org/PersonalGetOneFile2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetKeywordList">
+      <soap12:operation soapAction="http://tempuri.org/SearchGetKeywordList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetItemIds_2">
+      <soap12:operation soapAction="http://tempuri.org/SearchGetItemIds_2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetItemIdsWithUpdateTime">
+      <soap12:operation soapAction="http://tempuri.org/SearchGetItemIdsWithUpdateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchGetOneFile">
+      <soap12:operation soapAction="http://tempuri.org/SearchGetOneFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsFreeItem">
+      <soap12:operation soapAction="http://tempuri.org/IsFreeItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCash">
+      <soap12:operation soapAction="http://tempuri.org/CheckCash" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommentGet">
+      <soap12:operation soapAction="http://tempuri.org/CommentGet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommentAble">
+      <soap12:operation soapAction="http://tempuri.org/CommentAble" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommentAdd">
+      <soap12:operation soapAction="http://tempuri.org/CommentAdd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRemainCash">
+      <soap12:operation soapAction="http://tempuri.org/GetRemainCash" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceLibrary">
+    <wsdl:port name="WebServiceLibrarySoap" binding="tns:WebServiceLibrarySoap">
+      <soap:address location="http://www.library.autobase.biz/Service/WebServiceLibrary.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceLibrarySoap12" binding="tns:WebServiceLibrarySoap12">
+      <soap12:address location="http://www.library.autobase.biz/Service/WebServiceLibrary.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

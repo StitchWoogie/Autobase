@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="bddb6855-b4c9-4f3e-838b-fd06eef24190" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63500/AutoWeb/Service/ServiceReport.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceReport.xsd" MetadataType="Schema" ID="8bbc9fbb-36f3-4b28-9c88-574f383702a4" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceReport.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceReport1.xsd" MetadataType="Schema" ID="855acfbc-eecc-4ed2-87c8-36feb9ec5572" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceReport.svc?xsd=xsd1" />
+    <MetadataFile FileName="WcfServiceReport.wsdl" MetadataType="Wsdl" ID="5fc58628-c034-4402-bb7b-4f70113ae8d6" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceReport.svc?wsdl" />
+    <MetadataFile FileName="ServiceReport.disco" MetadataType="Disco" ID="fb5e048c-24cb-4269-a679-7e0e3c6829c7" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceReport.svc?disco" />
+    <MetadataFile FileName="ServiceReport2.xsd" MetadataType="Schema" ID="0a11c2da-a676-4c16-be46-d676eb29a605" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceReport.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

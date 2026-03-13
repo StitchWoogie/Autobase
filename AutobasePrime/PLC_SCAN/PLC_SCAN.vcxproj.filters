@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{fe87f2fb-ce23-4cf0-859c-ed8a8d99014c}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{a5132609-c437-4e82-b63b-ac3d8ee4776a}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;fi;fd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{e2371299-d002-4510-bbc5-d689745beeca}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Library Files">
+      <UniqueIdentifier>{356bb4df-1b18-4382-9365-615ba37ca038}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Protocol\A0j2c214.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Abplc5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\adam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Bl_2300.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CATLIB.SRC\ChangeUICulture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\Com-232.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\ComDeviceNetClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DEVICE\ComDeviceSharedMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DEVICE\ComDeviceTcpServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\ComDeviceTele.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\Commmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\ComModem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ComputerDual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\Comtcpip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\ComUDPIP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogComputerDualOption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfigDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfigDualOption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfigScanServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfigTeleDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfigTelOption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogModemOption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogModemSelect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogMultiConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogPortEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogPortSelect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogProtocolInformation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogSystemInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogWriteVirtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Dpm2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Gantner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\GESNP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Glofa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Gmpc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\La250.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CATLIB.SRC\MakeHtmlHelpPath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Master-k.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\MastK10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\MastK30.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Mf2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Mj71e71.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Modicon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PROTOCOL\NetworkClientMulti.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Catlib.src\NetWorkProtocol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Omron.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\PCD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\PCD_SBUS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Plc_conf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DEVICE\PlcScanSharedMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Plcwrite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\PM-B.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Pm_170e.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PokeSYSTEM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PortThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Pro_lib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Pro_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\PT-L.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\RLink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanconf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScanDay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScanEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanenum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScanHelp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScanServerStatus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScanServerTcpip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScanServerWork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanstat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScanStationInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scanwork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScanWorkAllPortStatus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScanWorkCodeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Catlib.src\ShareProtect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\sp30.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Spc-300.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Catlib.src\SystemStatusMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CATLIB.SRC\TagValue9.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadReceiver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Tmtc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CATLIB.SRC\TotalCfg9.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\Wr3380.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\IsFileExists.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Language.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Block.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\MakeDirectory.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\TextGetOneLine.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\KWL\Kdialog.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Timeout.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\GetRadio.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Menubutn.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CommaBlockString.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoCommunication.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\SharedMemory.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\GetLastErrorClass.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Dataswap.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_SumBYTE.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\MODEM\Gatelib.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\HexBufToBYTE.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Garray.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_16_15_2_1.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_16_15_13_1.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_SumWORD.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\HexBufToWORD.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\HexBufToValue.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoTextReader.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\fitblock.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Gcls.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\getdate.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\gettime.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Popbox2.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Pushbox2.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Poprect2.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\SetRadio.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Profile.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Msgbox.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\MessageScreen.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\MODEM\Modemlib.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\MODEM\Tcpiplib.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\MODEM\UdpipLib.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoEngineAES.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\TimeOutMiliSec.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_16_12_5_1.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\ProfileUTF8.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoAES.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Pushrec2.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Movewcnt.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Bell.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Getdayhp.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\GetMinHap.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoARIA.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\sha1.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\GetHurHp.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\MathRound.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Fontdiag.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\getfilesize.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\MemoryTextReader.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\Findfile.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\GetProgrammDirectory.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\DrawUserListCtrl.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\TOOLS\CryptoEngineARIA.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Wintools\SOURCE\WINDOW\Opendiag.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Device\Commmain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogComputerDualOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogConfigDualOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogConfigScanServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogConfigTeleDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogConfigTelOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogModemOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogModemSelect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogMultiConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogPortEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogPortSelect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogProtocolInformation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogSystemInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="plc_scan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\pro_dde.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\Pro_lib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\Pro_main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScanServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadReceiver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\catlib\totalcfg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="mainfram.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="viewcode.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="viewmem.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\exe\Autobase48\Win32Common.lib" />
+  </ItemGroup>
+</Project>

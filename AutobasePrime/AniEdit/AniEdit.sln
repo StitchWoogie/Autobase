@@ -1,0 +1,130 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AniEdit", "AniEdit.csproj", "{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLibLocal", "..\Dll\AutoLibLocal\AutoLibLocal.csproj", "{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTools", "..\..\NetTools\NetTools.csproj", "{D49B5268-4C34-44C6-B688-80653EE9A189}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompressLib", "..\..\NetTools\CompressLib\CompressLib.csproj", "{62082BA2-BFE1-4830-B552-BB76C2AD1D00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicTools", "..\..\NetTools\PicTools\PicTools.csproj", "{2BA16408-BC41-4D6A-9ACA-595257520DA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogCommon", "..\Dll\DialogCommon\DialogCommon.csproj", "{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AniEditLib", "..\Dll\AniEditLib\AniEditLib.csproj", "{299EF2C7-80D9-416C-968E-1D374AA8C607}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+		로컬 전체 컴파일|Any CPU = 로컬 전체 컴파일|Any CPU
+		로컬 전체 컴파일|x86 = 로컬 전체 컴파일|x86
+		패치용|Any CPU = 패치용|Any CPU
+		패치용|x86 = 패치용|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.Release|x86.ActiveCfg = Release|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.로컬 전체 컴파일|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.로컬 전체 컴파일|Any CPU.Build.0 = Release|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.로컬 전체 컴파일|x86.ActiveCfg = Release|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.패치용|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.패치용|Any CPU.Build.0 = Release|Any CPU
+		{FFE2964A-0E5D-4B54-ABE4-13F8FCBFC760}.패치용|x86.ActiveCfg = Release|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|x86.ActiveCfg = Debug|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|x86.Build.0 = Debug|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|x86.ActiveCfg = Release|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|x86.Build.0 = Release|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|Any CPU.ActiveCfg = 로컬 전체 컴파일|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|Any CPU.Build.0 = 로컬 전체 컴파일|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|x86.ActiveCfg = 로컬 전체 컴파일|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|x86.Build.0 = 로컬 전체 컴파일|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.패치용|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.패치용|Any CPU.Build.0 = Release|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.패치용|x86.ActiveCfg = Release|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|x86.ActiveCfg = Debug|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|x86.Build.0 = Debug|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|x86.ActiveCfg = Release|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|x86.Build.0 = Release|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|Any CPU.ActiveCfg = 로컬 전체 컴파일|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|Any CPU.Build.0 = 로컬 전체 컴파일|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|x86.ActiveCfg = 로컬 전체 컴파일|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|x86.Build.0 = 로컬 전체 컴파일|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.패치용|Any CPU.ActiveCfg = Release|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.패치용|Any CPU.Build.0 = Release|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.패치용|x86.ActiveCfg = Release|Any CPU
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.Debug|x86.ActiveCfg = Debug|x86
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.Debug|x86.Build.0 = Debug|x86
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.Release|x86.ActiveCfg = Release|x86
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.Release|x86.Build.0 = Release|x86
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.로컬 전체 컴파일|x86.ActiveCfg = Debug|Any CPU
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.패치용|Any CPU.ActiveCfg = Debug|Any CPU
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.패치용|Any CPU.Build.0 = Debug|Any CPU
+		{62082BA2-BFE1-4830-B552-BB76C2AD1D00}.패치용|x86.ActiveCfg = Debug|Any CPU
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.Debug|x86.ActiveCfg = Debug|x86
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.Debug|x86.Build.0 = Debug|x86
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.Release|x86.ActiveCfg = Release|x86
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.Release|x86.Build.0 = Release|x86
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.로컬 전체 컴파일|x86.ActiveCfg = Debug|Any CPU
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.패치용|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.패치용|Any CPU.Build.0 = Debug|Any CPU
+		{2BA16408-BC41-4D6A-9ACA-595257520DA8}.패치용|x86.ActiveCfg = Debug|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Debug|x86.ActiveCfg = Debug|x86
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Debug|x86.Build.0 = Debug|x86
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Release|x86.ActiveCfg = Release|x86
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Release|x86.Build.0 = Release|x86
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.로컬 전체 컴파일|x86.ActiveCfg = Debug|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.패치용|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.패치용|Any CPU.Build.0 = Debug|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.패치용|x86.ActiveCfg = Debug|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.Release|x86.ActiveCfg = Release|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.로컬 전체 컴파일|Any CPU.ActiveCfg = Release|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.로컬 전체 컴파일|Any CPU.Build.0 = Release|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.로컬 전체 컴파일|x86.ActiveCfg = Release|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.패치용|Any CPU.ActiveCfg = Release|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.패치용|Any CPU.Build.0 = Release|Any CPU
+		{299EF2C7-80D9-416C-968E-1D374AA8C607}.패치용|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,87 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinePrinter", "LinePrinter.csproj", "{673BD7CA-2A79-4879-9001-56CDD8BB1828}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLibLocal", "..\Dll\AutoLibLocal\AutoLibLocal.csproj", "{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogSerialPort", "..\Dll\DialogSerialPort\DialogSerialPort.csproj", "{15A17664-4480-41CD-A3E0-573DC13F9E47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTools", "..\..\NetTools\NetTools.csproj", "{D49B5268-4C34-44C6-B688-80653EE9A189}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogCommon", "..\Dll\DialogCommon\DialogCommon.csproj", "{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		로컬 전체 컴파일|Any CPU = 로컬 전체 컴파일|Any CPU
+		로컬 전체 컴파일|x86 = 로컬 전체 컴파일|x86
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.로컬 전체 컴파일|x86.ActiveCfg = Debug|x86
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.로컬 전체 컴파일|x86.Build.0 = Debug|x86
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.Debug|x86.ActiveCfg = Debug|x86
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.Debug|x86.Build.0 = Debug|x86
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.Release|x86.ActiveCfg = Release|x86
+		{673BD7CA-2A79-4879-9001-56CDD8BB1828}.Release|x86.Build.0 = Release|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|x86.ActiveCfg = Debug|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|x86.Build.0 = Debug|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|x86.ActiveCfg = Debug|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|x86.Build.0 = Debug|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|x86.ActiveCfg = Release|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|x86.Build.0 = Release|x86
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.로컬 전체 컴파일|x86.ActiveCfg = Debug|x86
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.로컬 전체 컴파일|x86.Build.0 = Debug|x86
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.Debug|x86.ActiveCfg = Debug|x86
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.Debug|x86.Build.0 = Debug|x86
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.Release|x86.ActiveCfg = Release|x86
+		{15A17664-4480-41CD-A3E0-573DC13F9E47}.Release|x86.Build.0 = Release|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|x86.ActiveCfg = Debug|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|x86.Build.0 = Debug|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|x86.ActiveCfg = Debug|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|x86.Build.0 = Debug|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|x86.ActiveCfg = Release|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|x86.Build.0 = Release|x86
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.로컬 전체 컴파일|Any CPU.ActiveCfg = Release|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.로컬 전체 컴파일|Any CPU.Build.0 = Release|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.로컬 전체 컴파일|x86.ActiveCfg = Release|x86
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.로컬 전체 컴파일|x86.Build.0 = Release|x86
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Debug|x86.ActiveCfg = Debug|x86
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Debug|x86.Build.0 = Debug|x86
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Release|x86.ActiveCfg = Release|x86
+		{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

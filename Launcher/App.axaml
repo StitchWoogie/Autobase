@@ -1,0 +1,11 @@
+﻿<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LauncherMain.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+  <Application.Styles>
+        <FluentTheme />
+      <StyleInclude Source="avares://LauncherMain/Icon3D555.axaml"></StyleInclude>
+    </Application.Styles>
+</Application>

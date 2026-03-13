@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Program name</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgCNF.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;textBoxOemCompanyName.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;buttonOK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;textBoxOemCompanyName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBoxOemCompanyName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgNEW.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 56</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="numericUpDownKeyLockWait.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonOK.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="textBoxAlarmMsgRET.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 21</value>
+  </data>
+  <data name="tabPage4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="textBoxAlarmMsgRET.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgCNF.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Company name</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
+    <value>tabPage5</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="numericUpDownPlcScanMaxScanWriteItems.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 56</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="textBoxAlarmMsgNEW.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 21</value>
+  </data>
+  <data name="&gt;&gt;checkBoxKeyLockAllCheck.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownPlcScanMaxScanWriteItems.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>DDE Service name</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="textBoxDdeServiceName.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgRET.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>400, 48</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.Name" xml:space="preserve">
+    <value>tabPage5</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownPlcScanMaxPorts.Name" xml:space="preserve">
+    <value>numericUpDownPlcScanMaxPorts</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Cnf Alarm</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>PlcScan</value>
+  </data>
+  <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>KeyLock</value>
+  </data>
+  <data name="checkBoxKeyLockAllCheck.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBoxKeyLockAllCheck.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 24</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 80</value>
+  </data>
+  <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownKeyLockWait.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Return Alarm</value>
+  </data>
+  <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 21</value>
+  </data>
+  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="textBoxAlarmMsgRET.Text" xml:space="preserve">
+    <value>textBox3</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <data name="textBoxAlarmMsgCNF.Text" xml:space="preserve">
+    <value>textBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Sec</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBoxOemProgramName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Local Config</value>
+  </data>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBoxDdeServiceName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Name" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="numericUpDownPlcScanMaxScanWriteItems.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabControl1.ItemSize" type="System.Drawing.Size, System.Drawing">
+    <value>61, 17</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="textBoxOemCompanyName.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgRET.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="buttonOK.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBoxKeyLockAllCheck.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tabPage4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 21</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>OEM</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 56</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 56</value>
+  </data>
+  <data name="&gt;&gt;buttonOK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownPlcScanMaxScanWriteItems.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonOK.Name" xml:space="preserve">
+    <value>buttonOK</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgCNF.Name" xml:space="preserve">
+    <value>textBoxAlarmMsgCNF</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="textBoxOemProgramName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 21</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;checkBoxKeyLockAllCheck.Name" xml:space="preserve">
+    <value>checkBoxKeyLockAllCheck</value>
+  </data>
+  <data name="checkBoxKeyLockAllCheck.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 88</value>
+  </data>
+  <data name="&gt;&gt;textBoxOemProgramName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="textBoxAlarmMsgCNF.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 24</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>AlarmMsg</value>
+  </data>
+  <data name="textBoxDdeServiceName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 24</value>
+  </data>
+  <data name="numericUpDownPlcScanMaxPorts.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgRET.Name" xml:space="preserve">
+    <value>textBoxAlarmMsgRET</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAMAEBAAAAAAAABoAwAANgAAACAgAAAAAAAAqAwAAJ4DAAAwMAAAAAAAAKgcAABGEAAAKAAAABAA
+        AAAgAAAAAQAYAAAAAABAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADknAVE5
+        ADknAWFBADQ9MQ0hIxQlJgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADknAbmbS083Aw5cVACrawzd
+        kAC+diNJQAAAAAAAAAAAAAAAAAAAAAAAAGZHAEwuAMOfQLSDAdKoNQ5cVACra2X/1wCrayNJQAAAAAAA
+        AAAAAAAAAAAAAAAAEOnGcOnGcMqhLrqQGqt8AA5cVACra1z/zwCrayNJQAAAAAAAAAAAAABNhABNhABN
+        hFFHHP7jnNOuTerGY93DfQ5cVACra13/0ACrayNJQAAAAAAAAC52qgBNhABNhCm1mKWDNv3bi/TUfn9t
+        IDItAA5cVACra1z/zwCrayNJQAAAAAAAAA5HqRyXwByXwAmEdf//z//xv//tsox6MColAA5cVACra17/
+        0ACpaSNJQAAAAAAAACpHZz7w/zDe/1nE/yNHTq+DLv/oo//1x+LHeg5cVACra0P/yAC8dSNJQAAAABFT
+        eQA+ji52qjXS/D/P/0WJjK+DLv/4s+LHev/hlg5cVBtANEGYhQqufCNJQAAAABFTeS52qjjo/x/j/kPQ
+        /wx5yipHZ6+DLq+DLv//2M3EjTpPZv///zQ2OwAAAAAAABFTeSf6/wD//xXx/0PN/wAAKwAjXwAAVy/k
+        /6+DLipagD03Of//9qGXhDQ2OwAAABFTeS52qi52qgv4/xr0/zJwwQAEORldpTzt/0CCwLKbiv/wzuHT
+        u/Lp3KuusxwcHgAAAAAAACBolQD//wr4/x3z/ye96S7k/0/G/y1qjf//5Pr38vP3/vLs4/rowzEyNwAA
+        AAAAAC52qhnv/yBolQf//xnv/xfw/yBolS1qjf///3Z3diQkKnZ3dv/vyjQ2OwAAAAAAAC9umCBolSBo
+        lSBolQT//yBolSBolQAUMvz573Z3dgAAAHZ3dubn5zQ2OwAAAAAAAAAAAAAAAAAAACBolSBolSBolQAA
+        AAAAAHZ3dnZ3dgAAAHZ3dgECBwAAAP4DAAD+AQAA+AEAAPABAADAAQAAgAEAAIABAACAAQAAAAEAAAAD
+        AAAAAQAAAAAAAMAAAADAAAAAwAgAAPjJAAAoAAAAIAAAAEAAAAABABgAAAAAAIAMAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWkIHWkIHWkIH
+        AAAAAAAAWkIHWkIHWkIHD0I4D0I4D0I4D0I4D0I4D0I4D0I4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWkIHSi8AQy0AWkIHWkIHWkIHWkIHdlMEUlJXFSclFSclFScl
+        FSclFSclFSclD0I4D0I4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWkIH
+        iGMLhWYfuZ1WWkIHWkIHWkIHhWgg6cRYOCYsFX1dAIpVAIdVAIhWAMJ8GW9UFSclD0I4AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWkIHnHokxJopzqU2u51MWkIHi24pvaFUz58b
+        OSIiGpJuI/yvLfiwAM2GAI9cAahuFSclD0I4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        WkIHWkIHWkIHXkQDimkbzaIuqHkAyqEy27ZQ27ZQyaExtYEAOiQmEbeFgP/UH+miAMaBAJFeAahuFScl
+        D0I4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWkIHWkIHdVUAbEsAWzsAu55XyJ8ts4YMsIIC
+        qnsAqXoArHwAuogAOiQmEbeFff/SH+miAMaBAJFeAahuFSclD0I4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAUDQA1rxh+tmE5cd4yrF02LJHv5QhvJIduY4Ws4gMsYQGr4ABuogAOiQmEbeFff/SH+mi
+        AMaBAJFeAahuFSclD0I4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABM9ABM9s5lF+Ou+2K9G4b5i
+        yaM4yaE1wpoqvZMgtYkNsIMFroAAu4gAOSQmEbeFff/SH+miAMaBAJFeAahuFSclD0I4AAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAABM9ABM9ABM9GjxVo4w3/PPU2rVU1rJT0axJyaM5yqQ79NaH+dyQ5sVtzJ4e
+        OSEjELaFff/SH+miAMaBAJFeAahuFSclD0I4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABM9ABM9APT/
+        Rzseo4w39NeO4sFp3btg2LRW2bVV/+SWp445o4w92Lpo/+SJNR0cELWFff/SH+miAMaBAJFeAahuFScl
+        D0I4AAAAAAAAAAAAAAAAAAAAAAAAAAAAABM9ABM9AP//RzseVVAso4w39tSE7M1/5sd048Nr271taFgH
+        QzwASEAARDsA0LVgPyYlDrWDff/SH+miAMaBAJFeAahuFSclD0I4AAAAAAAAAAAAAAAAAAAAAChzAChz
+        ABM9AChzI/DhRzseo4w39d+h99mP8dWL7c+A8dJ/pY8+T0QAWE0AWE0AUkgAb10ASTAvD7WDff/SH+mi
+        AMaBAJFeAahuFSclD0I4AAAAAAAAAAAAE1OlADqLA0CQAj2JADF9OnyoB+jzRzse///4/uq0+uOn+d2V
+        9NiP+uOpqZE/TkUAV0wAWU0ATkYAe2gOTDI0D7SCff/SH+miAMaBAJFeAahuFSclD0I4AAAAAAAAACR1
+        AChzGnGrO1eOAChzNnqkAP//C/D/Rzse/uSU/uSU//zq++Sm+d2Y+um87tidf28kPjcAQjoAVUoAv6NG
+        RC0wDrSCff/SH+miAMaBAJBdAahuFSclD0I4AAAAAAAAAChzB/j/A///KeL/N+v/F+7/Nsz9Vbn/Ua7l
+        RzseRltQvK9w/fro/eGb+uWv+um89N6jwqlbspxM1rll5cRpPigtDrSCg//VH+miAMSAAJljAahuFScl
+        D0I4AAAAAAAAAChzANLkBv//MNX9Odf9NM39Q8b8R8L7TMD/Ucb/RltQVVAs4NOY/+Wi/OGe+uWu+um8
+        /OCb/OCb/OCb/tuBPictEraCNvSvHOegAMeAALV2ALV2FSclD0I4AAAAAAAAAAAAAChzALfQDv//LNn8
+        M9X9OM/9QMn9RsT7T8T/VVAsg3cv38uE/+Wi++au++i1+ui3/eKf/OCb99uT/+aSNCEqK8iWfv/efv/a
+        WP/JAPigBYxfFSclD0I4AAAAAAAAAAAAADaJAFOOPOH/IuL+Ldr+MtT8Os79Qsb8Odj/VVAsuKJd///e
+        /+ef/+ao/ei0///z/t+V++Kf/OCb//ytXU03JD46Gkg7HEY7D0I4DVE+LVFJMi0yAAAAAAAAAAAAAAAA
+        ADOEAJrBQdX/Gen+JOH+Kdv+M9X8RMn+SKvtDY3QJThIu7GE5dGaoXsioXsioXsi//zd/uCY9+Gbq51e
+        eoNrJSIe///w/O/l+9ikTkhTUlJXAAAAAAAAAAAAAAAAACh2ADZ+ALvSRM//FO/+HuX+JOD+L9n+SKvt
+        DHuwACt0ADiHDjthN0I/oXsiAP//Wohj89uj//3c59iiepqhotH/Hyk8+/Pm5+Te5cyaRUhQUlJXAAAA
+        AAAAAAAAM1yLM1yLKKrcQtf/Av7/EPH+F+z9Hen+Jtn6SKvtAC10ABM9AD6CADyFADqLACZvMMT9VLuk
+        oXsis6FdmpJcVJjSKjE+DQkL/PXr5+Te5cqXS01VUlJXUlJXAAAAAAAAM1yLOsL8F/j/BPv/B/n/C/b+
+        EvD+F+3/I9r5Rq/vAC5yABM9ABM9ABM9ABM9AChvLMfxMtf/aqHFWbLvRoXAAQkZeXVzx8G26eDR6N/S
+        zsKrnZ6hhIOGQ0JHUlJXAAAAM1yLAKHMAP//AP//Av//Bvr/C/b/EfH/EvX/MsPyK3/CADF4ABM9ABM9
+        AC90E1abKPD/Psv9WLf/TX6rHxEMz8jB8+nV6dzD49jE5dnH6+HRyMO+tra3lpWXKCgtAAAAAAAAGV6O
+        M1yLM1yLANPlAv//CPn/DPb/EfL/Fu3+QajnK4bGAD+BAD2AG2ytNq7mNdf/Urz/Sq3lTFRe1c/H6uHP
+        49O14dS44dW+5NfD5NnK9e7iv727g4OGhoWIAAAAAAAAAAAAAAAAM1yLM1yLAObyAv//Bvv/C/X/EPP/
+        Fu3+M8DxK4bGK4bGMcf0K8vzQ8j+Rsb/RbLmQ1Fg//rh6dzD8OfX////////7/H15d3P4NfF7Ofe1r6O
+        g4OGAAAAAAAAAAAAAAAAAAAAM1yLAE1sAP//Av3/CPr/DPX/EfL/E/P/F+//G+z/Ief/MNj+Psv8RsX/
+        QbbmQlFe////6dzD/Pbq3NvYzs/Q0NDR4uHi/Pfx7Ofe072Sg4OGAAAAAAAAAAAAAAAAAAAAM1yLAE1s
+        LM/3AP//A/7/Bvv/C/X/EvD/GOv+Hub9JeD+Jd79Fez9AP//N73mQVFc////6dzD//3yjoV4gYGFhYOG
+        d3d52dfW8Ovh072Sg4OGAAAAAAAAAAAAAAAAAAAAM1yLLM/3B/v/AP//AP//AP//Av//Bvv/D/P/GOr9
+        F+z9AP//AP//AP//DePrR01Y//////////7yioR2JCQpAAAAi4uN8O7s8Ovh2sOVg4OGAAAAAAAAAAAA
+        AAAAAAAAM1yLLM/3AP//AP//M1yLAE1sAd/1APH2A///E/D/CPz/G9XyM1yLADVdADVdR01Y//zu//75
+        //zukIl6AAAAAAAAg4OG9PX2////vr/DJiUqAAAAAAAAAAAAAAAAAAAAAAAAM1yLM1yLM1yLAAAAAAAA
+        AjZZAKDNB///Cvn/Kdj9M1yLAAAAAAAAAAAAADVdR01Y//zu////nJqYAAAAAAAAnp6g//////zuRUVI
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADj1qAP//Af//M1yLAAAAAAAAAAAA
+        AAAAAAAAAAAAR01Y//zugHt8AAAAAAAAZGRm//zuJyYqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAM1yLM1yLM1yLM1yLAAAAAAAAAAAAAAAAAAAAAAAAAAAAgHt8gHt8AAAAAAAA
+        AAAAR01YR01YAAAAAAAAAAAA//4wA//8AAH/+AAB//gAAf/AAAH/gAAB/4AAAf8AAAH+AAAB/gAAAfwA
+        AAHwAAABwAAAAYAAAAGAAAABgAAAAcAAAAHAAAADwAAAB4AAAAcAAAADAAAAAQAAAAGAAAAA4AAAAPAA
+        AADwAAAA8AAAAPAAAEH4wOBB/+H4Q//h/OcoAAAAMAAAAGAAAAABABgAAAAAAIAcAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKScsKScsKScs
+        KScsKScsKScsKScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        c1ULc1ULa0kAa0kAKScsAHNKAHNKAHNKAHNKAHNKAHNKALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        ZkMAZ0YAZkYAdlgPc1ULAAAAAAAAc1ULc1ULfV8Xb1EOJh4RV1ddAJZiAJZiAJZiAJZiAJZiAJZiALl6
+        ALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAc1ULZ0UAeVwblnw+jHEyeFkPgGEVc1ULflwKdVQGoIU9375kNS0f
+        Xl5kAJZiANySa//GANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAc1ULlHgzuJc8375kvJk8
+        g2YiaEgAcVEFbk0EgWUk375ksYMEOS0SXF1lANySANySa//GANySANySAJZiAJZiALl6KScsV1ddAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAc1UL2rVTtocGrX0A375kuJhCpYhCp4k+pok/s5RA375krH4ANysQXF1lANySa//Ga//G
+        ANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAc1ULZ0cA2rVTupAZsIMDroAA375k375k375k375k
+        375kroAArX8ANysQXF1lANySa//Ga//GANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAc1ULc1ULc1ULc1ULc1ULaEkAcFEN
+        2rVTtIcLtIcLsoUHsIICrn8ArX8Arn8AroAAr4EArH8ANywQXF1lANySa//Ga//GANySANySAJZiAJZi
+        ALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        c1ULc1ULhGYRd1gKc1ULaUoAcFENtppU375kuo8XuIwUtYkOs4cKsYQFr4ICroAAroAAsIEArX8ANysQ
+        XF1lANySa//Ga//GANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAc1ULpY0427dU7c+A7c+ApYtOuJ5b375kwpckv5UjvJIcuo4W
+        t4sRtIgMsoYIsIIEr4ABsIEArX8ANysQXF1lANySa//Ga//GANySANySAJZiAJZiALl6KScsV1ddAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAc1ULv6VJ9/HW2rZW
+        2rVT7c+A7c+AyqM4yKAzxJstwZcmvpMgu5EauI0UtooPs4cKsYQGsYMCrX8BNysQXF1lANySa//Ga//G
+        ANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAADN8ADN8B0SNDT9wamEvybJa9/HW27hb17NT069M0KtFzac+yqI3xp4xwpoqv5YkvZIduo4Xt4sS
+        tIgNtIcIr4MFNywRXF1lANySa//Ga//GANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADN8ADeAADyEAD2CAD+MC0B5bmg6zLVg9/HW3btg2rZY1rJR
+        0q1Kz6lCy6U7yKA1xJwu375k375k375k375kt4sQs4YLOCwSXF1kANySa//Ga//GANySANySAJZiAJZi
+        ALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADN8ADaBADR7ADp/
+        Ll6USlQ8OkpGzbRd9/HW4sFr371k27ld2LRV1LBO0KtHzac/7c+A7c+A/uOh/uOh/uOh375k375kOS0V
+        XFxkANySa//Ga//GANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAADN8BDyDTHSjAP//AP//SlQ8W19F9/HW7s5+58h15MRu4cBo3btg2rda1rJS7c+A
+        7c+AjnYdemYQe2YPlHcW/uOh375kOi4WXFxkANySa//Ga//GANySANySAJZiAJZiALl6KScsV1ddAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADN8bZC3AP//AP//SlQ8SlQ8mopX9/HW
+        89SH7M6A6sp55sZy48Js375k7c+AwqNHZ1kKUEcAUkkAUkkAUkkAeWUM/uOhPTEZW1xjANySa//Ga//G
+        ANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADN8
+        ADN8cpe+AP//Uqr7SlQ8SlQ8pJhT8NmS9tmP8dSI7tGD68196Ml25cZwyK1bf24eUEYAWE0AWE0AWE0A
+        WE0AUkkAkHYYQTYdW1xjANySa//Ga//GANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAADN8ADN8ADWCVn+rAP//lYM6mYc83MqA9/HW++Cc+NyV9dmR8taM8NOG
+        7c+A7M18yK1bY1cJVUoAWE0AWE0AWE0AWE0AVEoAeGUQPzUeXFxjANySa//Ga//GANySANySAJZiAJZi
+        ALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAADN8ADN8ADN8ADN8ADN8ADN8AEGJADN8WHumAP//VIST
+        yLNn9/HW9/HW/OKf++Cd+d2Y9tuU9NiO8dWK8dOFyK1bZ1kMVEoAWE0AWE0AWE0AWE0AU0kAfGkVQjci
+        XFxjANySa//Ga//GANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAADN8QnKkA3mrADmA
+        DEyNIlqVAESKADZ9THKiAP//AP//UZrGpphT9/HW9/HW/+Wj9/HW/OGe+t+b+NyW9dqR9NeNyK1blYI1
+        TEIAV0wAWE0AWE0AVUsAVEkAp4wzRjsmWltiANySa//Ga//GANySANySAJZiAJZiALl6KScsV1ddAAAA
+        AAAAAAAAAAAAADN8ADN8A3mrGaLPKoK2THSkHVOQBDp/S3GgAP//AP//AP//UrLzfn9N3sR05tGF6dWN
+        9/HW9/HW/OKg++Cd+d6Z99uU+NuSyK1bhXUpU0kATkUAT0UAWU0Dm4UxyK1bQjkmWlthANySa//Ga//G
+        ANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAADN8A3mrErTeAP//AP//Jtj+Jtj+Jtj+Jtj+
+        AP//Qr/8Tb79UL3/XJivaX5ya39va29Nt6hh9/HW9/HW/OKg/OKf+t+b+NyW+d2VyK1bw6pgppJGqJNG
+        yK1byK1byK1bQjkoWlphANySa//Ga//GANySANySAJZiAJZiALl6KScsV1ddAAAAAAAAAAAAAAAAADN8
+        A3mrAP//AP//Kd3+Jtj+NNj/Tt3/Jtj+PMf9RcX8ScH8Tb78UL7/Ubv/VLj/SlQ8cnlS4dCH9/HW/OKg
+        /OKg/OKg++Ge+d6Z+d2WyK1byK1byK1byK1b5MRx5MRxRDsqWlphANySa//Ga//GANySANySAJZiALl6
+        ALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAA3mrA3mrAP//AP//Kd3+Ldn9L9T9NdD9PM39QMn9RcX8ScH8
+        Tb78Ubv9VLj8SlQ8gHs+jolK9+Og/uOh/OKg/OKg/OKg/OKf++Cc+d2X9tqT9NeO8dSI8NKD6ct8RTwt
+        WlpgANySANySa//GANySANySALl6ALl6ALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAA3mrA3mrAP//
+        AP//Kt3+Ltn9MtX9N9H9PM39QMn9RcX8ScL8Tb78Ubv8SlQ8gHs+gHs+++Wi/uOh/OKg/OKg/OKg/OKg
+        /OKg++Ge+t+a+NyW9dmR9diM7tCFRDwuXV5kANySa//Ga//Ga//Ga//GANySANySALl6KScsV1ddAAAA
+        AAAAAAAAAAAAAAAAAAAAADN8A3mrA3mrIuz/JOL+Kt3+Ltn+M9X9ONH9PM39QMn9RcX8ScH8Tb/9SlQ8
+        gHs+18J2/+im/OKg/OKg9/HW9/HW9/HW9/HW/OKg/OKf++Cc+d2Y+NyU9NiPTkY4NzhAa//Ga//Ga//G
+        a//Ga//GANySANySALl6KScsV1ddAAAAAAAAAAAAAAAAAAAAAAAAADN8ADN8A3mrRcX8IOT+JOH+Kd3+
+        Ltn9MtX9N9H9PM39Qcn9RcX8AP//SlQ8gHs+9/HW9/HW/eKg/+in5tWO49CH9/HW9/HW/eKg/OKg/OKg
+        ++Gd/eKd/+mhpJRjIB0aFRQaHBsfHRwgHRwgHBsfFBMXKScsKScsV1ddAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAADN8ADN8A7fYRcX8HOj+IOT+JeH+Kd3+Ltn+M9X9ONH9PM39AP//AP//JYLDLUpZkINA9/HW9/HW
+        0sR5en1RbnphmI5Pw7Zv9/HW/eOh/OKg/uWk5dKQrJlRfXVDfXVDIB8k5dzN5dzN5dzN4sOHwMDBHh4i
+        V1ddAAAAAAAAAAAAAAAAAAAAAAAAAAAAADN8ADN8A3mrAMPfRcX8GOz+HOj+IOX+JOH+Kd3+Ltn9M9X9
+        OdT/AP//EF+fADZ8ADqGFTtfb2w7p5ZKSlQ8AP//AP//V5rSbHJO9/HW/+Wj/OKg/+upr6FdhZeVc5nE
+        c5nEJiEg5dzN6Ojp5dzN4sOHwMDBHh4iV1ddAAAAAAAAAAAAAAAAAAAAAAAAADN8ADN8ADN8A3mrB9bp
+        RcX8FPD/GOz+HOj+IOX+JeH+Kt3+Ltn+AP//FXizADN5AD6CAD6CAD2IBTtzGztTADd8E1ukAP//AP//
+        lYM6xLFm9/HW9/HW9/HWlItPdLDlq8zvc5nEIR0e5dzN6Ojp5dzN4sOHwMDBHh4iV1ddAAAAAAAAAAAA
+        AAAAAAAAAAAAADN8A3mrA3mrLtn9RcX8DPb/EPP/E+//F+z+HOj+IOX+JeH+ML/uQKHjA0mLADt/AD6C
+        AD6CAD6CAD6EAD2IAD2CAT+CRZzjAP//lYM6lYM60rpo0rdmyK1denxVWaz7WniXLyssFBMW5dzN6Ojp
+        5dzN4sOHwMDBHh4iV1ddT05RAAAAAAAAAAAAAAAAAAAAA3mrLtn9RcX8RcX8Bfv/Cfn/DPb/D/P+E+/+
+        GOz+HOn+IOX+ML/uQKHjAUGEADyAAD6CAD6CAD6CAD6CAD6CAD2BAD2AO5TYAP//WrL7lYM6ZYCBZYGC
+        Z4mTXpC1M1NzDg0RSkhLdnZ45dzN6Ojp5dzN4sOHwMDBT05RT05RT05RT05RAAAAAAAAAAAAAAAAA3mr
+        RcX8AP//Af//A/7/Bvv/Cfn/DPb/EPP/FPD/GOz/HOj+ML/uQKHjA0mLADt/AD6CAD6CAD6CAD6CAD6C
+        AD2BAT6CQKHjAP//V7X9Wbf/W7j/Xr3/TpfcIzRKGBISjYuL4NvS5NnG5NrI5dvK5dvL5dzNl5SRwMDB
+        wMDBT05RRURIT05RAAAAAAAAAAAAA3mrALzWAP//AP//AP//A///Bvv/Cfj/DPb/EPP/FO//GOz+FPD/
+        QKHjK5LPADF5AD2CAD6CAD6CAD6CAD6CADZ6EVyeS736AP//VLj8WLb9WrP5Q3OfFhgfMCss4NvS4NvS
+        5NfB5NjD5NnF5drI5drJ5dvL5dzNl5SStbW2wMDBT05RHh4iT05RAAAAAAAAA3mrAIezAPb7APj8APv8
+        AP//A///Bvv/Cfn/DPb/EPP/FPD/FPD/McDuQKHjKIfGADR6ADd9ADp/ADl9ADR6ClGTOa7nAP//Tb78
+        Ubv8V8D/Qn6sZGRmWVZX4NvS4NvS5Na75Ne+5NjB5NnE5drH5drJ5dvL5dzN////l5WStbW2wMDBT05R
+        T05RdnZ4AAAAAAAAKWeeD2aiEW+kDm+iAI63Af//A/7/Bvv/CPn/DPb/EPP/FPD/FPD/McDuQKHjLZzW
+        CWKeBlKSCluaGoK7QKHjML/uRcX9ScH8Tb78VMX/OXGYZGRm4NvS4NvS5NW45Na75Ne+5NjB5NnE5drH
+        5drJ5dvL5dzN5d3P9/Twl5WTtbW2wMDBT05RT05RAAAAAAAAAAAAAAAAAAAAAAAASWygALjTAf//A/3/
+        Bvv/Cfn/DPX/EPP/FPD/FPD/McDuQKHjQKHjQKHjQKHjQKHjML/uML/uQMn9RcX9ScL8UMj/OHSbZGRm
+        9u/h49Ky49O149S4////////////////5ubm5dzN5dzN5d3O9/Tw9/TwvaNxwMDBT05RT05RAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAEmWcAObwAf//A/7/Bvv/Cfn/DPb/EPL/FPD/FPD/FPD/FPD/FPD/FPD/FPD/
+        FPD/N9H9PM39QMn9RcX8TMz/NnebZGRm9u/h49Ky49Kx9u/h9u/h5ubm5ubm5ubm5ubm5ubm5dvK5d3Q
+        5d3Q9/TwvaNxwMDBT05RT05RAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3mrAYKwAP//AP//A/3/Bvz/Cfn/
+        DPb/EPP/FPD/GOz+HOj+IOT+JeH+Kd3+Ltn9MtX9N9H9PM39QMn9SM//NHmbZGRm////49Ky49Ct9u/h
+        9u/hwMDBwMDBwMDBwMDBwMDB////9/Tw5d3P9/TwvaNxwMDBT05RT05RAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAA3mrA3mrML/uAP//Af//A/7/Bvv/Cfn/DPb/EPP/FO//GOz+HOj+IOX+JeH+Kd3+Ltn9LNr9DvH+
+        DvL+Q9P/MXubZGRm////49Ky48+p////48+phIOFhIOFhIOFhIOFhIOFhIOF9/Tw5d3P9/TwvaNxwMDB
+        T05RT05RAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3mrML/uML/uAP//AP//Af//A/7/A/z/Bvn/DPb/EPP/
+        E/D/GOz+HOj+IeX+Fuz+C/X+Af3+AP//AP//Gu7/LnyaZGRm////49Ky5djA////48+pZGRmhIOFhIOF
+        hIOFhIOFwcHC9/Tw5d3O9/TwvaNxwMDBT05RT05RAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3mrML/uAP//
+        AP//AP//AP//AP//AP//AP//Av3/Bfr/Cvf/E/D+GOz+HOj+AP//AP//AP//A/z/AP//AP//LoCbZGRm
+        ////9u/h5djA////48+pZGRmEhEVAAAAAAAAZGRmwcHC9/Tw5d3O////vaNxwMDBT05RdnZ4AAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAA3mrML/uAP//AP//AP//AOLuAIOwAabHAPH3Af7/AP7/AP//EPP/FO//C/X+
+        AP//IeX+Cej2A3mrA3mrA3mrLafNZGRmZGRm////9u/h////48+pZGRmEhEVAAAAAAAAZGRmwcHC////
+        9/Tw9/TwtbW2T05RLy4yAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3mrANHjAP//AMHZA3mrAAAA
+        AAAAA3mrBXWoBeLvBf3/DPb/EPP/C/X+N9H9A3mrA3mrAAAAAAAAA3mrA3mrA3mrZGRmZGRm////////
+        48+pZGRmEhEVAAAAAAAAZGRmwcHC////////zMzNT05RKyouAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAA3mrA3mrA3mrAAAAAAAAAAAAAAAAA3mrAJzBBv//Cfn/DPb/N9H9BbvcA3mrAAAAAAAA
+        AAAAAAAAAAAAN2ylA3mrZGRmZGRm9u/h////ZGRmEhEVAAAAAAAAZGRm////////z8/QT05RLi4xAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3mr
+        Af//Bv//Cfz/N9H9A3mrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZGRmZGRm9u/hZGRmEhEVAAAA
+        AAAAZGRmz8/Qz8/QT05RMS8zAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAKmugAP//AP//AP//N9H9A3mrAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAZGRmZGRmZGRmAAAAAAAAAAAAAAAAEhEVT05RMzI2AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3mrA3mrA3mrA3mr
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAA/////+AfAAD////8AA8AAP///BgABwAA///4AAAHAAD///gAAAcAAP//
+        +AAABwAA///wAAAHAAD//gAAAAcAAP/8AAAABwAA//wAAAAHAAD//AAAAAcAAP/gAAAABwAA/8AAAAAH
+        AAD/wAAAAAcAAP/AAAAABwAA/8AAAAAHAAD/gAAAAAcAAP8AAAAABwAA4AAAAAAHAADAAAAAAAcAAIAA
+        AAAABwAAgAAAAAAHAACAAAAAAAcAAMAAAAAABwAA4AAAAAAHAADgAAAAAAcAAOAAAAAADwAA4AAAAAAf
+        AADAAAAAAB8AAIAAAAAAHwAAgAAAAAAPAACAAAAAAAcAAIAAAAAAAwAAgAAAAAABAACAAAAAAAAAAMAA
+        AAAAAAAA/AAAAAAAAAD+AAAAAAAAAP4AAAAAAAAA/gAAAAAAAAD+AAAAAAAAAP4AAAAGAAAA/gAAAAYB
+        AAD/BgBgBgMAAP+PAPgGBwAA//+B/wYPAAD//4H/jx8AAP//w////wAA
+</value>
+  </data>
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonOK.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="numericUpDownKeyLockWait.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;textBoxDdeServiceName.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownPlcScanMaxPorts.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Alarm message</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 23</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownPlcScanMaxScanWriteItems.Name" xml:space="preserve">
+    <value>numericUpDownPlcScanMaxScanWriteItems</value>
+  </data>
+  <data name="textBoxAlarmMsgRET.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 88</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 56</value>
+  </data>
+  <data name="textBoxOemProgramName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 24</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="tabPage5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 21</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="tabPage5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>368, 239</value>
+  </data>
+  <data name="textBoxOemProgramName.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="textBoxOemCompanyName.Text" xml:space="preserve">
+    <value>textBox1</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Max Ports</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 56</value>
+  </data>
+  <data name="numericUpDownPlcScanMaxScanWriteItems.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 24</value>
+  </data>
+  <data name="checkBoxKeyLockAllCheck.Text" xml:space="preserve">
+    <value>AllCheck</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownPlcScanMaxPorts.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormMain</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Max Write Items</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 48</value>
+  </data>
+  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 128</value>
+  </data>
+  <data name="textBoxAlarmMsgNEW.Text" xml:space="preserve">
+    <value>textBox1</value>
+  </data>
+  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 21</value>
+  </data>
+  <data name="textBoxAlarmMsgNEW.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPage3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;textBoxDdeServiceName.Name" xml:space="preserve">
+    <value>textBoxDdeServiceName</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>New Alarm</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgNEW.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBoxDdeServiceName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPage5.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;textBoxOemProgramName.Name" xml:space="preserve">
+    <value>textBoxOemProgramName</value>
+  </data>
+  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>368, 239</value>
+  </data>
+  <data name="textBoxDdeServiceName.Text" xml:space="preserve">
+    <value>textBox1</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="numericUpDownPlcScanMaxPorts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 24</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownPlcScanMaxPorts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="numericUpDownKeyLockWait.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 24</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxOemCompanyName.Name" xml:space="preserve">
+    <value>textBoxOemCompanyName</value>
+  </data>
+  <data name="buttonOK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textBoxOemCompanyName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 24</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownKeyLockWait.Name" xml:space="preserve">
+    <value>numericUpDownKeyLockWait</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownPlcScanMaxScanWriteItems.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="textBoxOemCompanyName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 21</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Parent" xml:space="preserve">
+    <value>tabPage5</value>
+  </data>
+  <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>368, 239</value>
+  </data>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>5, 14</value>
+  </data>
+  <data name="&gt;&gt;checkBoxKeyLockAllCheck.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgRET.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownKeyLockWait.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>368, 239</value>
+  </data>
+  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonOK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>400, 16</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
+    <value>buttonCancel</value>
+  </data>
+  <data name="&gt;&gt;textBoxOemProgramName.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="textBoxOemProgramName.Text" xml:space="preserve">
+    <value>textBox1</value>
+  </data>
+  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>376, 264</value>
+  </data>
+  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="textBoxAlarmMsgCNF.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 56</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Name" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="textBoxAlarmMsgCNF.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 21</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>488, 293</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 56</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownKeyLockWait.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonOK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="numericUpDownPlcScanMaxPorts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="textBoxDdeServiceName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 21</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Check wait</value>
+  </data>
+  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 73</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgCNF.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgNEW.Name" xml:space="preserve">
+    <value>textBoxAlarmMsgNEW</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 11</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 23</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 21</value>
+  </data>
+  <data name="&gt;&gt;checkBoxKeyLockAllCheck.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>368, 239</value>
+  </data>
+  <data name="&gt;&gt;tabPage5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;textBoxAlarmMsgNEW.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 23</value>
+  </data>
+  <data name="textBoxAlarmMsgNEW.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 24</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>DDE</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Korean</value>
+  </metadata>
+</root>

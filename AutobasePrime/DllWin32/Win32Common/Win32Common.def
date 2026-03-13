@@ -1,0 +1,6 @@
+; Win32Common.def : Declares the module parameters for the DLL.
+
+LIBRARY      "Win32Common"
+
+EXPORTS
+    ; Explicit exports can go here

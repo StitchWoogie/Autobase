@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="checkBoxAiCalcSameFormat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 24</value>
+  </data>
+  <data name="checkBoxAiCalcSameFormat.Text" xml:space="preserve">
+    <value>Phù hợp để hiển thị định dạng trong tính toán AI</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Hủy bỏ</value>
+  </data>
+  <data name="checkBoxMatchAlarmReturnGabAndHiHiLoLoDO.Text" xml:space="preserve">
+    <value>Kết nối báo động trở lại  AI &amp; HiHi/LoLo DO</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Thời gian bắt đầu quét</value>
+  </data>
+  <data name="numericUpDownScanStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 169</value>
+  </data>
+  <data name="numericUpDownScanStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 22</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 169</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Giây</value>
+  </data>
+  <data name="checkBoxContinueScriptOnError.Text" xml:space="preserve">
+    <value>Tiếp tục Script có lỗi</value>
+  </data>
+  <data name="checkBoxTagInfoString.Text" xml:space="preserve">
+    <value>Hiển thị chú giải trên đối tượng Tag</value>
+  </data>
+  <data name="checkBoxFitWindowSize.Text" xml:space="preserve">
+    <value>Sắp xếp theo cạnh cửa sổ</value>
+  </data>
+  <data name="checkBoxLeftMouseResponse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>342, 24</value>
+  </data>
+  <data name="checkBoxLeftMouseResponse.Text" xml:space="preserve">
+    <value>Sử dụng nút nhấn chuột trái trên module đồ họa</value>
+  </data>
+  <data name="checkBoxRightMouseResponse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>322, 24</value>
+  </data>
+  <data name="checkBoxRightMouseResponse.Text" xml:space="preserve">
+    <value>Sử dụng nút nhấn chuột phải trên module đồ họa</value>
+  </data>
+  <data name="checkBoxGraphicMenuButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>321, 24</value>
+  </data>
+  <data name="checkBoxGraphicMenuButton.Text" xml:space="preserve">
+    <value>Sử dụng menu nút nhấn trên module đồ họa</value>
+  </data>
+  <data name="numericUpDownMaxModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 22</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Đồ họa</value>
+  </data>
+  <data name="checkBoxScanPause.Text" xml:space="preserve">
+    <value>Tạm dừng quét</value>
+  </data>
+  <data name="checkBoxExitWithPlcScan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>317, 39</value>
+  </data>
+  <data name="checkBoxExitWithPlcScan.Text" xml:space="preserve">
+    <value>Đóng chương trình truyền thông máy chủ (communication server) khi đóng chương trình này</value>
+  </data>
+  <data name="checkBoxEndPrompt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>338, 24</value>
+  </data>
+  <data name="checkBoxEndPrompt.Text" xml:space="preserve">
+    <value>Hiển thị hộp nhắc khi đang đóng chương trình này</value>
+  </data>
+  <data name="checkBoxPlcScanWriteTest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>383, 24</value>
+  </data>
+  <data name="checkBoxPlcScanWriteTest.Text" xml:space="preserve">
+    <value>Cho phép ghi kiểm tra của chương trình truyền thông máy chủ</value>
+  </data>
+  <data name="checkBoxWriteAiSubWhenStart.Text" xml:space="preserve">
+    <value>Ghi Tag AI phụ khi chương trình bắt đầu</value>
+  </data>
+  <data name="checkBoxWriteDiSubWhenStart.Text" xml:space="preserve">
+    <value>Ghi Tag DI phụ khi chương trình bắt đầu</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Giây</value>
+  </data>
+  <data name="numericUpDownForLoopTimeout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 22</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 48</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Vòng lặp thời gian chờ</value>
+  </data>
+  <data name="checkBoxUseTestModeMessage.Text" xml:space="preserve">
+    <value>Sử dụng chế độ kiểm tra tin nhắn</value>
+  </data>
+  <data name="numericUpDownMaxBasicScreen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 22</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 29</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Màn hình cơ bản</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Cửa sổ MDI lớn nhất</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Chung</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="comboBoxPrinter.ItemHeight" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="comboBoxPrinter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>272, 22</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Câu lệnh @PrintModule cho máy in</value>
+  </data>
+  <data name="checkBoxUseStringModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 18</value>
+  </data>
+  <data name="checkBoxUseStringModule.Text" xml:space="preserve">
+    <value>Sử dụng hộp điều khiển string được người dùng xác định</value>
+  </data>
+  <data name="textBoxStringModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 14</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Hộp điều khiển module đồ họa string</value>
+  </data>
+  <data name="checkBoxUseDigitalModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>341, 18</value>
+  </data>
+  <data name="checkBoxUseDigitalModule.Text" xml:space="preserve">
+    <value>Sử dụng hộp điều khiển digital được người dùng xác định</value>
+  </data>
+  <data name="textBoxDigitalModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 14</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Hộp điều khiển module đồ họa digital</value>
+  </data>
+  <data name="checkBoxUseAnalogModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>347, 18</value>
+  </data>
+  <data name="checkBoxUseAnalogModule.Text" xml:space="preserve">
+    <value>Sử dụng hộp điều khiển Analog được người dùng xác định</value>
+  </data>
+  <data name="textBoxAnalogModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 14</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Hộp điều khiển module đồ họa analog</value>
+  </data>
+  <data name="checkBoxUseDeviceQuality.Text" xml:space="preserve">
+    <value>Sử dụng thiết bị đặc trưng (OPC)</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Máy khác OPC</value>
+  </data>
+  <data name="textBoxOpcServerGroupSerapatorChar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 22</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 14</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Kí tự phân cách nhóm</value>
+  </data>
+  <data name="numericUpDownReadInterval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 22</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 14</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Khoảng đọc(Mini giây)</value>
+  </data>
+  <data name="numericUpDownOpcServerSubscriptionRefreshCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 22</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 14</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Đăng kí mới các khoản mục</value>
+  </data>
+  <data name="textBoxOpcServerTagGroupNameToUse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 22</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 14</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Tên nhóm Tag để sử dụng</value>
+  </data>
+  <data name="checkBoxOpcServerUseRootItem.Text" xml:space="preserve">
+    <value>Sử dụng khoản gốc</value>
+  </data>
+  <data name="checkBoxCloseOpcServerWhenLocalMainExit.Text" xml:space="preserve">
+    <value>Đóng máy chủ OPC khi LocalMain thoát</value>
+  </data>
+  <data name="checkBoxStartOpcServerWhileLocalMainRunning.Size" type="System.Drawing.Size, System.Drawing">
+    <value>348, 24</value>
+  </data>
+  <data name="checkBoxStartOpcServerWhileLocalMainRunning.Text" xml:space="preserve">
+    <value>Khởi động máy chủ OPC trong khi LocalMain đang chạy</value>
+  </data>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 261</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Máy chủ OPC</value>
+  </data>
+  <data name="checkBoxRightMouseOnObject.Text" xml:space="preserve">
+    <value>Sử dụng nút nhấn trên đối tượng</value>
+  </data>
+  <data name="checkBoxRightMouseGraphicContextMenu.Text" xml:space="preserve">
+    <value>Sử dụng thuộc tính menu mặc định</value>
+  </data>
+  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>356, 111</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Nút nhấn chuột phải</value>
+  </data>
+  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>356, 56</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Nút nhấn chuột trái</value>
+  </data>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>6, 15</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Cấu hình khác</value>
+  </data>
+</root>

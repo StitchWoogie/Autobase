@@ -1,0 +1,916 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BFC7F4F7-35CD-4FE9-8F34-ACA05EEABB12}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>ReportModule</AssemblyName>
+    <AssemblyOriginatorKeyFile>autobase.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ReportModule</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <WebReference_EnableProperties>true</WebReference_EnableProperties>
+    <WebReference_EnableSQLTypes>false</WebReference_EnableSQLTypes>
+    <WebReference_EnableLegacyEventingModel>true</WebReference_EnableLegacyEventingModel>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\..\NetTools\NetTools.csproj">
+      <Name>NetTools</Name>
+      <Project>{D49B5268-4C34-44C6-B688-80653EE9A189}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoLibLocal\AutoLibLocal.csproj">
+      <Name>AutoLibLocal</Name>
+      <Project>{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\AutoLib\AutoLib.csproj">
+      <Name>AutoLib</Name>
+      <Project>{DFE68F78-7DBA-45BC-AB91-FB685733205B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DialogTag\DialogTag.csproj">
+      <Name>DialogTag</Name>
+      <Project>{12D7893A-DA46-4CCD-B919-29CE90C5B9CB}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\ReportBasicLib\ReportBasicLib.csproj">
+      <Name>ReportBasicLib</Name>
+      <Project>{46B4BACB-0EFA-49FE-8F3A-0B3279E18DB8}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DialogHeadToolLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogHeadToolText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogConfigCellAlign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogConfigCellBorder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogConfigCellFormat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogConfigCellSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogConfigEtc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogConfigMinListTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogConfigPrintMultiDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogConfigPrintTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogConfigStringVar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogConfigStringVarAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogFileInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogInsertAutoData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogInsertFunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogInsertTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogOpenReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogPaperSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogSelectVars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogTextEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHeaderEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportMainEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportMainRun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPageObjectAiMaxSum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPageObjectAiMinList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPageObjectAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPageObjectEtcDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPageObjectEtcMinList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPageObjectMoment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPageObjectOnOffList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPageObjectOnOffListSum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyPageTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertySelectTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertySheetPublic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportCopyPaste.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportEditorMouse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportEditorProperty.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportEditorUndo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportInsert.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportBitmapRenderFacade.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportPrint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportTagInfo.cs" />
+    <Compile Include="SelectedCell.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Cursor\bottom_arrow.cur" />
+    <EmbeddedResource Include="Cursor\right_arrow.cur" />
+    <EmbeddedResource Include="Cursor\right_down_arrow.cur" />
+    <EmbeddedResource Include="DialogHeadToolLine.ja.resx">
+      <DependentUpon>DialogHeadToolLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogHeadToolLine.ko.resx">
+      <DependentUpon>DialogHeadToolLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogHeadToolLine.resx">
+      <DependentUpon>DialogHeadToolLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogHeadToolLine.zh-CHS.resx">
+      <DependentUpon>DialogHeadToolLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogHeadToolText.ja.resx">
+      <DependentUpon>DialogHeadToolText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogHeadToolText.ko.resx">
+      <DependentUpon>DialogHeadToolText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogHeadToolText.resx">
+      <DependentUpon>DialogHeadToolText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogHeadToolText.zh-CHS.resx">
+      <DependentUpon>DialogHeadToolText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellAlign.ja.resx">
+      <DependentUpon>FormDialogConfigCellAlign.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellAlign.ko.resx">
+      <DependentUpon>FormDialogConfigCellAlign.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellAlign.resx">
+      <DependentUpon>FormDialogConfigCellAlign.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellAlign.zh-CHS.resx">
+      <DependentUpon>FormDialogConfigCellAlign.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellBorder.ja.resx">
+      <DependentUpon>FormDialogConfigCellBorder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellBorder.ko.resx">
+      <DependentUpon>FormDialogConfigCellBorder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellBorder.resx">
+      <DependentUpon>FormDialogConfigCellBorder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellBorder.vi.resx">
+      <DependentUpon>FormDialogConfigCellBorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellBorder.zh-CHS.resx">
+      <DependentUpon>FormDialogConfigCellBorder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellFormat.ja.resx">
+      <DependentUpon>FormDialogConfigCellFormat.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellFormat.ko.resx">
+      <DependentUpon>FormDialogConfigCellFormat.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellFormat.resx">
+      <DependentUpon>FormDialogConfigCellFormat.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellFormat.zh-CHS.resx">
+      <DependentUpon>FormDialogConfigCellFormat.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellSize.ja.resx">
+      <DependentUpon>FormDialogConfigCellSize.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellSize.ko.resx">
+      <DependentUpon>FormDialogConfigCellSize.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellSize.resx">
+      <DependentUpon>FormDialogConfigCellSize.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellSize.vi.resx">
+      <DependentUpon>FormDialogConfigCellSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigCellSize.zh-CHS.resx">
+      <DependentUpon>FormDialogConfigCellSize.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigEtc.ja.resx">
+      <DependentUpon>FormDialogConfigEtc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigEtc.ko.resx">
+      <DependentUpon>FormDialogConfigEtc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigEtc.resx">
+      <DependentUpon>FormDialogConfigEtc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigEtc.zh-CHS.resx">
+      <DependentUpon>FormDialogConfigEtc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigMinListTime.ja.resx">
+      <DependentUpon>FormDialogConfigMinListTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigMinListTime.ko.resx">
+      <DependentUpon>FormDialogConfigMinListTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigMinListTime.resx">
+      <DependentUpon>FormDialogConfigMinListTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigMinListTime.zh-CHS.resx">
+      <DependentUpon>FormDialogConfigMinListTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigPrintMultiDate.ja.resx">
+      <DependentUpon>FormDialogConfigPrintMultiDate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigPrintMultiDate.ko.resx">
+      <DependentUpon>FormDialogConfigPrintMultiDate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigPrintMultiDate.resx">
+      <DependentUpon>FormDialogConfigPrintMultiDate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigPrintMultiDate.zh-CHS.resx">
+      <DependentUpon>FormDialogConfigPrintMultiDate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigPrintTime.ja.resx">
+      <DependentUpon>FormDialogConfigPrintTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigPrintTime.ko.resx">
+      <DependentUpon>FormDialogConfigPrintTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigPrintTime.resx">
+      <DependentUpon>FormDialogConfigPrintTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigPrintTime.vi.resx">
+      <DependentUpon>FormDialogConfigPrintTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigPrintTime.zh-CHS.resx">
+      <DependentUpon>FormDialogConfigPrintTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigStringVar.ja.resx">
+      <DependentUpon>FormDialogConfigStringVar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigStringVar.ko.resx">
+      <DependentUpon>FormDialogConfigStringVar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigStringVar.resx">
+      <DependentUpon>FormDialogConfigStringVar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigStringVar.vi.resx">
+      <DependentUpon>FormDialogConfigStringVar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigStringVar.zh-CHS.resx">
+      <DependentUpon>FormDialogConfigStringVar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigStringVarAdd.ja.resx">
+      <DependentUpon>FormDialogConfigStringVarAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigStringVarAdd.ko.resx">
+      <DependentUpon>FormDialogConfigStringVarAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigStringVarAdd.resx">
+      <DependentUpon>FormDialogConfigStringVarAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigStringVarAdd.vi.resx">
+      <DependentUpon>FormDialogConfigStringVarAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogConfigStringVarAdd.zh-CHS.resx">
+      <DependentUpon>FormDialogConfigStringVarAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogFileInformation.ja.resx">
+      <DependentUpon>FormDialogFileInformation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogFileInformation.ko.resx">
+      <DependentUpon>FormDialogFileInformation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogFileInformation.resx">
+      <DependentUpon>FormDialogFileInformation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogFileInformation.zh-CHS.resx">
+      <DependentUpon>FormDialogFileInformation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertAutoData.ja.resx">
+      <DependentUpon>FormDialogInsertAutoData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertAutoData.ko.resx">
+      <DependentUpon>FormDialogInsertAutoData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertAutoData.resx">
+      <DependentUpon>FormDialogInsertAutoData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertAutoData.vi.resx">
+      <DependentUpon>FormDialogInsertAutoData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertAutoData.zh-CHS.resx">
+      <DependentUpon>FormDialogInsertAutoData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertFunction.ja.resx">
+      <DependentUpon>FormDialogInsertFunction.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertFunction.ko.resx">
+      <DependentUpon>FormDialogInsertFunction.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertFunction.resx">
+      <DependentUpon>FormDialogInsertFunction.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertFunction.zh-CHS.resx">
+      <DependentUpon>FormDialogInsertFunction.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertTable.ja.resx">
+      <DependentUpon>FormDialogInsertTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertTable.ko.resx">
+      <DependentUpon>FormDialogInsertTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertTable.resx">
+      <DependentUpon>FormDialogInsertTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertTable.vi.resx">
+      <DependentUpon>FormDialogInsertTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogInsertTable.zh-CHS.resx">
+      <DependentUpon>FormDialogInsertTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogOpenReport.ja.resx">
+      <DependentUpon>FormDialogOpenReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogOpenReport.ko.resx">
+      <DependentUpon>FormDialogOpenReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogOpenReport.resx">
+      <DependentUpon>FormDialogOpenReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogOpenReport.vi.resx">
+      <DependentUpon>FormDialogOpenReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogOpenReport.zh-CHS.resx">
+      <DependentUpon>FormDialogOpenReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogPaperSetup.ja.resx">
+      <DependentUpon>FormDialogPaperSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogPaperSetup.ko.resx">
+      <DependentUpon>FormDialogPaperSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogPaperSetup.resx">
+      <DependentUpon>FormDialogPaperSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogPaperSetup.zh-CHS.resx">
+      <DependentUpon>FormDialogPaperSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogSelectVars.ja.resx">
+      <DependentUpon>FormDialogSelectVars.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogSelectVars.ko.resx">
+      <DependentUpon>FormDialogSelectVars.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogSelectVars.resx">
+      <DependentUpon>FormDialogSelectVars.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogSelectVars.zh-CHS.resx">
+      <DependentUpon>FormDialogSelectVars.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogTextEdit.ja.resx">
+      <DependentUpon>FormDialogTextEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogTextEdit.ko.resx">
+      <DependentUpon>FormDialogTextEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogTextEdit.resx">
+      <DependentUpon>FormDialogTextEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogTextEdit.vi.resx">
+      <DependentUpon>FormDialogTextEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogTextEdit.zh-CHS.resx">
+      <DependentUpon>FormDialogTextEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHeaderEditor.ja.resx">
+      <DependentUpon>FormHeaderEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHeaderEditor.ko.resx">
+      <DependentUpon>FormHeaderEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHeaderEditor.resx">
+      <DependentUpon>FormHeaderEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHeaderEditor.zh-CHS.resx">
+      <DependentUpon>FormHeaderEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportChild.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormReportChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportChild.resx">
+      <DependentUpon>FormReportChild.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainEdit.ja.resx">
+      <DependentUpon>FormReportMainEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainEdit.ko.resx">
+      <DependentUpon>FormReportMainEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainEdit.resx">
+      <DependentUpon>FormReportMainEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainEdit.ru.resx">
+      <DependentUpon>FormReportMainEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainEdit.vi.resx">
+      <DependentUpon>FormReportMainEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainEdit.zh-CHS.resx">
+      <DependentUpon>FormReportMainEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainRun.ja.resx">
+      <DependentUpon>FormReportMainRun.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainRun.ko.resx">
+      <DependentUpon>FormReportMainRun.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainRun.resx">
+      <DependentUpon>FormReportMainRun.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainRun.ru.resx">
+      <DependentUpon>FormReportMainRun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMainRun.zh-CHS.resx">
+      <DependentUpon>FormReportMainRun.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAiMaxSum.ja.resx">
+      <DependentUpon>PropertyPageObjectAiMaxSum.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAiMaxSum.ko.resx">
+      <DependentUpon>PropertyPageObjectAiMaxSum.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAiMaxSum.resx">
+      <DependentUpon>PropertyPageObjectAiMaxSum.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAiMaxSum.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectAiMaxSum.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAiMinList.ja.resx">
+      <DependentUpon>PropertyPageObjectAiMinList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAiMinList.ko.resx">
+      <DependentUpon>PropertyPageObjectAiMinList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAiMinList.resx">
+      <DependentUpon>PropertyPageObjectAiMinList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAiMinList.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectAiMinList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAlarm.ja.resx">
+      <DependentUpon>PropertyPageObjectAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAlarm.ko.resx">
+      <DependentUpon>PropertyPageObjectAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAlarm.resx">
+      <DependentUpon>PropertyPageObjectAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectAlarm.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectEtcDatabase.ja.resx">
+      <DependentUpon>PropertyPageObjectEtcDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectEtcDatabase.ko.resx">
+      <DependentUpon>PropertyPageObjectEtcDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectEtcDatabase.resx">
+      <DependentUpon>PropertyPageObjectEtcDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectEtcDatabase.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectEtcDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectEtcMinList.ja.resx">
+      <DependentUpon>PropertyPageObjectEtcMinList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectEtcMinList.ko.resx">
+      <DependentUpon>PropertyPageObjectEtcMinList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectEtcMinList.resx">
+      <DependentUpon>PropertyPageObjectEtcMinList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectEtcMinList.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectEtcMinList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectMoment.ja.resx">
+      <DependentUpon>PropertyPageObjectMoment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectMoment.ko.resx">
+      <DependentUpon>PropertyPageObjectMoment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectMoment.resx">
+      <DependentUpon>PropertyPageObjectMoment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectMoment.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectMoment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectOnOffList.ja.resx">
+      <DependentUpon>PropertyPageObjectOnOffList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectOnOffList.ko.resx">
+      <DependentUpon>PropertyPageObjectOnOffList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectOnOffList.resx">
+      <DependentUpon>PropertyPageObjectOnOffList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectOnOffList.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectOnOffList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectOnOffListSum.ja.resx">
+      <DependentUpon>PropertyPageObjectOnOffListSum.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectOnOffListSum.ko.resx">
+      <DependentUpon>PropertyPageObjectOnOffListSum.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectOnOffListSum.resx">
+      <DependentUpon>PropertyPageObjectOnOffListSum.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageObjectOnOffListSum.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectOnOffListSum.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageTag.ja.resx">
+      <DependentUpon>PropertyPageTag.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageTag.ko.resx">
+      <DependentUpon>PropertyPageTag.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageTag.resx">
+      <DependentUpon>PropertyPageTag.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyPageTag.zh-CHS.resx">
+      <DependentUpon>PropertyPageTag.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertySelectTime.ja.resx">
+      <DependentUpon>PropertySelectTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertySelectTime.ko.resx">
+      <DependentUpon>PropertySelectTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertySelectTime.resx">
+      <DependentUpon>PropertySelectTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertySelectTime.vi.resx">
+      <DependentUpon>PropertySelectTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertySelectTime.zh-CHS.resx">
+      <DependentUpon>PropertySelectTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertySheetPublic.ja.resx">
+      <DependentUpon>PropertySheetPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertySheetPublic.ko.resx">
+      <DependentUpon>PropertySheetPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertySheetPublic.resx">
+      <DependentUpon>PropertySheetPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertySheetPublic.vi.resx">
+      <DependentUpon>PropertySheetPublic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertySheetPublic.zh-CHS.resx">
+      <DependentUpon>PropertySheetPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="autobase.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

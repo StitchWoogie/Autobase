@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="c23fb0bd-bac3-464d-a37d-802d32b3de74" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63500/AutoWeb/Service/ServiceDownLoadProject.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceDownLoadProject2.xsd" MetadataType="Schema" ID="28e9ddaf-10a5-47a8-8795-a760262fe97e" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDownLoadProject.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceDownLoadProject.xsd" MetadataType="Schema" ID="addcbe3d-4332-4e4c-93d1-41b3eefa6681" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDownLoadProject.svc?xsd=xsd0" />
+    <MetadataFile FileName="WcfServiceDownLoadProject.wsdl" MetadataType="Wsdl" ID="64422b68-3d32-4aee-818b-4af23725d6ce" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDownLoadProject.svc?wsdl" />
+    <MetadataFile FileName="ServiceDownLoadProject.disco" MetadataType="Disco" ID="d154a84e-e36f-4de7-8dc7-cea4ade6e0cc" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDownLoadProject.svc?disco" />
+    <MetadataFile FileName="ServiceDownLoadProject1.xsd" MetadataType="Schema" ID="c010e1c5-c012-48af-ab73-fa63e2437d62" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDownLoadProject.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

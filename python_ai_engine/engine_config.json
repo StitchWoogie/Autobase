@@ -1,0 +1,63 @@
+{
+    "_comment": "Python AI Engine 설정 파일. main.py --config 으로 지정. config.py 중첩 구조 필수.",
+
+    "engine": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 5678
+    },
+
+    "workers": {
+        "realtime": { "count": 4 },
+        "batch":    { "count": 2 },
+        "script":   { "count": 2 }
+    },
+
+    "queues": {
+        "realtime": { "maxSize": 100 },
+        "batch":    { "maxSize": 50 },
+        "script":   { "maxSize": 20 }
+    },
+
+    "limits": {
+        "scriptTimeoutMs": 30000,
+        "scriptMemoryMb": 256,
+        "payloadMaxKb": 1024,
+        "largePayloadThresholdKb": 64,
+        "outputMaxKb": 512
+    },
+
+    "models": {
+        "registryPath": "models",
+        "preload": [],
+        "cacheMaxCount": 5,
+        "cacheMaxMemoryMb": 512,
+        "warmupOnLoad": true,
+        "hotReloadEnabled": false,
+        "hotReloadIntervalSec": 30
+    },
+
+    "plugins": {
+        "pluginPath": "plugins",
+        "autoLoad": false
+    },
+
+    "auth": {
+        "strictMode": true
+    },
+
+    "logging": {
+        "level": "INFO",
+        "format": "json",
+        "auditEnabled": true,
+        "auditPath": "logs/audit.jsonl",
+        "file": ""
+    },
+
+    "resource": {
+        "maxMemoryMb": 2048,
+        "checkIntervalSec": 30
+    },
+
+    "sharedDir": "shared"
+}

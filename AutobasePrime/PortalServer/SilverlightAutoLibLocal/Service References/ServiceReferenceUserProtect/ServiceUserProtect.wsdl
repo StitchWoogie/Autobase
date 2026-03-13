@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CheckUserName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckUserNameResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserNameWithVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserNameWithVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckUserNameWithVersionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserCount">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserCountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DefaultUserCheck">
+        <s:complexType />
+      </s:element>
+      <s:element name="DefaultUserCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultUserCheckResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DefaultUserCheckWithVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="DefaultUserCheckWithVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultUserCheckWithVersionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogOut">
+        <s:complexType />
+      </s:element>
+      <s:element name="LogOutResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CheckUserNameSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUserName" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserNameSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserNameWithVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUserNameWithVersion" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserNameWithVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUserNameWithVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserCount" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="DefaultUserCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:DefaultUserCheck" />
+  </wsdl:message>
+  <wsdl:message name="DefaultUserCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:DefaultUserCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="DefaultUserCheckWithVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:DefaultUserCheckWithVersion" />
+  </wsdl:message>
+  <wsdl:message name="DefaultUserCheckWithVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:DefaultUserCheckWithVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogOutSoapIn">
+    <wsdl:part name="parameters" element="tns:LogOut" />
+  </wsdl:message>
+  <wsdl:message name="LogOutSoapOut">
+    <wsdl:part name="parameters" element="tns:LogOutResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceUserProtectSoap">
+    <wsdl:operation name="CheckUserName">
+      <wsdl:input message="tns:CheckUserNameSoapIn" />
+      <wsdl:output message="tns:CheckUserNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserNameWithVersion">
+      <wsdl:input message="tns:CheckUserNameWithVersionSoapIn" />
+      <wsdl:output message="tns:CheckUserNameWithVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCount">
+      <wsdl:input message="tns:GetUserCountSoapIn" />
+      <wsdl:output message="tns:GetUserCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DefaultUserCheck">
+      <wsdl:input message="tns:DefaultUserCheckSoapIn" />
+      <wsdl:output message="tns:DefaultUserCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DefaultUserCheckWithVersion">
+      <wsdl:input message="tns:DefaultUserCheckWithVersionSoapIn" />
+      <wsdl:output message="tns:DefaultUserCheckWithVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <wsdl:input message="tns:LogOutSoapIn" />
+      <wsdl:output message="tns:LogOutSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceUserProtectSoap" type="tns:ServiceUserProtectSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckUserName">
+      <soap:operation soapAction="http://tempuri.org/CheckUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserNameWithVersion">
+      <soap:operation soapAction="http://tempuri.org/CheckUserNameWithVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCount">
+      <soap:operation soapAction="http://tempuri.org/GetUserCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DefaultUserCheck">
+      <soap:operation soapAction="http://tempuri.org/DefaultUserCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DefaultUserCheckWithVersion">
+      <soap:operation soapAction="http://tempuri.org/DefaultUserCheckWithVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap:operation soapAction="http://tempuri.org/LogOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceUserProtectSoap12" type="tns:ServiceUserProtectSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckUserName">
+      <soap12:operation soapAction="http://tempuri.org/CheckUserName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserNameWithVersion">
+      <soap12:operation soapAction="http://tempuri.org/CheckUserNameWithVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCount">
+      <soap12:operation soapAction="http://tempuri.org/GetUserCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DefaultUserCheck">
+      <soap12:operation soapAction="http://tempuri.org/DefaultUserCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DefaultUserCheckWithVersion">
+      <soap12:operation soapAction="http://tempuri.org/DefaultUserCheckWithVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap12:operation soapAction="http://tempuri.org/LogOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceUserProtect">
+    <wsdl:port name="ServiceUserProtectSoap" binding="tns:ServiceUserProtectSoap">
+      <soap:address location="http://localhost:62893/AutoBaseWeb/AutoWeb/Service/ServiceUserProtect.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceUserProtectSoap12" binding="tns:ServiceUserProtectSoap12">
+      <soap12:address location="http://localhost:62893/AutoBaseWeb/AutoWeb/Service/ServiceUserProtect.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

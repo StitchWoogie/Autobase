@@ -1,0 +1,7 @@
+[Password]
+MustUseMixOfAlphabetsAndNumbers=False
+MinimumLengthOfPassword=0
+AutoLockMismatchedCount=0
+PasswordExpiryDate=0
+DisableShortcutOnLoginDialogBox=False
+DoNotAllowSamePassword=False

@@ -1,0 +1,26 @@
+Description,MENU_SCRIPT_000 Script,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Programm,BEGIN,
+index = @ComboBoxGetCurSel("ComboBox1");
+@ReportSetTime($year, $mon, $day, $hour);
+
+if(index == 0)
+{
+@ReportView("report1234.rptx");
+
+
+}
+elseif(index==1)
+{
+@ReportView("report5678.rptx");
+
+
+}
+elseif(index==2)
+{
+
+@ReportView("report0000.rptx");
+
+}
+Programm,END,

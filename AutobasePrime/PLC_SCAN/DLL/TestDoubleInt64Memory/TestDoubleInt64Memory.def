@@ -1,0 +1,6 @@
+; TestDoubleInt64Memory.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TestDoubleInt64Memory"
+
+EXPORTS
+    ; Explicit exports can go here

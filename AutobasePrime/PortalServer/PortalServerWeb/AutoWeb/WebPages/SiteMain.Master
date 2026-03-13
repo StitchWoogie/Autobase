@@ -1,0 +1,29 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMain.master.cs" Inherits="PortalServerWeb.AutoWeb.WebPages.SiteMain" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="~/Content/w3.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <h1>Scada</h1>
+    <div>
+        
+        <p class="w3-blue-grey">
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="Main.aspx">Home</asp:HyperLink>
+&nbsp;<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="ViewLog.aspx">Logs</asp:HyperLink>
+        &nbsp;<asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="Settings.aspx">Settings</asp:HyperLink>
+        </p>
+        
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

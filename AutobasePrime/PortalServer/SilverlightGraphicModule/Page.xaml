@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="SilverlightGraphicModule.Page" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="500" Height="500">
+    <Grid x:Name="gridBackground"><!--배경을 그리기 위해서 Transform에 적용되지 않는 판넬이 필요하다.-->
+	    <ScrollViewer x:Name="scrollViewer" BorderThickness="0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Padding="0,0,0,0"> <!--ScrollView가 Grid안에 있으면 자동으로Padding이 4정도 들어간다. -->
+	        <Canvas x:Name="LayoutRoot">
+                
+	        </Canvas>
+	    </ScrollViewer>
+    </Grid>
+    <UserControl.Resources>
+        <Style x:Key="ButtonSolidStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="00:00:00.2"
+                                                                 Storyboard.TargetName="BorderNormal"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 From="1" To="0.7" />
+                                        </Storyboard>
+                                        
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="00:00:00.2"
+                                                                 Storyboard.TargetName="BorderNormal"
+                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                                                                 To="#FFFFFFFF" />
+                                            <DoubleAnimation Duration="00:00:00.2"
+                                                                 Storyboard.TargetName="BorderNormal"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 From="1" To="0.7" />                                           
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard />
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}"
+                            CornerRadius="2" BorderBrush="Black" BorderThickness="1"  x:Name="BorderNormal" >
+                                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            
+                            
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+</UserControl>

@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="SilverlightGraphicModule.ControlBasicGraph"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Width="500" Height="300">
+    <Grid x:Name="LayoutRoot" Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Blue" x:Name="gridGraph">
+
+        </Grid>
+        <Grid Grid.Row="1" Margin="2,2,2,2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" x:Name="textBlockTrendView">Trend View</TextBlock>
+                <Grid Width="10"></Grid>
+                <Button Content="1 Hour" x:Name="buttonTrendHour1" Click="buttonTrendHour1_Click" ></Button>
+                <Button Content="8 Hours" x:Name="buttonTrendHour8" Click="buttonTrendHour8_Click"></Button>
+                <Button Content="1 Day" x:Name="buttonTrendHour24" Click="buttonTrendHour24_Click"></Button>
+                <Button Content="2 Days" x:Name="buttonTrendHour48" Click="buttonTrendHour48_Click" ></Button>
+                <Button Content="3 Days" x:Name="buttonTrendHour72" Click="buttonTrendHour72_Click" ></Button>
+                <Button Content="7 Days" x:Name="buttonTrendDay7" Click="buttonTrendDay7_Click" ></Button>
+                <Button Content="15 Days" x:Name="buttonTrendDay15" Click="buttonTrendDay15_Click" ></Button>
+                <Button Content="30 Days" x:Name="buttonTrendDay30" Click="buttonTrendDay30_Click" ></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+    
+</UserControl>

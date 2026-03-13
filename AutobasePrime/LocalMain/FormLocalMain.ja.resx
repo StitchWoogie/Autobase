@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="FilelogInToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="FilelogInToolStripMenuItem.Text" xml:space="preserve">
+    <value>ログオン(&amp;O)</value>
+  </data>
+  <data name="FilelogOutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="FilelogOutToolStripMenuItem.Text" xml:space="preserve">
+    <value>ログオフ(&amp;F)</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 6</value>
+  </data>
+  <data name="FilewriteMemoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="FilewriteMemoToolStripMenuItem.Text" xml:space="preserve">
+    <value>メモ作成(&amp;S)</value>
+  </data>
+  <data name="FilereadMemoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="FilereadMemoToolStripMenuItem.Text" xml:space="preserve">
+    <value>メモ閲覧(&amp;R)</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 6</value>
+  </data>
+  <data name="FileprintScreenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="FileprintScreenToolStripMenuItem.Text" xml:space="preserve">
+    <value>画面印刷(&amp;P)...</value>
+  </data>
+  <data name="FilescreenSaveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="FilescreenSaveToolStripMenuItem.Text" xml:space="preserve">
+    <value>画面保存(&amp;S)...</value>
+  </data>
+  <data name="FilesaveSelectionZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="FilesaveSelectionZoneToolStripMenuItem.Text" xml:space="preserve">
+    <value>選択画面保存(&amp;C)...</value>
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 6</value>
+  </data>
+  <data name="FilerunStudioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="FilerunStudioToolStripMenuItem.Text" xml:space="preserve">
+    <value>スタジオ実行(&amp;T)</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 6</value>
+  </data>
+  <data name="FileexitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="FileexitToolStripMenuItem.Text" xml:space="preserve">
+    <value>アプリケーションの終了(&amp;X)</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>ファイル(&amp;F)</value>
+  </data>
+  <data name="ViewgraphicsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewgraphicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>グラフィック監視(&amp;G)</value>
+  </data>
+  <data name="ViewentireTagsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewentireTagsToolStripMenuItem.Text" xml:space="preserve">
+    <value>全タグ表示(&amp;T)</value>
+  </data>
+  <data name="ViewanalogInputsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewanalogInputsToolStripMenuItem.Text" xml:space="preserve">
+    <value>アナログ入力(&amp;A)</value>
+  </data>
+  <data name="ViewanalogOutputsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewanalogOutputsToolStripMenuItem.Text" xml:space="preserve">
+    <value>アナログ出力(&amp;N)</value>
+  </data>
+  <data name="ViewdigitalInputsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewdigitalInputsToolStripMenuItem.Text" xml:space="preserve">
+    <value>デジタル入力(&amp;D)</value>
+  </data>
+  <data name="ViewdigitalOutputsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewdigitalOutputsToolStripMenuItem.Text" xml:space="preserve">
+    <value>デジタル出力(&amp;O)</value>
+  </data>
+  <data name="ViewstringTagsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewstringTagsToolStripMenuItem.Text" xml:space="preserve">
+    <value>文字列タグ(&amp;S)</value>
+  </data>
+  <data name="ViewregisteredGroupsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewregisteredGroupsToolStripMenuItem.Text" xml:space="preserve">
+    <value>登録グループ表示(&amp;R)</value>
+  </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 6</value>
+  </data>
+  <data name="ViewalarmFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewalarmFilesToolStripMenuItem.Text" xml:space="preserve">
+    <value>警報(&amp;F)</value>
+  </data>
+  <data name="ViewalarmEventsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewalarmEventsToolStripMenuItem.Text" xml:space="preserve">
+    <value>警報イベント ウィンドウ(&amp;E)</value>
+  </data>
+  <data name="ViewlogFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewlogFilesToolStripMenuItem.Text" xml:space="preserve">
+    <value>ログ(&amp;L)</value>
+  </data>
+  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 6</value>
+  </data>
+  <data name="ViewscriptsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewscriptsToolStripMenuItem.Text" xml:space="preserve">
+    <value>スクリプト(&amp;C)</value>
+  </data>
+  <data name="ViewcommunicationServerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewcommunicationServerToolStripMenuItem.Text" xml:space="preserve">
+    <value>通信プログラム(&amp;P)</value>
+  </data>
+  <data name="ViewreportsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewreportsToolStripMenuItem.Text" xml:space="preserve">
+    <value>レポート(&amp;T)</value>
+  </data>
+  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 6</value>
+  </data>
+  <data name="ViewdemandControlsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewdemandControlsToolStripMenuItem.Text" xml:space="preserve">
+    <value>デマンド制御(&amp;E)</value>
+  </data>
+  <data name="ViewmilliDatasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewmilliDatasToolStripMenuItem.Text" xml:space="preserve">
+    <value>詳細資料(&amp;M)</value>
+  </data>
+  <data name="ViewschedulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewschedulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>スケジュール(&amp;H)</value>
+  </data>
+  <data name="ViewdBIntegrationsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewdBIntegrationsToolStripMenuItem.Text" xml:space="preserve">
+    <value>DB累計(&amp;B)</value>
+  </data>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 6</value>
+  </data>
+  <data name="ViewnavigationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 22</value>
+  </data>
+  <data name="ViewnavigationToolStripMenuItem.Text" xml:space="preserve">
+    <value>ナビゲーター(&amp;V)</value>
+  </data>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 20</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>表示(&amp;V)</value>
+  </data>
+  <data name="configAlarmToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="configAlarmToolStripMenuItem.Text" xml:space="preserve">
+    <value>警報設定(&amp;A)</value>
+  </data>
+  <data name="configFontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="configFontToolStripMenuItem.Text" xml:space="preserve">
+    <value>フォント設定(&amp;F)</value>
+  </data>
+  <data name="ConfigbasicColorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 22</value>
+  </data>
+  <data name="ConfigbasicColorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>全体色(&amp;T)</value>
+  </data>
+  <data name="ConfigalarmColorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 22</value>
+  </data>
+  <data name="ConfigalarmColorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>警報色(&amp;A)</value>
+  </data>
+  <data name="configColorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="configColorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>色設定(&amp;C)</value>
+  </data>
+  <data name="configDataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="configDataToolStripMenuItem.Text" xml:space="preserve">
+    <value>資料設定(&amp;D)</value>
+  </data>
+  <data name="configFlowWatchToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="configFlowWatchToolStripMenuItem.Text" xml:space="preserve">
+    <value>順次監視設定(&amp;T)</value>
+  </data>
+  <data name="configUsersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="configUsersToolStripMenuItem.Text" xml:space="preserve">
+    <value>ユーザー設定(&amp;U)</value>
+  </data>
+  <data name="configOtherToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="configOtherToolStripMenuItem.Text" xml:space="preserve">
+    <value>その他の設定(&amp;O)</value>
+  </data>
+  <data name="configExcelPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="configExcelPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Excelパス設定(&amp;E)</value>
+  </data>
+  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 6</value>
+  </data>
+  <data name="ConfigconnectionStringToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 22</value>
+  </data>
+  <data name="ConfigconnectionStringToolStripMenuItem.Text" xml:space="preserve">
+    <value>接続文字列(&amp;C)</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 6</value>
+  </data>
+  <data name="ConfigsharedDatabaseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 22</value>
+  </data>
+  <data name="ConfigsharedDatabaseToolStripMenuItem.Text" xml:space="preserve">
+    <value>共有データベース(&amp;D)</value>
+  </data>
+  <data name="databaseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="databaseToolStripMenuItem.Text" xml:space="preserve">
+    <value>データベース(&amp;B)</value>
+  </data>
+  <data name="ConfigyearlyFixedSchedulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 22</value>
+  </data>
+  <data name="ConfigyearlyFixedSchedulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>年間固定スケジュール(&amp;F)</value>
+  </data>
+  <data name="ConfigyearlyAdditionalSchedulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 22</value>
+  </data>
+  <data name="ConfigyearlyAdditionalSchedulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>年間追加スケジュール(&amp;A)</value>
+  </data>
+  <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 6</value>
+  </data>
+  <data name="ConfigmodelsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 22</value>
+  </data>
+  <data name="ConfigmodelsToolStripMenuItem.Text" xml:space="preserve">
+    <value>モデル設定(&amp;M)</value>
+  </data>
+  <data name="ConfigweeklySchedulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 22</value>
+  </data>
+  <data name="ConfigweeklySchedulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>週刊スケジュール(&amp;W)</value>
+  </data>
+  <data name="schedulesToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="schedulesToolStripMenuItem1.Text" xml:space="preserve">
+    <value>スケジュール(&amp;H)</value>
+  </data>
+  <data name="ConfigautomaticReportPrintToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="ConfigautomaticReportPrintToolStripMenuItem.Text" xml:space="preserve">
+    <value>レポート自動印刷(&amp;R)</value>
+  </data>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 6</value>
+  </data>
+  <data name="ConfigwindowTitleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="ConfigwindowTitleToolStripMenuItem.Text" xml:space="preserve">
+    <value>ウィンドウタイトル(&amp;W)</value>
+  </data>
+  <data name="ConfigmainMenuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="ConfigmainMenuToolStripMenuItem.Text" xml:space="preserve">
+    <value>メインメニュー(&amp;I)</value>
+  </data>
+  <data name="configToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 20</value>
+  </data>
+  <data name="configToolStripMenuItem.Text" xml:space="preserve">
+    <value>設定(&amp;C)</value>
+  </data>
+  <data name="WindowcascadeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="WindowcascadeToolStripMenuItem.Text" xml:space="preserve">
+    <value>重ねて表示(&amp;C)</value>
+  </data>
+  <data name="WindowtileHorizontallyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="WindowtileHorizontallyToolStripMenuItem.Text" xml:space="preserve">
+    <value>水平並べて表示(&amp;H)</value>
+  </data>
+  <data name="WindowtileVerticallyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="WindowtileVerticallyToolStripMenuItem.Text" xml:space="preserve">
+    <value>垂直並べて表示(&amp;V)</value>
+  </data>
+  <data name="WindowarrangeIconsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="WindowarrangeIconsToolStripMenuItem.Text" xml:space="preserve">
+    <value>アイコンの整列(&amp;A)</value>
+  </data>
+  <data name="WindowcloseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="WindowcloseToolStripMenuItem.Text" xml:space="preserve">
+    <value>閉じる(&amp;L)</value>
+  </data>
+  <data name="WindowcloseAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="WindowcloseAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>すべてのドキュメントを閉じる(&amp;O)</value>
+  </data>
+  <data name="windowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 20</value>
+  </data>
+  <data name="windowToolStripMenuItem.Text" xml:space="preserve">
+    <value>ウィンドウ(&amp;W)</value>
+  </data>
+  <data name="helpToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="helpToolStripMenuItem1.Text" xml:space="preserve">
+    <value>ヘルプ(&amp;H)</value>
+  </data>
+  <data name="HelpremoteASToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="HelpremoteASToolStripMenuItem.Text" xml:space="preserve">
+    <value>リモート A&amp;S</value>
+  </data>
+  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 6</value>
+  </data>
+  <data name="HelpuserNameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="HelpuserNameToolStripMenuItem.Text" xml:space="preserve">
+    <value>ユーザー名(&amp;U)?</value>
+  </data>
+  <data name="HelpkeylockInformationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="HelpkeylockInformationToolStripMenuItem.Text" xml:space="preserve">
+    <value>キーロック情報(&amp;K)</value>
+  </data>
+  <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 6</value>
+  </data>
+  <data name="HelpaboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="HelpaboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>バージョン情報(&amp;A)...</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>ヘルプ(&amp;H)</value>
+  </data>
+  
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>458, 299</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MS UI Gothic, 9pt</value>
+  </data>
+  
+</root>

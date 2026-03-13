@@ -1,0 +1,1485 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '패치용|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\패치용\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '로컬 전체 컴파일|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\EXE\Autobase48\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F72DF021-6FDB-416C-99EF-59DBC15D378B}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>감시프로그램3.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>LocalMain</AssemblyName>
+    <AssemblyOriginatorKeyFile>autobase.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LocalMain</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\EXE\Autobase48\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '로컬 전체 컴파일|AnyCPU' ">
+    <OutputPath>..\..\..\exe\Autobase48\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '패치용|AnyCPU' ">
+    <OutputPath>..\..\..\exe\Autobase48\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\exe\Autobase48\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug Remote|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>\\192.168.1.119\Autobase48\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug Remote|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>\\192.168.1.119\Autobase48\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BitFaster.Caching, Version=2.5.4.0, Culture=neutral, PublicKeyToken=65c36bc48e4e3803, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\BitFaster.Caching.2.5.4\lib\netstandard2.0\BitFaster.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Bcl.AsyncInterfaces.10.0.2\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Bcl.HashCode.6.0.0\lib\net462\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.DependencyInjection.10.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.DependencyInjection.Abstractions.10.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.Logging.10.0.2\lib\net462\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.Logging.Abstractions.10.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Debug, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.Logging.Debug.10.0.2\lib\net462\Microsoft.Extensions.Logging.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.Options.10.0.2\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.Primitives.10.0.2\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=8.0.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Npgsql.8.0.7\lib\netstandard2.0\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Client, Version=1.5.378.0, Culture=neutral, PublicKeyToken=bfa7a73c5cf4b6e8, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\OPCFoundation.NetStandard.Opc.Ua.Client.1.5.378.106\lib\net48\Opc.Ua.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Configuration, Version=1.5.378.0, Culture=neutral, PublicKeyToken=bfa7a73c5cf4b6e8, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\OPCFoundation.NetStandard.Opc.Ua.Configuration.1.5.378.106\lib\net48\Opc.Ua.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Core, Version=1.5.378.0, Culture=neutral, PublicKeyToken=bfa7a73c5cf4b6e8, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\OPCFoundation.NetStandard.Opc.Ua.Core.1.5.378.106\lib\net48\Opc.Ua.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Gds.Client.Common, Version=1.5.378.0, Culture=neutral, PublicKeyToken=bfa7a73c5cf4b6e8, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\OPCFoundation.NetStandard.Opc.Ua.Gds.Client.Common.1.5.378.106\lib\net48\Opc.Ua.Gds.Client.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Gds.Server.Common, Version=1.5.378.0, Culture=neutral, PublicKeyToken=bfa7a73c5cf4b6e8, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\OPCFoundation.NetStandard.Opc.Ua.Gds.Server.Common.1.5.378.106\lib\net48\Opc.Ua.Gds.Server.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Security.Certificates, Version=1.5.378.0, Culture=neutral, PublicKeyToken=bfa7a73c5cf4b6e8, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\OPCFoundation.NetStandard.Opc.Ua.Security.Certificates.1.5.378.106\lib\net48\Opc.Ua.Security.Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Server, Version=1.5.378.0, Culture=neutral, PublicKeyToken=bfa7a73c5cf4b6e8, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\OPCFoundation.NetStandard.Opc.Ua.Server.1.5.378.106\lib\net48\Opc.Ua.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="Opc.Ua.Types, Version=1.5.378.0, Culture=neutral, PublicKeyToken=bfa7a73c5cf4b6e8, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\OPCFoundation.NetStandard.Opc.Ua.Types.1.5.378.106\lib\net48\Opc.Ua.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=10.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Collections.Immutable.10.0.2\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Diagnostics.DiagnosticSource.10.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Name>System.EnterpriseServices</Name>
+    </Reference>
+    <Reference Include="System.Formats.Asn1, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Formats.Asn1.10.0.2\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.IO.Pipelines.10.0.2\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Text.Encodings.Web.10.0.2\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Text.Json.10.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <ProjectReference Include="..\..\NetTools\CompressLib\CompressLib.csproj">
+      <Name>CompressLib</Name>
+      <Project>{62082BA2-BFE1-4830-B552-BB76C2AD1D00}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NetTools\MdbLib\MdbLib.csproj">
+      <Project>{7701005B-A550-4AF1-915A-99F1FE674C01}</Project>
+      <Name>MdbLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NetTools\NetTools.csproj">
+      <Project>{D49B5268-4C34-44C6-B688-80653EE9A189}</Project>
+      <Name>NetTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ScriptLib\ScriptLibRun\ScriptLibRun.csproj">
+      <Project>{81868C94-AF9B-40A7-BAA8-038CB48600DC}</Project>
+      <Name>ScriptLibRun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\AutoLibLocal\AutoLibLocal.csproj">
+      <Project>{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}</Project>
+      <Name>AutoLibLocal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\AutoLib\AutoLib.csproj">
+      <Project>{DFE68F78-7DBA-45BC-AB91-FB685733205B}</Project>
+      <Name>AutoLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DatabaseConnection\DatabaseConnection.csproj">
+      <Project>{BB25326A-678A-4196-A782-F5A524D6430B}</Project>
+      <Name>DatabaseConnection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DatabaseSaveList\DatabaseSaveList.csproj">
+      <Project>{399B1025-DA67-49E4-8C5C-89F42E98A041}</Project>
+      <Name>DatabaseSaveList</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogAddition\DialogAddition.csproj">
+      <Name>DialogAddition</Name>
+      <Project>{E8C172BB-E843-4289-9A85-88C93E2CCA88}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogCommon\DialogCommon.csproj">
+      <Name>DialogCommon</Name>
+      <Project>{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogConfigUser\DialogConfigUser.csproj">
+      <Name>DialogConfigUser</Name>
+      <Project>{3A88C58A-B16D-4E56-A98C-0D0B643B7D90}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogHoliday\DialogHoliday.csproj">
+      <Name>DialogHoliday</Name>
+      <Project>{6E0B046D-EC82-46DC-95FC-2F46FDC17F15}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogTag\DialogTag.csproj">
+      <Name>DialogTag</Name>
+      <Project>{12D7893A-DA46-4CCD-B919-29CE90C5B9CB}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\ExceptionReport\ExceptionReport.csproj">
+      <Name>ExceptionReport</Name>
+      <Project>{AEA6187C-26AF-4025-9C02-29A010F81CFE}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\HelpLib\HelpLib.csproj">
+      <Project>{79D61CF6-1621-4B91-8024-32B6CD87337C}</Project>
+      <Name>HelpLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\PublicStudioLocalMain\PublicStudioLocalMain.csproj">
+      <Name>PublicStudioLocalMain</Name>
+      <Project>{6B5954E6-5089-4209-8992-0187A564FAE9}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\ReportBasicLib\ReportBasicLib.csproj">
+      <Name>ReportBasicLib</Name>
+      <Project>{46B4BACB-0EFA-49FE-8F3A-0B3279E18DB8}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\ReportModule\ReportModule.csproj">
+      <Name>ReportModule</Name>
+      <Project>{BFC7F4F7-35CD-4FE9-8F34-ACA05EEABB12}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\ViewMainPublic\ViewMainPublic.csproj">
+      <Name>ViewMainPublic</Name>
+      <Project>{3531D1AC-9CDB-4BD3-9EB0-97EA9300751F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\OPCUA.Client.Core\OPCUA.Client.Core.csproj">
+      <Project>{35312139-C09F-49C2-854D-48C382D2201C}</Project>
+      <Name>OPCUA.Client.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpcUaClient.Ipc.Client\OpcUaClient.Ipc.Client.csproj">
+      <Project>{CB5C00CF-62E9-4689-A5D3-2F03B065A5D1}</Project>
+      <Name>OpcUaClient.Ipc.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpcUaClient.Ipc.Contracts\OpcUaClient.Ipc.Contracts.csproj">
+      <Project>{A63F2AEB-54EC-40FA-9DCA-C49F0AC52605}</Project>
+      <Name>OpcUaClient.Ipc.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewMain\DialogControl\DialogControl.csproj">
+      <Project>{EBA72834-6DBB-416C-8A89-76597EFC0DD2}</Project>
+      <Name>DialogControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewMain\GraphicModule\GraphicModule.csproj">
+      <Name>GraphicModule</Name>
+      <Project>{03415E5F-99CA-4F21-B732-80372B2AA265}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <Reference Include="zxing, Version=0.16.11.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\ZXing.Net.0.16.11\lib\net48\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.11.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\ZXing.Net.0.16.11\lib\net48\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Barcode\BarcodeConfig.cs" />
+    <Compile Include="Barcode\BarcodeDecoder.cs" />
+    <Compile Include="Barcode\BarcodeGenerator.cs" />
+    <Compile Include="Barcode\BarcodeManager.cs" />
+    <Compile Include="Barcode\BarcodeTypes.cs" />
+    <Compile Include="Barcode\BarcodeValidator.cs" />
+    <Compile Include="Barcode\FormBarcodeConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Barcode\KeyboardWedgeScanner.cs" />
+    <Compile Include="Barcode\QRDataParser.cs" />
+    <Compile Include="Barcode\ScanEventLogger.cs" />
+    <Compile Include="Barcode\ScannerManager.cs" />
+    <Compile Include="Barcode\SerialPortScanner.cs" />
+    <Compile Include="DataSave\DatabaseHealthMonitor.cs" />
+    <Compile Include="DataSave\TrendBackupManager.cs" />
+    <Compile Include="DataSave\TrendInitializer.cs" />
+    <Compile Include="DataSave\TrendSaveManager.cs" />
+    <Content Include="FT-LocalMain.ico" />
+    <Content Include="KOBAS-AI.ico" />
+    <Content Include="MBSSCADA.ico" />
+    <Content Include="OemOpenScadaLocalMain.ico" />
+    <Content Include="SAMS.ico" />
+    <None Include="autobase.snk" />
+    <None Include="packages.config" />
+    <None Include="Service References\ServiceReferenceKeyLock\WebServiceKeyLock.disco" />
+    <None Include="Service References\ServiceReferenceKeyLock\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReferenceKeyLock\configuration.svcinfo" />
+    <None Include="Service References\ServiceReferenceKeyLock\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="UYeG.ico" />
+    <Content Include="Z_IoT_Main.ico" />
+    <Content Include="감시프로그램3.ico" />
+    <Content Include="코젠_OEM.ico" />
+    <None Include="App.config" />
+    <None Include="Service References\ServiceReferenceKeyLock\WebServiceKeyLock.wsdl" />
+    <Compile Include="Alarm\AlarmConfirm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alarm\AlarmDisplay.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alarm\AlarmMail.cs" />
+    <Compile Include="Alarm\AlarmProcessor.cs" />
+    <Compile Include="Alarm\AlarmSound.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alarm\AlarmToDigitalOut.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Alarm\FormPopupAlarmConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckEngineAutoDeleteDayLimit.cs" />
+    <Compile Include="CheckEngineAutoDeleteThread.cs" />
+    <Compile Include="CheckEngineAutoDeleteUsedSize.cs" />
+    <Compile Include="CheckEngineTagChangeBySharedMemory.cs" />
+    <Compile Include="demandnew\Actuation\IActuator.cs" />
+    <Compile Include="demandnew\Actuation\TagActuator.cs" />
+    <Compile Include="demandnew\Calculator\DemandWindow.cs" />
+    <Compile Include="demandnew\Config\DemandNewConfigValidator.cs" />
+    <Compile Include="demandnew\Engine\CheckEngineDemandNew.cs" />
+    <Compile Include="demandnew\Engine\DemandNewEngine.cs" />
+    <Compile Include="demandnew\Engine\DemandNewEngineManager.cs" />
+    <Compile Include="demandnew\Forecast\DemandForecaster.cs" />
+    <Compile Include="demandnew\Form\FormDemandNewSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="demandnew\Form\FormDemandNewSettings.Designer.cs">
+      <DependentUpon>FormDemandNewSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="demandnew\Form\FormEditLoadModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="demandnew\Form\FormEditLoadModel.Designer.cs">
+      <DependentUpon>FormEditLoadModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="demandnew\Historian\DemandBackupManager.cs" />
+    <Compile Include="demandnew\Historian\DemandCsvExporter.cs" />
+    <Compile Include="demandnew\Historian\DemandHistorian.cs" />
+    <Compile Include="demandnew\Metering\IMeasurementSource.cs" />
+    <Compile Include="demandnew\Metering\MeasurementNormalizer.cs" />
+    <Compile Include="demandnew\Metering\TagMeasurementSource.cs" />
+    <Compile Include="demandnew\Policy\IPolicyEngine.cs" />
+    <Compile Include="demandnew\Policy\LoadGroupManager.cs" />
+    <Compile Include="demandnew\Policy\PolicyEngine.cs" />
+    <Compile Include="demandnew\Target\ContractTargetProvider.cs" />
+    <Compile Include="demandnew\Target\ITargetProvider.cs" />
+    <Compile Include="FontsAndColors\ClassFontsAndColors.cs" />
+    <Compile Include="DataGateServer\FormDataGateServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataGateServer\FormDataGateServer.Designer.cs">
+      <DependentUpon>FormDataGateServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGateServer\IServiceDataGateServer.cs" />
+    <Compile Include="DataGateServer\LocalServiceMain.cs" />
+    <Compile Include="DataGateServer\ServiceDataGateServer.cs" />
+    <Compile Include="FontsAndColors\UserControlFontsAndColors.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FontsAndColors\UserControlFontsAndColors.Designer.cs">
+      <DependentUpon>UserControlFontsAndColors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAbout_ZloT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAbout_ZloT.Designer.cs">
+      <DependentUpon>FormAbout_ZloT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopupLogouted.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPopupLogouted.Designer.cs">
+      <DependentUpon>FormPopupLogouted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSystemInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSystemInformation.Designer.cs">
+      <DependentUpon>FormSystemInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FutureSharedTagMMF.cs" />
+    <Compile Include="KeyLockInfo\FormInputOemSerialNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyLockInfo\FormInputOemSerialNumber.Designer.cs">
+      <DependentUpon>FormInputOemSerialNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MilliData\CheckEngineMilliData_mdb.cs" />
+    <Compile Include="OPCUA\FormAutoSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OPCUA\FormAutoSetup.Designer.cs">
+      <DependentUpon>FormAutoSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OPCUA\FormCertificateSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OPCUA\FormCertificateSettings.Designer.cs">
+      <DependentUpon>FormCertificateSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OPCUA\FormCreateCert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OPCUA\FormCreateCert.Designer.cs">
+      <DependentUpon>FormCreateCert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OPCUA\FormOpcUaServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OPCUA\FormOpcUaServer.Designer.cs">
+      <DependentUpon>FormOpcUaServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OPCUA\FormOpcUaUserEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OPCUA\FormOpcUaUserEdit.Designer.cs">
+      <DependentUpon>FormOpcUaUserEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OPCUA\FormOpcUaUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OPCUA\FormOpcUaUsers.Designer.cs">
+      <DependentUpon>FormOpcUaUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OPCUA\FormSelectCertificate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OPCUA\FormSelectCertificate.Designer.cs">
+      <DependentUpon>FormSelectCertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OPCUA\MyNodeManager.cs" />
+    <Compile Include="OPCUA\OpcDaRegistryBrowseProvider.cs" />
+    <Compile Include="OPCUA\OpcTool.cs" />
+    <Compile Include="OPCUA\OpcUaCertificateService.cs" />
+    <Compile Include="OPCUA\OpcUaClientCache.cs" />
+    <Compile Include="OPCUA\OpcUaIpcBrowseProvider.cs" />
+    <Compile Include="OPCUA\OpcUaIpcManager.cs" />
+    <Compile Include="OPCUA\OpcUaServerConfig.cs" />
+    <Compile Include="OPCUA\OpcUaServerFileLogger.cs" />
+    <Compile Include="OPCUA\OpcUaServerLogBridge.cs" />
+    <Compile Include="OPCUA\OPCUAServerMain.cs" />
+    <Compile Include="OPCUA\OpcUaTagCache.cs" />
+    <Compile Include="OPCUA\OpcUaUserRecord.cs" />
+    <Compile Include="OPCUA\OPCUA_Certificate_Member.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PythonAi\CheckEnginePythonAi.cs" />
+    <Compile Include="PythonAi\FormPythonAiDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PythonAi\FormPythonAiDashboard.Designer.cs">
+      <DependentUpon>FormPythonAiDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PythonAi\ChildProcessJob.cs" />
+    <Compile Include="PythonAi\IPythonManager.cs" />
+    <Compile Include="PythonAi\PythonAiConfig.cs" />
+    <Compile Include="PythonAi\PythonAiHealthMonitor.cs" />
+    <Compile Include="PythonAi\PythonAiLogBridge.cs" />
+    <Compile Include="PythonAi\PythonAiManager.cs" />
+    <Compile Include="PythonAi\PythonAiMessage.cs" />
+    <Compile Include="PythonAi\PythonAiRequestManager.cs" />
+    <Compile Include="PythonAi\PythonAiScriptBridge.cs" />
+    <Compile Include="PythonAi\PythonAiSerializer.cs" />
+    <Compile Include="PythonAi\PythonAiTcpConnection.cs" />
+    <Compile Include="PythonAi\PythonCallOptions.cs" />
+    <Compile Include="RealTimeTest\CheckRealTimeTestData.cs" />
+    <Compile Include="RESTAPIMonitor\ClassClient.cs" />
+    <Compile Include="Script\CheckEngineAlwaysScript.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckEngineDayChanged.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckEngineHourChanged.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckEngineMinuteChanged.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckEngineNetworkToViewMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckEngineOnOffList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckEngineTagChange.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckEngineTagChangeThread.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckEngineTimeChange.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConfigRunMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="C_DdeTag32.cs" />
+    <Compile Include="C_DdeTag64.cs" />
+    <Compile Include="FormLocalMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLocalMain.Designer.cs">
+      <DependentUpon>FormLocalMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlcScan32.cs" />
+    <Compile Include="PlcScan64.cs" />
+    <Compile Include="C_DdeTag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="C_init.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="C_protect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Demand\CheckEngineDemandControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Demand\FormDemandControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormAlwaysScript.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormAlwaysScriptDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigAutoPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigAutoPrintAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigEtc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigFlowView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigSharedDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyLockInfo\FormInformationKeyLock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyLockInfo\FormInformationSoftLock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FutureSharedTagRegistry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinePrinter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mail\C_mail.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mail\FormReadMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mail\FormReadMailDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mail\FormSendMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MilliData\CheckEngineMilliData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MilliData\FormMilliData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MilliData\FormSelectMilliData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MilliData\FormSelectMilliDataOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opc.Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcScan.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcScanEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="SCAN_WRITE_EXCHANGE_ITEM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Schedule\CheckEngineSchedule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormScheduleChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormScheduleDay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\FormScheduleToday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Schedule\Schedule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Recipe\RecipeData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Recipe\RecipeManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Recipe\BatchStateMachine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Recipe\CheckEngineRecipe.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Recipe\FormRecipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recipe\FormRecipeImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recipe\PresetManager.cs" />
+    <Compile Include="Recipe\PresetScriptBridge.cs" />
+    <Compile Include="Script\TagEventScript.cs" />
+    <Compile Include="SendEventToChild.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service References\ServiceReferenceKeyLock\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SharedDatabase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SharedLocalMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmLog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SystemInfo\FormModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemInfo\FormModify.Designer.cs">
+      <DependentUpon>FormModify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemInfo\FormSystemInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemInfo\FormSystemInformation.Designer.cs">
+      <DependentUpon>FormSystemInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemInfo\SystemInfoGate.cs" />
+    <Compile Include="SystemInfo\SystemInfoStatus.cs" />
+    <Compile Include="SystemValue.cs" />
+    <Compile Include="TagStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Alarm\FormPopupAlarmConfirmation.ja.resx">
+      <DependentUpon>FormPopupAlarmConfirmation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alarm\FormPopupAlarmConfirmation.ko.resx">
+      <DependentUpon>FormPopupAlarmConfirmation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alarm\FormPopupAlarmConfirmation.resx">
+      <DependentUpon>FormPopupAlarmConfirmation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alarm\FormPopupAlarmConfirmation.zh-CHS.resx">
+      <DependentUpon>FormPopupAlarmConfirmation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Barcode\FormBarcodeConfig.resx">
+      <DependentUpon>FormBarcodeConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataGateServer\FormDataGateServer.resx">
+      <DependentUpon>FormDataGateServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demand\FormDemandControl.ja.resx">
+      <DependentUpon>FormDemandControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demand\FormDemandControl.ko.resx">
+      <DependentUpon>FormDemandControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demand\FormDemandControl.resx">
+      <DependentUpon>FormDemandControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demand\FormDemandControl.vi.resx">
+      <DependentUpon>FormDemandControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demand\FormDemandControl.zh-CHS.resx">
+      <DependentUpon>FormDemandControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FontsAndColors\UserControlFontsAndColors.ko.resx">
+      <DependentUpon>UserControlFontsAndColors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FontsAndColors\UserControlFontsAndColors.resx">
+      <DependentUpon>UserControlFontsAndColors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAbout_ZloT.resx">
+      <DependentUpon>FormAbout_ZloT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAlarm.vi.resx">
+      <DependentUpon>FormConfigAlarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAutoPrint.vi.resx">
+      <DependentUpon>FormConfigAutoPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAutoPrintAdd.vi.resx">
+      <DependentUpon>FormConfigAutoPrintAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigData.vi.resx">
+      <DependentUpon>FormConfigData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.bho-Deva.resx">
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.vi.resx">
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigExcel.vi.resx">
+      <DependentUpon>FormConfigExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigFlowView.vi.resx">
+      <DependentUpon>FormConfigFlowView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLocalMain.ru.resx">
+      <DependentUpon>FormLocalMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLocalMain.vi.resx">
+      <DependentUpon>FormLocalMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopupLogouted.resx">
+      <DependentUpon>FormPopupLogouted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSystemInformation.ko.resx">
+      <DependentUpon>FormSystemInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSystemInformation.resx">
+      <DependentUpon>FormSystemInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyLockInfo\FormInputOemSerialNumber.ko.resx">
+      <DependentUpon>FormInputOemSerialNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyLockInfo\FormInputOemSerialNumber.resx">
+      <DependentUpon>FormInputOemSerialNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormReadMail.vi.resx">
+      <DependentUpon>FormReadMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormReadMailDetail.vi.resx">
+      <DependentUpon>FormReadMailDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormSendMail.vi.resx">
+      <DependentUpon>FormSendMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormMilliData.vi.resx">
+      <DependentUpon>FormMilliData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormSelectMilliData.vi.resx">
+      <DependentUpon>FormSelectMilliData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormSelectMilliDataOption.vi.resx">
+      <DependentUpon>FormSelectMilliDataOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OPCUA\FormAutoSetup.resx">
+      <DependentUpon>FormAutoSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OPCUA\FormCertificateSettings.resx">
+      <DependentUpon>FormCertificateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OPCUA\FormCreateCert.resx">
+      <DependentUpon>FormCreateCert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OPCUA\FormOpcUaServer.resx">
+      <DependentUpon>FormOpcUaServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PythonAi\FormPythonAiDashboard.resx">
+      <DependentUpon>FormPythonAiDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recipe\FormRecipe.resx">
+      <DependentUpon>FormRecipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormSchedule.vi.resx">
+      <DependentUpon>FormSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleChild.vi.resx">
+      <DependentUpon>FormScheduleChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleDay.vi.resx">
+      <DependentUpon>FormScheduleDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleToday.vi.resx">
+      <DependentUpon>FormScheduleToday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormAlwaysScript.ja.resx">
+      <DependentUpon>FormAlwaysScript.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormAlwaysScript.ko.resx">
+      <DependentUpon>FormAlwaysScript.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormAlwaysScript.resx">
+      <DependentUpon>FormAlwaysScript.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormAlwaysScript.vi.resx">
+      <DependentUpon>FormAlwaysScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormAlwaysScript.zh-CHS.resx">
+      <DependentUpon>FormAlwaysScript.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormAlwaysScriptDetail.ja.resx">
+      <DependentUpon>FormAlwaysScriptDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormAlwaysScriptDetail.ko.resx">
+      <DependentUpon>FormAlwaysScriptDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormAlwaysScriptDetail.resx">
+      <DependentUpon>FormAlwaysScriptDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormAlwaysScriptDetail.zh-CHS.resx">
+      <DependentUpon>FormAlwaysScriptDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAlarm.ja.resx">
+      <DependentUpon>FormConfigAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAlarm.ko.resx">
+      <DependentUpon>FormConfigAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAlarm.resx">
+      <DependentUpon>FormConfigAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAlarm.zh-CHS.resx">
+      <DependentUpon>FormConfigAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAutoPrint.ja.resx">
+      <DependentUpon>FormConfigAutoPrint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAutoPrint.ko.resx">
+      <DependentUpon>FormConfigAutoPrint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAutoPrint.resx">
+      <DependentUpon>FormConfigAutoPrint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAutoPrint.zh-CHS.resx">
+      <DependentUpon>FormConfigAutoPrint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAutoPrintAdd.ja.resx">
+      <DependentUpon>FormConfigAutoPrintAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAutoPrintAdd.ko.resx">
+      <DependentUpon>FormConfigAutoPrintAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAutoPrintAdd.resx">
+      <DependentUpon>FormConfigAutoPrintAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAutoPrintAdd.zh-CHS.resx">
+      <DependentUpon>FormConfigAutoPrintAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigData.ja.resx">
+      <DependentUpon>FormConfigData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigData.ko.resx">
+      <DependentUpon>FormConfigData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigData.resx">
+      <DependentUpon>FormConfigData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigData.zh-CHS.resx">
+      <DependentUpon>FormConfigData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.ja.resx">
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.ko.resx">
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.resx">
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.zh-CHS.resx">
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigExcel.ja.resx">
+      <DependentUpon>FormConfigExcel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigExcel.ko.resx">
+      <DependentUpon>FormConfigExcel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigExcel.resx">
+      <DependentUpon>FormConfigExcel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigExcel.zh-CHS.resx">
+      <DependentUpon>FormConfigExcel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigFlowView.ja.resx">
+      <DependentUpon>FormConfigFlowView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigFlowView.ko.resx">
+      <DependentUpon>FormConfigFlowView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigFlowView.resx">
+      <DependentUpon>FormConfigFlowView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigFlowView.zh-CHS.resx">
+      <DependentUpon>FormConfigFlowView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSharedDatabase.ja.resx">
+      <DependentUpon>FormConfigSharedDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSharedDatabase.ko.resx">
+      <DependentUpon>FormConfigSharedDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSharedDatabase.resx">
+      <DependentUpon>FormConfigSharedDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSharedDatabase.zh-CHS.resx">
+      <DependentUpon>FormConfigSharedDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyLockInfo\FormInformationKeyLock.ja.resx">
+      <DependentUpon>FormInformationKeyLock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyLockInfo\FormInformationKeyLock.ko.resx">
+      <DependentUpon>FormInformationKeyLock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyLockInfo\FormInformationKeyLock.resx">
+      <DependentUpon>FormInformationKeyLock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyLockInfo\FormInformationKeyLock.zh-CHS.resx">
+      <DependentUpon>FormInformationKeyLock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyLockInfo\FormInformationSoftLock.ko.resx">
+      <DependentUpon>FormInformationSoftLock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyLockInfo\FormInformationSoftLock.resx">
+      <DependentUpon>FormInformationSoftLock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLocalMain.ja.resx">
+      <DependentUpon>FormLocalMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLocalMain.ko.resx">
+      <DependentUpon>FormLocalMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLocalMain.resx">
+      <DependentUpon>FormLocalMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLocalMain.zh-CHS.resx">
+      <DependentUpon>FormLocalMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormReadMail.ja.resx">
+      <DependentUpon>FormReadMail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormReadMail.ko.resx">
+      <DependentUpon>FormReadMail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormReadMail.resx">
+      <DependentUpon>FormReadMail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormReadMail.zh-CHS.resx">
+      <DependentUpon>FormReadMail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormReadMailDetail.ja.resx">
+      <DependentUpon>FormReadMailDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormReadMailDetail.ko.resx">
+      <DependentUpon>FormReadMailDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormReadMailDetail.resx">
+      <DependentUpon>FormReadMailDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormReadMailDetail.zh-CHS.resx">
+      <DependentUpon>FormReadMailDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormSendMail.ja.resx">
+      <DependentUpon>FormSendMail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormSendMail.ko.resx">
+      <DependentUpon>FormSendMail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormSendMail.resx">
+      <DependentUpon>FormSendMail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mail\FormSendMail.zh-CHS.resx">
+      <DependentUpon>FormSendMail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormMilliData.ja.resx">
+      <DependentUpon>FormMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormMilliData.ko.resx">
+      <DependentUpon>FormMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormMilliData.resx">
+      <DependentUpon>FormMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormMilliData.zh-CHS.resx">
+      <DependentUpon>FormMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormSelectMilliData.ja.resx">
+      <DependentUpon>FormSelectMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormSelectMilliData.ko.resx">
+      <DependentUpon>FormSelectMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormSelectMilliData.resx">
+      <DependentUpon>FormSelectMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormSelectMilliData.zh-CHS.resx">
+      <DependentUpon>FormSelectMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormSelectMilliDataOption.ja.resx">
+      <DependentUpon>FormSelectMilliDataOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormSelectMilliDataOption.ko.resx">
+      <DependentUpon>FormSelectMilliDataOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormSelectMilliDataOption.resx">
+      <DependentUpon>FormSelectMilliDataOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliData\FormSelectMilliDataOption.zh-CHS.resx">
+      <DependentUpon>FormSelectMilliDataOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormSchedule.ja.resx">
+      <DependentUpon>FormSchedule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormSchedule.ko.resx">
+      <DependentUpon>FormSchedule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormSchedule.resx">
+      <DependentUpon>FormSchedule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormSchedule.zh-CHS.resx">
+      <DependentUpon>FormSchedule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleChild.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormScheduleChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleChild.resx">
+      <DependentUpon>FormScheduleChild.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleDay.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormScheduleDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleDay.resx">
+      <DependentUpon>FormScheduleDay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleToday.ja.resx">
+      <DependentUpon>FormScheduleToday.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleToday.ko.resx">
+      <DependentUpon>FormScheduleToday.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleToday.resx">
+      <DependentUpon>FormScheduleToday.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schedule\FormScheduleToday.zh-CHS.resx">
+      <DependentUpon>FormScheduleToday.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemInfo\FormModify.ko.resx">
+      <DependentUpon>FormModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemInfo\FormModify.resx">
+      <DependentUpon>FormModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemInfo\FormSystemInformation.ko.resx">
+      <DependentUpon>FormSystemInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemInfo\FormSystemInformation.resx">
+      <DependentUpon>FormSystemInformation.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReferenceKeyLock\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="demandnew\Chart\" />
+    <Folder Include="demandnew\Snapshot\" />
+    <Folder Include="Resources\" />
+    <Folder Include="WebTools\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
+  </Target>
+</Project>

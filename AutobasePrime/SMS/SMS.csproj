@@ -1,0 +1,597 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '로컬 전체 컴파일|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\EXE\Autobase48\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C4F61D00-4596-452E-A833-D7BD4D776E45}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>SMS5.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>SMS</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SMS</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <WebReference_EnableProperties>true</WebReference_EnableProperties>
+    <WebReference_EnableSQLTypes>false</WebReference_EnableSQLTypes>
+    <WebReference_EnableLegacyEventingModel>true</WebReference_EnableLegacyEventingModel>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\exe\Autobase48\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '로컬 전체 컴파일|AnyCPU' ">
+    <OutputPath>..\..\..\exe\Autobase48\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\exe\Autobase48\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Name>System.EnterpriseServices</Name>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\NetTools\NetTools.csproj">
+      <Name>NetTools</Name>
+      <Project>{D49B5268-4C34-44C6-B688-80653EE9A189}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\AutoLibLocal\AutoLibLocal.csproj">
+      <Name>AutoLibLocal</Name>
+      <Project>{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\AutoLib\AutoLib.csproj">
+      <Name>AutoLib</Name>
+      <Project>{DFE68F78-7DBA-45BC-AB91-FB685733205B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogCommon\DialogCommon.csproj">
+      <Name>DialogCommon</Name>
+      <Project>{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogSerialPort\DialogSerialPort.csproj">
+      <Name>DialogSerialPort</Name>
+      <Project>{15A17664-4480-41CD-A3E0-573DC13F9E47}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogTag\DialogTag.csproj">
+      <Name>DialogTag</Name>
+      <Project>{12D7893A-DA46-4CCD-B919-29CE90C5B9CB}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\HelpLib\HelpLib.csproj">
+      <Project>{79D61CF6-1621-4B91-8024-32B6CD87337C}</Project>
+      <Name>HelpLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Web References\biz.autobase.sms.www\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\biz.autobase.sms.www\ServiceSend2.disco" />
+    <None Include="Web References\biz.autobase.sms.www\ServiceSend2.wsdl" />
+    <Content Include="App.ico" />
+    <Content Include="icon1.ico" />
+    <Content Include="SMS5.ico" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Display\FormViewSiteStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsAboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsConfigAlarmPrioritySettingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsConfigEtcConfigDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsConfigTransferSystemDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsManualSendTestDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsSendListDisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsSendListDisplayMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsSendMessageFormatDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsSendMessageTestDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsShowMessageQueueDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsUserDisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsUserSettingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display\SmsUserSettingUserSelectDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SmsComm\SaveCommSendData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsComm\SendSMSData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsComm\SendSmsDataAirNcl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsComm\SendSmsDataWM215.cs" />
+    <Compile Include="SmsComm\SerialPortSetAndOpen.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsComm\SmsServerClientProc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsFunc\ConvertRawMessageToString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsFunc\SmsBasicConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsFunc\SmsConfigCe.cs" />
+    <Compile Include="SmsFunc\SmsFileDataLoadSave.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsFunc\WebServiceUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmsMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SmsUtil\NetworkTools.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web References\biz.autobase.sms.www\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+      <SubType>code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <EmbeddedResource Include="Display\FormViewSiteStatus.ja.resx">
+      <DependentUpon>FormViewSiteStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\FormViewSiteStatus.ko.resx">
+      <DependentUpon>FormViewSiteStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\FormViewSiteStatus.resx">
+      <DependentUpon>FormViewSiteStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\FormViewSiteStatus.zh-CHS.resx">
+      <DependentUpon>FormViewSiteStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsAboutDialog.ko.resx">
+      <DependentUpon>SmsAboutDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsAboutDialog.resx">
+      <DependentUpon>SmsAboutDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsAboutDialog.zh-CHS.resx">
+      <DependentUpon>SmsAboutDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigAlarmPrioritySettingDialog.ja.resx">
+      <DependentUpon>SmsConfigAlarmPrioritySettingDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigAlarmPrioritySettingDialog.ko.resx">
+      <DependentUpon>SmsConfigAlarmPrioritySettingDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigAlarmPrioritySettingDialog.resx">
+      <DependentUpon>SmsConfigAlarmPrioritySettingDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigAlarmPrioritySettingDialog.zh-CHS.resx">
+      <DependentUpon>SmsConfigAlarmPrioritySettingDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigEtcConfigDialog.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsConfigEtcConfigDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigEtcConfigDialog.ko.resx">
+      <DependentUpon>SmsConfigEtcConfigDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigEtcConfigDialog.resx">
+      <DependentUpon>SmsConfigEtcConfigDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigEtcConfigDialog.zh-CHS.resx">
+      <DependentUpon>SmsConfigEtcConfigDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigTransferSystemDialog.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsConfigTransferSystemDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigTransferSystemDialog.ko.resx">
+      <DependentUpon>SmsConfigTransferSystemDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigTransferSystemDialog.resx">
+      <DependentUpon>SmsConfigTransferSystemDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsConfigTransferSystemDialog.zh-CHS.resx">
+      <DependentUpon>SmsConfigTransferSystemDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsManualSendTestDialog.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsManualSendTestDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsManualSendTestDialog.ko.resx">
+      <DependentUpon>SmsManualSendTestDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsManualSendTestDialog.resx">
+      <DependentUpon>SmsManualSendTestDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsManualSendTestDialog.zh-CHS.resx">
+      <DependentUpon>SmsManualSendTestDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendListDisplayForm.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsSendListDisplayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendListDisplayForm.ko.resx">
+      <DependentUpon>SmsSendListDisplayForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendListDisplayForm.resx">
+      <DependentUpon>SmsSendListDisplayForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendListDisplayForm.zh-CHS.resx">
+      <DependentUpon>SmsSendListDisplayForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendListDisplayMainForm.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsSendListDisplayMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendListDisplayMainForm.ko.resx">
+      <DependentUpon>SmsSendListDisplayMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendListDisplayMainForm.resx">
+      <DependentUpon>SmsSendListDisplayMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendListDisplayMainForm.zh-CHS.resx">
+      <DependentUpon>SmsSendListDisplayMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendMessageFormatDialog.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsSendMessageFormatDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendMessageFormatDialog.ko.resx">
+      <DependentUpon>SmsSendMessageFormatDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendMessageFormatDialog.resx">
+      <DependentUpon>SmsSendMessageFormatDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendMessageFormatDialog.zh-CHS.resx">
+      <DependentUpon>SmsSendMessageFormatDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendMessageTestDialog.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsSendMessageTestDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendMessageTestDialog.ko.resx">
+      <DependentUpon>SmsSendMessageTestDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendMessageTestDialog.resx">
+      <DependentUpon>SmsSendMessageTestDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsSendMessageTestDialog.zh-CHS.resx">
+      <DependentUpon>SmsSendMessageTestDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsShowMessageQueueDialog.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsShowMessageQueueDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsShowMessageQueueDialog.ko.resx">
+      <DependentUpon>SmsShowMessageQueueDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsShowMessageQueueDialog.resx">
+      <DependentUpon>SmsShowMessageQueueDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsShowMessageQueueDialog.zh-CHS.resx">
+      <DependentUpon>SmsShowMessageQueueDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserDisplayForm.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsUserDisplayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserDisplayForm.ko.resx">
+      <DependentUpon>SmsUserDisplayForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserDisplayForm.resx">
+      <DependentUpon>SmsUserDisplayForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserDisplayForm.zh-CHS.resx">
+      <DependentUpon>SmsUserDisplayForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserSettingDialog.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsUserSettingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserSettingDialog.ko.resx">
+      <DependentUpon>SmsUserSettingDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserSettingDialog.resx">
+      <DependentUpon>SmsUserSettingDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserSettingDialog.zh-CHS.resx">
+      <DependentUpon>SmsUserSettingDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserSettingUserSelectDialog.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SmsUserSettingUserSelectDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserSettingUserSelectDialog.ko.resx">
+      <DependentUpon>SmsUserSettingUserSelectDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserSettingUserSelectDialog.resx">
+      <DependentUpon>SmsUserSettingUserSelectDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\SmsUserSettingUserSelectDialog.zh-CHS.resx">
+      <DependentUpon>SmsUserSettingUserSelectDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmsMainForm.ja.resx">
+      <DependentUpon>SmsMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmsMainForm.ko.resx">
+      <DependentUpon>SmsMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmsMainForm.resx">
+      <DependentUpon>SmsMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmsMainForm.zh-CHS.resx">
+      <DependentUpon>SmsMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <WebReferenceUrl Include="http://www.sms.autobase.biz/Protocol/ServiceSend2.asmx">
+      <RelPath>Web References\biz.autobase.sms.www\</RelPath>
+      <UrlBehavior>Static</UrlBehavior>
+    </WebReferenceUrl>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

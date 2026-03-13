@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="df5e0bb1-ba2b-430d-bbd6-f88f5ef59ccf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceDataTag.disco" MetadataType="Disco" ID="5f92c19b-5499-4f88-834f-e9a5588b1537" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc?disco" />
+    <MetadataFile FileName="ServiceDataTag.xsd" MetadataType="Schema" ID="6af53603-2c71-4c2a-9c15-3b52d4e1032c" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceDataTag1.xsd" MetadataType="Schema" ID="9b1e646a-9955-4784-8025-ece1e3493aa5" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceDataTag2.xsd" MetadataType="Schema" ID="ff777398-560b-424f-84d7-52156cacfd1e" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceDataTag3.xsd" MetadataType="Schema" ID="03fbaaf2-170d-48d5-86a7-e4a9aa81fadb" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc?xsd=xsd2" />
+    <MetadataFile FileName="WcfServiceDataTag.wsdl" MetadataType="Wsdl" ID="a9d8dd26-617a-4783-9c2f-e509a1466dea" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

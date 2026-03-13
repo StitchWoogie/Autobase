@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="PortalServerWeb.AutoWeb.Service.WebServiceDataTag2" CodeBehind="WebServiceDataTag2.svc.cs" %>

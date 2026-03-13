@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="24fc010e-dba4-434d-842a-d17c2e3499da" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://localhost:8732/AutoWeb/Service/ServiceDataGateServer.svc/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="f587a203-2047-41c8-a949-a655fb30b109" SourceId="1" SourceUrl="net.tcp://localhost:8732/AutoWeb/Service/ServiceDataGateServer.svc/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="320fa770-8eeb-4ec1-8f7e-ac58854ce70a" SourceId="1" SourceUrl="net.tcp://localhost:8732/AutoWeb/Service/ServiceDataGateServer.svc/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f48ea26d-a5f6-4671-807c-78f04c6b326d" SourceId="1" SourceUrl="net.tcp://localhost:8732/AutoWeb/Service/ServiceDataGateServer.svc/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="ba9180b0-c364-4380-97b5-4ce34abbd710" SourceId="1" SourceUrl="net.tcp://localhost:8732/AutoWeb/Service/ServiceDataGateServer.svc/mex" />
+    <MetadataFile FileName="PortalServerWeb.AutoWeb.Service.xsd" MetadataType="Schema" ID="23381a2e-9b25-40bb-a966-b92b1b7ba6f4" SourceId="1" SourceUrl="net.tcp://localhost:8732/AutoWeb/Service/ServiceDataGateServer.svc/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

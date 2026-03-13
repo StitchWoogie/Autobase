@@ -1,0 +1,56 @@
+EXPORTS 
+	ProtocolGetDriverTitle
+	ProtocolGetDriverVersionMajor
+	ProtocolGetDriverVersionMinor
+	ProtocolInit
+	ProtocolUnInit
+	ProtocolDrawMethodTitle
+	ProtocolDrawMethod
+	ProtocolRead
+	ProtocolWriteWord
+	ProtocolWriteBit
+	ProtocolGetErrMsg
+	ProtocolGetErrMsg2
+	ProtocolSetProcDisplaySendCode
+	ProtocolSetProcDisplayRecvCode
+	ProtocolSetProcDisplaySendCodeNextLine
+	ProtocolSetProcDisplayRecvCodeNextLine
+	ProtocolSetProcPlcDeviceReadContinue
+	ProtocolSetProcPlcDeviceWriteContinue
+	ProtocolSetProcPlcDeviceClear
+	ProtocolSetProcPlcDeviceEnable
+	ProtocolSetProcPlcDeviceSetCommState
+	ProtocolSetProcPlcDeviceSetCommBreak
+	ProtocolSetProcPlcDeviceClearCommBreak
+	ProtocolSetProcPlcDeviceGetInfo
+	ProtocolSetProcPlcDeviceSetInfo
+	ProtocolSetProcPokeWORD
+	ProtocolSetProcPokeDWORD
+	ProtocolSetProcPokeFLOAT
+	ProtocolSetProcPokeSTRING
+	ProtocolSetProcAddWaitWriteDigitalOut
+	ProtocolSetProcAddWaitWriteAnalogOut
+	ProtocolSetProcMessageDisplay
+	ProtocolSetProcCodeStartEnd
+	ProtocolSetProcCodeMode
+	ProtocolCheckStruct
+	ProtocolConfigOption
+	ProtocolConfigOption_8_2
+	ProtocolSetProcPokeValuePortWORD
+	ProtocolSetProcPokeValuePortDWORD
+	ProtocolSetProcPokeValuePortFLOAT
+	ProtocolSetProcPokeValuePortSTRING
+	ProtocolSetProcPokeValuePortDOUBLE
+	ProtocolSetProcPokeValuePortINT64
+	ProtocolSetProcPeekValuePortWORD
+	ProtocolSetProcPeekValuePortDWORD
+	ProtocolSetProcPeekValuePortFLOAT
+	ProtocolSetProcPeekValuePortSTRING
+	ProtocolSetProcPeekValuePortDOUBLE
+	ProtocolSetProcPeekValuePortINT64
+	ProtocolWriteBlock
+
+	
+
+
+

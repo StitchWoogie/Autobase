@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="label3.Text" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 23</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>刷新周期</value>
+  </data>
+  <data name="checkBoxAutoOpenStartPage.Text" xml:space="preserve">
+    <value>运行时自动打开</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Web设置</value>
+  </data>
+  <data name="buttonTagRightOff.Text" xml:space="preserve">
+    <value>权限 -</value>
+  </data>
+  <data name="buttonTagRightOn.Text" xml:space="preserve">
+    <value>权限 +</value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>标记</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>标记描述</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>权限</value>
+  </data>
+  <data name="imageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADo
+        EAAAAk1TRnQBSQFMAgEBDAEAAQ4BAAEEAQABIAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        AwABgAMAAUADAAEBAQABCAYAASAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
+        AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
+        AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
+        AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
+        AZkCAAFmAcwCAAFmAf8CAAGZAwABmQEzAgABmQFmAgACmQIAAZkBzAIAAZkB/wIAAcwDAAHMATMCAAHM
+        AWYCAAHMAZkCAALMAgABzAH/AgAB/wFmAgAB/wGZAgAB/wHMAQABMwH/AgAB/wEAATMBAAEzAQABZgEA
+        ATMBAAGZAQABMwEAAcwBAAEzAQAB/wEAAf8BMwIAAzMBAAIzAWYBAAIzAZkBAAIzAcwBAAIzAf8BAAEz
+        AWYCAAEzAWYBMwEAATMCZgEAATMBZgGZAQABMwFmAcwBAAEzAWYB/wEAATMBmQIAATMBmQEzAQABMwGZ
+        AWYBAAEzApkBAAEzAZkBzAEAATMBmQH/AQABMwHMAgABMwHMATMBAAEzAcwBZgEAATMBzAGZAQABMwLM
+        AQABMwHMAf8BAAEzAf8BMwEAATMB/wFmAQABMwH/AZkBAAEzAf8BzAEAATMC/wEAAWYDAAFmAQABMwEA
+        AWYBAAFmAQABZgEAAZkBAAFmAQABzAEAAWYBAAH/AQABZgEzAgABZgIzAQABZgEzAWYBAAFmATMBmQEA
+        AWYBMwHMAQABZgEzAf8BAAJmAgACZgEzAQADZgEAAmYBmQEAAmYBzAEAAWYBmQIAAWYBmQEzAQABZgGZ
+        AWYBAAFmApkBAAFmAZkBzAEAAWYBmQH/AQABZgHMAgABZgHMATMBAAFmAcwBmQEAAWYCzAEAAWYBzAH/
+        AQABZgH/AgABZgH/ATMBAAFmAf8BmQEAAWYB/wHMAQABzAEAAf8BAAH/AQABzAEAApkCAAGZATMBmQEA
+        AZkBAAGZAQABmQEAAcwBAAGZAwABmQIzAQABmQEAAWYBAAGZATMBzAEAAZkBAAH/AQABmQFmAgABmQFm
+        ATMBAAGZATMBZgEAAZkBZgGZAQABmQFmAcwBAAGZATMB/wEAApkBMwEAApkBZgEAA5kBAAKZAcwBAAKZ
+        Af8BAAGZAcwCAAGZAcwBMwEAAWYBzAFmAQABmQHMAZkBAAGZAswBAAGZAcwB/wEAAZkB/wIAAZkB/wEz
+        AQABmQHMAWYBAAGZAf8BmQEAAZkB/wHMAQABmQL/AQABzAMAAZkBAAEzAQABzAEAAWYBAAHMAQABmQEA
+        AcwBAAHMAQABmQEzAgABzAIzAQABzAEzAWYBAAHMATMBmQEAAcwBMwHMAQABzAEzAf8BAAHMAWYCAAHM
+        AWYBMwEAAZkCZgEAAcwBZgGZAQABzAFmAcwBAAGZAWYB/wEAAcwBmQIAAcwBmQEzAQABzAGZAWYBAAHM
+        ApkBAAHMAZkBzAEAAcwBmQH/AQACzAIAAswBMwEAAswBZgEAAswBmQEAA8wBAALMAf8BAAHMAf8CAAHM
+        Af8BMwEAAZkB/wFmAQABzAH/AZkBAAHMAf8BzAEAAcwC/wEAAcwBAAEzAQAB/wEAAWYBAAH/AQABmQEA
+        AcwBMwIAAf8CMwEAAf8BMwFmAQAB/wEzAZkBAAH/ATMBzAEAAf8BMwH/AQAB/wFmAgAB/wFmATMBAAHM
+        AmYBAAH/AWYBmQEAAf8BZgHMAQABzAFmAf8BAAH/AZkCAAH/AZkBMwEAAf8BmQFmAQAB/wKZAQAB/wGZ
+        AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
+        AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
+        AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
+        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD//8A/wD/AP8A/wD/AP8A
+        /wCKAB77AgAe+wIAHvsCAB77AgAe+wIAA/sB+QHsGfsCAB77AgAD+wH5AewZ+wIACvsGAAb7BAAE+wIA
+        A/sB+QHsBfsGAAb7BAAE+wIAC/sFAAX7AgAH+wIAA/sB+QHsBvsFAAX7AgAH+wIACvsCAAP7AgAE+wIA
+        AvsCAAP7AgAD+wL5AewE+wIAA/sCAAT7AgAC+wIAA/sCAAr7AgAD+wIABPsCAAf7AgAD+wL5AewE+wIA
+        A/sCAAT7AgAH+wIACvsCAAT7AgAC+wIABPsCAAL7AgAC+wH5AewB+QHsBPsCAAT7AgAC+wIABPsCAAL7
+        AgAK+wIAA/sCAAT7AgAH+wIAAvsB+QHsAfkB7AT7AgAD+wIABPsCAAf7AgAK+wIABPsCAAL7AgAE+wIA
+        AvsCAAL7AfkB7AL5AewD+wIABPsCAAL7AgAE+wIAAvsCAA/7AgAE+wIAB/sCAAL7AfkB7AL5AewI+wIA
+        BPsCAAf7AgAK+wIABPsCAAL7AgAE+wIAAvsCAAL5AewB+wH/AfkB7AP7AgAE+wIAAvsCAAT7AgAC+wIA
+        DfsDAAX7AgAH+wIAAvkB7AH7Af8B+QHsBvsDAAX7AgAH+wIACvsCAAT7AgAC+wIABPsCAAL7AgAB+wH5
+        AewB+wH/AvkB7AL7AgAE+wIAAvsCAAT7AgAC+wIAC/sDAAf7AgAH+wIAAfsB+QHsAfsB/wL5AewD+wMA
+        B/sCAAf7AgAK+wIABPsCAAL7AgAE+wIAAvsCAAX7Af8B+QHsAvsCAAT7AgAC+wIABPsCAAL7AgAK+wIA
+        CfsCAAf7AgAF+wH/AfkB7AL7AgAJ+wIAB/sCAAr7AgAE+wIAAvsCAAT7AgAC+wIABfsB/wL5AewB+wIA
+        BPsCAAL7AgAE+wIAAvsCAAr7AgAD+wIABPsCAAf7AgAF+wH/AvkB7AH7AgAD+wIABPsCAAf7AgAK+wIA
+        A/sCAAT7AgAC+wIAA/sCAAb7Af8B+QHsAfsCAAP7AgAE+wIAAvsCAAP7AgAK+wIAA/sCAAT7AgAH+wIA
+        BvsB/wH5AewB+wIAA/sCAAT7AgAH+wIACvsGAAb7BAAE+wIABvsB/wL5AewGAAb7BAAE+wIAC/sFAAL7
+        CAAE+wIABvsB/wL5AewB+wUAAvsIAAT7AgAe+wIAB/sB/wL5FPsCAB77AgAH+wH/AvkU+wIAHvsCAB77
+        AgAe+wIAHvv/AAMAHvsCAB77AgAe+wIAHvsCAB77AgAD+wH5AewZ+wIAHvsCAAP7AfkB7Bn7AgAJ+wIA
+        BPsCAAP7BAAG+wIAA/sB+QHsBPsCAAT7AgAD+wQABvsCAAr7BgAE+wIACPsCAAP7AfkB7AX7BgAE+wIA
+        CPsCAAn7AgAE+wIAAvsCAAL7AgAF+wIAA/sC+QHsA/sCAAT7AgAC+wIAAvsCAAX7AgAK+wIAA/sCAAP7
+        AgAI+wIAA/sC+QHsBPsCAAP7AgAD+wIACPsCAAr7BgAC+wIABPsCAAT7AgAC+wH5AewB+QHsBPsGAAL7
+        AgAE+wIABPsCAAr7AgAE+wIAAvsCAAj7AgAC+wH5AewB+QHsBPsCAAT7AgAC+wIACPsCAAr7AgAC+wIA
+        AvsCAAT7AgAE+wIAAvsB+QHsAvkB7AP7AgAC+wIAAvsCAAT7AgAE+wIACvsCAAT7AgAC+wIACPsCAAL7
+        AfkB7AL5AewD+wIABPsCAAL7AgAI+wIACvsCAAL7AgAC+wIABPsCAAT7AgAC+QHsAfsB/wH5AewD+wIA
+        AvsCAAL7AgAE+wIABPsCAAr7AgAE+wIAAvsCAAj7AgAC+QHsAfsB/wH5AewD+wIABPsCAAL7AgAI+wIA
+        C/sBAAL7AQAD+wIABPsCAAT7AgAB+wH5AewB+wH/AvkB7AP7AQAC+wEAA/sCAAT7AgAE+wIACvsCAAT7
+        AgAC+wIACPsCAAH7AfkB7AH7Af8C+QHsAvsCAAT7AgAC+wIACPsCAAv7BAAD+wIABPsCAAT7AgAF+wH/
+        AfkB7AP7BAAD+wIABPsCAAT7AgAK+wIABPsCAAL7AgAI+wIABfsB/wH5AewC+wIABPsCAAL7AgAI+wIA
+        C/sEAAP7AgAE+wIABPsCAAX7Af8C+QHsAvsEAAP7AgAE+wIABPsCAAr7AgAE+wIAAvsCAAj7AgAF+wH/
+        AvkB7AH7AgAE+wIAAvsCAAj7AgAM+wIABfsCAAL7AgAF+wIABvsB/wH5AewD+wIABfsCAAL7AgAF+wIA
+        CvsCAAP7AgAD+wIACPsCAAb7Af8B+QHsAfsCAAP7AgAD+wIACPsCAAz7AgAG+wQABvsCAAb7Af8C+QHs
+        AvsCAAb7BAAG+wIACvsGAAT7AgAI+wIABvsB/wL5AewGAAT7AgAI+wIAHvsCAAf7Af8C+RT7AgAe+wIA
+        B/sB/wL5FPsCAB77AgAe+wIAHvsCAB77/wADAB77AgAe+wIAHvsCAB77AgAe+wIAA/sB+QHsGfsCAB77
+        AgAD+wH5AewZ+wIAD/sCAA37AgAD+wH5AewK+wIADfsCAAn7AgAE+wIAAfsCAAr7AgAD+wH5AewE+wIA
+        BPsCAAH7AgAK+wIAD/sCAA37AgAD+wL5AewJ+wIADfsCAAn7AgAE+wIAAfsCAAr7AgAD+wL5AewD+wIA
+        BPsCAAH7AgAK+wIAHvsCAAL7AfkB7AH5AewY+wIACvsGAAL7AgAK+wIAAvsB+QHsAfkB7AT7BgAC+wIA
+        CvsCAA/7AgAN+wIAAvsB+QHsAvkB7Aj7AgAN+wIACvsCAAL7AgAC+wIACvsCAAL7AfkB7AL5AewD+wIA
+        AvsCAAL7AgAK+wIAD/sCAA37AgAC+QHsAfsB/wH5AewI+wIADfsCAAr7AgAC+wIAAvsCAAr7AgAC+QHs
+        AfsB/wH5AewD+wIAAvsCAAL7AgAK+wIAEPsCAAz7AgAB+wH5AewB+wH/AvkB7Aj7AgAM+wIAC/sBAAL7
+        AQAD+wIACvsCAAH7AfkB7AH7Af8C+QHsA/sBAAL7AQAD+wIACvsCABH7AgAL+wIABfsB/wH5AewJ+wIA
+        C/sCAAv7BAAD+wIACvsCAAX7Af8B+QHsA/sEAAP7AgAK+wIADfsCAAL7AgAL+wIABfsB/wL5AewE+wIA
+        AvsCAAv7AgAL+wQAA/sCAAr7AgAF+wH/AvkB7AL7BAAD+wIACvsCAA37AgAC+wIAC/sCAAb7Af8B+QHs
+        BPsCAAL7AgAL+wIADPsCAAT7AgAK+wIABvsB/wH5AewD+wIABPsCAAr7AgAO+wQADPsCAAb7Af8C+QHs
+        BPsEAAz7AgAM+wIABPsCAAr7AgAG+wH/AvkB7AL7AgAE+wIACvsCAB77AgAH+wH/AvkU+wIAHvsCAAf7
+        Af8C+RT7AgAe+wIAHvsCAB77AgAe+4EAAUIBTQE+BwABPgMAASgDAAGAAwABQAMAAQEBAAEBBgABBBYA
+        A///AP8A/wD/AAUACw==
+</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>标记权限</value>
+  </data>
+  <data name="checkBoxRightDeleteLogFile.Text" xml:space="preserve">
+    <value>删除日志文件</value>
+  </data>
+  <data name="checkBoxRightDeleteAlarmFile.Text" xml:space="preserve">
+    <value>删除警报文件</value>
+  </data>
+  <data name="checkBoxRightScript.Text" xml:space="preserve">
+    <value>脚本 活动/非活动</value>
+  </data>
+  <data name="checkBoxRightAlarmConfirm.Text" xml:space="preserve">
+    <value>检查警报事件</value>
+  </data>
+  <data name="checkBoxRightProgramEnd.Text" xml:space="preserve">
+    <value>退出程序</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>权限</value>
+  </data>
+  <data name="checkBoxRightHandInput.Text" xml:space="preserve">
+    <value>手动输入</value>
+  </data>
+  <data name="checkBoxRightPlcScanEdit.Text" xml:space="preserve">
+    <value>通讯设置</value>
+  </data>
+  <data name="checkBoxRightConfigData.Text" xml:space="preserve">
+    <value>资料设置</value>
+  </data>
+  <data name="checkBoxRightConfigEtc.Text" xml:space="preserve">
+    <value>其他设置</value>
+  </data>
+  <data name="checkBoxRightConfigAlarm.Text" xml:space="preserve">
+    <value>警报设置</value>
+  </data>
+  <data name="checkBoxRIghtTagChange.Text" xml:space="preserve">
+    <value>更改标记属性</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>更改设置的权限</value>
+  </data>
+  <data name="checkBoxRightTagMemberAlarmActive.Text" xml:space="preserve">
+    <value>警报与否</value>
+  </data>
+  <data name="checkBoxRightTagMemberViewRange.Text" xml:space="preserve">
+    <value>显示范围</value>
+  </data>
+  <data name="checkBoxRightTagMemberDataSave.Text" xml:space="preserve">
+    <value>保存资料</value>
+  </data>
+  <data name="checkBoxRightTagMemberAlarmLevel.Text" xml:space="preserve">
+    <value>警报等级</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>标记 成员 权限 </value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="buttonOK.Text" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>SimSun, 9pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>设置用户属性</value>
+  </data>
+</root>

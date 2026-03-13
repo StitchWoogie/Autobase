@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 88</value>
+  </data>
+  <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 6</value>
+  </data>
+  <data name="toCurveObjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="toCurveObjectToolStripMenuItem.Text" xml:space="preserve">
+    <value>곡선 요소로 변환(&amp;T)</value>
+  </data>
+  <data name="combineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="combineToolStripMenuItem.Text" xml:space="preserve">
+    <value>요소 결합(&amp;C)</value>
+  </data>
+  <data name="breakObjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="breakObjectToolStripMenuItem.Text" xml:space="preserve">
+    <value>요소 분리(&amp;B)</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 6</value>
+  </data>
+  <data name="moveToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="moveToFrontToolStripMenuItem.Text" xml:space="preserve">
+    <value>맨 위로 이동(&amp;F)</value>
+  </data>
+  <data name="moveToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="moveToBackToolStripMenuItem.Text" xml:space="preserve">
+    <value>맨 뒤로 이동(&amp;B)</value>
+  </data>
+  <data name="moveToPrevFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="moveToPrevFrontToolStripMenuItem.Text" xml:space="preserve">
+    <value>한단계 위로 이동(&amp;E)</value>
+  </data>
+  <data name="moveToNextBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="moveToNextBackToolStripMenuItem.Text" xml:space="preserve">
+    <value>한단계 뒤로 이동(&amp;K)</value>
+  </data>
+  <data name="toolStripMenuItemOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="toolStripMenuItemOrder.Text" xml:space="preserve">
+    <value>순서(&amp;E)</value>
+  </data>
+  <data name="alignToLeftToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="alignToLeftToolStripMenuItem.Text" xml:space="preserve">
+    <value>왼쪽으로 정렬(&amp;L)</value>
+  </data>
+  <data name="alignToHorizontalCenterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="alignToHorizontalCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>수평 가운데로 정렬(&amp;H)</value>
+  </data>
+  <data name="alignToRightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="alignToRightToolStripMenuItem.Text" xml:space="preserve">
+    <value>오른쪽으로 정렬(&amp;R)</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 6</value>
+  </data>
+  <data name="alignToTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="alignToTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>위쪽으로 정렬(&amp;T)</value>
+  </data>
+  <data name="alignToVerticalCenterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="alignToVerticalCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>수직 가운데로 정렬(&amp;V)</value>
+  </data>
+  <data name="alignToBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="alignToBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>아래쪽으로 정렬(&amp;B)</value>
+  </data>
+  <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 6</value>
+  </data>
+  <data name="alignToModuleHorizontalCenterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="alignToModuleHorizontalCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>모듈의 수평 가운데로 정렬(&amp;M)</value>
+  </data>
+  <data name="alignToModuleVerticalCenterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="alignToModuleVerticalCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>모듈의 수직 가운데로 정렬(&amp;A)</value>
+  </data>
+  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 6</value>
+  </data>
+  <data name="spaceHorizontalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="spaceHorizontalToolStripMenuItem.Text" xml:space="preserve">
+    <value>수평공간 정렬(&amp;S)</value>
+  </data>
+  <data name="spaceVerticalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="spaceVerticalToolStripMenuItem.Text" xml:space="preserve">
+    <value>수직공간 정렬(&amp;P)</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>정렬(&amp;L)</value>
+  </data>
+  <data name="flipHorizontalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="flipHorizontalToolStripMenuItem.Text" xml:space="preserve">
+    <value>좌우 대칭(&amp;H)</value>
+  </data>
+  <data name="flipVerticalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="flipVerticalToolStripMenuItem.Text" xml:space="preserve">
+    <value>상하 대칭(&amp;V)</value>
+  </data>
+  <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 6</value>
+  </data>
+  <data name="rotate90DegreeToRightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="rotate90DegreeToRightToolStripMenuItem.Text" xml:space="preserve">
+    <value>오른쪽으로 90도 회전(&amp;R)</value>
+  </data>
+  <data name="rotate90DegreeToLeftToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="rotate90DegreeToLeftToolStripMenuItem.Text" xml:space="preserve">
+    <value>왼쪽으로 90도 회전(&amp;L)</value>
+  </data>
+  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="toolStripMenuItem3.Text" xml:space="preserve">
+    <value>대칭/회전(&amp;I)</value>
+  </data>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 6</value>
+  </data>
+  <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="groupToolStripMenuItem.Text" xml:space="preserve">
+    <value>그룹(&amp;G)</value>
+  </data>
+  <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
+    <value>그룹해제(&amp;U)</value>
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 6</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>확대/축소(&amp;Z)</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 6</value>
+  </data>
+  <data name="objectPropertiesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="objectPropertiesToolStripMenuItem.Text" xml:space="preserve">
+    <value>요소 속성(&amp;O)</value>
+  </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 6</value>
+  </data>
+  <data name="toAnimationEditorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="toAnimationEditorToolStripMenuItem.Text" xml:space="preserve">
+    <value>애니메이션 편집기로 보내기(&amp;A)</value>
+  </data>
+  <data name="contextMenuStripMove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 326</value>
+  </data>
+  <data name="addToolStripMenuItem.Text" xml:space="preserve">
+    <value>추가(&amp;A)</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>삭제(&amp;D)</value>
+  </data>
+  <data name="toLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>직선으로 변환(&amp;L)</value>
+  </data>
+  <data name="toCurveToolStripMenuItem.Text" xml:space="preserve">
+    <value>곡선으로 변환(&amp;C)</value>
+  </data>
+  <data name="cuspToolStripMenuItem.Text" xml:space="preserve">
+    <value>뾰족하게(&amp;P)</value>
+  </data>
+  <data name="smoothToolStripMenuItem.Text" xml:space="preserve">
+    <value>부드럽게(&amp;S)</value>
+  </data>
+  <data name="symmetricalToolStripMenuItem.Text" xml:space="preserve">
+    <value>대칭(&amp;Y)</value>
+  </data>
+  <data name="autoCloseToolStripMenuItem.Text" xml:space="preserve">
+    <value>자동 닫기(&amp;U)</value>
+  </data>
+  <data name="joinToolStripMenuItem.Text" xml:space="preserve">
+    <value>두점 결합(&amp;J)</value>
+  </data>
+  <data name="breakApartToolStripMenuItem.Text" xml:space="preserve">
+    <value>연결 분리(&amp;B)</value>
+  </data>
+  <data name="objectPropertiesToolStripMenuItem1.Text" xml:space="preserve">
+    <value>요소 속성(&amp;O)</value>
+  </data>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Gulim, 9pt</value>
+  </data>
+</root>

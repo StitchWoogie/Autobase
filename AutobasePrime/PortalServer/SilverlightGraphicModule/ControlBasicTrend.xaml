@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="SilverlightGraphicModule.ControlBasicTrend"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Width="800" Height="300">
+    <Grid x:Name="LayoutRoot" Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Blue" x:Name="gridGraph">
+
+        </Grid>
+        <Grid Grid.Row="1" Margin="2,2,2,2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" x:Name="textBlockDataSize">Data Size</TextBlock>
+                <Grid Width="10"></Grid>
+                <TextBox x:Name="textBoxDay" Width="30" Height="22"></TextBox>
+                <TextBlock VerticalAlignment="Center" x:Name="textBlockDay">Days</TextBlock>
+                <TextBox x:Name="textBoxHour"  Width="30" Height="22"></TextBox>
+                <TextBlock VerticalAlignment="Center" x:Name="textBlockHour">Hours</TextBlock>
+                <Grid Width="20"></Grid>
+                <TextBlock VerticalAlignment="Center" x:Name="textBlockInterval">Interval</TextBlock>
+                <TextBox x:Name="textBoxGab"  Width="30" Height="22"></TextBox>
+                <TextBlock VerticalAlignment="Center"  x:Name="textBlockMinute">Minutes</TextBlock>
+                <Grid Width="10"></Grid>
+                <Button Content="ReLoad" x:Name="buttonReLoad" Click="buttonReLoad_Click"></Button>
+                <Grid Width="40"></Grid>
+                <Button Content="1 Hour" x:Name="TrendHour1" Click="TrendHour1_Click" ></Button>
+                <Button Content="8 Hours" x:Name="TrendHour8" Click="TrendHour8_Click"></Button>
+                <Button Content="1 Day" x:Name="TrendHour24" Click="TrendHour24_Click"></Button>
+                <Button Content="2 Days" x:Name="TrendHour48" Click="TrendHour48_Click" ></Button>
+                <Button Content="3 Days" x:Name="TrendHour72" Click="TrendHour72_Click" ></Button>
+                <Button Content="7 Days" x:Name="buttonTrendDay7" Click="buttonTrendDay7_Click" ></Button>
+                <Button Content="15 Days" x:Name="buttonTrendDay15" Click="buttonTrendDay15_Click" ></Button>
+                <Button Content="30 Days" x:Name="buttonTrendDay30" Click="TrendDay30_Click" ></Button>
+                <Grid Width="20"></Grid>
+                <Button Content="Prev Data" x:Name="buttonPrevData" Click="buttonPrevData_Click" ></Button>
+                <Button Content="Next Data" x:Name="buttonNextData" Click="buttonNextData_Click" ></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

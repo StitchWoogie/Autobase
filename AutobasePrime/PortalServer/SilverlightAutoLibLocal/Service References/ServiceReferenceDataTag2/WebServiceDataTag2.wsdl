@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CheckServiceAlive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="val" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckServiceAliveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckServiceAliveResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagValueLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="array" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTagValueListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagValueListsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteCurrAI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tag" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="val" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteCurrAIResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="WriteCurrST">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tag" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="val" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteCurrSTResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDataAi">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tag" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="value_type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="data_time" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="mon" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="day" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="hour" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="min" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="data_count" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="data_gab" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataAiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataAiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataDi">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tag" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="value_type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="data_time" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="mon" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="day" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="hour" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="min" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="data_count" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="data_gab" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataDiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataDiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLogLists">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLogListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLogListsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLogFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLogFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLogFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlarmLists">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAlarmListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlarmListsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlarmFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlarmFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlarmFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlarmFileByScript2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tFrom" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="tTo" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="option" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlarmFileByScript2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlarmFileByScript2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServerVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServerVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServerVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteCurr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="computername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tag" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="val" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteCurrResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CheckServiceAliveSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckServiceAlive" />
+  </wsdl:message>
+  <wsdl:message name="CheckServiceAliveSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckServiceAliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTagValueLists" />
+  </wsdl:message>
+  <wsdl:message name="GetTagValueListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagValueListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="WriteCurrAISoapIn">
+    <wsdl:part name="parameters" element="tns:WriteCurrAI" />
+  </wsdl:message>
+  <wsdl:message name="WriteCurrAISoapOut">
+    <wsdl:part name="parameters" element="tns:WriteCurrAIResponse" />
+  </wsdl:message>
+  <wsdl:message name="WriteCurrSTSoapIn">
+    <wsdl:part name="parameters" element="tns:WriteCurrST" />
+  </wsdl:message>
+  <wsdl:message name="WriteCurrSTSoapOut">
+    <wsdl:part name="parameters" element="tns:WriteCurrSTResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataAiSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataAi" />
+  </wsdl:message>
+  <wsdl:message name="GetDataAiSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataAiResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataDiSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataDi" />
+  </wsdl:message>
+  <wsdl:message name="GetDataDiSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataDiResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLogListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLogLists" />
+  </wsdl:message>
+  <wsdl:message name="GetLogListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLogListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLogFileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLogFile" />
+  </wsdl:message>
+  <wsdl:message name="GetLogFileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLogFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlarmLists" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlarmListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmFileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlarmFile" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmFileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlarmFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmFileByScript2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlarmFileByScript2" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmFileByScript2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlarmFileByScript2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetServerVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServerVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetServerVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServerVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="WriteCurrSoapIn">
+    <wsdl:part name="parameters" element="tns:WriteCurr" />
+  </wsdl:message>
+  <wsdl:message name="WriteCurrSoapOut">
+    <wsdl:part name="parameters" element="tns:WriteCurrResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceDataTag2Soap">
+    <wsdl:operation name="CheckServiceAlive">
+      <wsdl:input message="tns:CheckServiceAliveSoapIn" />
+      <wsdl:output message="tns:CheckServiceAliveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueLists">
+      <wsdl:input message="tns:GetTagValueListsSoapIn" />
+      <wsdl:output message="tns:GetTagValueListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurrAI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WriteCurrAI Session</wsdl:documentation>
+      <wsdl:input message="tns:WriteCurrAISoapIn" />
+      <wsdl:output message="tns:WriteCurrAISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurrST">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WriteCurrST Session</wsdl:documentation>
+      <wsdl:input message="tns:WriteCurrSTSoapIn" />
+      <wsdl:output message="tns:WriteCurrSTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataAi">
+      <wsdl:input message="tns:GetDataAiSoapIn" />
+      <wsdl:output message="tns:GetDataAiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataDi">
+      <wsdl:input message="tns:GetDataDiSoapIn" />
+      <wsdl:output message="tns:GetDataDiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogLists">
+      <wsdl:input message="tns:GetLogListsSoapIn" />
+      <wsdl:output message="tns:GetLogListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFile">
+      <wsdl:input message="tns:GetLogFileSoapIn" />
+      <wsdl:output message="tns:GetLogFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmLists">
+      <wsdl:input message="tns:GetAlarmListsSoapIn" />
+      <wsdl:output message="tns:GetAlarmListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFile">
+      <wsdl:input message="tns:GetAlarmFileSoapIn" />
+      <wsdl:output message="tns:GetAlarmFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFileByScript2">
+      <wsdl:input message="tns:GetAlarmFileByScript2SoapIn" />
+      <wsdl:output message="tns:GetAlarmFileByScript2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServerVersion">
+      <wsdl:input message="tns:GetServerVersionSoapIn" />
+      <wsdl:output message="tns:GetServerVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WriteCurr Session</wsdl:documentation>
+      <wsdl:input message="tns:WriteCurrSoapIn" />
+      <wsdl:output message="tns:WriteCurrSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceDataTag2Soap" type="tns:WebServiceDataTag2Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckServiceAlive">
+      <soap:operation soapAction="http://tempuri.org/CheckServiceAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueLists">
+      <soap:operation soapAction="http://tempuri.org/GetTagValueLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurrAI">
+      <soap:operation soapAction="http://tempuri.org/WriteCurrAI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurrST">
+      <soap:operation soapAction="http://tempuri.org/WriteCurrST" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataAi">
+      <soap:operation soapAction="http://tempuri.org/GetDataAi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataDi">
+      <soap:operation soapAction="http://tempuri.org/GetDataDi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogLists">
+      <soap:operation soapAction="http://tempuri.org/GetLogLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFile">
+      <soap:operation soapAction="http://tempuri.org/GetLogFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmLists">
+      <soap:operation soapAction="http://tempuri.org/GetAlarmLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFile">
+      <soap:operation soapAction="http://tempuri.org/GetAlarmFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFileByScript2">
+      <soap:operation soapAction="http://tempuri.org/GetAlarmFileByScript2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServerVersion">
+      <soap:operation soapAction="http://tempuri.org/GetServerVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurr">
+      <soap:operation soapAction="http://tempuri.org/WriteCurr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceDataTag2Soap12" type="tns:WebServiceDataTag2Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckServiceAlive">
+      <soap12:operation soapAction="http://tempuri.org/CheckServiceAlive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueLists">
+      <soap12:operation soapAction="http://tempuri.org/GetTagValueLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurrAI">
+      <soap12:operation soapAction="http://tempuri.org/WriteCurrAI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurrST">
+      <soap12:operation soapAction="http://tempuri.org/WriteCurrST" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataAi">
+      <soap12:operation soapAction="http://tempuri.org/GetDataAi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataDi">
+      <soap12:operation soapAction="http://tempuri.org/GetDataDi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogLists">
+      <soap12:operation soapAction="http://tempuri.org/GetLogLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFile">
+      <soap12:operation soapAction="http://tempuri.org/GetLogFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmLists">
+      <soap12:operation soapAction="http://tempuri.org/GetAlarmLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFile">
+      <soap12:operation soapAction="http://tempuri.org/GetAlarmFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFileByScript2">
+      <soap12:operation soapAction="http://tempuri.org/GetAlarmFileByScript2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServerVersion">
+      <soap12:operation soapAction="http://tempuri.org/GetServerVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurr">
+      <soap12:operation soapAction="http://tempuri.org/WriteCurr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceDataTag2">
+    <wsdl:port name="WebServiceDataTag2Soap" binding="tns:WebServiceDataTag2Soap">
+      <soap:address location="http://localhost:63497/AutoWeb/Service/WebServiceDataTag2.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceDataTag2Soap12" binding="tns:WebServiceDataTag2Soap12">
+      <soap12:address location="http://localhost:63497/AutoWeb/Service/WebServiceDataTag2.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

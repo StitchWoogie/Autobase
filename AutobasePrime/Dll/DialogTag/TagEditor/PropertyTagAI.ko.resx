@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="comboBoxAiAlarmCondition.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="comboBoxAiAlarmCondition.Items" xml:space="preserve">
+    <value>HiHi 이상 LoLo 이하</value>
+  </data>
+  <data name="comboBoxAiAlarmCondition.Items1" xml:space="preserve">
+    <value>HiHi 이상</value>
+  </data>
+  <data name="comboBoxAiAlarmCondition.Items2" xml:space="preserve">
+    <value>LoLo 이하</value>
+  </data>
+  <data name="comboBoxAiAlarmCondition.Items3" xml:space="preserve">
+    <value>High 이상 Low 이하</value>
+  </data>
+  <data name="comboBoxAiAlarmCondition.Items4" xml:space="preserve">
+    <value>High 이상</value>
+  </data>
+  <data name="comboBoxAiAlarmCondition.Items5" xml:space="preserve">
+    <value>Low 이하</value>
+  </data>
+  <data name="comboBoxAiAlarmCondition.Items6" xml:space="preserve">
+    <value>HiHi, High, Low, LoLo</value>
+  </data>
+  <data name="comboBoxAiAlarmCondition.Items8" xml:space="preserve">
+    <value>Low, LoLo</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="comboBoxAiAlarmCondition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 20</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>회</value>
+  </data>
+  <data name="groupBox10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>365, 568</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>누적 측정</value>
+  </data>
+  <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
+    <value>136, 150</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>단위</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>회</value>
+  </data>
+  <data name="groupBox11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 497</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>출력 확인수</value>
+  </data>
+  <data name="radioButtonAiFilter4.Text" xml:space="preserve">
+    <value>계측역률</value>
+  </data>
+  <data name="radioButtonAiFilter3.Text" xml:space="preserve">
+    <value>비례역률</value>
+  </data>
+  <data name="radioButtonAiFilter2.Text" xml:space="preserve">
+    <value>계측치 값</value>
+  </data>
+  <data name="radioButtonAiFilter0.Text" xml:space="preserve">
+    <value>비례식</value>
+  </data>
+  <data name="groupBoxCalcFilter.Text" xml:space="preserve">
+    <value>계산필터</value>
+  </data>
+  <data name="radioButtonAiFilter5.Text" xml:space="preserve">
+    <value>스크립트</value>
+  </data>
+  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
+    <value>136, 177</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>표시형식</value>
+  </data>
+  <data name="groupBox14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 52</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>경보우선순위</value>
+  </data>
+  <data name="radioButtonAiOverflowCut1.Text" xml:space="preserve">
+    <value>초과치 자름</value>
+  </data>
+  <data name="radioButtonAiOverflowCut0.Text" xml:space="preserve">
+    <value>그대로 표시</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>계산범위 초과시</value>
+  </data>
+  <data name="radioButtonAiOverflowCut2.Text" xml:space="preserve">
+    <value>값 취소</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>주소</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>포트</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>변환값</value>
+  </data>
+  <data name="buttonAiAlarmWaveFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 16</value>
+  </data>
+  <data name="textBoxAiAlarmWaveFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 17</value>
+  </data>
+  <data name="groupBox17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, 115</value>
+  </data>
+  <data name="groupBox17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 46</value>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>경보 음성 파일</value>
+  </data>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>59, 16</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>밀리초</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>검색 시간</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>초간 지연</value>
+  </data>
+  <data name="buttonAiAlarmGraphicFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 16</value>
+  </data>
+  <data name="groupBox16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, 173</value>
+  </data>
+  <data name="groupBox16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 44</value>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>경보 그래픽 파일</value>
+  </data>
+  <data name="groupBoxMemoryType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 411</value>
+  </data>
+  <data name="groupBoxMemoryType.Text" xml:space="preserve">
+    <value>메모리 종류</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 353</value>
+  </data>
+  <data name="comboBoxMemorySubType.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="comboBoxMemorySubType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 378</value>
+  </data>
+  <data name="comboBoxMemorySubType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="checkBoxAiDataSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>365, 498</value>
+  </data>
+  <data name="checkBoxAiDataSave.Text" xml:space="preserve">
+    <value>자료저장</value>
+  </data>
+  <data name="checkBoxAiUsingAlarm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 18</value>
+  </data>
+  <data name="checkBoxAiUsingAlarm.Text" xml:space="preserve">
+    <value>경보 사용</value>
+  </data>
+  <data name="groupBox18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 497</value>
+  </data>
+  <data name="groupBox18.Text" xml:space="preserve">
+    <value>연결태그</value>
+  </data>
+  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 52</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>경보레벨</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>경보조건</value>
+  </data>
+  <data name="groupBox19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, 23</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>과변화시 경보지연</value>
+  </data>
+  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 23</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>% 변화시</value>
+  </data>
+  <data name="groupBox13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 173</value>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>변화율 경보</value>
+  </data>
+  <data name="groupBox12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 115</value>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>경보복귀 차이값</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>보기범위</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>222, 568</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>스크롤 단위</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>계산 스크립트</value>
+  </data>
+  <data name="comboBoxAiUnit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 20</value>
+  </data>
+  <data name="checkBoxAiAccumulatedData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>365, 527</value>
+  </data>
+  <data name="checkBoxAiAccumulatedData.Text" xml:space="preserve">
+    <value>적산값에 증분 저장</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 268</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>505, 223</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>경보 설정</value>
+  </data>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>638, 617</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Gulim, 9pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>태그 속성</value>
+  </data>
+</root>

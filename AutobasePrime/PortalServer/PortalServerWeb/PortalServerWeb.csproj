@@ -1,0 +1,488 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E05E86C-5AA9-458F-987A-7C31BDD58C29}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PortalServerWeb</RootNamespace>
+    <AssemblyName>PortalServerWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <OldToolsVersion>Current</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>5</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Bcl.AsyncInterfaces.10.0.2\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Bcl.HashCode.6.0.0\lib\net462\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.DependencyInjection.Abstractions.10.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.Logging.Abstractions.10.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=8.0.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Npgsql.8.0.7\lib\netstandard2.0\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=10.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Collections.Immutable.10.0.2\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Diagnostics.DiagnosticSource.10.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.IO.Pipelines.10.0.2\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseWebTotal\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Text.Encodings.Web.10.0.2\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Text.Json.10.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\System.Web.Entity\3.5.0.0__b77a5c561934e089\System.Web.Entity.dll</HintPath>
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseWebTotal\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseWebTotal\packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AutoWeb\MobilePages\Default.aspx" />
+    <Content Include="AutoWeb\MobilePages\TagView.aspx" />
+    <Content Include="AutoWeb\MobilePages\TagWriteBit.aspx" />
+    <Content Include="AutoWeb\MobilePages\TagWriteWord.aspx" />
+    <Content Include="AutoWeb\MobilePages\WebTagListGroup.aspx" />
+    <Content Include="AutoWeb\MobilePages\WebTagListItem.aspx" />
+    <Content Include="AutoWeb\Service\WcfServiceDataGateServerProxy.svc" />
+    <Content Include="AutoWeb\Service\ServiceDataSet.svc" />
+    <Content Include="AutoWeb\Service\ServiceDataSet2.svc" />
+    <Content Include="AutoWeb\Service\WebServiceDataTag2.svc" />
+    <Content Include="AutoWeb\Service\ServiceOdbc.svc" />
+    <Content Include="AutoWeb\Service\ServiceDataTag.svc" />
+    <Content Include="AutoWeb\Service\ServiceExcelReport.svc" />
+    <Content Include="AutoWeb\Service\ServiceUserProtect.svc" />
+    <Content Include="AutoWeb\Service\ServiceDownLoadProject.svc" />
+    <Content Include="AutoWeb\Service\ServiceRecipe.svc" />
+    <Content Include="AutoWeb\Service\ServicePreset.svc" />
+    <Content Include="AutoWeb\Service\ServiceReport.svc" />
+    <Content Include="AutoWeb\Service\WebServiceAndroid.svc" />
+    <Content Include="AutoWeb\Service\WebService3.svc" />
+    <Content Include="SampleStart_old.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoWeb\MobilePages\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\MobileLogOn.aspx.cs">
+      <DependentUpon>MobileLogOn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\MobileLogOn.aspx.Designer.cs">
+      <DependentUpon>MobileLogOn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\TagView.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>TagView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\TagView.aspx.designer.cs">
+      <DependentUpon>TagView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\TagWriteBit.aspx.cs">
+      <DependentUpon>TagWriteBit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\TagWriteBit.aspx.designer.cs">
+      <DependentUpon>TagWriteBit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\TagWriteWord.aspx.cs">
+      <DependentUpon>TagWriteWord.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\TagWriteWord.aspx.designer.cs">
+      <DependentUpon>TagWriteWord.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\WebTagListGroup.aspx.cs">
+      <DependentUpon>WebTagListGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\WebTagListGroup.aspx.designer.cs">
+      <DependentUpon>WebTagListGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\WebTagListItem.aspx.cs">
+      <DependentUpon>WebTagListItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\MobilePages\WebTagListItem.aspx.designer.cs">
+      <DependentUpon>WebTagListItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ClassDataGateServer.cs" />
+    <Compile Include="AutoWeb\Service\ClassPythonAi.cs" />
+    <Compile Include="AutoWeb\Service\GuidHeartbeatManager.cs" />
+    <Compile Include="AutoWeb\Service\IWcfServiceDataGateServerProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\Service\IServiceDataSet.cs" />
+    <Compile Include="AutoWeb\Service\IServiceDataSet2.cs" />
+    <Compile Include="AutoWeb\Service\IWebServiceDataTag2.cs" />
+    <Compile Include="AutoWeb\Service\IServiceOdbc.cs" />
+    <Compile Include="AutoWeb\Service\IServiceDataTag.cs" />
+    <Compile Include="AutoWeb\Service\IServiceDataGateServer.cs" />
+    <Compile Include="AutoWeb\Service\IServiceRecipe.cs" />
+    <Compile Include="AutoWeb\Service\IServicePreset.cs" />
+    <Compile Include="AutoWeb\Service\IServiceReport.cs" />
+    <Compile Include="AutoWeb\Service\IServiceExcelReport.cs" />
+    <Compile Include="AutoWeb\Service\ExcelWorkerJobContract.cs" />
+    <Compile Include="AutoWeb\Service\IWebServiceAndroid.cs" />
+    <Compile Include="AutoWeb\Service\IWebService3.cs" />
+    <Compile Include="AutoWeb\Service\WcfServiceDataGateServerProxy.svc.cs">
+      <DependentUpon>WcfServiceDataGateServerProxy.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ServiceDataSet.svc.cs">
+      <DependentUpon>ServiceDataSet.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ServiceDataSet2.svc.cs">
+      <DependentUpon>ServiceDataSet2.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\WebServiceDataTag2.svc.cs">
+      <DependentUpon>WebServiceDataTag2.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ServiceOdbc.svc.cs">
+      <DependentUpon>ServiceOdbc.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ServiceDataTag.svc.cs">
+      <DependentUpon>ServiceDataTag.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\IServiceUserProtect.cs" />
+    <Compile Include="AutoWeb\Service\IServiceDownLoadProject.cs" />
+    <Compile Include="AutoWeb\Service\ServiceDataGateServer.svc.cs">
+      <DependentUpon>ServiceDataGateServer.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ServiceDataTagStatic.cs" />
+    <Compile Include="AutoWeb\Service\ServiceExcelReport.svc.cs">
+      <DependentUpon>ServiceExcelReport.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ServiceUserProtect.svc.cs">
+      <DependentUpon>ServiceUserProtect.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ServiceUserProtectStatic.cs" />
+    <Compile Include="AutoWeb\Service\ServiceDownLoadProject.svc.cs">
+      <DependentUpon>ServiceDownLoadProject.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ServiceRecipe.svc.cs">
+      <DependentUpon>ServiceRecipe.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ServicePreset.svc.cs">
+      <DependentUpon>ServicePreset.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\ServiceReport.svc.cs">
+      <DependentUpon>ServiceReport.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\WebServiceAndroid.svc.cs">
+      <DependentUpon>WebServiceAndroid.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\Service\WebService3.svc.cs">
+      <DependentUpon>WebService3.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\WebPages\LogOn.aspx.cs">
+      <DependentUpon>LogOn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\WebPages\LogOn.aspx.designer.cs">
+      <DependentUpon>LogOn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\WebPages\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\WebPages\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\WebPages\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\WebPages\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\WebPages\SiteMain.Master.cs">
+      <DependentUpon>SiteMain.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\WebPages\SiteMain.Master.designer.cs">
+      <DependentUpon>SiteMain.Master</DependentUpon>
+    </Compile>
+    <Compile Include="AutoWeb\WebPages\ViewLog.aspx.cs">
+      <DependentUpon>ViewLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoWeb\WebPages\ViewLog.aspx.designer.cs">
+      <DependentUpon>ViewLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Library\ClassDebug.cs" />
+    <Compile Include="Library\ClassMain.cs" />
+    <Compile Include="Library\ConfigApplication.cs" />
+    <Compile Include="Library\ConfigWeb.cs" />
+    <Compile Include="Library\ExcelWorkerJobStore.cs" />
+    <Compile Include="Library\ProjectLib.cs" />
+    <Compile Include="Library\ServiceLib.cs" />
+    <Compile Include="Portal\Portal.Master.cs">
+      <DependentUpon>Portal.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\Portal.Master.designer.cs">
+      <DependentUpon>Portal.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Portal\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\NetTools\NetTools.csproj">
+      <Project>{D49B5268-4C34-44C6-B688-80653EE9A189}</Project>
+      <Name>NetTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\AutoLibLocal\AutoLibLocal.csproj">
+      <Project>{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}</Project>
+      <Name>AutoLibLocal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\AutoLib\AutoLib.csproj">
+      <Project>{DFE68F78-7DBA-45BC-AB91-FB685733205B}</Project>
+      <Name>AutoLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\ReportBasicLib\ReportBasicLib.csproj">
+      <Project>{46B4BACB-0EFA-49FE-8F3A-0B3279E18DB8}</Project>
+      <Name>ReportBasicLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\ReportModule\ReportModule.csproj">
+      <Project>{BFC7F4F7-35CD-4FE9-8F34-ACA05EEABB12}</Project>
+      <Name>ReportModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ViewMain\GraphicModule\GraphicModule.csproj">
+      <Project>{03415E5F-99CA-4F21-B732-80372B2AA265}</Project>
+      <Name>GraphicModule</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AutoWeb\MobilePages\MobileLogOn.aspx" />
+    <Content Include="AutoWeb\MobilePages\WebForm1.aspx" />
+    <Content Include="SampleWeb.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Security\SetupViewMainFullTrust.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AutoWeb\Service\ServiceDataGateServer.svc" />
+    <Content Include="Portal\Portal.Master" />
+    <Content Include="Portal\WebForm1.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AutoWeb\WebPages\LogOn.aspx" />
+    <Content Include="AutoWeb\WebPages\Main.aspx" />
+    <Content Include="AutoWeb\WebPages\Settings.aspx" />
+    <Content Include="AutoWeb\WebPages\SiteMain.Master" />
+    <Content Include="AutoWeb\WebPages\ViewLog.aspx" />
+    <Content Include="Content\w3.css" />
+    <Content Include="Global.asax">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="src\core.js" />
+    <Content Include="src\sha256.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v17.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>63497</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63500/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>http://localhost:9999</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
+  </Target>
+</Project>

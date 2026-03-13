@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="menuItemModuleReal.Text" xml:space="preserve">
+    <value>사용자 조절(&amp;U)</value>
+  </data>
+  <data name="menuItemModuleFitWindow.Text" xml:space="preserve">
+    <value>윈도우에 비례(&amp;P)</value>
+  </data>
+  <data name="menuItemModuleFitWindowXY.Text" xml:space="preserve">
+    <value>윈도우 가로/세로 맞춤(&amp;F)</value>
+  </data>
+  <data name="menuItemViewControl.Text" xml:space="preserve">
+    <value>조작 모드(&amp;M)</value>
+  </data>
+  <data name="menuItemViewZoomIn.Text" xml:space="preserve">
+    <value>확대보기 모드(&amp;I)</value>
+  </data>
+  <data name="menuItemViewZoomOut.Text" xml:space="preserve">
+    <value>축소보기 모드(&amp;O)</value>
+  </data>
+  <data name="menuItemViewPanning.Text" xml:space="preserve">
+    <value>이동 모드(&amp;A)</value>
+  </data>
+  <data name="menuItemViewDigitalInputSelect.Text" xml:space="preserve">
+    <value>디지털 입력 선택 모드(&amp;S)</value>
+  </data>
+  <data name="menuItemScreenPrint.Text" xml:space="preserve">
+    <value>인쇄(&amp;P)</value>
+  </data>
+  <data name="menuItemClose.Text" xml:space="preserve">
+    <value>메뉴 닫기(&amp;C)</value>
+  </data>
+  <data name="menuItemAnalogDetail.Text" xml:space="preserve">
+    <value>아날로그 입력 상세(&amp;A)</value>
+  </data>
+  <data name="menuItemAnalogTrend1.Text" xml:space="preserve">
+    <value>아날로그 1시간 경향진단(&amp;N)</value>
+  </data>
+  <data name="menuItemAnalogTrend8.Text" xml:space="preserve">
+    <value>아날로그 8시간 경향진단(&amp;E)</value>
+  </data>
+  <data name="menuItemAnalogTrend24.Text" xml:space="preserve">
+    <value>아날로그 24시간 경향진단(&amp;T)</value>
+  </data>
+  <data name="menuItemAnalogTrend48.Text" xml:space="preserve">
+    <value>아날로그 48시간 경향진단(&amp;F)</value>
+  </data>
+  <data name="menuItemAnalogTrend72.Text" xml:space="preserve">
+    <value>아날로그 72시간 경향진단(&amp;S)</value>
+  </data>
+  <data name="menuItemAnalogTrend30.Text" xml:space="preserve">
+    <value>아날로그 30일 경향진단(&amp;D)</value>
+  </data>
+  <data name="menuItemAnalogDataMin.Text" xml:space="preserve">
+    <value>아날로그 분별 자료보기(&amp;I)</value>
+  </data>
+  <data name="menuItemAnalogDataHour.Text" xml:space="preserve">
+    <value>아날로그 시간별 자료보기(&amp;O)</value>
+  </data>
+  <data name="menuItemAnalogDataDay.Text" xml:space="preserve">
+    <value>아날로그 일별 자료보기(&amp;Y)</value>
+  </data>
+  <data name="menuItemAnalogWeek.Text" xml:space="preserve">
+    <value>아날로그 주별 자료보기(&amp;W)</value>
+  </data>
+  <data name="menuItemAnalogMonth.Text" xml:space="preserve">
+    <value>아날로그 월별 자료보기(&amp;M)</value>
+  </data>
+  <data name="menuItemAnalogTagList.Text" xml:space="preserve">
+    <value>아날로그 태그 리스트(&amp;G)</value>
+  </data>
+  <data name="menuItemAnalogSetValue.Text" xml:space="preserve">
+    <value>아날로그 설정치 변경(&amp;C)</value>
+  </data>
+  <data name="menuItemAnalogProtectScan.Text" xml:space="preserve">
+    <value>수동 기입(&amp;P)</value>
+  </data>
+  <data name="menuItemAnalogProtectControl.Text" xml:space="preserve">
+    <value>제어 금지(&amp;R)</value>
+  </data>
+  <data name="menuItemAnalogProtectAlarmEvent.Text" xml:space="preserve">
+    <value>경보 이벤트 금지(&amp;V)</value>
+  </data>
+  <data name="menuItemAnalogProtectAlarmData.Text" xml:space="preserve">
+    <value>경보 자료 금지(&amp;L)</value>
+  </data>
+  <data name="menuItemCancel.Text" xml:space="preserve">
+    <value>닫기(&amp;X)</value>
+  </data>
+  <data name="menuItemDigitalDetail.Text" xml:space="preserve">
+    <value>디지털 입력 상세(&amp;A)</value>
+  </data>
+  <data name="menuItemDigitalTrend1.Text" xml:space="preserve">
+    <value>디지털 1시간 경향진단(&amp;N)</value>
+  </data>
+  <data name="menuItemDigitalTrend8.Text" xml:space="preserve">
+    <value>디지털 8시간 경향진단(&amp;E)</value>
+  </data>
+  <data name="menuItemDigitalTrend24.Text" xml:space="preserve">
+    <value>디지털 24시간 경향진단(&amp;T)</value>
+  </data>
+  <data name="menuItemDigitalTrend48.Text" xml:space="preserve">
+    <value>디지털 48시간 경향진단(&amp;F)</value>
+  </data>
+  <data name="menuItemDigitalTrend72.Text" xml:space="preserve">
+    <value>디지털 72시간 경향진단(&amp;S)</value>
+  </data>
+  <data name="menuItemDigitalTrend30.Text" xml:space="preserve">
+    <value>디지털 30일 경향진단(&amp;D)</value>
+  </data>
+  <data name="menuItemDigitalDataMin.Text" xml:space="preserve">
+    <value>디지털 분별 자료보기(&amp;I)</value>
+  </data>
+  <data name="menuItemDigitalDataHour.Text" xml:space="preserve">
+    <value>디지털 시간별 자료보기(&amp;O)</value>
+  </data>
+  <data name="menuItemDigitalDataDay.Text" xml:space="preserve">
+    <value>디지털 일별 자료보기(&amp;Y)</value>
+  </data>
+  <data name="menuItemDigitalDataWeek.Text" xml:space="preserve">
+    <value>디지털 주별 자료보기(&amp;W)</value>
+  </data>
+  <data name="menuItemDigitalDataMonth.Text" xml:space="preserve">
+    <value>디지털 월별 자료보기(&amp;M)</value>
+  </data>
+  <data name="menuItemDigitalTagList.Text" xml:space="preserve">
+    <value>디지털 태그 리스트(&amp;G)</value>
+  </data>
+  <data name="menuItemDigitalSetValue.Text" xml:space="preserve">
+    <value>디지털 입력 값 변경(&amp;C)</value>
+  </data>
+  <data name="menuItemDigitalProtectScan.Text" xml:space="preserve">
+    <value>수동 기입(&amp;P)</value>
+  </data>
+  <data name="menuItemDigitalProtectControl.Text" xml:space="preserve">
+    <value>제어 금지(&amp;R)</value>
+  </data>
+  <data name="menuItemDigitalProtectAlarmEvent.Text" xml:space="preserve">
+    <value>경보 이벤트 금지(&amp;V)</value>
+  </data>
+  <data name="menuItemDigitalProtectAlarmData.Text" xml:space="preserve">
+    <value>경보 데이터 금지(&amp;L)</value>
+  </data>
+  <data name="menuItem26.Text" xml:space="preserve">
+    <value>닫기(&amp;X)</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+</root>

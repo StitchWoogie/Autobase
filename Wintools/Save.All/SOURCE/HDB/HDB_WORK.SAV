@@ -1,0 +1,366 @@
+// HDB Edit에 필요한 도구들
+
+#include <windows.h>
+#include <stdlib.h>
+#include <commdlg.h>
+#include <string.h>
+
+#include <tools.h>
+#include <gclass.h>
+#include <glib.h>
+#include <dataswap.h>
+#include <hdb_work.h>
+
+static HWND hwndEditCell = NULL;		// 각 셀을 입력할 수 있는 입력기.
+
+static void ScrollBarUpdate(HWND hwnd, HDB_WORK_STRUCT *work)
+{
+	SetScrollRange(hwnd, SB_HORZ, 0, work->sheet->blockField->GetCount(), FALSE);
+	SetScrollRange(hwnd, SB_VERT, 0, work->sheet->dwDataHap, FALSE);
+
+	SetScrollPos(hwnd, SB_HORZ, work->dwPageX, TRUE);
+	SetScrollPos(hwnd, SB_VERT, work->dwPageY, TRUE);
+}
+
+/*
+void GetFontInformation(HWND hwnd, WORK_EDIT_SHEET *work);
+void WindowSizeUpdate(HWND hwnd);
+void SaveEditedCell(WORK_EDIT_SHEET *work);
+void ActiveEditWindow(WORK_EDIT_SHEET *work);
+
+void DeleteOneField(HWND hwnd)
+{
+	char message[100];
+	int  field_pos;
+	HDB_FIELD_STRUCT field;
+	HLOCAL hWork;
+	WORK_EDIT_SHEET *work;
+	char sheet_name[11];
+
+	hWork = (HGLOBAL)GetWindowLong(hwnd, 0);
+	work = (WORK_EDIT_SHEET*)LocalLock(hWork);
+	field_pos = work->nCurrField;
+	strcpy(sheet_name, work->sSheetName);
+	LocalUnlock(hWork);
+
+	if(HDBGetFieldHap(sheet_name) == 0) {
+		MessageBox(hwnd, "삭제할 수 있는 필드가 하나도 없습니다.", "삭제 오류", MB_OK);
+		return;
+	}
+
+	if(!HDBGetField(sheet_name, field_pos, &field)) {
+		MessageBox(hwnd, "삭제할 필드를 선택한 후\n필드를 삭제할 수 있습니다.", "삭제오류", MB_OK);
+		return;
+	}
+
+	sprintf(message, "[%s] 필드를 삭제 하겠습니까?", field.sName);
+	if(MessageBox(hwnd, message, "필드삭제", MB_YESNO) != IDYES) 	return;
+
+	HDBDeleteField(sheet_name, field_pos);
+
+	InvalidateRect(hwnd, NULL, TRUE);
+}
+
+void ChangeFieldFunction(HWND hwnd)
+{
+	int  field_pos;
+	HDB_FIELD_STRUCT field;
+	HLOCAL hWork;
+	WORK_EDIT_SHEET *work;
+	char sheet_name[11];
+
+	hWork = (HGLOBAL)GetWindowLong(hwnd, 0);
+	work = (WORK_EDIT_SHEET*)LocalLock(hWork);
+	field_pos = work->nCurrField;
+	strcpy(sheet_name, work->sSheetName);
+	LocalUnlock(hWork);
+
+	if(HDBGetFieldHap(sheet_name) == 0) {
+		MessageBox(hwnd, "수정할 수 있는 필드가 하나도 없습니다.", "수정 오류", MB_OK);
+		return;
+	}
+
+	if(!HDBGetField(sheet_name, field_pos, &field)) {
+		MessageBox(hwnd, "수정할 필드를 선택한 후\n필드를 수정할 수 있습니다.", "수정오류", MB_OK);
+		return;
+	}
+
+	if(field.wType != HDB_FIELD_TYPE_FUNCTION) {
+		MessageBox(hwnd, "계산식 필드가 아니므로 수식을 수정할 수 없습니다.", "수정오류", MB_OK);
+		return;
+	}
+
+	StackChar stack(1000);
+
+	if(stack.data == NULL) {
+		MessageBox(hwnd, "메모리 부족", "수정오류", MB_OK);
+		return;
+	}
+
+	HDBGetFieldFunction(sheet_name, field_pos, stack.data);
+
+
+	if(CommDialogInputString(hwnd, "계산식을 입력하세요." , stack.data, 1000)) {
+		hWork = (HGLOBAL)GetWindowLong(hwnd, 0);
+		work = (WORK_EDIT_SHEET*)LocalLock(hWork);
+		SaveEditedCell(work);
+		HDBSetFieldFunction(sheet_name, field_pos, stack.data);
+		ActiveEditWindow(work);
+		LocalUnlock(hWork);
+		InvalidateRect(hwnd, NULL, TRUE);
+	}
+
+	InvalidateRect(hwnd, NULL, TRUE);
+}
+
+void FindField(HWND hwnd)
+{
+	int  field_pos;
+	HLOCAL hWork;
+	WORK_EDIT_SHEET *work;
+
+	StackChar stack(1000);
+
+	if(stack.data == NULL) {
+		MessageBox(hwnd, "메모리 부족", "찾기오류", MB_OK);
+		return;
+	}
+
+	memset(stack.data, 0, 1000);
+
+	hWork = (HGLOBAL)GetWindowLong(hwnd, 0);
+	work = (WORK_EDIT_SHEET*)LocalLock(hWork);
+
+  continue_seek:
+	if(!CommDialogInputString(hwnd, "찾고 싶은 필드명을 입력하세요." , stack.data, 1000)) {
+		LocalUnlock(hWork);
+		return;
+	}
+
+	field_pos = HDBSearchField(work->sSheetName, stack.data);
+	if(field_pos == -1) {
+		MessageBox(hwnd, "찾는 필드가 존재하지 않습니다.", stack.data, MB_OK);
+		goto continue_seek;
+	}
+
+	SaveEditedCell(work);
+	work->nCurrField = field_pos;
+	work->nPageField = field_pos;
+	ActiveEditWindow(work);
+	LocalUnlock(hWork);
+	InvalidateRect(hwnd, NULL, TRUE);
+}
+
+void PasteToRightDirection(HWND hwnd)
+{
+	if(!IsClipboardFormatAvailable(CF_TEXT))	{
+		return;
+	}
+
+	HANDLE hClipBoard;
+	char huge *text;
+	HLOCAL hWork;
+	WORK_EDIT_SHEET *work;
+	StackChar stack(1000);
+	DWORD dw;
+	DWORD block_pos;
+	int   field_pos;
+	int   hap;
+
+	if(stack.data == NULL)	return;
+
+	OpenClipboard(hwnd);
+	hClipBoard = GetClipboardData(CF_TEXT);
+	if(hClipBoard == NULL) {
+		CloseClipboard();
+		return;
+	}
+
+	text = (char huge*)GlobalLock(hClipBoard);
+
+	hWork = (HGLOBAL)GetWindowLong(hwnd, 0);
+	work = (WORK_EDIT_SHEET*)LocalLock(hWork);
+	SaveEditedCell(work);
+
+	field_pos = work->nCurrField;
+	block_pos = work->dwCurrBlock;
+
+	hap = 0;
+	dw = 0;
+	while(1) {
+		if(text[dw] == NULL) {
+			stack.data[hap] = 0;
+			if(hap > 0) {
+				HDBSetCell(work->sSheetName, field_pos, block_pos, stack.data);
+			}
+			break;
+		}
+		else if(text[dw] == '\r') {
+			stack.data[hap] = 0;
+			HDBSetCell(work->sSheetName, field_pos, block_pos, stack.data);
+			field_pos++;
+			hap = 0;
+			if(field_pos >= HDBGetFieldHap(work->sSheetName))	break;
+		}
+		else if(text[dw] == '\n') {
+
+		}
+		else {
+			if(hap < 900) {
+				stack.data[hap] = text[dw];
+				hap++;
+			}
+		}
+		dw++;
+	}
+
+	ActiveEditWindow(work);
+	LocalUnlock(hWork);
+
+	GlobalUnlock(hClipBoard);
+	CloseClipboard();
+
+	InvalidateRect(hwnd, NULL, TRUE);
+}
+
+void PasteToDownDirection(HWND hwnd)
+{
+	if(!IsClipboardFormatAvailable(CF_TEXT))	{
+		return;
+	}
+
+	HANDLE hClipBoard;
+	char huge *text;
+	HLOCAL hWork;
+	WORK_EDIT_SHEET *work;
+	StackChar stack(1000);
+	DWORD dw;
+	DWORD block_pos;
+	int   field_pos;
+	int   hap;
+
+	if(stack.data == NULL)	return;
+
+	OpenClipboard(hwnd);
+	hClipBoard = GetClipboardData(CF_TEXT);
+	if(hClipBoard == NULL) {
+		CloseClipboard();
+		return;
+	}
+
+	text = (char huge*)GlobalLock(hClipBoard);
+
+	hWork = (HGLOBAL)GetWindowLong(hwnd, 0);
+	work = (WORK_EDIT_SHEET*)LocalLock(hWork);
+	SaveEditedCell(work);
+
+	field_pos = work->nCurrField;
+	block_pos = work->dwCurrBlock;
+
+	hap = 0;
+	dw = 0;
+	while(1) {
+		if(text[dw] == NULL) {
+			stack.data[hap] = 0;
+			if(hap > 0) {
+				HDBSetCell(work->sSheetName, field_pos, block_pos, stack.data);
+			}
+			break;
+		}
+		else if(text[dw] == '\r') {
+			stack.data[hap] = 0;
+			HDBSetCell(work->sSheetName, field_pos, block_pos, stack.data);
+			block_pos++;
+			hap = 0;
+			if(block_pos >= HDBGetBlockHap(work->sSheetName))	break;
+		}
+		else if(text[dw] == '\n') {
+
+		}
+		else {
+			if(hap < 900) {
+				stack.data[hap] = text[dw];
+				hap++;
+			}
+		}
+		dw++;
+	}
+
+	ActiveEditWindow(work);
+	LocalUnlock(hWork);
+
+	GlobalUnlock(hClipBoard);
+	CloseClipboard();
+
+	InvalidateRect(hwnd, NULL, TRUE);
+}
+
+static void SelectAlwaysViewField(HWND hwnd)
+{
+	HLOCAL hWork;
+	WORK_EDIT_SHEET *work;
+	HDB_FIELD_STRUCT field;
+
+	hWork = (HGLOBAL)GetWindowLong(hwnd, 0);
+	work = (WORK_EDIT_SHEET*)LocalLock(hWork);
+
+	if(HDBGetFieldHap(work->sSheetName) == 0) {
+		return;
+	}
+
+	HDBGetField(work->sSheetName, work->nCurrField, &field);
+	HDBSetAlwaysViewField(work->sSheetName, field.sName);
+
+	SaveEditedCell(work);
+	ActiveEditWindow(work);
+	LocalUnlock(hWork);
+	InvalidateRect(hwnd, NULL, TRUE);
+}
+
+static int CheckWorkSheetName(HWND hwnd, LPARAM lParam)
+{
+	HLOCAL hWork;
+	WORK_EDIT_SHEET *work;
+	int retn;
+
+	hWork = (HGLOBAL)GetWindowLong(hwnd, 0);
+	work = (WORK_EDIT_SHEET*)LocalLock(hWork);
+	if(strcmp((LPSTR)lParam, work->sSheetName) == 0)
+		retn = 1;
+	else
+		retn = 0;
+	LocalUnlock(hWork);
+
+	return retn;
+}
+
+*/
+
+static void Not(HDC hdc, HDB_WORK_STRUCT *work) 
+{
+	RECT r;
+	int x, y;
+	DWORD dwField, dwBlock;
+	DWORD hap_field  = HDBGetFieldHap(work->sheet);
+	DWORD hap_block  = HDBGetBlockHap(work->sheet);
+	HDB_FIELD_STRUCT field;
+	int width;
+	DWORD selx1, sely1, selx2, sely2;
+	
+	selx1 = work->selx1;
+	sely1 = work->sely1;
+	selx2 = work->selx2;
+	sely2 = work->sely2;
+
+	if(selx1 > selx2)	Temp(selx1, selx2);
+	if(sely1 > sely2)	Temp(sely1, sely2);
+
+	y = work->pyStart;
+
+	for(dwBlock = work->dwPageY; y < work->rect.bottom; dwBlock++, y+=work->cyChar+1) {
+		if(dwBlock < sely1)	continue;
+		if(dwBlock > sely2)	break;
+
+		x = work->pxStart;
+
+		for(dwField = work->dwPageX; dwField < hap_field && x < work->

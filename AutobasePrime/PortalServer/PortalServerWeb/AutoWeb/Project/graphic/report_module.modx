@@ -1,0 +1,29 @@
+Resolution,1024,700
+DefaultLocation,0,0,0
+ModuleOptic,0
+ModuleWindowStyle,0,False,100,1,False
+ModuleWindowStyleFlag,13107200,0
+BackGroundColor,255,255,255,255
+Version, 10,3,6,17,
+ObjectGroup,BEGIN,
+	GroupRect,0,0,1023,699,
+	GroupSize,1024,700,
+	ClassName,NoName,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectGroup,END,
+	ScriptModuleEnd,BEGIN
+Description,모듈 닫힐 때 한번 실행할 스크립트,
+ScanTime,1,False,False,
+Programm,BEGIN,
+@ToolBarDelete(1);
+Programm,END,
+	ScriptModuleEnd,END
+	ScriptModuleStart,BEGIN
+Description,모듈 열릴 때 한번 실행할 스크립트,
+ScanTime,1,False,False,
+Programm,BEGIN,
+@ToolBarAdd("Toolbar_report.modx", 1, 100);
+Programm,END,
+	ScriptModuleStart,END

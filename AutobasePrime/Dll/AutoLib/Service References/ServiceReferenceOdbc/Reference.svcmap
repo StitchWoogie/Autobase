@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="9275f5ab-edc7-4f6b-bb9b-47044aafd995" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63500/AutoWeb/Service/ServiceOdbc.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceOdbc.xsd" MetadataType="Schema" ID="96af1365-0dad-45fd-8faf-41b1c2cbdc24" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceOdbc.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceOdbc.disco" MetadataType="Disco" ID="c2ca749f-cab0-4067-9f95-535fe8054bd6" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceOdbc.svc?disco" />
+    <MetadataFile FileName="ServiceOdbc1.xsd" MetadataType="Schema" ID="593d16fc-75f0-4b1f-904a-bc548ce266e1" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceOdbc.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceOdbc2.xsd" MetadataType="Schema" ID="2437aaa1-a024-4f0d-877a-0f13c5fa7c28" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceOdbc.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceOdbc.wsdl" MetadataType="Wsdl" ID="94fef07c-a5ba-45b6-9979-848b3e72ad10" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceOdbc.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

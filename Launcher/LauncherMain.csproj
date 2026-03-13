@@ -1,0 +1,99 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <ApplicationIcon>res/launcher3.ico</ApplicationIcon>
+
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+
+    <!-- Do NOT trim for Avalonia (reflection/XAML) -->
+    <PublishTrimmed>false</PublishTrimmed>
+
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <InformationalVersion>1.0.1.0</InformationalVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.1" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.1" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.1" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.2.1">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="res\Apiclient.ico" />
+    <AvaloniaResource Include="res\ExportServer.ico" />
+    <AvaloniaResource Include="res\Langtool.ico" />
+    <AvaloniaResource Include="res\LocalConfig.ico" />
+    <AvaloniaResource Include="res\Localmain.ico" />
+    <AvaloniaResource Include="res\Opcdaclient.ico" />
+    <AvaloniaResource Include="res\Opcuaclient.ico" />
+    <AvaloniaResource Include="res\Opcuaserver.ico" />
+    <AvaloniaResource Include="res\Plcscan.ico" />
+    <AvaloniaResource Include="res\Projectmanager.ico" />
+    <AvaloniaResource Include="res\Runmain.ico" />
+    <AvaloniaResource Include="res\SMS.ico" />
+    <AvaloniaResource Include="res\Studio.ico" />
+    <AvaloniaResource Include="res\ViewMain.ico" />
+    <AvaloniaResource Include="res\Watchdog.ico" />
+    <AvaloniaResource Include="res\Registernet.ico" />
+    <AvaloniaResource Include="res\launcher3.ico" />
+
+
+  
+      <AvaloniaResource Include="Assets\Icons\battery.png" />
+      <AvaloniaResource Include="Assets\Icons\bluetooth.png" />
+      <AvaloniaResource Include="Assets\Icons\error.png" />
+      <AvaloniaResource Include="Assets\Icons\folder.png" />
+      <AvaloniaResource Include="Assets\Icons\forbidden.png" />
+      <AvaloniaResource Include="Assets\Icons\info.png" />
+      <AvaloniaResource Include="Assets\Icons\imageicon.png" />
+      <AvaloniaResource Include="Assets\Icons\lock.png" />
+      <AvaloniaResource Include="Assets\Icons\plus.png" />
+      <AvaloniaResource Include="Assets\Icons\plus_green.png" />
+      <AvaloniaResource Include="Assets\Icons\minus.png" />
+      <AvaloniaResource Include="Assets\Icons\minus_red.png" />
+      <AvaloniaResource Include="Assets\Icons\question.png" />
+      <AvaloniaResource Include="Assets\Icons\setting.png" />
+      <AvaloniaResource Include="Assets\Icons\speakerless.png" />
+      <AvaloniaResource Include="Assets\Icons\speakermore.png" />
+      <AvaloniaResource Include="Assets\Icons\scroll.png" />
+      <AvaloniaResource Include="Assets\Icons\stop.png" />
+      <AvaloniaResource Include="Assets\Icons\stopwatch.png" />
+      <AvaloniaResource Include="Assets\Icons\success.png" />
+      <AvaloniaResource Include="Assets\Icons\schedule.png" />
+      <AvaloniaResource Include="Assets\Icons\tag.png" />
+      <AvaloniaResource Include="Assets\Icons\warning.png" />
+      <AvaloniaResource Include="Assets\Icons\wifi.png" />
+      <AvaloniaResource Include="Assets\Icons\delete.png" />
+      <AvaloniaResource Include="Assets\Icons\save.png" />
+      <AvaloniaResource Include="Assets\Icons\mainicon.png" />
+      <AvaloniaResource Include="Assets\Icons\copy.png" />
+      <AvaloniaResource Include="Assets\Icons\Localmain3.ico" />
+      <AvaloniaResource Include="Assets\Icons\autobase_logo1.png" />
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="res\" />
+  </ItemGroup>
+
+
+
+</Project>

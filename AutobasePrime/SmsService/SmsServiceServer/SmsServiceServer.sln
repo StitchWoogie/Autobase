@@ -1,0 +1,72 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsServiceServer", "SmsServiceServer.csproj", "{5549739B-4848-4AF7-9159-657A4AD84A72}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLibLocal", "..\..\Dll\AutoLibLocal\AutoLibLocal.csproj", "{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTools", "..\..\..\NetTools\NetTools.csproj", "{D49B5268-4C34-44C6-B688-80653EE9A189}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionReport", "..\..\Dll\ExceptionReport\ExceptionReport.csproj", "{AEA6187C-26AF-4025-9C02-29A010F81CFE}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccProjectUniqueName0 = ..\\..\\Dll\\AutoLibLocal\\AutoLibLocal.csproj
+		SccProjectName0 = \u0022$/AutoBase/Dll/AutoLibLocal\u0022,\u0020JYDAAAAA
+		SccLocalPath0 = ..\\..\\Dll\\AutoLibLocal
+		SccProvider0 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+		CanCheckoutShared = false
+		SccProjectUniqueName1 = ..\\..\\..\\NetTools\\NetTools.csproj
+		SccProjectName1 = \u0022$/NetTools\u0022,\u0020LBAAAAAA
+		SccLocalPath1 = ..\\..\\..\\NetTools
+		SccProvider1 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+		CanCheckoutShared = false
+		SccProjectUniqueName2 = ..\\..\\Dll\\ExceptionReport\\ExceptionReport.csproj
+		SccProjectName2 = \u0022$/AutoBase/Dll/ExceptionReport\u0022,\u0020MFDAAAAA
+		SccLocalPath2 = ..\\..\\Dll\\ExceptionReport
+		SccProvider2 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+		CanCheckoutShared = false
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		로컬 전체 컴파일 = 로컬 전체 컴파일
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{5549739B-4848-4AF7-9159-657A4AD84A72}.로컬 전체 컴파일.ActiveCfg = Debug|.NET
+		{5549739B-4848-4AF7-9159-657A4AD84A72}.로컬 전체 컴파일.Build.0 = Debug|.NET
+		{5549739B-4848-4AF7-9159-657A4AD84A72}.Debug.ActiveCfg = Debug|.NET
+		{5549739B-4848-4AF7-9159-657A4AD84A72}.Debug.Build.0 = Debug|.NET
+		{5549739B-4848-4AF7-9159-657A4AD84A72}.Release.ActiveCfg = Release|.NET
+		{5549739B-4848-4AF7-9159-657A4AD84A72}.Release.Build.0 = Release|.NET
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일.ActiveCfg = Debug|.NET
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일.Build.0 = Debug|.NET
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug.ActiveCfg = Debug|.NET
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug.Build.0 = Debug|.NET
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release.ActiveCfg = Release|.NET
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release.Build.0 = Release|.NET
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일.ActiveCfg = Debug|.NET
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일.Build.0 = Debug|.NET
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug.ActiveCfg = Debug|.NET
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug.Build.0 = Debug|.NET
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release.ActiveCfg = Release|.NET
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release.Build.0 = Release|.NET
+		{AEA6187C-26AF-4025-9C02-29A010F81CFE}.로컬 전체 컴파일.ActiveCfg = Debug|.NET
+		{AEA6187C-26AF-4025-9C02-29A010F81CFE}.로컬 전체 컴파일.Build.0 = Debug|.NET
+		{AEA6187C-26AF-4025-9C02-29A010F81CFE}.Debug.ActiveCfg = Debug|.NET
+		{AEA6187C-26AF-4025-9C02-29A010F81CFE}.Debug.Build.0 = Debug|.NET
+		{AEA6187C-26AF-4025-9C02-29A010F81CFE}.Release.ActiveCfg = Release|.NET
+		{AEA6187C-26AF-4025-9C02-29A010F81CFE}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

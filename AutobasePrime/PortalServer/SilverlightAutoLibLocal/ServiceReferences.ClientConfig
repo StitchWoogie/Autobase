@@ -1,0 +1,42 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="ServiceUserProtectSoap" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None">
+                        <transport>
+                            <extendedProtectionPolicy policyEnforcement="Never" />
+                        </transport>
+                    </security>
+                </binding>
+                <binding name="WebServiceDataSet2Soap" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None">
+                        <transport>
+                            <extendedProtectionPolicy policyEnforcement="Never" />
+                        </transport>
+                    </security>
+                </binding>
+                <binding name="WebServiceDataTag2Soap" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost:62893/AutoBaseWeb/AutoWeb/Service/ServiceUserProtect.asmx"
+                binding="basicHttpBinding" bindingConfiguration="ServiceUserProtectSoap"
+                contract="ServiceReferenceUserProtect.ServiceUserProtectSoap"
+                name="ServiceUserProtectSoap" />
+            <endpoint address="http://localhost:62893/AutoBaseWeb/AutoWeb/Service/WebServiceDataSet2.asmx"
+                binding="basicHttpBinding" bindingConfiguration="WebServiceDataSet2Soap"
+                contract="ServiceReferenceDataSet2.WebServiceDataSet2Soap"
+                name="WebServiceDataSet2Soap" />
+            <endpoint address="http://localhost:63497/AutoWeb/Service/WebServiceDataTag2.asmx"
+                binding="basicHttpBinding" bindingConfiguration="WebServiceDataTag2Soap"
+                contract="ServiceReferenceDataTag2.WebServiceDataTag2Soap"
+                name="WebServiceDataTag2Soap" />
+        </client>
+    </system.serviceModel>
+</configuration>

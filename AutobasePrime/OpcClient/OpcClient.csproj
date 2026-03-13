@@ -1,0 +1,482 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '로컬 전체 컴파일|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\EXE\Autobase48\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84C9F697-30EC-4868-9B23-DA784A3AC367}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>OPC.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>OpcClient</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>OpcClient</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>\\192.168.1.220\AutoBase\AutoBase_10_2_5\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '로컬 전체 컴파일|AnyCPU' ">
+    <OutputPath>..\..\..\exe\Autobase48\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\exe\Autobase48\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NetTools\NetTools.csproj">
+      <Project>{D49B5268-4C34-44C6-B688-80653EE9A189}</Project>
+      <Name>NetTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\AutoLibLocal\AutoLibLocal.csproj">
+      <Project>{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}</Project>
+      <Name>AutoLibLocal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\AutoLib\AutoLib.csproj">
+      <Project>{DFE68F78-7DBA-45BC-AB91-FB685733205B}</Project>
+      <Name>AutoLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogCommon\DialogCommon.csproj">
+      <Project>{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}</Project>
+      <Name>DialogCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="COM Wrapper\OPC NET COM Wrapper.csproj">
+      <Name>OPC NET COM Wrapper</Name>
+      <Project>{170A5455-A090-4F26-810F-15F71BBF87E6}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="OPC NET API\OPC NET API.csproj">
+      <Name>OPC NET API</Name>
+      <Project>{98B6E5A1-6FED-434E-B568-9C68D5F9959C}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="XML Wrapper\OPC NET XML Wrapper.csproj">
+      <Name>OPC NET XML Wrapper</Name>
+      <Project>{82283125-79FD-4A52-948A-A928CC51C07B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Content Include="App.ico" />
+    <Content Include="OPC.ico" />
+    <Content Include="OPC_Client.ico" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrowseNodeResult.cs" />
+    <Compile Include="FormMainOpcClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\basicTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\FormSelectServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\NetworkCredentialsDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcBasicReadWriteClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcConnectionConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcEtcConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcGroupItemReadRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcGroupReadRegisgerForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcItemSearchDlgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcReadWriteFileAccessClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcReadWriteGroupLoopClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcServerReadRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcServerViewWriteDelayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\opcServerViewWriteDelayForm.Designer.cs">
+      <DependentUpon>opcServerViewWriteDelayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="hansolOpc\opcWriteItemTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\Resources.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hansolOpc\TimeOutClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OpcClientHelpAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="plcScanComm\comShareClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="plcScanComm\plcScanCommMainClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="plcScanComm\plcScanCommSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="FormMainOpcClient.ja.resx">
+      <DependentUpon>FormMainOpcClient.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMainOpcClient.ko.resx">
+      <DependentUpon>FormMainOpcClient.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMainOpcClient.resx">
+      <DependentUpon>FormMainOpcClient.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMainOpcClient.zh-CHS.resx">
+      <DependentUpon>FormMainOpcClient.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\FormSelectServer.ja.resx">
+      <DependentUpon>FormSelectServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\FormSelectServer.ko.resx">
+      <DependentUpon>FormSelectServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\FormSelectServer.resx">
+      <DependentUpon>FormSelectServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\FormSelectServer.zh-CHS.resx">
+      <DependentUpon>FormSelectServer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\NetworkCredentialsDlg.ko.resx">
+      <DependentUpon>NetworkCredentialsDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\NetworkCredentialsDlg.resx">
+      <DependentUpon>NetworkCredentialsDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcConnectionConfigForm.ja.resx">
+      <DependentUpon>opcConnectionConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcConnectionConfigForm.ko.resx">
+      <DependentUpon>opcConnectionConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcConnectionConfigForm.resx">
+      <DependentUpon>opcConnectionConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcConnectionConfigForm.zh-CHS.resx">
+      <DependentUpon>opcConnectionConfigForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcEtcConfigForm.ja.resx">
+      <DependentUpon>opcEtcConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcEtcConfigForm.ko.resx">
+      <DependentUpon>opcEtcConfigForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcEtcConfigForm.resx">
+      <DependentUpon>opcEtcConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcEtcConfigForm.zh-CHS.resx">
+      <DependentUpon>opcEtcConfigForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcGroupItemReadRegisterForm.ja.resx">
+      <DependentUpon>opcGroupItemReadRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcGroupItemReadRegisterForm.ko.resx">
+      <DependentUpon>opcGroupItemReadRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcGroupItemReadRegisterForm.resx">
+      <DependentUpon>opcGroupItemReadRegisterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcGroupItemReadRegisterForm.zh-CHS.resx">
+      <DependentUpon>opcGroupItemReadRegisterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcGroupReadRegisgerForm2.ja.resx">
+      <DependentUpon>opcGroupReadRegisgerForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcGroupReadRegisgerForm2.ko.resx">
+      <DependentUpon>opcGroupReadRegisgerForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcGroupReadRegisgerForm2.resx">
+      <DependentUpon>opcGroupReadRegisgerForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcGroupReadRegisgerForm2.zh-CHS.resx">
+      <DependentUpon>opcGroupReadRegisgerForm2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcItemSearchDlgForm.ja.resx">
+      <DependentUpon>opcItemSearchDlgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcItemSearchDlgForm.ko.resx">
+      <DependentUpon>opcItemSearchDlgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcItemSearchDlgForm.resx">
+      <DependentUpon>opcItemSearchDlgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcItemSearchDlgForm.zh-CHS.resx">
+      <DependentUpon>opcItemSearchDlgForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcServerReadRegisterForm.ja.resx">
+      <DependentUpon>opcServerReadRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcServerReadRegisterForm.ko.resx">
+      <DependentUpon>opcServerReadRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcServerReadRegisterForm.resx">
+      <DependentUpon>opcServerReadRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcServerReadRegisterForm.zh-CHS.resx">
+      <DependentUpon>opcServerReadRegisterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcServerViewWriteDelayForm.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>opcServerViewWriteDelayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcServerViewWriteDelayForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>opcServerViewWriteDelayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcWriteItemTestForm.ja.resx">
+      <DependentUpon>opcWriteItemTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcWriteItemTestForm.ko.resx">
+      <DependentUpon>opcWriteItemTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcWriteItemTestForm.resx">
+      <DependentUpon>opcWriteItemTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\opcWriteItemTestForm.zh-CHS.resx">
+      <DependentUpon>opcWriteItemTestForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hansolOpc\Resources.resx">
+      <DependentUpon>Resources.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpcClientHelpAbout.ko.resx">
+      <DependentUpon>OpcClientHelpAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpcClientHelpAbout.resx">
+      <DependentUpon>OpcClientHelpAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpcClientHelpAbout.zh-CHS.resx">
+      <DependentUpon>OpcClientHelpAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="plcScanComm\plcScanCommSettingForm.ko.resx">
+      <DependentUpon>plcScanCommSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="plcScanComm\plcScanCommSettingForm.resx">
+      <DependentUpon>plcScanCommSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="plcScanComm\plcScanCommSettingForm.zh-CHS.resx">
+      <DependentUpon>plcScanCommSettingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

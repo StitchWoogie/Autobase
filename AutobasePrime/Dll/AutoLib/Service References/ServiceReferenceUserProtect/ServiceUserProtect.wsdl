@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="ServiceUserProtect" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceUserProtect.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceUserProtect.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceUserProtect.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PortalServerWeb.AutoWeb.Service" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceUserProtect_CheckUserName_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserName" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_CheckUserName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_CheckUserNameWithVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserNameWithVersion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_CheckUserNameWithVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserNameWithVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_GetUserCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserCount" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_GetUserCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_DefaultUserCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:DefaultUserCheck" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_DefaultUserCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DefaultUserCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_DefaultUserCheckWithVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:DefaultUserCheckWithVersion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_DefaultUserCheckWithVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DefaultUserCheckWithVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_LogOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogOut" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_LogOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_UpdateHeartbeat_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHeartbeat" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_UpdateHeartbeat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHeartbeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_GetConnectionStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConnectionStatus" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUserProtect_GetConnectionStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConnectionStatusResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceUserProtect">
+    <wsdl:operation name="CheckUserName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUserProtect/CheckUserName" message="tns:IServiceUserProtect_CheckUserName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUserProtect/CheckUserNameResponse" message="tns:IServiceUserProtect_CheckUserName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserNameWithVersion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUserProtect/CheckUserNameWithVersion" message="tns:IServiceUserProtect_CheckUserNameWithVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUserProtect/CheckUserNameWithVersionResponse" message="tns:IServiceUserProtect_CheckUserNameWithVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUserProtect/GetUserCount" message="tns:IServiceUserProtect_GetUserCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUserProtect/GetUserCountResponse" message="tns:IServiceUserProtect_GetUserCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DefaultUserCheck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUserProtect/DefaultUserCheck" message="tns:IServiceUserProtect_DefaultUserCheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUserProtect/DefaultUserCheckResponse" message="tns:IServiceUserProtect_DefaultUserCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DefaultUserCheckWithVersion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUserProtect/DefaultUserCheckWithVersion" message="tns:IServiceUserProtect_DefaultUserCheckWithVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUserProtect/DefaultUserCheckWithVersionResponse" message="tns:IServiceUserProtect_DefaultUserCheckWithVersion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUserProtect/LogOut" message="tns:IServiceUserProtect_LogOut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUserProtect/LogOutResponse" message="tns:IServiceUserProtect_LogOut_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateHeartbeat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUserProtect/UpdateHeartbeat" message="tns:IServiceUserProtect_UpdateHeartbeat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUserProtect/UpdateHeartbeatResponse" message="tns:IServiceUserProtect_UpdateHeartbeat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectionStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUserProtect/GetConnectionStatus" message="tns:IServiceUserProtect_GetConnectionStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUserProtect/GetConnectionStatusResponse" message="tns:IServiceUserProtect_GetConnectionStatus_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServiceUserProtect" type="tns:IServiceUserProtect">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckUserName">
+      <soap:operation soapAction="http://tempuri.org/IServiceUserProtect/CheckUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserNameWithVersion">
+      <soap:operation soapAction="http://tempuri.org/IServiceUserProtect/CheckUserNameWithVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCount">
+      <soap:operation soapAction="http://tempuri.org/IServiceUserProtect/GetUserCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DefaultUserCheck">
+      <soap:operation soapAction="http://tempuri.org/IServiceUserProtect/DefaultUserCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DefaultUserCheckWithVersion">
+      <soap:operation soapAction="http://tempuri.org/IServiceUserProtect/DefaultUserCheckWithVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap:operation soapAction="http://tempuri.org/IServiceUserProtect/LogOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateHeartbeat">
+      <soap:operation soapAction="http://tempuri.org/IServiceUserProtect/UpdateHeartbeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectionStatus">
+      <soap:operation soapAction="http://tempuri.org/IServiceUserProtect/GetConnectionStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceUserProtect">
+    <wsdl:port name="BasicHttpBinding_IServiceUserProtect" binding="tns:BasicHttpBinding_IServiceUserProtect">
+      <soap:address location="http://localhost:63500/AutoWeb/Service/ServiceUserProtect.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

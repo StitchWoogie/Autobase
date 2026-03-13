@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="checkBoxAiCalcSameFormat.Text" xml:space="preserve">
+    <value>AI 계산시 표시 형식과 일치</value>
+  </data>
+  <data name="buttonOK.Text" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="checkBoxMatchAlarmReturnGabAndHiHiLoLoDO.Text" xml:space="preserve">
+    <value>AI 경보 복귀값과 HiHi/LoLo DO 연결</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>스캔 시작 시간</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>초</value>
+  </data>
+  <data name="checkBoxContinueScriptOnError.Text" xml:space="preserve">
+    <value>상시 스크립트 오류 발생 시 계속 진행</value>
+  </data>
+  <data name="checkBoxTagInfoString.Text" xml:space="preserve">
+    <value>태그 정보 윈도우 표시</value>
+  </data>
+  <data name="checkBoxFitWindowSize.Text" xml:space="preserve">
+    <value>화면을 윈도우 크기에 맞춤</value>
+  </data>
+  <data name="checkBoxLeftMouseResponse.Text" xml:space="preserve">
+    <value>그래픽 감시에서 왼쪽 마우스 응답</value>
+  </data>
+  <data name="checkBoxRightMouseResponse.Text" xml:space="preserve">
+    <value>그래픽 감시에서 오른쪽 마우스 응답</value>
+  </data>
+  <data name="checkBoxGraphicMenuButton.Text" xml:space="preserve">
+    <value>그래픽 감시에서 메뉴 버튼 사용</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>그래픽</value>
+  </data>
+  <data name="checkBoxScanPause.Text" xml:space="preserve">
+    <value>스캔 일시 중지</value>
+  </data>
+  <data name="checkBoxExitWithPlcScan.Text" xml:space="preserve">
+    <value>프로그램 종료 시 통신프로그램도 종료</value>
+  </data>
+  <data name="checkBoxEndPrompt.Text" xml:space="preserve">
+    <value>프로그램 종료시 확인상자 표시</value>
+  </data>
+  <data name="checkBoxPlcScanWriteTest.Text" xml:space="preserve">
+    <value>통신 프로그램 출력 테스트</value>
+  </data>
+  <data name="checkBoxWriteAiSubWhenStart.Text" xml:space="preserve">
+    <value>감시 프로그램 시작 시 AI Sub 태그 출력</value>
+  </data>
+  <data name="checkBoxWriteDiSubWhenStart.Text" xml:space="preserve">
+    <value>감시 프로그램 시작 시 DI Sub 태그 출력</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>for 루프 시간초과</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>초</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>최소 지연 시간 (ms) :</value>
+  </data>
+  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 45</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>오브젝트 개수 :</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="checkBoxEnableMaintimerProfile.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxEnableMaintimerProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBoxEnableMaintimerProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 16</value>
+  </data>
+  <data name="checkBoxEnableMaintimerProfile.Text" xml:space="preserve">
+    <value>메인타이머 지연시간 로깅 사용</value>
+  </data>
+  <data name="checkBoxEnableBatchProcessing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 16</value>
+  </data>
+  <data name="checkBoxEnableBatchProcessing.Text" xml:space="preserve">
+    <value>UI 배치 처리 기능 사용</value>
+  </data>
+  <data name="checkBoxUseAlarmServer.Text" xml:space="preserve">
+    <value>경보 웹 서버 사용</value>
+  </data>
+  <data name="checkBoxUseTestModeMessage.Text" xml:space="preserve">
+    <value>테스트 모드 알림 상자 사용</value>
+  </data>
+  <data name="checkBoxUseNotifyIcon.Text" xml:space="preserve">
+    <value>알림 아이콘 사용</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>MDI 창 제한</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>일반항목</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>스크립트</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>출력상자</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>프로그램</value>
+  </data>
+  <data name="tabPage6.Text" xml:space="preserve">
+    <value>그래픽</value>
+  </data>
+  <data name="tabPage8.Text" xml:space="preserve">
+    <value>글꼴과색상</value>
+  </data>
+  <data name="tabPage9.Text" xml:space="preserve">
+    <value>기타</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>리포터</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>기본 화면</value>
+  </data>
+  <data name="checkBoxScriptErrorMessageElse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 16</value>
+  </data>
+  <data name="checkBoxScriptErrorMessageElse.Text" xml:space="preserve">
+    <value>기타 오류 메시지</value>
+  </data>
+  <data name="checkBoxScriptErrorMessageTagNotFound.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 16</value>
+  </data>
+  <data name="checkBoxScriptErrorMessageTagNotFound.Text" xml:space="preserve">
+    <value>태그 없음 메시지</value>
+  </data>
+  <data name="checkBoxShowScriptErrorMessage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 16</value>
+  </data>
+  <data name="checkBoxShowScriptErrorMessage.Text" xml:space="preserve">
+    <value>스크립트 오류 메시지 표시</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>@PrintModule 함수용 프린터</value>
+  </data>
+  <data name="comboBoxPrinter.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="comboBoxPrinter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>272, 20</value>
+  </data>
+  <data name="checkBoxUseStringModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 16</value>
+  </data>
+  <data name="checkBoxUseStringModule.Text" xml:space="preserve">
+    <value>사용자 정의 문자열 출력상자 사용</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 12</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>문자열 출력상자용 모듈</value>
+  </data>
+  <data name="checkBoxUseDigitalModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 16</value>
+  </data>
+  <data name="checkBoxUseDigitalModule.Text" xml:space="preserve">
+    <value>사용자 정의 디지털 출력상자 사용</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 12</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>디지털 출력상자용 모듈</value>
+  </data>
+  <data name="checkBoxUseAnalogModule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 16</value>
+  </data>
+  <data name="checkBoxUseAnalogModule.Text" xml:space="preserve">
+    <value>사용자 정의 아날로그 출력상자 사용</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 12</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>아날로그 출력상자용 모듈</value>
+  </data>
+  <data name="checkBoxExitWithUaClient.Text" xml:space="preserve">
+    <value>프로그램 종료 시 OPCUA Client 도 종료</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>OPC 서버</value>
+  </data>
+  <data name="checkBoxUseOpcServerItemSecurity.Text" xml:space="preserve">
+    <value>아이템 보안 사용 (Visible,Readable,Writable)</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>OPC 클라이언트</value>
+  </data>
+  <data name="checkBoxUseDeviceQuality.Text" xml:space="preserve">
+    <value>디바이스 품질 표시 사용 (OPC)</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>OPCDA 서버</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 12</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>그룹 구분 문자</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 12</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Read Interval (밀리초)</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 12</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>변화된 아이템의 Subscription 갱신 횟수</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 12</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>사용할 태그 그룹명</value>
+  </data>
+  <data name="checkBoxOpcServerUseRootItem.Text" xml:space="preserve">
+    <value>Root 아이템 사용</value>
+  </data>
+  <data name="checkBoxCloseOpcServerWhenLocalMainExit.Text" xml:space="preserve">
+    <value>프로그램 종료 시 OPC서버도 종료</value>
+  </data>
+  <data name="checkBoxStartOpcServerWhileLocalMainRunning.Text" xml:space="preserve">
+    <value>감시 프로그램 실행 중에만 OPC서버 시작</value>
+  </data>
+  <data name="checkBoxAlwaysOpenNewReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 16</value>
+  </data>
+  <data name="checkBoxAlwaysOpenNewReport.Text" xml:space="preserve">
+    <value>무조건 리포트 모듈을 새로 열기</value>
+  </data>
+  <data name="checkBoxRemoveFlashingWhenActivatingMdiModule.Text" xml:space="preserve">
+    <value>MDI 모듈 전환 시 깜박임 제거</value>
+  </data>
+  <data name="checkBoxUseProtectMenu.Text" xml:space="preserve">
+    <value>각종 금지 메뉴 사용</value>
+  </data>
+  <data name="checkBoxDisplayMouseZoneWhenSameTagSelected.Text" xml:space="preserve">
+    <value>같은 태그를 사용한 오브젝트의 마우스 영역 함께 표시</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>마우스 오른쪽 버튼</value>
+  </data>
+  <data name="checkBoxRightMouseOnObject.Text" xml:space="preserve">
+    <value>각 오브젝트에서 버튼 사용</value>
+  </data>
+  <data name="checkBoxRightMouseGraphicContextMenu.Text" xml:space="preserve">
+    <value>그래픽 기본 단축 메뉴로 사용</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>마우스 왼쪽 버튼</value>
+  </data>
+  <data name="checkBoxOnOffListAddOneSecondToOperationTime.Text" xml:space="preserve">
+    <value>가동시간 계산 시 1초를 더함</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 12</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>기본 언어 설정은 프로그램 재시작 시 적용됩니다.</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>프로그램 기본 언어 설정</value>
+  </data>
+  <data name="m_list.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="m_list.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 100</value>
+  </data>
+  <data name="comboBoxStartMonitorIndex.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 20</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 12</value>
+  </data>
+  <data name="checkBoxUseAutomaticFileRecovery.Text" xml:space="preserve">
+    <value>자동 파일 복구 사용 (TAG)</value>
+  </data>
+  <data name="checkBoxTagValueShareBySharedMemory.Text" xml:space="preserve">
+    <value>공유 메모리를 통한 태그값 공유</value>
+  </data>
+  <data name="checkBoxRestoreLocationSizeOnStartup.Text" xml:space="preserve">
+    <value>프로그램 시작 시 이전의 화면 위치와 크기 유지</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>출력결과 미리보기</value>
+  </data>
+  <data name="checkBoxUsePreviewOutputResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 16</value>
+  </data>
+  <data name="checkBoxUsePreviewOutputResult.Text" xml:space="preserve">
+    <value>미리보기 사용</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>밀리초</value>
+  </data>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>굴림, 9pt</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>기타 환경 설정</value>
+  </data>
+</root>

@@ -1,0 +1,566 @@
+Resolution,1024,100
+DefaultLocation,0,0,0
+ModuleOptic,0
+ModuleWindowStyle,0,False,100,1,False
+ModuleWindowStyleFlag,13107200,0
+BackGroundColor,255,255,255,255
+Version, 10,3,6,17,
+ObjectGroup,BEGIN,
+	GroupRect,0,0,1023,99,
+	GroupSize,1024,100,
+ObjectAnalogString,BEGIN
+	Rect,229,29,329,54,
+	TagName,year,
+	TagMouseResponse,0,,0,0,,?,?,
+	TagDigitalOutputMethod,0,
+	TagDigitalOutputDelayTime,0,
+	TextColor,0,0,0,255,
+	BackColor,255,255,255,255,1,
+
+	BackBox,2,
+	LocalMethod,0,
+	StringOption,,0,2,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,AnalogString1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,1
+	ScriptMouseZone,BEGIN
+Zone,5,5,5,5,
+Lock,1,
+	ScriptMouseZone,END
+	ExpandScript,END
+ObjectAnalogString,END
+ObjectAnalogString,BEGIN
+	Rect,359,24,459,49,
+	TagName,mon,
+	TagMouseResponse,0,,0,0,,?,?,
+	TagDigitalOutputMethod,0,
+	TagDigitalOutputDelayTime,0,
+	TextColor,0,0,0,255,
+	BackColor,255,255,255,255,1,
+
+	BackBox,2,
+	LocalMethod,0,
+	StringOption,,0,2,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,AnalogString1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,1
+	ScriptMouseZone,BEGIN
+Zone,5,5,5,5,
+Lock,1,
+	ScriptMouseZone,END
+	ExpandScript,END
+ObjectAnalogString,END
+ObjectAnalogString,BEGIN
+	Rect,490,26,590,51,
+	TagName,day,
+	TagMouseResponse,0,,0,0,,?,?,
+	TagDigitalOutputMethod,0,
+	TagDigitalOutputDelayTime,0,
+	TextColor,0,0,0,255,
+	BackColor,255,255,255,255,1,
+
+	BackBox,2,
+	LocalMethod,0,
+	StringOption,,0,2,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,AnalogString1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,1
+	ScriptMouseZone,BEGIN
+Zone,5,5,5,5,
+Lock,1,
+	ScriptMouseZone,END
+	ExpandScript,END
+ObjectAnalogString,END
+ObjectAnalogString,BEGIN
+	Rect,620,28,720,53,
+	TagName,hour,
+	TagMouseResponse,0,,0,0,,?,?,
+	TagDigitalOutputMethod,0,
+	TagDigitalOutputDelayTime,0,
+	TextColor,0,0,0,255,
+	BackColor,255,255,255,255,1,
+
+	BackBox,2,
+	LocalMethod,0,
+	StringOption,,0,2,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,AnalogString1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,1
+	ScriptMouseZone,BEGIN
+Zone,5,5,5,5,
+Lock,1,
+	ScriptMouseZone,END
+	ExpandScript,END
+ObjectAnalogString,END
+ObjectAnalogString,BEGIN
+	Rect,751,25,851,50,
+	TagName,min,
+	TagMouseResponse,0,,0,0,,?,?,
+	TagDigitalOutputMethod,0,
+	TagDigitalOutputDelayTime,0,
+	TextColor,0,0,0,255,
+	BackColor,255,255,255,255,1,
+
+	BackBox,2,
+	LocalMethod,0,
+	StringOption,,0,2,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,AnalogString1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,1
+	ScriptMouseZone,BEGIN
+Zone,5,5,5,5,
+Lock,1,
+	ScriptMouseZone,END
+	ExpandScript,END
+ObjectAnalogString,END
+ObjectAnalogString,BEGIN
+	Rect,876,15,976,40,
+	TagName,sec,
+	TagMouseResponse,0,,0,0,,?,?,
+	TagDigitalOutputMethod,0,
+	TagDigitalOutputDelayTime,0,
+	TextColor,0,0,0,255,
+	BackColor,255,255,255,255,1,
+
+	BackBox,2,
+	LocalMethod,0,
+	StringOption,,0,2,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,AnalogString1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,1
+	ScriptMouseZone,BEGIN
+Zone,5,5,5,5,
+Lock,1,
+	ScriptMouseZone,END
+	ExpandScript,END
+ObjectAnalogString,END
+ObjectControlComboBox,BEGIN
+	Rect,9,21,209,171,
+	TagName,,
+	TextColor,0,0,0,255,
+	BackColor,255,255,255,255,1,
+
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	WindowStyle,00000002,
+	StringOption,0,
+	ListData,report1234,
+	ListData,report5678,
+	ListData,report0000,
+	ClassName,ComboBox1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectControlComboBox,END
+ObjectButtonProgramm,BEGIN
+	Rect,914,38,967,68,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,i,1,"0,"
+Programm,BEGIN,
+i = @ComboBoxGetCurSel("ComboBox1");
+if( i>0)
+{
+i = i-1;
+}
+@ComboBoxSetCurSel("ComboBox1", i);
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,◀,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,11,66,98,96,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Data,int,i,1,"0,"
+Programm,BEGIN,
+index = @ComboBoxGetCurSel("ComboBox1");
+@ReportSetTime($year, $mon, $day, $hour);
+for ( i = 0; i <1; i= i+1)
+{
+if(index == 0)
+{
+@ReportCloseName("report1234.rptx");
+
+}
+elseif(index==1)
+{
+@ReportCloseName("report5678.rptx");
+
+}
+elseif(index==2)
+{
+
+@ReportCloseName("report0000.rptx");
+
+}
+}
+
+@MenuScript(000);
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,조회,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,197,64,300,94,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Programm,BEGIN,
+@ReportCloseAll(0);
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,CloseAll,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,958,56,1029,86,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,i,1,"0,"
+Programm,BEGIN,
+i = @ComboBoxGetCurSel("ComboBox1");
+if( i<2)
+{
+i = i+1;
+}
+@ComboBoxSetCurSel("ComboBox1", i);
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,▶,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,314,63,417,93,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Programm,BEGIN,
+// @ReportCloseAll(0);
+index = @ComboBoxGetCurSel("ComboBox1");
+
+
+if(index == 0)
+{
+@ReportCloseName("report1234.rptx");
+
+}
+elseif(index==1)
+{
+@ReportCloseName("report5678.rptx");
+
+}
+elseif(index==2)
+{
+
+@ReportCloseName("report0000.rptx");
+
+}
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,Close,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,451,64,528,94,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Programm,BEGIN,
+// @ReportCloseAll(0);
+index = @ComboBoxGetCurSel("ComboBox1");
+@ReportSetTime($year, $mon, $day, $hour);
+
+if(index == 0)
+{
+@ReportView("C:\\AutoBase\\Project\\ReportTest\\Report\\report1234.rptx");
+
+}
+elseif(index==1)
+{
+@ReportView("C:\\AutoBase\\Project\\ReportTest\\Report\\report5678.rptx");
+
+}
+elseif(index==2)
+{
+
+@ReportView("C:\\AutoBase\\Project\\ReportTest\\Report\\report0000.rptx");
+
+}
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,test,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,545,63,622,93,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Programm,BEGIN,
+// @ReportCloseAll(0);
+index = @ComboBoxGetCurSel("ComboBox1");
+@ReportSetTime($year, $mon, $day, $hour);
+
+if(index == 0)
+{
+
+@ReportPrintPDF("report1234.rptx", "C:\\AutoBase\\Project\\ReportTest\\Report\\report1234.pdf");
+
+}
+elseif(index==1)
+{
+
+@ReportPrintPDF("report5678.rptx", "C:\\AutoBase\\Project\\ReportTest\\Report\\report5678.pdf");
+
+}
+elseif(index==2)
+{
+
+
+@ReportPrintPDF("report0000.rptx", "report0000.pdf");
+
+}
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,PDF,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,101,61,188,91,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Data,int,i,1,"0,"
+Programm,BEGIN,
+@MenuScript(000);
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,조회,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,641,62,718,92,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Data,string,a,1,"0,"
+Data,string,b,1,"0,"
+Programm,BEGIN,
+// @ReportCloseAll(0);
+index = @ComboBoxGetCurSel("ComboBox1");
+@ReportSetTime($year, $mon, $day, $hour);
+
+@ReportView("C:\\AutoBase\\Project\\ReportTest\\Report\\까치\\ABCDreport1234.rptx");
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,test,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,726,61,803,91,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Data,string,a,1,"0,"
+Programm,BEGIN,
+// @ReportCloseAll(0);
+index = @ComboBoxGetCurSel("ComboBox1");
+@ReportSetTime($year, $mon, $day, $hour);
+@ReportView("까치\\ABCDreport1234.rptx");
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,test,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,801,67,878,97,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Data,string,a,1,"0,"
+Data,string,b,1,"0,"
+Programm,BEGIN,
+// @ReportCloseAll(0);
+index = @ComboBoxGetCurSel("ComboBox1");
+@ReportSetTime($year, $mon, $day, $hour);
+
+@ReportView("C:\\AutoBase\\Project\\ReportTest\\ABCDreport1234.rptx");
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,test,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+ObjectButtonProgramm,BEGIN
+	Rect,885,66,962,96,
+	TextColor,0,0,0,255,
+	BackColor,211,211,211,255,1,
+
+	LineColor,0,0,0,255,
+	LineThick,1,
+	FileName,noname.ctlx,
+		LocalScript,BEGIN
+Description,,
+ScanTime,1,False,False,
+Data,int,index,1,"0,"
+Data,string,a,1,"0,"
+Programm,BEGIN,
+// @ReportCloseAll(0);
+index = @ComboBoxGetCurSel("ComboBox1");
+@ReportSetTime($year, $mon, $day, $hour);
+@ReportView("ABCDreport1234.rptx");
+Programm,END,
+		LocalScript,END
+	StringOption,1,
+	String,test,
+	LogFont,Malgun Gothic,10,0,0,0,0,
+	ClassName,ButtonProgram1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectButtonProgramm,END
+	ClassName,NoName,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectGroup,END,

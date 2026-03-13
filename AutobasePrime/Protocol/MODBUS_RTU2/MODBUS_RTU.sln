@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MODBUS_RTU2", "MODBUS_RTU.vcxproj", "{119D80F3-1969-4F6F-A48D-CC16452F291B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{119D80F3-1969-4F6F-A48D-CC16452F291B}.Debug|x86.ActiveCfg = Debug|Win32
+		{119D80F3-1969-4F6F-A48D-CC16452F291B}.Debug|x86.Build.0 = Debug|Win32
+		{119D80F3-1969-4F6F-A48D-CC16452F291B}.Release|x86.ActiveCfg = Release|Win32
+		{119D80F3-1969-4F6F-A48D-CC16452F291B}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8558BCC9-77B7-42BA-BD3B-5BBC1D0BA03F}
+	EndGlobalSection
+EndGlobal

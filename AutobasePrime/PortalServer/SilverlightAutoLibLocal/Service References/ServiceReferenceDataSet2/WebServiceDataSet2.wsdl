@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetDataSetFromMdb">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="command" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSetFromMdbResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataSetFromMdbResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSetFromDsn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="command" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSetFromDsnResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataSetFromDsnResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataSetCommand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="command" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataSetCommandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DataSetCommandResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConnectionStringDbType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConnectionStringDbTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetConnectionStringDbTypeResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="dbtype" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetDataSetFromMdbSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataSetFromMdb" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSetFromMdbSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataSetFromMdbResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSetFromDsnSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataSetFromDsn" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSetFromDsnSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataSetFromDsnResponse" />
+  </wsdl:message>
+  <wsdl:message name="DataSetCommandSoapIn">
+    <wsdl:part name="parameters" element="tns:DataSetCommand" />
+  </wsdl:message>
+  <wsdl:message name="DataSetCommandSoapOut">
+    <wsdl:part name="parameters" element="tns:DataSetCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetConnectionStringDbTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetConnectionStringDbType" />
+  </wsdl:message>
+  <wsdl:message name="GetConnectionStringDbTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetConnectionStringDbTypeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceDataSet2Soap">
+    <wsdl:operation name="GetDataSetFromMdb">
+      <wsdl:input message="tns:GetDataSetFromMdbSoapIn" />
+      <wsdl:output message="tns:GetDataSetFromMdbSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSetFromDsn">
+      <wsdl:input message="tns:GetDataSetFromDsnSoapIn" />
+      <wsdl:output message="tns:GetDataSetFromDsnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DataSetCommand">
+      <wsdl:input message="tns:DataSetCommandSoapIn" />
+      <wsdl:output message="tns:DataSetCommandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectionStringDbType">
+      <wsdl:input message="tns:GetConnectionStringDbTypeSoapIn" />
+      <wsdl:output message="tns:GetConnectionStringDbTypeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceDataSet2Soap" type="tns:WebServiceDataSet2Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDataSetFromMdb">
+      <soap:operation soapAction="http://tempuri.org/GetDataSetFromMdb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSetFromDsn">
+      <soap:operation soapAction="http://tempuri.org/GetDataSetFromDsn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DataSetCommand">
+      <soap:operation soapAction="http://tempuri.org/DataSetCommand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectionStringDbType">
+      <soap:operation soapAction="http://tempuri.org/GetConnectionStringDbType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceDataSet2Soap12" type="tns:WebServiceDataSet2Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDataSetFromMdb">
+      <soap12:operation soapAction="http://tempuri.org/GetDataSetFromMdb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSetFromDsn">
+      <soap12:operation soapAction="http://tempuri.org/GetDataSetFromDsn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DataSetCommand">
+      <soap12:operation soapAction="http://tempuri.org/DataSetCommand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectionStringDbType">
+      <soap12:operation soapAction="http://tempuri.org/GetConnectionStringDbType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceDataSet2">
+    <wsdl:port name="WebServiceDataSet2Soap" binding="tns:WebServiceDataSet2Soap">
+      <soap:address location="http://localhost:62893/AutoBaseWeb/AutoWeb/Service/WebServiceDataSet2.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceDataSet2Soap12" binding="tns:WebServiceDataSet2Soap12">
+      <soap12:address location="http://localhost:62893/AutoBaseWeb/AutoWeb/Service/WebServiceDataSet2.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

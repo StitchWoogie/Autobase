@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetReportLists">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetReportListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportListsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetReportStruct">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="filename" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tHand" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="tAuto" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="tMinListFr" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="tMinListTo" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="hand_auto" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportStructResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportStructResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportSetVar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="val" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReportSetVarResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetReportListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportLists" />
+  </wsdl:message>
+  <wsdl:message name="GetReportListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReportStructSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportStruct" />
+  </wsdl:message>
+  <wsdl:message name="GetReportStructSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportStructResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReportSetVarSoapIn">
+    <wsdl:part name="parameters" element="tns:ReportSetVar" />
+  </wsdl:message>
+  <wsdl:message name="ReportSetVarSoapOut">
+    <wsdl:part name="parameters" element="tns:ReportSetVarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceReportSoap">
+    <wsdl:operation name="GetReportLists">
+      <wsdl:input message="tns:GetReportListsSoapIn" />
+      <wsdl:output message="tns:GetReportListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportStruct">
+      <wsdl:input message="tns:GetReportStructSoapIn" />
+      <wsdl:output message="tns:GetReportStructSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportSetVar">
+      <wsdl:input message="tns:ReportSetVarSoapIn" />
+      <wsdl:output message="tns:ReportSetVarSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceReportSoap" type="tns:ServiceReportSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetReportLists">
+      <soap:operation soapAction="http://tempuri.org/GetReportLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportStruct">
+      <soap:operation soapAction="http://tempuri.org/GetReportStruct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportSetVar">
+      <soap:operation soapAction="http://tempuri.org/ReportSetVar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceReportSoap12" type="tns:ServiceReportSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetReportLists">
+      <soap12:operation soapAction="http://tempuri.org/GetReportLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportStruct">
+      <soap12:operation soapAction="http://tempuri.org/GetReportStruct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportSetVar">
+      <soap12:operation soapAction="http://tempuri.org/ReportSetVar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceReport">
+    <wsdl:port name="ServiceReportSoap" binding="tns:ServiceReportSoap">
+      <soap:address location="http://localhost:58454/AutoBaseWeb/AutoWeb/Service/ServiceReport.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceReportSoap12" binding="tns:ServiceReportSoap12">
+      <soap12:address location="http://localhost:58454/AutoBaseWeb/AutoWeb/Service/ServiceReport.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

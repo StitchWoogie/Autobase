@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceDownLoadProject.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PortalServerWeb.AutoWeb.Service" />
+  <xs:element name="Download">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dir" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filename" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="compare_flag" type="xs:boolean" />
+        <xs:element minOccurs="0" name="file_time" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="file_size" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/PortalServerWeb.AutoWeb.Service" minOccurs="0" name="DownloadResult" nillable="true" type="q1:WcfServiceDownLoadProject.DownloadResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="ResultType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="failed" />
+      <xs:enumeration value="matched" />
+      <xs:enumeration value="download" />
+      <xs:enumeration value="notfound" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ResultType" nillable="true" type="tns:ResultType" />
+</xs:schema>

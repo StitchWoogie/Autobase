@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PortalServerWeb.AutoWeb.Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PortalServerWeb.AutoWeb.Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceDownLoadProject.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+  <xs:complexType name="WcfServiceDownLoadProject.DownloadResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="FileSize" type="xs:long" />
+      <xs:element minOccurs="0" name="FileTime" type="xs:dateTime" />
+      <xs:element xmlns:q1="http://tempuri.org/" minOccurs="0" name="Result" type="q1:ResultType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WcfServiceDownLoadProject.DownloadResponse" nillable="true" type="tns:WcfServiceDownLoadProject.DownloadResponse" />
+</xs:schema>

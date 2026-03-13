@@ -1,0 +1,15 @@
+Description,,
+ScanTime,1,False,False,
+Programm,BEGIN,
+$year = @GetDateYear();
+$mon = @GetDateMon();
+$day = @GetDateDay();
+$hour = @GetTimeHour();
+$min = @GetTimeMin();
+$sec = @GetTimeSec();
+
+$AI_0000 = @rand();
+$AI_0001 = @rand();
+$AI_0002 = @rand();
+$AI_0003 = @rand();
+Programm,END,

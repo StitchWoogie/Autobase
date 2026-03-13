@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="GetConversationKey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConversationKeyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetConversationKeyResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="key2_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="key3_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="key4_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="key5_enc" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DefaultUserCheck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="key_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hash" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="clientGuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DefaultUserCheckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DefaultUserCheckResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="username_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="err_msg" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bTrialMode" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckUserName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="key_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="username_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="passcode_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hash" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="clientGuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckUserNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckUserNameResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="err_msg" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bTrialMode" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WriteCurr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="key_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="username_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="computername_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="tag_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="val_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hash" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="guid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WriteCurrResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WriteCurrResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataSetFromMdb">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="key_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filename_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="command_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hash" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataSetFromMdbResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDataSetFromMdbResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="err_msg" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataSetFromDsn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="key_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="dsn_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="command_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hash" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataSetFromDsnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDataSetFromDsnResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="err_msg" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DataSetCommand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="key_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="dsn_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="command_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hash" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="guid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DataSetCommandResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DataSetCommandResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="err_msg" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConnectionStringDbType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="key_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="dsn_enc" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hash" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConnectionStringDbTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetConnectionStringDbTypeResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="dbtype" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

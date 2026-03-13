@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="contextMenuMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="menuItemModuleReal.Text" xml:space="preserve">
+    <value>&amp;User size</value>
+  </data>
+  <data name="menuItemModuleFitWindow.Text" xml:space="preserve">
+    <value>&amp;Proportional to window</value>
+  </data>
+  <data name="menuItemModuleFitWindowXY.Text" xml:space="preserve">
+    <value>&amp;Fit to Window</value>
+  </data>
+  <data name="menuItem6.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemViewControl.Text" xml:space="preserve">
+    <value>Control &amp;Mode</value>
+  </data>
+  <data name="menuItemViewZoomIn.Text" xml:space="preserve">
+    <value>Zoom &amp;In Mode</value>
+  </data>
+  <data name="menuItemViewZoomOut.Text" xml:space="preserve">
+    <value>Zoom &amp;Out Mode</value>
+  </data>
+  <data name="menuItemViewPanning.Text" xml:space="preserve">
+    <value>P&amp;anning Mode</value>
+  </data>
+  <data name="menuItemViewDigitalInputSelect.Text" xml:space="preserve">
+    <value>Digital Input &amp;Select Mode</value>
+  </data>
+  <data name="menuItem10.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemViewPercent50.Text" xml:space="preserve">
+    <value>&amp;50%</value>
+  </data>
+  <data name="menuItemViewPercent75.Text" xml:space="preserve">
+    <value>&amp;75%</value>
+  </data>
+  <data name="menuItemViewPercent80.Text" xml:space="preserve">
+    <value>&amp;80%</value>
+  </data>
+  <data name="menuItemViewPercent100.Text" xml:space="preserve">
+    <value>&amp;100%</value>
+  </data>
+  <data name="menuItemViewPercent125.Text" xml:space="preserve">
+    <value>1&amp;25%</value>
+  </data>
+  <data name="menuItemViewPercent150.Text" xml:space="preserve">
+    <value>15&amp;0%</value>
+  </data>
+  <data name="menuItemViewPercent200.Text" xml:space="preserve">
+    <value>&amp;200%</value>
+  </data>
+  <data name="menuItemViewPercent300.Text" xml:space="preserve">
+    <value>&amp;300%</value>
+  </data>
+  <data name="menuItem18.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemScreenPrint.Text" xml:space="preserve">
+    <value>&amp;Print</value>
+  </data>
+  <data name="menuItem5.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemClose.Text" xml:space="preserve">
+    <value>Menu &amp;Close</value>
+  </data>
+  <metadata name="contextMenuAnalog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>170, 17</value>
+  </metadata>
+  <data name="menuItemAnalogDetail.Text" xml:space="preserve">
+    <value>Analog Det&amp;ail</value>
+  </data>
+  <data name="menuItem2.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemAnalogTrend1.Text" xml:space="preserve">
+    <value>Analog Trend for &amp;1 Hour</value>
+  </data>
+  <data name="menuItemAnalogTrend8.Text" xml:space="preserve">
+    <value>Analog Trend for &amp;8 Hours</value>
+  </data>
+  <data name="menuItemAnalogTrend24.Text" xml:space="preserve">
+    <value>Analog Trend for &amp;24 Hours</value>
+  </data>
+  <data name="menuItemAnalogTrend48.Text" xml:space="preserve">
+    <value>Analog Trend for &amp;48 Hours</value>
+  </data>
+  <data name="menuItemAnalogTrend72.Text" xml:space="preserve">
+    <value>Analog Trend for &amp;72 Hours</value>
+  </data>
+  <data name="menuItemAnalogTrend30.Text" xml:space="preserve">
+    <value>Analog Trend for &amp;30 Days</value>
+  </data>
+  <data name="menuItem11.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemAnalogDataMin.Text" xml:space="preserve">
+    <value>Analog &amp;Minutely Data</value>
+  </data>
+  <data name="menuItemAnalogDataHour.Text" xml:space="preserve">
+    <value>Analog &amp;Hourly Data</value>
+  </data>
+  <data name="menuItemAnalogDataDay.Text" xml:space="preserve">
+    <value>Analog Da&amp;ily Data</value>
+  </data>
+  <data name="menuItemAnalogWeek.Text" xml:space="preserve">
+    <value>Analog &amp;Weekly Data</value>
+  </data>
+  <data name="menuItemAnalogMonth.Text" xml:space="preserve">
+    <value>Analog Mo&amp;nthly Data</value>
+  </data>
+  <data name="menuItemAnalogTagList.Text" xml:space="preserve">
+    <value>Analog Tags &amp;List</value>
+  </data>
+  <data name="menuItem19.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemAnalogSetValue.Text" xml:space="preserve">
+    <value>Change &amp;Value</value>
+  </data>
+  <data name="menuItem3.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemAnalogProtectScan.Text" xml:space="preserve">
+    <value>&amp;Protect Scan</value>
+  </data>
+  <data name="menuItemAnalogProtectControl.Text" xml:space="preserve">
+    <value>P&amp;rotect Control</value>
+  </data>
+  <data name="menuItemAnalogProtectAlarmEvent.Text" xml:space="preserve">
+    <value>Protect Alarm E&amp;vent</value>
+  </data>
+  <data name="menuItemAnalogProtectAlarmData.Text" xml:space="preserve">
+    <value>Protect A&amp;larm Data</value>
+  </data>
+  <data name="menuItemAnalogProtectSeparator.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemCancel.Text" xml:space="preserve">
+    <value>C&amp;lose</value>
+  </data>
+  <metadata name="contextMenuDigital.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>335, 17</value>
+  </metadata>
+  <data name="menuItemDigitalDetail.Text" xml:space="preserve">
+    <value>Digital Det&amp;ail</value>
+  </data>
+  <data name="menuItem4.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemDigitalTrend1.Text" xml:space="preserve">
+    <value>Digital Trend for &amp;1 Hour</value>
+  </data>
+  <data name="menuItemDigitalTrend8.Text" xml:space="preserve">
+    <value>Digital Trend for &amp;8 Hours</value>
+  </data>
+  <data name="menuItemDigitalTrend24.Text" xml:space="preserve">
+    <value>Digital Trend for &amp;24 Hours</value>
+  </data>
+  <data name="menuItemDigitalTrend48.Text" xml:space="preserve">
+    <value>Digital Trend for &amp;48 Hours</value>
+  </data>
+  <data name="menuItemDigitalTrend72.Text" xml:space="preserve">
+    <value>Digital Trend for &amp;72 Hours</value>
+  </data>
+  <data name="menuItemDigitalTrend30.Text" xml:space="preserve">
+    <value>Digital Trend for &amp;30 Days</value>
+  </data>
+  <data name="menuItem14.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemDigitalDataMin.Text" xml:space="preserve">
+    <value>Digital &amp;Minutely Data</value>
+  </data>
+  <data name="menuItemDigitalDataHour.Text" xml:space="preserve">
+    <value>Digital &amp;Hourly Data</value>
+  </data>
+  <data name="menuItemDigitalDataDay.Text" xml:space="preserve">
+    <value>Digital Da&amp;ily Data</value>
+  </data>
+  <data name="menuItemDigitalDataWeek.Text" xml:space="preserve">
+    <value>Digital &amp;Weekly Data</value>
+  </data>
+  <data name="menuItemDigitalDataMonth.Text" xml:space="preserve">
+    <value>Digital Mo&amp;nthly Data</value>
+  </data>
+  <data name="menuItemDigitalTagList.Text" xml:space="preserve">
+    <value>Digital Tag List(&amp;G)</value>
+  </data>
+  <data name="menuItem23.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemDigitalSetValue.Text" xml:space="preserve">
+    <value>Change &amp;Value</value>
+  </data>
+  <data name="menuItem25.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemDigitalProtectScan.Text" xml:space="preserve">
+    <value>&amp;Protect Scan</value>
+  </data>
+  <data name="menuItemDigitalProtectControl.Text" xml:space="preserve">
+    <value>P&amp;rotect Control</value>
+  </data>
+  <data name="menuItemDigitalProtectAlarmEvent.Text" xml:space="preserve">
+    <value>Protect Alarm E&amp;vent</value>
+  </data>
+  <data name="menuItemDigitalProtectAlarmData.Text" xml:space="preserve">
+    <value>Protect A&amp;larm Data</value>
+  </data>
+  <data name="menuItemDigitalProtectSeparator.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItem26.Text" xml:space="preserve">
+    <value>C&amp;lose</value>
+  </data>
+  <data name="menuItem1New.Text" xml:space="preserve">
+    <value>new</value>
+  </data>
+  <metadata name="contextMenuStripNew.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>495, 17</value>
+  </metadata>
+  <data name="contextMenuStripNew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 4</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripNew.Name" xml:space="preserve">
+    <value>contextMenuStripNew</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripNew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>5, 14</value>
+  </data>
+  <data name="$this.AutoScrollMargin" type="System.Drawing.Size, System.Drawing">
+    <value>500, 300</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>363, 226</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>FormGraphic</value>
+  </data>
+  <data name="&gt;&gt;contextMenuMain.Name" xml:space="preserve">
+    <value>contextMenuMain</value>
+  </data>
+  <data name="&gt;&gt;contextMenuMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemModuleReal.Name" xml:space="preserve">
+    <value>menuItemModuleReal</value>
+  </data>
+  <data name="&gt;&gt;menuItemModuleReal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemModuleFitWindow.Name" xml:space="preserve">
+    <value>menuItemModuleFitWindow</value>
+  </data>
+  <data name="&gt;&gt;menuItemModuleFitWindow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemModuleFitWindowXY.Name" xml:space="preserve">
+    <value>menuItemModuleFitWindowXY</value>
+  </data>
+  <data name="&gt;&gt;menuItemModuleFitWindowXY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem6.Name" xml:space="preserve">
+    <value>menuItem6</value>
+  </data>
+  <data name="&gt;&gt;menuItem6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewControl.Name" xml:space="preserve">
+    <value>menuItemViewControl</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewZoomIn.Name" xml:space="preserve">
+    <value>menuItemViewZoomIn</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewZoomIn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewZoomOut.Name" xml:space="preserve">
+    <value>menuItemViewZoomOut</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewZoomOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPanning.Name" xml:space="preserve">
+    <value>menuItemViewPanning</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPanning.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewDigitalInputSelect.Name" xml:space="preserve">
+    <value>menuItemViewDigitalInputSelect</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewDigitalInputSelect.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem10.Name" xml:space="preserve">
+    <value>menuItem10</value>
+  </data>
+  <data name="&gt;&gt;menuItem10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent50.Name" xml:space="preserve">
+    <value>menuItemViewPercent50</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent50.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent75.Name" xml:space="preserve">
+    <value>menuItemViewPercent75</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent75.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent80.Name" xml:space="preserve">
+    <value>menuItemViewPercent80</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent80.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent100.Name" xml:space="preserve">
+    <value>menuItemViewPercent100</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent100.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent125.Name" xml:space="preserve">
+    <value>menuItemViewPercent125</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent125.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent150.Name" xml:space="preserve">
+    <value>menuItemViewPercent150</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent150.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent200.Name" xml:space="preserve">
+    <value>menuItemViewPercent200</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent200.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent300.Name" xml:space="preserve">
+    <value>menuItemViewPercent300</value>
+  </data>
+  <data name="&gt;&gt;menuItemViewPercent300.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem18.Name" xml:space="preserve">
+    <value>menuItem18</value>
+  </data>
+  <data name="&gt;&gt;menuItem18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemScreenPrint.Name" xml:space="preserve">
+    <value>menuItemScreenPrint</value>
+  </data>
+  <data name="&gt;&gt;menuItemScreenPrint.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem5.Name" xml:space="preserve">
+    <value>menuItem5</value>
+  </data>
+  <data name="&gt;&gt;menuItem5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemClose.Name" xml:space="preserve">
+    <value>menuItemClose</value>
+  </data>
+  <data name="&gt;&gt;menuItemClose.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;contextMenuAnalog.Name" xml:space="preserve">
+    <value>contextMenuAnalog</value>
+  </data>
+  <data name="&gt;&gt;contextMenuAnalog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogDetail.Name" xml:space="preserve">
+    <value>menuItemAnalogDetail</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogDetail.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem2.Name" xml:space="preserve">
+    <value>menuItem2</value>
+  </data>
+  <data name="&gt;&gt;menuItem2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend1.Name" xml:space="preserve">
+    <value>menuItemAnalogTrend1</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend8.Name" xml:space="preserve">
+    <value>menuItemAnalogTrend8</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend24.Name" xml:space="preserve">
+    <value>menuItemAnalogTrend24</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend24.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend48.Name" xml:space="preserve">
+    <value>menuItemAnalogTrend48</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend48.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend72.Name" xml:space="preserve">
+    <value>menuItemAnalogTrend72</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend72.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend30.Name" xml:space="preserve">
+    <value>menuItemAnalogTrend30</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTrend30.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem11.Name" xml:space="preserve">
+    <value>menuItem11</value>
+  </data>
+  <data name="&gt;&gt;menuItem11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogDataMin.Name" xml:space="preserve">
+    <value>menuItemAnalogDataMin</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogDataMin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogDataHour.Name" xml:space="preserve">
+    <value>menuItemAnalogDataHour</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogDataHour.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogDataDay.Name" xml:space="preserve">
+    <value>menuItemAnalogDataDay</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogDataDay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogWeek.Name" xml:space="preserve">
+    <value>menuItemAnalogWeek</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogWeek.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogMonth.Name" xml:space="preserve">
+    <value>menuItemAnalogMonth</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogMonth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTagList.Name" xml:space="preserve">
+    <value>menuItemAnalogTagList</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogTagList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem19.Name" xml:space="preserve">
+    <value>menuItem19</value>
+  </data>
+  <data name="&gt;&gt;menuItem19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogSetValue.Name" xml:space="preserve">
+    <value>menuItemAnalogSetValue</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogSetValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem3.Name" xml:space="preserve">
+    <value>menuItem3</value>
+  </data>
+  <data name="&gt;&gt;menuItem3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogProtectScan.Name" xml:space="preserve">
+    <value>menuItemAnalogProtectScan</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogProtectScan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogProtectControl.Name" xml:space="preserve">
+    <value>menuItemAnalogProtectControl</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogProtectControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogProtectAlarmEvent.Name" xml:space="preserve">
+    <value>menuItemAnalogProtectAlarmEvent</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogProtectAlarmEvent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogProtectAlarmData.Name" xml:space="preserve">
+    <value>menuItemAnalogProtectAlarmData</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogProtectAlarmData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogProtectSeparator.Name" xml:space="preserve">
+    <value>menuItemAnalogProtectSeparator</value>
+  </data>
+  <data name="&gt;&gt;menuItemAnalogProtectSeparator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemCancel.Name" xml:space="preserve">
+    <value>menuItemCancel</value>
+  </data>
+  <data name="&gt;&gt;menuItemCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;contextMenuDigital.Name" xml:space="preserve">
+    <value>contextMenuDigital</value>
+  </data>
+  <data name="&gt;&gt;contextMenuDigital.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDetail.Name" xml:space="preserve">
+    <value>menuItemDigitalDetail</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDetail.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem4.Name" xml:space="preserve">
+    <value>menuItem4</value>
+  </data>
+  <data name="&gt;&gt;menuItem4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend1.Name" xml:space="preserve">
+    <value>menuItemDigitalTrend1</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend8.Name" xml:space="preserve">
+    <value>menuItemDigitalTrend8</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend24.Name" xml:space="preserve">
+    <value>menuItemDigitalTrend24</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend24.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend48.Name" xml:space="preserve">
+    <value>menuItemDigitalTrend48</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend48.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend72.Name" xml:space="preserve">
+    <value>menuItemDigitalTrend72</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend72.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend30.Name" xml:space="preserve">
+    <value>menuItemDigitalTrend30</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTrend30.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem14.Name" xml:space="preserve">
+    <value>menuItem14</value>
+  </data>
+  <data name="&gt;&gt;menuItem14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDataMin.Name" xml:space="preserve">
+    <value>menuItemDigitalDataMin</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDataMin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDataHour.Name" xml:space="preserve">
+    <value>menuItemDigitalDataHour</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDataHour.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDataDay.Name" xml:space="preserve">
+    <value>menuItemDigitalDataDay</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDataDay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDataWeek.Name" xml:space="preserve">
+    <value>menuItemDigitalDataWeek</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDataWeek.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDataMonth.Name" xml:space="preserve">
+    <value>menuItemDigitalDataMonth</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalDataMonth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTagList.Name" xml:space="preserve">
+    <value>menuItemDigitalTagList</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalTagList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem23.Name" xml:space="preserve">
+    <value>menuItem23</value>
+  </data>
+  <data name="&gt;&gt;menuItem23.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalSetValue.Name" xml:space="preserve">
+    <value>menuItemDigitalSetValue</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalSetValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem25.Name" xml:space="preserve">
+    <value>menuItem25</value>
+  </data>
+  <data name="&gt;&gt;menuItem25.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalProtectScan.Name" xml:space="preserve">
+    <value>menuItemDigitalProtectScan</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalProtectScan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalProtectControl.Name" xml:space="preserve">
+    <value>menuItemDigitalProtectControl</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalProtectControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalProtectAlarmEvent.Name" xml:space="preserve">
+    <value>menuItemDigitalProtectAlarmEvent</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalProtectAlarmEvent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalProtectAlarmData.Name" xml:space="preserve">
+    <value>menuItemDigitalProtectAlarmData</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalProtectAlarmData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalProtectSeparator.Name" xml:space="preserve">
+    <value>menuItemDigitalProtectSeparator</value>
+  </data>
+  <data name="&gt;&gt;menuItemDigitalProtectSeparator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem26.Name" xml:space="preserve">
+    <value>menuItem26</value>
+  </data>
+  <data name="&gt;&gt;menuItem26.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem1New.Name" xml:space="preserve">
+    <value>menuItem1New</value>
+  </data>
+  <data name="&gt;&gt;menuItem1New.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormGraphicChild</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

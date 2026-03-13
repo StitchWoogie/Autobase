@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="PingTest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username_hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passcode" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="seed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PingTestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PingTestResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendByAdmin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tel_recv" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tel_send" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sms_type" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="seed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendByAdminResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendByAdminResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendByAutoBase">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passcode" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="tel_recv" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tel_send" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="seed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="sms_type" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ui_culture" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendByAutoBaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendByAutoBaseResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="err_msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PingTestSoapIn">
+    <wsdl:part name="parameters" element="tns:PingTest" />
+  </wsdl:message>
+  <wsdl:message name="PingTestSoapOut">
+    <wsdl:part name="parameters" element="tns:PingTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendByAdminSoapIn">
+    <wsdl:part name="parameters" element="tns:SendByAdmin" />
+  </wsdl:message>
+  <wsdl:message name="SendByAdminSoapOut">
+    <wsdl:part name="parameters" element="tns:SendByAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendByAutoBaseSoapIn">
+    <wsdl:part name="parameters" element="tns:SendByAutoBase" />
+  </wsdl:message>
+  <wsdl:message name="SendByAutoBaseSoapOut">
+    <wsdl:part name="parameters" element="tns:SendByAutoBaseResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSend3Soap">
+    <wsdl:operation name="PingTest">
+      <wsdl:input message="tns:PingTestSoapIn" />
+      <wsdl:output message="tns:PingTestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendByAdmin">
+      <wsdl:input message="tns:SendByAdminSoapIn" />
+      <wsdl:output message="tns:SendByAdminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendByAutoBase">
+      <wsdl:input message="tns:SendByAutoBaseSoapIn" />
+      <wsdl:output message="tns:SendByAutoBaseSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSend3Soap" type="tns:ServiceSend3Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PingTest">
+      <soap:operation soapAction="http://tempuri.org/PingTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendByAdmin">
+      <soap:operation soapAction="http://tempuri.org/SendByAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendByAutoBase">
+      <soap:operation soapAction="http://tempuri.org/SendByAutoBase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSend3Soap12" type="tns:ServiceSend3Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PingTest">
+      <soap12:operation soapAction="http://tempuri.org/PingTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendByAdmin">
+      <soap12:operation soapAction="http://tempuri.org/SendByAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendByAutoBase">
+      <soap12:operation soapAction="http://tempuri.org/SendByAutoBase" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceSend3">
+    <wsdl:port name="ServiceSend3Soap" binding="tns:ServiceSend3Soap">
+      <soap:address location="http://www.sms.autobase.biz/Protocol/ServiceSend3.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSend3Soap12" binding="tns:ServiceSend3Soap12">
+      <soap12:address location="http://www.sms.autobase.biz/Protocol/ServiceSend3.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

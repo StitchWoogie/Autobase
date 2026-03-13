@@ -1,0 +1,6 @@
+; MODBUS_RTU2.def : Declares the module parameters for the DLL.
+
+LIBRARY      "MODBUS_RTU2"
+
+EXPORTS
+    ; Explicit exports can go here

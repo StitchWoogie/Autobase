@@ -1,0 +1,237 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\MODBUS_RTU2.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_OPTION DIALOGEX 0, 0, 391, 305
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Protocol Option"
+FONT 9, "±¼¸²", 400, 0, 0x81
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,99,280,59,18
+    PUSHBUTTON      "Cancel",IDCANCEL,211,280,60,18
+    CONTROL         "",IDC_LIST_READ_SCHEDULE,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,7,136,377,132
+    PUSHBUTTON      "Add",IDC_BUTTON_ADD,141,107,49,18
+    PUSHBUTTON      "Insert",IDC_BUTTON_INSERT,210,107,47,18
+    PUSHBUTTON      "Delete",IDC_BUTTON_DELETE,277,107,50,18
+    GROUPBOX        "Register Tag Send",IDC_STATIC,7,92,377,177
+    EDITTEXT        IDC_EDIT_STATION,65,18,30,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS | WS_TABSTOP,96,18,10,14
+    LTEXT           "Slave Station:",IDC_STATIC,16,21,45,8
+    CONTROL         "Tag Send Data is FLOAT",IDC_CHECK1,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,146,19,106,10
+    CONTROL         "Tag Version is 9.xx or Later",IDC_CHECK_VERSION9,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,37,101,10
+    CONTROL         "Value Read Data is FLOAT",IDC_CHECK2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,146,37,106,10
+    GROUPBOX        "Protocol Option",IDC_STATIC,9,2,375,77
+    EDITTEXT        IDC_EDIT_MODBUS_START_ADDR,327,17,30,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN_MODBUS_START_ADDR,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    WS_TABSTOP,358,17,10,14
+    LTEXT           "Start Modbus Addr :",IDC_STATIC,257,19,66,8
+    CONTROL         "Use Modbus IP Protocol",IDC_CHECK_MODBUS_IP_PROTOCOL,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,257,37,94,10
+    CONTROL         "Use Coil/Input Memory",IDC_CHECK_USE_COIL_INPUT_MEMORY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,57,91,10
+    EDITTEXT        IDC_EDIT_MODBUS_START_ADDR_COIL,218,57,30,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN_MODBUS_START_ADDR_COIL,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    WS_TABSTOP,249,57,10,14
+    LTEXT           "Start Addr for Coil/Input :",IDC_STATIC,133,59,81,8
+    CONTROL         "Tag for Function 3, 4",IDC_RADIO_ANALOG,"Button",
+                    BS_AUTORADIOBUTTON,18,107,82,10
+    CONTROL         "Tag for Function 1, 2(Coil/Input)",IDC_RADIO_DIGITAL,
+                    "Button",BS_AUTORADIOBUTTON,18,121,119,10
+END
+
+IDD_DIALOG_SELECT_TAG DIALOGEX 0, 0, 403, 382
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Tag"
+FONT 9, "±¼¸²", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Select",IDOK,322,17,59,18
+    PUSHBUTTON      "Cancel",IDCANCEL,321,43,60,18
+    CONTROL         "",IDC_LIST_SELECT_TAG,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,7,13,294,362
+    GROUPBOX        "Select Tag",IDC_STATIC,7,3,389,372
+    GROUPBOX        "Tag Type",IDC_STATIC,309,88,83,82
+    CONTROL         "Analog Input",IDC_RADIO_ANALOG_INPUT,"Button",
+                    BS_AUTORADIOBUTTON,316,103,56,10
+    CONTROL         "Analog Output",IDC_RADIO_ANALOG_OUTPUT,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED,316,116,61,10
+    CONTROL         "Digital Input",IDC_RADIO_DIGITAL_INPUT,"Button",
+                    BS_AUTORADIOBUTTON,316,129,53,10
+    CONTROL         "Digital Output",IDC_RADIO_DIGITAL_OUTPUT,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED,316,142,58,10
+    CONTROL         "String",IDC_RADIO_STRING,"Button",BS_AUTORADIOBUTTON | 
+                    WS_DISABLED,316,154,34,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG_OPTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 384
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 298
+    END
+
+    IDD_DIALOG_SELECT_TAG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 396
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 375
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "MODBUS_RTU2.dll"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "MODBUS_RTU2.dll"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\MODBUS_RTU2.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

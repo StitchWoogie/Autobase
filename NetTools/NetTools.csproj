@@ -1,0 +1,417 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '로컬 전체 컴파일|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\로컬 전체 컴파일\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D49B5268-4C34-44C6-B688-80653EE9A189}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>NetTools</AssemblyName>
+    <AssemblyOriginatorKeyFile>autobase.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NetTools</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '로컬 전체 컴파일|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Management">
+      <Name>System.Management</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommaTextMaker.cs" />
+    <Compile Include="CompareTool.cs" />
+    <Compile Include="ConfigDataGridView.cs" />
+    <Compile Include="ConfigListView.cs" />
+    <Compile Include="ConsoleTool.cs" />
+    <Compile Include="ControlListViewConfigColumn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlListViewConfigColumn.Designer.cs">
+      <DependentUpon>ControlListViewConfigColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConvertString.cs" />
+    <Compile Include="Cryptography\CryptoCommunication.cs" />
+    <Compile Include="Cryptography\CryptoTextReader.cs" />
+    <Compile Include="Cryptography\CryptoTextWriter.cs" />
+    <Compile Include="Cryptography\UserControlConfigCryptography.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cryptography\UserControlConfigCryptography.Designer.cs">
+      <DependentUpon>UserControlConfigCryptography.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CultureTool.cs" />
+    <Compile Include="EnumAsciiCode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckFileChanged.cs" />
+    <Compile Include="CommaBlockString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommaBlockStringWithSpace.cs" />
+    <Compile Include="CommaTextReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommaTextWriter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ControlListView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConvertTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Crypto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DEFAULT_RGB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DIBitmap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DrawClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnumReservedPort.cs" />
+    <Compile Include="EnumWindowStyleFlags.cs" />
+    <Compile Include="ErrorMsg.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExcelPathFinder.cs" />
+    <Compile Include="FileTool.cs" />
+    <Compile Include="FloatingTool.cs" />
+    <Compile Include="FormColorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDirectorySelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DebugSpeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectExcelPath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectExcelPath.Designer.cs">
+      <DependentUpon>FormSelectExcelPath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSizeRestore.cs" />
+    <Compile Include="GetCRC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cryptography\ARIAEngine.cs" />
+    <Compile Include="Cryptography\CryptoAES.cs" />
+    <Compile Include="Cryptography\CtyptoARIA.cs" />
+    <Compile Include="Hash\HashBytes.cs" />
+    <Compile Include="Hash\HashString.cs" />
+    <Compile Include="Hash\HashTool.cs" />
+    <Compile Include="Hash\HashToolRoot.cs" />
+    <Compile Include="Hash\MakeHashCrc.cs" />
+    <Compile Include="HexBuf.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MathLib.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MultiSelectCheckBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MultiSelectColorButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MultiSelectComboBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MultiSelectNumericUpDown.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MultiSelectRadioButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MultiSelectTextBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DeveloperVersion.cs" />
+    <Compile Include="ObjectValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OldDefine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OnPaintBitmap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PrintUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Profile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProfileHash.cs" />
+    <Compile Include="ProgramErrorDisplay.cs" />
+    <Compile Include="RegistryTool.cs" />
+    <Compile Include="RemoteApi.cs" />
+    <Compile Include="SafeException.cs" />
+    <Compile Include="ScreenCapture.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SmoothingValue.cs" />
+    <Compile Include="SolarLunar.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sort.cs" />
+    <Compile Include="StringHash.cs" />
+    <Compile Include="SunRiseSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TextBoxTool.cs" />
+    <Compile Include="TimeOutClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TimeOutMiliSecClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TimeUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tools.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Win32Function.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="ControlListView.resx">
+      <DependentUpon>ControlListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlListViewConfigColumn.ko.resx">
+      <DependentUpon>ControlListViewConfigColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlListViewConfigColumn.resx">
+      <DependentUpon>ControlListViewConfigColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cryptography\UserControlConfigCryptography.ko.resx">
+      <DependentUpon>UserControlConfigCryptography.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cryptography\UserControlConfigCryptography.resx">
+      <DependentUpon>UserControlConfigCryptography.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormColorDialog.ja.resx">
+      <DependentUpon>FormColorDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormColorDialog.ko.resx">
+      <DependentUpon>FormColorDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormColorDialog.resx">
+      <DependentUpon>FormColorDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormColorDialog.vi.resx">
+      <DependentUpon>FormColorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormColorDialog.zh-CHS.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormColorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDirectorySelect.ja.resx">
+      <DependentUpon>FormDirectorySelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDirectorySelect.ko.resx">
+      <DependentUpon>FormDirectorySelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDirectorySelect.resx">
+      <DependentUpon>FormDirectorySelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDirectorySelect.vi.resx">
+      <DependentUpon>FormDirectorySelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDirectorySelect.zh-CHS.resx">
+      <DependentUpon>FormDirectorySelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DebugSpeed.resx">
+      <DependentUpon>DebugSpeed.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectExcelPath.ko.resx">
+      <DependentUpon>FormSelectExcelPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectExcelPath.resx">
+      <DependentUpon>FormSelectExcelPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="autobase.snk" />
+    <None Include="NetTools.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Library Files">
+      <UniqueIdentifier>{7c73865c-3629-45c7-af89-4594ca4dacc9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CommonSharedMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DdeGate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FuturePlcScan.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FutureSystemStatus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlcScanDeviceSharedMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlcScanSharedMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\WINDOW\ProfileUTF8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\TextGetOneLine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CATLIB.SRC\TotalCfg9.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchDogInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32Common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32LinePrinter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\Bell.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\Block.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\CommaBlockString.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\Dataswap.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\DDE\Ddelibcl.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\fitblock.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\WINDOW\Garray.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\CRC\GetCRC_SumWORD.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\Language.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\MakeDirectory.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\WINDOW\Profile.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\SharedMemory.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\Timeout.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Wintools\SOURCE\TOOLS\TimeOutMiliSec.cpp">
+      <Filter>Library Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Win32Common.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="res\Win32Common.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PlcScanSharedMemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Win32Common.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

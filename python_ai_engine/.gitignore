@@ -1,0 +1,39 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs (runtime generated)
+logs/*.log
+logs/*.log.*
+
+# Shared payload files (runtime)
+shared/*.bin
+shared/*.json.tmp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Distribution
+*.egg-info/
+dist/
+build/
+
+# Models (user-deployed, not source)
+models/*.onnx
+models/*.pkl
+models/*.joblib
+models/*.h5

@@ -1,0 +1,3725 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '패치용|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\패치용\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '로컬 전체 컴파일|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\EXE\Autobase48\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{72AA1CB4-0A61-4DB4-B2AE-A5ECCA6DEF74}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>Studio.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Studio</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Studio</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\EXE\Autobase48\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '로컬 전체 컴파일|AnyCPU' ">
+    <OutputPath>..\..\..\EXE\Autobase48\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '패치용|AnyCPU' ">
+    <OutputPath>..\..\..\exe\Autobase48\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;USE_EXCEPTION_REPORT;</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\exe\Autobase48\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Bcl.AsyncInterfaces.10.0.2\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Bcl.HashCode.6.0.0\lib\net462\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.DependencyInjection.Abstractions.10.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.Logging.Abstractions.10.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=8.0.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\Npgsql.8.0.7\lib\netstandard2.0\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v2.0.50727\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=10.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Collections.Immutable.10.0.2\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Diagnostics.DiagnosticSource.10.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO.Pipelines, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.IO.Pipelines.10.0.2\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap">
+      <Name>System.Runtime.Serialization.Formatters.Soap</Name>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Text.Encodings.Web.10.0.2\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Text.Json.10.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\Solution\SolutionAutoBaseLocalTotal\packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <ProjectReference Include="..\..\NetTools\CompressLib\CompressLib.csproj">
+      <Project>{62082BA2-BFE1-4830-B552-BB76C2AD1D00}</Project>
+      <Name>CompressLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NetTools\NetTools.csproj">
+      <Name>NetTools</Name>
+      <Project>{D49B5268-4C34-44C6-B688-80653EE9A189}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NetTools\PicTools\PicTools.csproj">
+      <Project>{2BA16408-BC41-4D6A-9ACA-595257520DA8}</Project>
+      <Name>PicTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ScriptLib\ScriptLibEdit\ScriptLibEdit.csproj">
+      <Project>{566DD456-58EA-47D9-91FB-43C7D7EF80BA}</Project>
+      <Name>ScriptLibEdit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ScriptLib\ScriptLibRun\ScriptLibRun.csproj">
+      <Project>{81868C94-AF9B-40A7-BAA8-038CB48600DC}</Project>
+      <Name>ScriptLibRun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Username\Dll\UsernameLibrary\UsernameLibrary.csproj">
+      <Project>{6154864E-FB7C-4DEA-A78A-886980DB42DB}</Project>
+      <Name>UsernameLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\AniEditLib\AniEditLib.csproj">
+      <Project>{299EF2C7-80D9-416C-968E-1D374AA8C607}</Project>
+      <Name>AniEditLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\AutoLibLocal\AutoLibLocal.csproj">
+      <Name>AutoLibLocal</Name>
+      <Project>{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\AutoLib\AutoLib.csproj">
+      <Name>AutoLib</Name>
+      <Project>{DFE68F78-7DBA-45BC-AB91-FB685733205B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DatabaseConnection\DatabaseConnection.csproj">
+      <Name>DatabaseConnection</Name>
+      <Project>{BB25326A-678A-4196-A782-F5A524D6430B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogCommon\DialogCommon.csproj">
+      <Name>DialogCommon</Name>
+      <Project>{3D64FFB2-2E36-4A7D-AB86-F1F967FFAB8F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogConfigUser\DialogConfigUser.csproj">
+      <Name>DialogConfigUser</Name>
+      <Project>{3A88C58A-B16D-4E56-A98C-0D0B643B7D90}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\DialogTag\DialogTag.csproj">
+      <Name>DialogTag</Name>
+      <Project>{12D7893A-DA46-4CCD-B919-29CE90C5B9CB}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\ExceptionReport\ExceptionReport.csproj">
+      <Name>ExceptionReport</Name>
+      <Project>{AEA6187C-26AF-4025-9C02-29A010F81CFE}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\HelpLib\HelpLib.csproj">
+      <Project>{79D61CF6-1621-4B91-8024-32B6CD87337C}</Project>
+      <Name>HelpLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\ProjectLib\ProjectLib.csproj">
+      <Project>{34D43603-8E62-40EE-B9B7-7ACF2C79D15B}</Project>
+      <Name>ProjectLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\PublicStudioLocalMain\PublicStudioLocalMain.csproj">
+      <Name>PublicStudioLocalMain</Name>
+      <Project>{6B5954E6-5089-4209-8992-0187A564FAE9}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\ReportModule\ReportModule.csproj">
+      <Name>ReportModule</Name>
+      <Project>{BFC7F4F7-35CD-4FE9-8F34-ACA05EEABB12}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\Reporting.Designer\Reporting.Designer.csproj">
+      <Name>Reporting.Designer</Name>
+      <Project>{C2D3E4F5-A6B7-4C8D-9E0F-1A2B3C4D5E6F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Dll\Reporting.Viewer\Reporting.Viewer.csproj">
+      <Name>Reporting.Viewer</Name>
+      <Project>{D3E4F5A6-B7C8-4D9E-AF01-2B3C4D5E6F7A}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\OpcUaClient.Ipc.Client\OpcUaClient.Ipc.Client.csproj">
+      <Project>{CB5C00CF-62E9-4689-A5D3-2F03B065A5D1}</Project>
+      <Name>OpcUaClient.Ipc.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpcUaClient.Ipc.Contracts\OpcUaClient.Ipc.Contracts.csproj">
+      <Project>{A63F2AEB-54EC-40FA-9DCA-C49F0AC52605}</Project>
+      <Name>OpcUaClient.Ipc.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewMain\GraphicModule\GraphicModule.csproj">
+      <Name>GraphicModule</Name>
+      <Project>{03415E5F-99CA-4F21-B732-80372B2AA265}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnimationPlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditImportEMF.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditImportWMF.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditInsert.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditObjectCircle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditObjectCurve.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditObjectLine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditObjectMove.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditObjectPointMove.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditObjectPointMovePoly.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditObjectPoly.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditObjectRect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditObjectRoundRect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassEditObjectSpuit.cs" />
+    <Compile Include="ClassEditObjectText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Communication\FormConfigCryptography.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Communication\FormConfigCryptography.Designer.cs">
+      <DependentUpon>FormConfigCryptography.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\FormConfigScanServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Communication\FormConfigScanServer.Designer.cs">
+      <DependentUpon>FormConfigScanServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\FormConfigAllPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Communication\FormConfigAllPort.Designer.cs">
+      <DependentUpon>FormConfigAllPort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\FormConfigDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Communication\FormConfigDevice.Designer.cs">
+      <DependentUpon>FormConfigDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\FormConfigPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Communication\FormConfigPort.Designer.cs">
+      <DependentUpon>FormConfigPort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\FormConfigScanServerOne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Communication\FormConfigScanServerOne.Designer.cs">
+      <DependentUpon>FormConfigScanServerOne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Communication\FormConfigTeleDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Communication\FormConfigTeleDevice.Designer.cs">
+      <DependentUpon>FormConfigTeleDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Deployment\FormConfigCompactVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Deployment\FormThreadWorking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Deployment\FormThreadWorking.Designer.cs">
+      <DependentUpon>FormThreadWorking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfigDemandNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigDemandNew.Designer.cs">
+      <DependentUpon>FormConfigDemandNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfigDemandNewAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigDemandNewAdd.Designer.cs">
+      <DependentUpon>FormConfigDemandNewAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfigGlobalization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigGlobalization.Designer.cs">
+      <DependentUpon>FormConfigGlobalization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfigHttpHeader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigHttpHeader.Designer.cs">
+      <DependentUpon>FormConfigHttpHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfigJsonTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigJsonTemplate.Designer.cs">
+      <DependentUpon>FormConfigJsonTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfigRealTimeGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigRealTimeGraphAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigRealTimeGraphAdd.Designer.cs">
+      <DependentUpon>FormConfigRealTimeGraphAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDialogAutoPaste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDialogAutoPaste.Designer.cs">
+      <DependentUpon>FormDialogAutoPaste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFindReplaceTagLink.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFindReplaceTagLink.Designer.cs">
+      <DependentUpon>FormFindReplaceTagLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFutureVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFutureVersion.Designer.cs">
+      <DependentUpon>FormFutureVersion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectedObjectToBitmap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormCommentWrite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormCommentWrite.Designer.cs">
+      <DependentUpon>FormCommentWrite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\FormConfigItemProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormConfigItemProperty.Designer.cs">
+      <DependentUpon>FormConfigItemProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\FormConfigTitle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormConfigTitle.Designer.cs">
+      <DependentUpon>FormConfigTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\FormSelectControlBoxFromLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormSelectControlBoxFromLibrary.Designer.cs">
+      <DependentUpon>FormSelectControlBoxFromLibrary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OPCUA\OpcDaRegistryBrowseProvider.cs" />
+    <Compile Include="OPCUA\OpcTool.cs" />
+    <Compile Include="OPCUA\OpcUaClientCache.cs" />
+    <Compile Include="OPCUA\OpcUaIpcBrowseProvider.cs" />
+    <Compile Include="OPCUA\OpcUaIpcManager.cs" />
+    <Compile Include="OPCUA\OpcUaOfflineBrowseProvider.cs" />
+    <Compile Include="OPCUA\OpcUaTagCache.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Property\ClassEditProperty.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassMainTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassStudioEdit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassStudioEditCopyFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClassStudioEditUndo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Library\FormInsertFromLibrarySearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDemandChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDonutChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectAnalogGauge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectSVG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectVLCAx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectBarcodeDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectBarcodeScanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectVLCAx.Designer.cs">
+      <DependentUpon>PropertyPageObjectVLCAx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectWebView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectWebView.Designer.cs">
+      <DependentUpon>PropertyPageObjectWebView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageButtonThick.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlTreeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlTreeView.Designer.cs">
+      <DependentUpon>PropertyPageObjectControlTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageBrush.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageBrushPublic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionRotate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionRotate.Designer.cs">
+      <DependentUpon>FormExpandOptionRotate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionColor.Designer.cs">
+      <DependentUpon>FormExpandOptionColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionLineThick.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionLineThick.Designer.cs">
+      <DependentUpon>FormExpandOptionLineThick.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionAnimationSpeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionAnimationSpeed.Designer.cs">
+      <DependentUpon>FormExpandOptionAnimationSpeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionBlinking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionBlinking.Designer.cs">
+      <DependentUpon>FormExpandOptionBlinking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionVisible.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionVisible.Designer.cs">
+      <DependentUpon>FormExpandOptionVisible.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionLocationY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionLocationY.Designer.cs">
+      <DependentUpon>FormExpandOptionLocationY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionLocationX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionLocationX.Designer.cs">
+      <DependentUpon>FormExpandOptionLocationX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionSizeHeight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionSizeHeight.Designer.cs">
+      <DependentUpon>FormExpandOptionSizeHeight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionSizeWidth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionSizeWidth.Designer.cs">
+      <DependentUpon>FormExpandOptionSizeWidth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\FormPropertyAndScript.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormPropertyAndScript.Designer.cs">
+      <DependentUpon>FormPropertyAndScript.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layer\FormConfigLayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layer\FormConfigLayer.Designer.cs">
+      <DependentUpon>FormConfigLayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layer\FormLayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layer\FormLayer.Designer.cs">
+      <DependentUpon>FormLayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageControlBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageControlBox.Designer.cs">
+      <DependentUpon>PropertyPageControlBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlDatePicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlDatePicker.Designer.cs">
+      <DependentUpon>PropertyPageObjectControlDatePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlTabControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlTabControl.Designer.cs">
+      <DependentUpon>PropertyPageObjectControlTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDataGridView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDataGridView.Designer.cs">
+      <DependentUpon>PropertyPageObjectDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectMilliDataTrendMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageMouseResponseAnalog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigAlarmPriority.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigArrangeBitmapFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigBackgroundBitmap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigBitmapEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigDemandControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigDemandControlAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigEtc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigEtc.Designer.cs">
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfigGuideLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormConfigLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigMilliData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigMilliDataAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigModuleProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigOnOffList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigSearchSoundFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigSqlBindList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigSqlBindListAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigToolBarWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfigToolBarWindowAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectMilliDataTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\WebLibraryGate.cs" />
+    <Compile Include="Library\WebLibraryModUtil.cs" />
+    <Compile Include="Library\WebLibraryModCut.cs" />
+    <Compile Include="Library\WebLibraryModFull.cs" />
+    <Compile Include="Library\WebLibraryPublic.cs" />
+    <Compile Include="Library\WebLibraryUtil.cs" />
+    <Compile Include="Property\PropertyPageObjectWindowAlarmColumn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectWindowAlarmColumn.Designer.cs">
+      <DependentUpon>PropertyPageObjectWindowAlarmColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FormConfigScriptNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormConfigScriptNew.Designer.cs">
+      <DependentUpon>FormConfigScriptNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FormErrorDecompileCompare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormErrorDecompileCompare.Designer.cs">
+      <DependentUpon>FormErrorDecompileCompare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FormScriptEditor.cs" />
+    <Compile Include="Script\FormScriptEditorSimpleNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormCompileResultForDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormCompileResultForDebug.Designer.cs">
+      <DependentUpon>FormCompileResultForDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FormMessagePanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormMessagePanel.Designer.cs">
+      <DependentUpon>FormMessagePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FormNewScriptEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormNewScriptEditor.Designer.cs">
+      <DependentUpon>FormNewScriptEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FormNewScriptErrorMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormNewScriptErrorMessage.Designer.cs">
+      <DependentUpon>FormNewScriptErrorMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FormScriptFind.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormScriptFind.Designer.cs">
+      <DependentUpon>FormScriptFind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FormSelectMethod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormSelectMethod.Designer.cs">
+      <DependentUpon>FormSelectMethod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\FormSelectNewClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormSelectNewClass.Designer.cs">
+      <DependentUpon>FormSelectNewClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\Script11.cs" />
+    <Compile Include="Solution\FormAddReference.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Solution\FormAddReference.Designer.cs">
+      <DependentUpon>FormAddReference.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Solution\FormConfigScriptProjectProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Solution\FormConfigScriptProjectProperties.Designer.cs">
+      <DependentUpon>FormConfigScriptProjectProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Solution\FormNewScriptProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Solution\FormNewScriptProject.Designer.cs">
+      <DependentUpon>FormNewScriptProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Solution\ReferenceClass.cs" />
+    <Compile Include="Solution\ScriptProject.cs" />
+    <Compile Include="Solution\ScriptSolution.cs" />
+    <Compile Include="Web References\biz.autobase.library.www\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WebServer\FormConfigWebServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditGraphic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditGraphicFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionMouseZone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionSliderHorz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\FormExpandOptionSliderVert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFileSaveAsBitmap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormInsertFromLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormLibraryGroupPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormRegisterToLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormScriptAlways.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormScriptEditorSimpleOld.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormScriptEditorDataModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormScriptKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormScriptKeyAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormScriptMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\FormScriptNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormSelectAnimationFromLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\FormSelectDigitalAnimationFromLibrary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Solution\FormSolution.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Library\LibraryList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Library\LibraryListAnimation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Library\LibraryListDigitalAnimation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageClassName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageColorFill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageColorLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageColorPublic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageExpandOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageFont.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageGraphMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageListData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageMouseResponse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageMouseResponseDigital.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageMouseResponseString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageNotObject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectAnalogMeter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectAnalogRectangle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectAnalogRotate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectAnalogStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectAnalogString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectAnimation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectBitmap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectButtonDigitalOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectButtonModule3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectButtonModuleHide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectButtonProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectChangeValueDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectCircle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectClock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlCheckBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlComboBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlEditBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlListBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectControlRadioButton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDatabaseTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDatabaseTrendMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDatabaseTrendMemberModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDemandWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDigitalAnimation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDigitalCircle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDigitalRectangle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectDigitalString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectGroupDisplayTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectMilliData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectMultiGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectMultiTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectPoly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectRealTimeTestGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectRectangle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectRoundRectangle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectSingleText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectStringString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectTagAnimation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectTagAnimation.Designer.cs">
+      <DependentUpon>PropertyPageObjectTagAnimation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectWebBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectWebBrowser.Designer.cs">
+      <DependentUpon>PropertyPageObjectWebBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectWindowAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageObjectXYGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertyPageXYGraphMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\PropertySheetPublic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SELECT_LIST.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SharedStudio.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StudioConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StudioMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebServer\FormConfigWebTagList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebServer\FormConfigWebTagList.Designer.cs">
+      <DependentUpon>FormConfigWebTagList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebServer\FormConfigWebTagListAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebServer\FormConfigWebTagListAdd.Designer.cs">
+      <DependentUpon>FormConfigWebTagListAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WORK_MODULE_STRUCT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="AnimationPlay.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AnimationPlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnimationPlay.resx">
+      <DependentUpon>AnimationPlay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigAllPort.vi.resx">
+      <DependentUpon>FormConfigAllPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigCryptography.resx">
+      <DependentUpon>FormConfigCryptography.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigScanServer.ko.resx">
+      <DependentUpon>FormConfigScanServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigScanServer.resx">
+      <DependentUpon>FormConfigScanServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigAllPort.ko.resx">
+      <DependentUpon>FormConfigAllPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigAllPort.resx">
+      <DependentUpon>FormConfigAllPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigDevice.ko.resx">
+      <DependentUpon>FormConfigDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigDevice.resx">
+      <DependentUpon>FormConfigDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigPort.ko.resx">
+      <DependentUpon>FormConfigPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigPort.resx">
+      <DependentUpon>FormConfigPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigScanServer.vi.resx">
+      <DependentUpon>FormConfigScanServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigScanServerOne.ko.resx">
+      <DependentUpon>FormConfigScanServerOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigScanServerOne.resx">
+      <DependentUpon>FormConfigScanServerOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigScanServerOne.vi.resx">
+      <DependentUpon>FormConfigScanServerOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigTeleDevice.ko.resx">
+      <DependentUpon>FormConfigTeleDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Communication\FormConfigTeleDevice.resx">
+      <DependentUpon>FormConfigTeleDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Deployment\FormConfigCompactVersion.ja.resx">
+      <DependentUpon>FormConfigCompactVersion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Deployment\FormConfigCompactVersion.ko.resx">
+      <DependentUpon>FormConfigCompactVersion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Deployment\FormConfigCompactVersion.resx">
+      <DependentUpon>FormConfigCompactVersion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Deployment\FormConfigCompactVersion.vi.resx">
+      <DependentUpon>FormConfigCompactVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Deployment\FormConfigCompactVersion.zh-CHS.resx">
+      <DependentUpon>FormConfigCompactVersion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Deployment\FormThreadWorking.resx">
+      <DependentUpon>FormThreadWorking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAlarmPriority.vi.resx">
+      <DependentUpon>FormConfigAlarmPriority.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigBackgroundBitmap.vi.resx">
+      <DependentUpon>FormConfigBackgroundBitmap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigBitmapEditor.vi.resx">
+      <DependentUpon>FormConfigBitmapEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandControl.vi.resx">
+      <DependentUpon>FormConfigDemandControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandControlAdd.vi.resx">
+      <DependentUpon>FormConfigDemandControlAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandNewAdd.resx">
+      <DependentUpon>FormConfigDemandNewAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.vi.resx">
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigGlobalization.ko.resx">
+      <DependentUpon>FormConfigGlobalization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigGlobalization.resx">
+      <DependentUpon>FormConfigGlobalization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigGuideLine.vi.resx">
+      <DependentUpon>FormConfigGuideLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigHttpHeader.resx">
+      <DependentUpon>FormConfigHttpHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigJsonTemplate.resx">
+      <DependentUpon>FormConfigJsonTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigMilliData.vi.resx">
+      <DependentUpon>FormConfigMilliData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigMilliDataAdd.vi.resx">
+      <DependentUpon>FormConfigMilliDataAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigModuleProperty.vi.resx">
+      <DependentUpon>FormConfigModuleProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigOnOffList.vi.resx">
+      <DependentUpon>FormConfigOnOffList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigRealTimeGraph.ja.resx">
+      <DependentUpon>FormConfigRealTimeGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigRealTimeGraph.ko.resx">
+      <DependentUpon>FormConfigRealTimeGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigRealTimeGraph.resx">
+      <DependentUpon>FormConfigRealTimeGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigRealTimeGraph.vi.resx">
+      <DependentUpon>FormConfigRealTimeGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigRealTimeGraph.zh-CHS.resx">
+      <DependentUpon>FormConfigRealTimeGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigRealTimeGraphAdd.ko.resx">
+      <DependentUpon>FormConfigRealTimeGraphAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigRealTimeGraphAdd.resx">
+      <DependentUpon>FormConfigRealTimeGraphAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigRealTimeGraphAdd.vi.resx">
+      <DependentUpon>FormConfigRealTimeGraphAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSearchSoundFile.vi.resx">
+      <DependentUpon>FormConfigSearchSoundFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigToolBarWindow.vi.resx">
+      <DependentUpon>FormConfigToolBarWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigToolBarWindowAdd.vi.resx">
+      <DependentUpon>FormConfigToolBarWindowAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogAutoPaste.ko.resx">
+      <DependentUpon>FormDialogAutoPaste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDialogAutoPaste.resx">
+      <DependentUpon>FormDialogAutoPaste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphicFrame.mn-Mong-CN.resx">
+      <DependentUpon>FormEditGraphicFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphicFrame.ru.resx">
+      <DependentUpon>FormEditGraphicFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphicFrame.vi.resx">
+      <DependentUpon>FormEditGraphicFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFileSaveAsBitmap.vi.resx">
+      <DependentUpon>FormFileSaveAsBitmap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFindReplaceTagLink.ko.resx">
+      <DependentUpon>FormFindReplaceTagLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFindReplaceTagLink.resx">
+      <DependentUpon>FormFindReplaceTagLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFutureVersion.resx">
+      <DependentUpon>FormFutureVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectedObjectToBitmap.ja.resx">
+      <DependentUpon>FormSelectedObjectToBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectedObjectToBitmap.ko.resx">
+      <DependentUpon>FormSelectedObjectToBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectedObjectToBitmap.resx">
+      <DependentUpon>FormSelectedObjectToBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectedObjectToBitmap.zh-CHS.resx">
+      <DependentUpon>FormSelectedObjectToBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogGauge.ko.resx">
+      <DependentUpon>PropertyPageObjectAnalogGauge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogGauge.resx">
+      <DependentUpon>PropertyPageObjectAnalogGauge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDemandChart.resx">
+      <DependentUpon>PropertyPageObjectDemandChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDonutChart.ko.resx">
+      <DependentUpon>PropertyPageObjectDonutChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDonutChart.resx">
+      <DependentUpon>PropertyPageObjectDonutChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectSVG.ja.resx">
+      <DependentUpon>PropertyPageObjectSVG.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectSVG.ko.resx">
+      <DependentUpon>PropertyPageObjectSVG.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectSVG.resx">
+      <DependentUpon>PropertyPageObjectSVG.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectSVG.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectSVG.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectTagAnimation.ko-KR.resx">
+      <DependentUpon>PropertyPageObjectTagAnimation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectVLCAx.ko.resx">
+      <DependentUpon>PropertyPageObjectVLCAx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectVLCAx.resx">
+      <DependentUpon>PropertyPageObjectVLCAx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWebView.ja.resx">
+      <DependentUpon>PropertyPageObjectWebView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWebView.ko.resx">
+      <DependentUpon>PropertyPageObjectWebView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWebView.resx">
+      <DependentUpon>PropertyPageObjectWebView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWebView.vi.resx">
+      <DependentUpon>PropertyPageObjectWebView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWebView.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectWebView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageButtonThick.ja.resx">
+      <DependentUpon>PropertyPageButtonThick.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageButtonThick.ko.resx">
+      <DependentUpon>PropertyPageButtonThick.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageButtonThick.resx">
+      <DependentUpon>PropertyPageButtonThick.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageButtonThick.vi.resx">
+      <DependentUpon>PropertyPageButtonThick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageButtonThick.zh-CHS.resx">
+      <DependentUpon>PropertyPageButtonThick.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlTreeView.ko.resx">
+      <DependentUpon>PropertyPageObjectControlTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlTreeView.resx">
+      <DependentUpon>PropertyPageObjectControlTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlTabControl.ko.resx">
+      <DependentUpon>PropertyPageObjectControlTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlTabControl.resx">
+      <DependentUpon>PropertyPageObjectControlTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWindowAlarmColumn.ko.resx">
+      <DependentUpon>PropertyPageObjectWindowAlarmColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWindowAlarmColumn.resx">
+      <DependentUpon>PropertyPageObjectWindowAlarmColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormConfigScriptNew.ko.resx">
+      <DependentUpon>FormConfigScriptNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormConfigScriptNew.resx">
+      <DependentUpon>FormConfigScriptNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormErrorDecompileCompare.resx">
+      <DependentUpon>FormErrorDecompileCompare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorSimpleNew.ja.resx">
+      <DependentUpon>FormScriptEditorSimpleNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorSimpleNew.ko.resx">
+      <DependentUpon>FormScriptEditorSimpleNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorSimpleNew.resx">
+      <DependentUpon>FormScriptEditorSimpleNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorSimpleNew.vi.resx">
+      <DependentUpon>FormScriptEditorSimpleNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorSimpleNew.zh-CHS.resx">
+      <DependentUpon>FormScriptEditorSimpleNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormCompileResultForDebug.resx">
+      <DependentUpon>FormCompileResultForDebug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptFind.resx">
+      <DependentUpon>FormScriptFind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormSelectMethod.ko.resx">
+      <DependentUpon>FormSelectMethod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Solution\FormAddReference.resx">
+      <DependentUpon>FormAddReference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Solution\FormConfigScriptProjectProperties.resx">
+      <DependentUpon>FormConfigScriptProjectProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Solution\FormNewScriptProject.resx">
+      <DependentUpon>FormNewScriptProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Solution\FormSolution.vi.resx">
+      <DependentUpon>FormSolution.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layer\FormLayer.vi.resx">
+      <DependentUpon>FormLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormCommentWrite.ko.resx">
+      <DependentUpon>FormCommentWrite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormCommentWrite.resx">
+      <DependentUpon>FormCommentWrite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormConfigItemProperty.ko.resx">
+      <DependentUpon>FormConfigItemProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormConfigItemProperty.resx">
+      <DependentUpon>FormConfigItemProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormConfigLibrary.vi.resx">
+      <DependentUpon>FormConfigLibrary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormConfigTitle.ko.resx">
+      <DependentUpon>FormConfigTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormConfigTitle.resx">
+      <DependentUpon>FormConfigTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormInsertFromLibrary.vi.resx">
+      <DependentUpon>FormInsertFromLibrary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormRegisterToLibrary.vi.resx">
+      <DependentUpon>FormRegisterToLibrary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectAnimationFromLibrary.vi.resx">
+      <DependentUpon>FormSelectAnimationFromLibrary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectControlBoxFromLibrary.ko.resx">
+      <DependentUpon>FormSelectControlBoxFromLibrary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectControlBoxFromLibrary.resx">
+      <DependentUpon>FormSelectControlBoxFromLibrary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectDigitalAnimationFromLibrary.vi.resx">
+      <DependentUpon>FormSelectDigitalAnimationFromLibrary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionLocationX.vi.resx">
+      <DependentUpon>FormExpandOptionLocationX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionLocationY.vi.resx">
+      <DependentUpon>FormExpandOptionLocationY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionMouseZone.vi.resx">
+      <DependentUpon>FormExpandOptionMouseZone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionRotate.vi.resx">
+      <DependentUpon>FormExpandOptionRotate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSizeHeight.vi.resx">
+      <DependentUpon>FormExpandOptionSizeHeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSizeWidth.vi.resx">
+      <DependentUpon>FormExpandOptionSizeWidth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormPropertyAndScript.vi.resx">
+      <DependentUpon>FormPropertyAndScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageBrush.ja.resx">
+      <DependentUpon>PropertyPageBrush.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageBrush.ko.resx">
+      <DependentUpon>PropertyPageBrush.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageBrush.resx">
+      <DependentUpon>PropertyPageBrush.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageBrushPublic.ja.resx">
+      <DependentUpon>PropertyPageBrushPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageBrushPublic.ko.resx">
+      <DependentUpon>PropertyPageBrushPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageBrushPublic.resx">
+      <DependentUpon>PropertyPageBrushPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageBrushPublic.vi.resx">
+      <DependentUpon>PropertyPageBrushPublic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageBrushPublic.zh-CHS.resx">
+      <DependentUpon>PropertyPageBrushPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionAnimationSpeed.ko.resx">
+      <DependentUpon>FormExpandOptionAnimationSpeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionBlinking.ko.resx">
+      <DependentUpon>FormExpandOptionBlinking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionColor.ko.resx">
+      <DependentUpon>FormExpandOptionColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionLineThick.ko.resx">
+      <DependentUpon>FormExpandOptionLineThick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionLocationX.ko.resx">
+      <DependentUpon>FormExpandOptionLocationX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionLocationY.ko.resx">
+      <DependentUpon>FormExpandOptionLocationY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionRotate.ko.resx">
+      <DependentUpon>FormExpandOptionRotate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSizeHeight.ko.resx">
+      <DependentUpon>FormExpandOptionSizeHeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSizeWidth.ko.resx">
+      <DependentUpon>FormExpandOptionSizeWidth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionVisible.ko.resx">
+      <DependentUpon>FormExpandOptionVisible.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormInsertFromLibrarySearch.ja.resx">
+      <DependentUpon>FormInsertFromLibrarySearch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormInsertFromLibrarySearch.ko.resx">
+      <DependentUpon>FormInsertFromLibrarySearch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormInsertFromLibrarySearch.resx">
+      <DependentUpon>FormInsertFromLibrarySearch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormInsertFromLibrarySearch.zh-CHS.resx">
+      <DependentUpon>FormInsertFromLibrarySearch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionRotate.resx">
+      <DependentUpon>FormExpandOptionRotate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionColor.resx">
+      <DependentUpon>FormExpandOptionColor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionLineThick.resx">
+      <DependentUpon>FormExpandOptionLineThick.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionAnimationSpeed.resx">
+      <DependentUpon>FormExpandOptionAnimationSpeed.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionBlinking.resx">
+      <DependentUpon>FormExpandOptionBlinking.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionVisible.resx">
+      <DependentUpon>FormExpandOptionVisible.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionLocationY.resx">
+      <DependentUpon>FormExpandOptionLocationY.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionLocationX.resx">
+      <DependentUpon>FormExpandOptionLocationX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSizeHeight.resx">
+      <DependentUpon>FormExpandOptionSizeHeight.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSizeWidth.resx">
+      <DependentUpon>FormExpandOptionSizeWidth.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormPropertyAndScript.ko.resx">
+      <DependentUpon>FormPropertyAndScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormPropertyAndScript.resx">
+      <DependentUpon>FormPropertyAndScript.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layer\FormConfigLayer.ko.resx">
+      <DependentUpon>FormConfigLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layer\FormConfigLayer.resx">
+      <DependentUpon>FormConfigLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layer\FormLayer.ko.resx">
+      <DependentUpon>FormLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layer\FormLayer.resx">
+      <DependentUpon>FormLayer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageClassName.vi.resx">
+      <DependentUpon>PropertyPageClassName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorLine.vi.resx">
+      <DependentUpon>PropertyPageColorLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorPublic.vi.resx">
+      <DependentUpon>PropertyPageColorPublic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageControlBox.ko.resx">
+      <DependentUpon>PropertyPageControlBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageControlBox.resx">
+      <DependentUpon>PropertyPageControlBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageControlBox.vi.resx">
+      <DependentUpon>PropertyPageControlBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageExpandOption.vi.resx">
+      <DependentUpon>PropertyPageExpandOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageFont.vi.resx">
+      <DependentUpon>PropertyPageFont.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageGraphMember.vi.resx">
+      <DependentUpon>PropertyPageGraphMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageListData.vi.resx">
+      <DependentUpon>PropertyPageListData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponse.vi.resx">
+      <DependentUpon>PropertyPageMouseResponse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseAnalog.vi.resx">
+      <DependentUpon>PropertyPageMouseResponseAnalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseDigital.vi.resx">
+      <DependentUpon>PropertyPageMouseResponseDigital.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseString.vi.resx">
+      <DependentUpon>PropertyPageMouseResponseString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageNotObject.vi.resx">
+      <DependentUpon>PropertyPageNotObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogRectangle.vi.resx">
+      <DependentUpon>PropertyPageObjectAnalogRectangle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogRotate.vi.resx">
+      <DependentUpon>PropertyPageObjectAnalogRotate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogString.vi.resx">
+      <DependentUpon>PropertyPageObjectAnalogString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonDigitalOut.vi.resx">
+      <DependentUpon>PropertyPageObjectButtonDigitalOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonModule3D.vi.resx">
+      <DependentUpon>PropertyPageObjectButtonModule3D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonModuleHide.vi.resx">
+      <DependentUpon>PropertyPageObjectButtonModuleHide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonProgram.vi.resx">
+      <DependentUpon>PropertyPageObjectButtonProgram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectChangeValueDisplay.vi.resx">
+      <DependentUpon>PropertyPageObjectChangeValueDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlComboBox.vi.resx">
+      <DependentUpon>PropertyPageObjectControlComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlDatePicker.ko.resx">
+      <DependentUpon>PropertyPageObjectControlDatePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlDatePicker.resx">
+      <DependentUpon>PropertyPageObjectControlDatePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlDatePicker.vi.resx">
+      <DependentUpon>PropertyPageObjectControlDatePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlEditBox.vi.resx">
+      <DependentUpon>PropertyPageObjectControlEditBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlListBox.vi.resx">
+      <DependentUpon>PropertyPageObjectControlListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabase.vi.resx">
+      <DependentUpon>PropertyPageObjectDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrend.vi.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDataGridView.ko.resx">
+      <DependentUpon>PropertyPageObjectDataGridView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDataGridView.resx">
+      <DependentUpon>PropertyPageObjectDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDate.vi.resx">
+      <DependentUpon>PropertyPageObjectDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDemandWindow.vi.resx">
+      <DependentUpon>PropertyPageObjectDemandWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalCircle.vi.resx">
+      <DependentUpon>PropertyPageObjectDigitalCircle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalRectangle.vi.resx">
+      <DependentUpon>PropertyPageObjectDigitalRectangle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalString.vi.resx">
+      <DependentUpon>PropertyPageObjectDigitalString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliData.vi.resx">
+      <DependentUpon>PropertyPageObjectMilliData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliDataTrend.vi.resx">
+      <DependentUpon>PropertyPageObjectMilliDataTrend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliDataTrendMember.ja.resx">
+      <DependentUpon>PropertyPageObjectMilliDataTrendMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliDataTrendMember.ko.resx">
+      <DependentUpon>PropertyPageObjectMilliDataTrendMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliDataTrendMember.resx">
+      <DependentUpon>PropertyPageObjectMilliDataTrendMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliDataTrendMember.vi.resx">
+      <DependentUpon>PropertyPageObjectMilliDataTrendMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliDataTrendMember.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectMilliDataTrendMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseAnalog.ja.resx">
+      <DependentUpon>PropertyPageMouseResponseAnalog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseAnalog.ko.resx">
+      <DependentUpon>PropertyPageMouseResponseAnalog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseAnalog.resx">
+      <DependentUpon>PropertyPageMouseResponseAnalog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseAnalog.zh-CHS.resx">
+      <DependentUpon>PropertyPageMouseResponseAnalog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cursor\CurveMain.cur" />
+    <EmbeddedResource Include="Cursor\CurveMove.cur" />
+    <EmbeddedResource Include="FormConfigAlarmPriority.ja.resx">
+      <DependentUpon>FormConfigAlarmPriority.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAlarmPriority.ko.resx">
+      <DependentUpon>FormConfigAlarmPriority.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAlarmPriority.resx">
+      <DependentUpon>FormConfigAlarmPriority.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigAlarmPriority.zh-CHS.resx">
+      <DependentUpon>FormConfigAlarmPriority.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigArrangeBitmapFiles.ja.resx">
+      <DependentUpon>FormConfigArrangeBitmapFiles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigArrangeBitmapFiles.ko.resx">
+      <DependentUpon>FormConfigArrangeBitmapFiles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigArrangeBitmapFiles.resx">
+      <DependentUpon>FormConfigArrangeBitmapFiles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigArrangeBitmapFiles.zh-CHS.resx">
+      <DependentUpon>FormConfigArrangeBitmapFiles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigBackgroundBitmap.ja.resx">
+      <DependentUpon>FormConfigBackgroundBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigBackgroundBitmap.ko.resx">
+      <DependentUpon>FormConfigBackgroundBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigBackgroundBitmap.resx">
+      <DependentUpon>FormConfigBackgroundBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigBackgroundBitmap.zh-CHS.resx">
+      <DependentUpon>FormConfigBackgroundBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigBitmapEditor.ja.resx">
+      <DependentUpon>FormConfigBitmapEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigBitmapEditor.ko.resx">
+      <DependentUpon>FormConfigBitmapEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigBitmapEditor.resx">
+      <DependentUpon>FormConfigBitmapEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigBitmapEditor.zh-CHS.resx">
+      <DependentUpon>FormConfigBitmapEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandControl.ja.resx">
+      <DependentUpon>FormConfigDemandControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandControl.ko.resx">
+      <DependentUpon>FormConfigDemandControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandControl.resx">
+      <DependentUpon>FormConfigDemandControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandControl.zh-CHS.resx">
+      <DependentUpon>FormConfigDemandControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandControlAdd.ja.resx">
+      <DependentUpon>FormConfigDemandControlAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandControlAdd.ko.resx">
+      <DependentUpon>FormConfigDemandControlAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandControlAdd.resx">
+      <DependentUpon>FormConfigDemandControlAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigDemandControlAdd.zh-CHS.resx">
+      <DependentUpon>FormConfigDemandControlAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigEtc.zh-CHS.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormConfigEtc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigGuideLine.ja.resx">
+      <DependentUpon>FormConfigGuideLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigGuideLine.ko.resx">
+      <DependentUpon>FormConfigGuideLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigGuideLine.resx">
+      <DependentUpon>FormConfigGuideLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigGuideLine.zh-CHS.resx">
+      <DependentUpon>FormConfigGuideLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormConfigLibrary.ja.resx">
+      <DependentUpon>FormConfigLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormConfigLibrary.ko.resx">
+      <DependentUpon>FormConfigLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormConfigLibrary.resx">
+      <DependentUpon>FormConfigLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormConfigLibrary.zh-CHS.resx">
+      <DependentUpon>FormConfigLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigMilliData.ja.resx">
+      <DependentUpon>FormConfigMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigMilliData.ko.resx">
+      <DependentUpon>FormConfigMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigMilliData.resx">
+      <DependentUpon>FormConfigMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigMilliData.zh-CHS.resx">
+      <DependentUpon>FormConfigMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigMilliDataAdd.ja.resx">
+      <DependentUpon>FormConfigMilliDataAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigMilliDataAdd.ko.resx">
+      <DependentUpon>FormConfigMilliDataAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigMilliDataAdd.resx">
+      <DependentUpon>FormConfigMilliDataAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigMilliDataAdd.zh-CHS.resx">
+      <DependentUpon>FormConfigMilliDataAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigModuleProperty.ja.resx">
+      <DependentUpon>FormConfigModuleProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigModuleProperty.ko.resx">
+      <DependentUpon>FormConfigModuleProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigModuleProperty.resx">
+      <DependentUpon>FormConfigModuleProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigModuleProperty.zh-CHS.resx">
+      <DependentUpon>FormConfigModuleProperty.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigOnOffList.ja.resx">
+      <DependentUpon>FormConfigOnOffList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigOnOffList.ko.resx">
+      <DependentUpon>FormConfigOnOffList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigOnOffList.resx">
+      <DependentUpon>FormConfigOnOffList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigOnOffList.zh-CHS.resx">
+      <DependentUpon>FormConfigOnOffList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSearchSoundFile.ja.resx">
+      <DependentUpon>FormConfigSearchSoundFile.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSearchSoundFile.ko.resx">
+      <DependentUpon>FormConfigSearchSoundFile.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSearchSoundFile.resx">
+      <DependentUpon>FormConfigSearchSoundFile.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSearchSoundFile.zh-CHS.resx">
+      <DependentUpon>FormConfigSearchSoundFile.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSqlBindList.ja.resx">
+      <DependentUpon>FormConfigSqlBindList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSqlBindList.ko.resx">
+      <DependentUpon>FormConfigSqlBindList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSqlBindList.resx">
+      <DependentUpon>FormConfigSqlBindList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSqlBindList.zh-CHS.resx">
+      <DependentUpon>FormConfigSqlBindList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSqlBindListAdd.ja.resx">
+      <DependentUpon>FormConfigSqlBindListAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSqlBindListAdd.ko.resx">
+      <DependentUpon>FormConfigSqlBindListAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSqlBindListAdd.resx">
+      <DependentUpon>FormConfigSqlBindListAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigSqlBindListAdd.zh-CHS.resx">
+      <DependentUpon>FormConfigSqlBindListAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigToolBarWindow.ja.resx">
+      <DependentUpon>FormConfigToolBarWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigToolBarWindow.ko.resx">
+      <DependentUpon>FormConfigToolBarWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigToolBarWindow.resx">
+      <DependentUpon>FormConfigToolBarWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigToolBarWindow.zh-CHS.resx">
+      <DependentUpon>FormConfigToolBarWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigToolBarWindowAdd.ja.resx">
+      <DependentUpon>FormConfigToolBarWindowAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigToolBarWindowAdd.ko.resx">
+      <DependentUpon>FormConfigToolBarWindowAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigToolBarWindowAdd.resx">
+      <DependentUpon>FormConfigToolBarWindowAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfigToolBarWindowAdd.zh-CHS.resx">
+      <DependentUpon>FormConfigToolBarWindowAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliDataTrend.ja.resx">
+      <DependentUpon>PropertyPageObjectMilliDataTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliDataTrend.ko.resx">
+      <DependentUpon>PropertyPageObjectMilliDataTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliDataTrend.resx">
+      <DependentUpon>PropertyPageObjectMilliDataTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliDataTrend.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectMilliDataTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMultiGraph.vi.resx">
+      <DependentUpon>PropertyPageObjectMultiGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMultiTrend.vi.resx">
+      <DependentUpon>PropertyPageObjectMultiTrend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRealTimeTestGraph.vi.resx">
+      <DependentUpon>PropertyPageObjectRealTimeTestGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRectangle.vi.resx">
+      <DependentUpon>PropertyPageObjectRectangle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRoundRectangle.vi.resx">
+      <DependentUpon>PropertyPageObjectRoundRectangle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectTagAnimation.vi.resx">
+      <DependentUpon>PropertyPageObjectTagAnimation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectText.vi.resx">
+      <DependentUpon>PropertyPageObjectText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWebBrowser.vi.resx">
+      <DependentUpon>PropertyPageObjectWebBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWindowAlarm.vi.resx">
+      <DependentUpon>PropertyPageObjectWindowAlarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageTag.vi.resx">
+      <DependentUpon>PropertyPageTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertySheetPublic.vi.resx">
+      <DependentUpon>PropertySheetPublic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormMessagePanel.resx">
+      <DependentUpon>FormMessagePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormNewScriptEditor.resx">
+      <DependentUpon>FormNewScriptEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormNewScriptErrorMessage.resx">
+      <DependentUpon>FormNewScriptErrorMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptAlways.vi.resx">
+      <DependentUpon>FormScriptAlways.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorSimpleOld.vi.resx">
+      <DependentUpon>FormScriptEditorSimpleOld.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorDataModify.vi.resx">
+      <DependentUpon>FormScriptEditorDataModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptKey.vi.resx">
+      <DependentUpon>FormScriptKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptKeyAdd.vi.resx">
+      <DependentUpon>FormScriptKeyAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormSelectMethod.resx">
+      <DependentUpon>FormSelectMethod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormSelectNewClass.resx">
+      <DependentUpon>FormSelectNewClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudioMain.mn-Mong-CN.resx">
+      <DependentUpon>StudioMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudioMain.ru.resx">
+      <DependentUpon>StudioMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudioMain.vi.resx">
+      <DependentUpon>StudioMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebServer\FormConfigWebServer.ja.resx">
+      <DependentUpon>FormConfigWebServer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebServer\FormConfigWebServer.ko.resx">
+      <DependentUpon>FormConfigWebServer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebServer\FormConfigWebServer.resx">
+      <DependentUpon>FormConfigWebServer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebServer\FormConfigWebServer.vi.resx">
+      <DependentUpon>FormConfigWebServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebServer\FormConfigWebServer.zh-CHS.resx">
+      <DependentUpon>FormConfigWebServer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphic.ja.resx">
+      <DependentUpon>FormEditGraphic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphic.ko.resx">
+      <DependentUpon>FormEditGraphic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphic.resx">
+      <DependentUpon>FormEditGraphic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphic.zh-CHS.resx">
+      <DependentUpon>FormEditGraphic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphicFrame.ja.resx">
+      <DependentUpon>FormEditGraphicFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphicFrame.ko.resx">
+      <DependentUpon>FormEditGraphicFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphicFrame.resx">
+      <DependentUpon>FormEditGraphicFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditGraphicFrame.zh-CHS.resx">
+      <DependentUpon>FormEditGraphicFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionMouseZone.ja.resx">
+      <DependentUpon>FormExpandOptionMouseZone.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionMouseZone.ko.resx">
+      <DependentUpon>FormExpandOptionMouseZone.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionMouseZone.resx">
+      <DependentUpon>FormExpandOptionMouseZone.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionMouseZone.zh-CHS.resx">
+      <DependentUpon>FormExpandOptionMouseZone.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSliderHorz.ja.resx">
+      <DependentUpon>FormExpandOptionSliderHorz.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSliderHorz.ko.resx">
+      <DependentUpon>FormExpandOptionSliderHorz.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSliderHorz.resx">
+      <DependentUpon>FormExpandOptionSliderHorz.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSliderHorz.zh-CHS.resx">
+      <DependentUpon>FormExpandOptionSliderHorz.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSliderVert.ja.resx">
+      <DependentUpon>FormExpandOptionSliderVert.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSliderVert.ko.resx">
+      <DependentUpon>FormExpandOptionSliderVert.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSliderVert.resx">
+      <DependentUpon>FormExpandOptionSliderVert.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\FormExpandOptionSliderVert.zh-CHS.resx">
+      <DependentUpon>FormExpandOptionSliderVert.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFileSaveAsBitmap.ja.resx">
+      <DependentUpon>FormFileSaveAsBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFileSaveAsBitmap.ko.resx">
+      <DependentUpon>FormFileSaveAsBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFileSaveAsBitmap.resx">
+      <DependentUpon>FormFileSaveAsBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFileSaveAsBitmap.zh-CHS.resx">
+      <DependentUpon>FormFileSaveAsBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormInsertFromLibrary.ja.resx">
+      <DependentUpon>FormInsertFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormInsertFromLibrary.ko.resx">
+      <DependentUpon>FormInsertFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormInsertFromLibrary.resx">
+      <DependentUpon>FormInsertFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormInsertFromLibrary.zh-CHS.resx">
+      <DependentUpon>FormInsertFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormLibraryGroupPreview.ja.resx">
+      <DependentUpon>FormLibraryGroupPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormLibraryGroupPreview.ko.resx">
+      <DependentUpon>FormLibraryGroupPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormLibraryGroupPreview.resx">
+      <DependentUpon>FormLibraryGroupPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormLibraryGroupPreview.zh-CHS.resx">
+      <DependentUpon>FormLibraryGroupPreview.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormRegisterToLibrary.ja.resx">
+      <DependentUpon>FormRegisterToLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormRegisterToLibrary.ko.resx">
+      <DependentUpon>FormRegisterToLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormRegisterToLibrary.resx">
+      <DependentUpon>FormRegisterToLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormRegisterToLibrary.zh-CHS.resx">
+      <DependentUpon>FormRegisterToLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptAlways.ja.resx">
+      <DependentUpon>FormScriptAlways.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptAlways.ko.resx">
+      <DependentUpon>FormScriptAlways.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptAlways.resx">
+      <DependentUpon>FormScriptAlways.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptAlways.zh-CHS.resx">
+      <DependentUpon>FormScriptAlways.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorSimpleOld.ja.resx">
+      <DependentUpon>FormScriptEditorSimpleOld.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorSimpleOld.ko.resx">
+      <DependentUpon>FormScriptEditorSimpleOld.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorSimpleOld.resx">
+      <DependentUpon>FormScriptEditorSimpleOld.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorSimpleOld.zh-CHS.resx">
+      <DependentUpon>FormScriptEditorSimpleOld.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorDataModify.ja.resx">
+      <DependentUpon>FormScriptEditorDataModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorDataModify.ko.resx">
+      <DependentUpon>FormScriptEditorDataModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorDataModify.resx">
+      <DependentUpon>FormScriptEditorDataModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptEditorDataModify.zh-CHS.resx">
+      <DependentUpon>FormScriptEditorDataModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptKey.ja.resx">
+      <DependentUpon>FormScriptKey.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptKey.ko.resx">
+      <DependentUpon>FormScriptKey.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptKey.resx">
+      <DependentUpon>FormScriptKey.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptKey.zh-CHS.resx">
+      <DependentUpon>FormScriptKey.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptKeyAdd.ja.resx">
+      <DependentUpon>FormScriptKeyAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptKeyAdd.ko.resx">
+      <DependentUpon>FormScriptKeyAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptKeyAdd.resx">
+      <DependentUpon>FormScriptKeyAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptKeyAdd.zh-CHS.resx">
+      <DependentUpon>FormScriptKeyAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptMenu.ja.resx">
+      <DependentUpon>FormScriptMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptMenu.ko.resx">
+      <DependentUpon>FormScriptMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptMenu.resx">
+      <DependentUpon>FormScriptMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptMenu.zh-CHS.resx">
+      <DependentUpon>FormScriptMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptNew.ja.resx">
+      <DependentUpon>FormScriptNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptNew.ko.resx">
+      <DependentUpon>FormScriptNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptNew.resx">
+      <DependentUpon>FormScriptNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\FormScriptNew.zh-CHS.resx">
+      <DependentUpon>FormScriptNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectAnimationFromLibrary.ja.resx">
+      <DependentUpon>FormSelectAnimationFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectAnimationFromLibrary.ko.resx">
+      <DependentUpon>FormSelectAnimationFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectAnimationFromLibrary.resx">
+      <DependentUpon>FormSelectAnimationFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectAnimationFromLibrary.zh-CHS.resx">
+      <DependentUpon>FormSelectAnimationFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectDigitalAnimationFromLibrary.ja.resx">
+      <DependentUpon>FormSelectDigitalAnimationFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectDigitalAnimationFromLibrary.ko.resx">
+      <DependentUpon>FormSelectDigitalAnimationFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectDigitalAnimationFromLibrary.resx">
+      <DependentUpon>FormSelectDigitalAnimationFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\FormSelectDigitalAnimationFromLibrary.zh-CHS.resx">
+      <DependentUpon>FormSelectDigitalAnimationFromLibrary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Solution\FormSolution.ja.resx">
+      <DependentUpon>FormSolution.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Solution\FormSolution.ko.resx">
+      <DependentUpon>FormSolution.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Solution\FormSolution.resx">
+      <DependentUpon>FormSolution.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Solution\FormSolution.zh-CHS.resx">
+      <DependentUpon>FormSolution.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageClassName.ja.resx">
+      <DependentUpon>PropertyPageClassName.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageClassName.ko.resx">
+      <DependentUpon>PropertyPageClassName.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageClassName.resx">
+      <DependentUpon>PropertyPageClassName.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageClassName.zh-CHS.resx">
+      <DependentUpon>PropertyPageClassName.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColor.ja.resx">
+      <DependentUpon>PropertyPageColor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColor.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColor.resx">
+      <DependentUpon>PropertyPageColor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorFill.ja.resx">
+      <DependentUpon>PropertyPageColorFill.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorFill.ko.resx">
+      <DependentUpon>PropertyPageColorFill.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorFill.resx">
+      <DependentUpon>PropertyPageColorFill.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorFill.zh-CHS.resx">
+      <DependentUpon>PropertyPageColorFill.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorLine.ja.resx">
+      <DependentUpon>PropertyPageColorLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorLine.ko.resx">
+      <DependentUpon>PropertyPageColorLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorLine.resx">
+      <DependentUpon>PropertyPageColorLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorLine.zh-CHS.resx">
+      <DependentUpon>PropertyPageColorLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorPublic.ja.resx">
+      <DependentUpon>PropertyPageColorPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorPublic.ko.resx">
+      <DependentUpon>PropertyPageColorPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorPublic.resx">
+      <DependentUpon>PropertyPageColorPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageColorPublic.zh-CHS.resx">
+      <DependentUpon>PropertyPageColorPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageExpandOption.ja.resx">
+      <DependentUpon>PropertyPageExpandOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageExpandOption.ko.resx">
+      <DependentUpon>PropertyPageExpandOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageExpandOption.resx">
+      <DependentUpon>PropertyPageExpandOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageExpandOption.zh-CHS.resx">
+      <DependentUpon>PropertyPageExpandOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageFont.ja.resx">
+      <DependentUpon>PropertyPageFont.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageFont.ko.resx">
+      <DependentUpon>PropertyPageFont.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageFont.resx">
+      <DependentUpon>PropertyPageFont.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageFont.zh-CHS.resx">
+      <DependentUpon>PropertyPageFont.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageGraphMember.ja.resx">
+      <DependentUpon>PropertyPageGraphMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageGraphMember.ko.resx">
+      <DependentUpon>PropertyPageGraphMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageGraphMember.resx">
+      <DependentUpon>PropertyPageGraphMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageGraphMember.zh-CHS.resx">
+      <DependentUpon>PropertyPageGraphMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageListData.ja.resx">
+      <DependentUpon>PropertyPageListData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageListData.ko.resx">
+      <DependentUpon>PropertyPageListData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageListData.resx">
+      <DependentUpon>PropertyPageListData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageListData.zh-CHS.resx">
+      <DependentUpon>PropertyPageListData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponse.ja.resx">
+      <DependentUpon>PropertyPageMouseResponse.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponse.ko.resx">
+      <DependentUpon>PropertyPageMouseResponse.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponse.resx">
+      <DependentUpon>PropertyPageMouseResponse.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponse.zh-CHS.resx">
+      <DependentUpon>PropertyPageMouseResponse.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseDigital.ja.resx">
+      <DependentUpon>PropertyPageMouseResponseDigital.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseDigital.ko.resx">
+      <DependentUpon>PropertyPageMouseResponseDigital.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseDigital.resx">
+      <DependentUpon>PropertyPageMouseResponseDigital.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseDigital.zh-CHS.resx">
+      <DependentUpon>PropertyPageMouseResponseDigital.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseString.ja.resx">
+      <DependentUpon>PropertyPageMouseResponseString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseString.ko.resx">
+      <DependentUpon>PropertyPageMouseResponseString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseString.resx">
+      <DependentUpon>PropertyPageMouseResponseString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageMouseResponseString.zh-CHS.resx">
+      <DependentUpon>PropertyPageMouseResponseString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageNotObject.ja.resx">
+      <DependentUpon>PropertyPageNotObject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageNotObject.ko.resx">
+      <DependentUpon>PropertyPageNotObject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageNotObject.resx">
+      <DependentUpon>PropertyPageNotObject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageNotObject.zh-CHS.resx">
+      <DependentUpon>PropertyPageNotObject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogMeter.ja.resx">
+      <DependentUpon>PropertyPageObjectAnalogMeter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogMeter.ko.resx">
+      <DependentUpon>PropertyPageObjectAnalogMeter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogMeter.resx">
+      <DependentUpon>PropertyPageObjectAnalogMeter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogMeter.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectAnalogMeter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogRectangle.ja.resx">
+      <DependentUpon>PropertyPageObjectAnalogRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogRectangle.ko.resx">
+      <DependentUpon>PropertyPageObjectAnalogRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogRectangle.resx">
+      <DependentUpon>PropertyPageObjectAnalogRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogRectangle.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectAnalogRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogRotate.ja.resx">
+      <DependentUpon>PropertyPageObjectAnalogRotate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogRotate.ko.resx">
+      <DependentUpon>PropertyPageObjectAnalogRotate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogRotate.resx">
+      <DependentUpon>PropertyPageObjectAnalogRotate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogRotate.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectAnalogRotate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogStatus.ja.resx">
+      <DependentUpon>PropertyPageObjectAnalogStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogStatus.ko.resx">
+      <DependentUpon>PropertyPageObjectAnalogStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogStatus.resx">
+      <DependentUpon>PropertyPageObjectAnalogStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogStatus.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectAnalogStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogString.ja.resx">
+      <DependentUpon>PropertyPageObjectAnalogString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogString.ko.resx">
+      <DependentUpon>PropertyPageObjectAnalogString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogString.resx">
+      <DependentUpon>PropertyPageObjectAnalogString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnalogString.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectAnalogString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnimation.ja.resx">
+      <DependentUpon>PropertyPageObjectAnimation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnimation.ko.resx">
+      <DependentUpon>PropertyPageObjectAnimation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnimation.resx">
+      <DependentUpon>PropertyPageObjectAnimation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectAnimation.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectAnimation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectBitmap.ja.resx">
+      <DependentUpon>PropertyPageObjectBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectBitmap.ko.resx">
+      <DependentUpon>PropertyPageObjectBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectBitmap.resx">
+      <DependentUpon>PropertyPageObjectBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectBitmap.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectBitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonDigitalOut.ja.resx">
+      <DependentUpon>PropertyPageObjectButtonDigitalOut.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonDigitalOut.ko.resx">
+      <DependentUpon>PropertyPageObjectButtonDigitalOut.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonDigitalOut.resx">
+      <DependentUpon>PropertyPageObjectButtonDigitalOut.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonDigitalOut.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectButtonDigitalOut.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonModule3D.ja.resx">
+      <DependentUpon>PropertyPageObjectButtonModule3D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonModule3D.ko.resx">
+      <DependentUpon>PropertyPageObjectButtonModule3D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonModule3D.resx">
+      <DependentUpon>PropertyPageObjectButtonModule3D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonModule3D.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectButtonModule3D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonModuleHide.ja.resx">
+      <DependentUpon>PropertyPageObjectButtonModuleHide.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonModuleHide.ko.resx">
+      <DependentUpon>PropertyPageObjectButtonModuleHide.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonModuleHide.resx">
+      <DependentUpon>PropertyPageObjectButtonModuleHide.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonModuleHide.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectButtonModuleHide.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonProgram.ja.resx">
+      <DependentUpon>PropertyPageObjectButtonProgram.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonProgram.ko.resx">
+      <DependentUpon>PropertyPageObjectButtonProgram.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonProgram.resx">
+      <DependentUpon>PropertyPageObjectButtonProgram.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectButtonProgram.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectButtonProgram.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectChangeValueDisplay.ja.resx">
+      <DependentUpon>PropertyPageObjectChangeValueDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectChangeValueDisplay.ko.resx">
+      <DependentUpon>PropertyPageObjectChangeValueDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectChangeValueDisplay.resx">
+      <DependentUpon>PropertyPageObjectChangeValueDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectChangeValueDisplay.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectChangeValueDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectCircle.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageObjectCircle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectCircle.resx">
+      <DependentUpon>PropertyPageObjectCircle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectClock.ja.resx">
+      <DependentUpon>PropertyPageObjectClock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectClock.ko.resx">
+      <DependentUpon>PropertyPageObjectClock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectClock.resx">
+      <DependentUpon>PropertyPageObjectClock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectClock.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectClock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlCheckBox.ja.resx">
+      <DependentUpon>PropertyPageObjectControlCheckBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlCheckBox.ko.resx">
+      <DependentUpon>PropertyPageObjectControlCheckBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlCheckBox.resx">
+      <DependentUpon>PropertyPageObjectControlCheckBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlCheckBox.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectControlCheckBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlComboBox.ja.resx">
+      <DependentUpon>PropertyPageObjectControlComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlComboBox.ko.resx">
+      <DependentUpon>PropertyPageObjectControlComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlComboBox.resx">
+      <DependentUpon>PropertyPageObjectControlComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlComboBox.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectControlComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlEditBox.ja.resx">
+      <DependentUpon>PropertyPageObjectControlEditBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlEditBox.ko.resx">
+      <DependentUpon>PropertyPageObjectControlEditBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlEditBox.resx">
+      <DependentUpon>PropertyPageObjectControlEditBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlEditBox.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectControlEditBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlListBox.ja.resx">
+      <DependentUpon>PropertyPageObjectControlListBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlListBox.ko.resx">
+      <DependentUpon>PropertyPageObjectControlListBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlListBox.resx">
+      <DependentUpon>PropertyPageObjectControlListBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlListBox.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectControlListBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlRadioButton.ja.resx">
+      <DependentUpon>PropertyPageObjectControlRadioButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlRadioButton.ko.resx">
+      <DependentUpon>PropertyPageObjectControlRadioButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlRadioButton.resx">
+      <DependentUpon>PropertyPageObjectControlRadioButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectControlRadioButton.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectControlRadioButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabase.ja.resx">
+      <DependentUpon>PropertyPageObjectDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabase.ko.resx">
+      <DependentUpon>PropertyPageObjectDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabase.resx">
+      <DependentUpon>PropertyPageObjectDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabase.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrend.ja.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrend.ko.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrend.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrend.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrendMember.ja.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrendMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrendMember.ko.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrendMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrendMember.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrendMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrendMember.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrendMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrendMemberModify.ja.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrendMemberModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrendMemberModify.ko.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrendMemberModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrendMemberModify.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrendMemberModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDatabaseTrendMemberModify.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectDatabaseTrendMemberModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDate.ja.resx">
+      <DependentUpon>PropertyPageObjectDate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDate.ko.resx">
+      <DependentUpon>PropertyPageObjectDate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDate.resx">
+      <DependentUpon>PropertyPageObjectDate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDate.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectDate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDemandWindow.ja.resx">
+      <DependentUpon>PropertyPageObjectDemandWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDemandWindow.ko.resx">
+      <DependentUpon>PropertyPageObjectDemandWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDemandWindow.resx">
+      <DependentUpon>PropertyPageObjectDemandWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDemandWindow.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectDemandWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalAnimation.ja.resx">
+      <DependentUpon>PropertyPageObjectDigitalAnimation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalAnimation.ko.resx">
+      <DependentUpon>PropertyPageObjectDigitalAnimation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalAnimation.resx">
+      <DependentUpon>PropertyPageObjectDigitalAnimation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalAnimation.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectDigitalAnimation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalCircle.ja.resx">
+      <DependentUpon>PropertyPageObjectDigitalCircle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalCircle.ko.resx">
+      <DependentUpon>PropertyPageObjectDigitalCircle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalCircle.resx">
+      <DependentUpon>PropertyPageObjectDigitalCircle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalCircle.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectDigitalCircle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalRectangle.ja.resx">
+      <DependentUpon>PropertyPageObjectDigitalRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalRectangle.ko.resx">
+      <DependentUpon>PropertyPageObjectDigitalRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalRectangle.resx">
+      <DependentUpon>PropertyPageObjectDigitalRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalRectangle.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectDigitalRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalString.ja.resx">
+      <DependentUpon>PropertyPageObjectDigitalString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalString.ko.resx">
+      <DependentUpon>PropertyPageObjectDigitalString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalString.resx">
+      <DependentUpon>PropertyPageObjectDigitalString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectDigitalString.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectDigitalString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectGroup.ja.resx">
+      <DependentUpon>PropertyPageObjectGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectGroup.ko.resx">
+      <DependentUpon>PropertyPageObjectGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectGroup.resx">
+      <DependentUpon>PropertyPageObjectGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectGroup.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectGroupDisplayTest.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageObjectGroupDisplayTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectGroupDisplayTest.resx">
+      <DependentUpon>PropertyPageObjectGroupDisplayTest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectLine.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageObjectLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectLine.resx">
+      <DependentUpon>PropertyPageObjectLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliData.ja.resx">
+      <DependentUpon>PropertyPageObjectMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliData.ko.resx">
+      <DependentUpon>PropertyPageObjectMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliData.resx">
+      <DependentUpon>PropertyPageObjectMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMilliData.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectMilliData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectModule.ja.resx">
+      <DependentUpon>PropertyPageObjectModule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectModule.ko.resx">
+      <DependentUpon>PropertyPageObjectModule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectModule.resx">
+      <DependentUpon>PropertyPageObjectModule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectModule.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectModule.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMultiGraph.ja.resx">
+      <DependentUpon>PropertyPageObjectMultiGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMultiGraph.ko.resx">
+      <DependentUpon>PropertyPageObjectMultiGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMultiGraph.resx">
+      <DependentUpon>PropertyPageObjectMultiGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMultiGraph.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectMultiGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMultiTrend.ja.resx">
+      <DependentUpon>PropertyPageObjectMultiTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMultiTrend.ko.resx">
+      <DependentUpon>PropertyPageObjectMultiTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMultiTrend.resx">
+      <DependentUpon>PropertyPageObjectMultiTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectMultiTrend.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectMultiTrend.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectPoly.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageObjectPoly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectPoly.resx">
+      <DependentUpon>PropertyPageObjectPoly.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRealTimeTestGraph.ja.resx">
+      <DependentUpon>PropertyPageObjectRealTimeTestGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRealTimeTestGraph.ko.resx">
+      <DependentUpon>PropertyPageObjectRealTimeTestGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRealTimeTestGraph.resx">
+      <DependentUpon>PropertyPageObjectRealTimeTestGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRealTimeTestGraph.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectRealTimeTestGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRectangle.ja.resx">
+      <DependentUpon>PropertyPageObjectRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRectangle.ko.resx">
+      <DependentUpon>PropertyPageObjectRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRectangle.resx">
+      <DependentUpon>PropertyPageObjectRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRectangle.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRoundRectangle.ja.resx">
+      <DependentUpon>PropertyPageObjectRoundRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRoundRectangle.ko.resx">
+      <DependentUpon>PropertyPageObjectRoundRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRoundRectangle.resx">
+      <DependentUpon>PropertyPageObjectRoundRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectRoundRectangle.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectRoundRectangle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectSingleText.ja.resx">
+      <DependentUpon>PropertyPageObjectSingleText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectSingleText.ko.resx">
+      <DependentUpon>PropertyPageObjectSingleText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectSingleText.resx">
+      <DependentUpon>PropertyPageObjectSingleText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectSingleText.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectSingleText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectStringString.ja.resx">
+      <DependentUpon>PropertyPageObjectStringString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectStringString.ko.resx">
+      <DependentUpon>PropertyPageObjectStringString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectStringString.resx">
+      <DependentUpon>PropertyPageObjectStringString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectStringString.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectStringString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectTagAnimation.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageObjectTagAnimation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectTagAnimation.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageObjectTagAnimation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectText.ja.resx">
+      <DependentUpon>PropertyPageObjectText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectText.ko.resx">
+      <DependentUpon>PropertyPageObjectText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectText.resx">
+      <DependentUpon>PropertyPageObjectText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectText.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWebBrowser.ja.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageObjectWebBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWebBrowser.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageObjectWebBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWebBrowser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageObjectWebBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWebBrowser.zh-CHS.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyPageObjectWebBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWindowAlarm.ja.resx">
+      <DependentUpon>PropertyPageObjectWindowAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWindowAlarm.ko.resx">
+      <DependentUpon>PropertyPageObjectWindowAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWindowAlarm.resx">
+      <DependentUpon>PropertyPageObjectWindowAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectWindowAlarm.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectWindowAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectXYGraph.ja.resx">
+      <DependentUpon>PropertyPageObjectXYGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectXYGraph.ko.resx">
+      <DependentUpon>PropertyPageObjectXYGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectXYGraph.resx">
+      <DependentUpon>PropertyPageObjectXYGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageObjectXYGraph.zh-CHS.resx">
+      <DependentUpon>PropertyPageObjectXYGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageTag.ja.resx">
+      <DependentUpon>PropertyPageTag.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageTag.ko.resx">
+      <DependentUpon>PropertyPageTag.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageTag.resx">
+      <DependentUpon>PropertyPageTag.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageTag.zh-CHS.resx">
+      <DependentUpon>PropertyPageTag.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageXYGraphMember.ja.resx">
+      <DependentUpon>PropertyPageXYGraphMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageXYGraphMember.ko.resx">
+      <DependentUpon>PropertyPageXYGraphMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageXYGraphMember.resx">
+      <DependentUpon>PropertyPageXYGraphMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertyPageXYGraphMember.zh-CHS.resx">
+      <DependentUpon>PropertyPageXYGraphMember.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertySheetPublic.ja.resx">
+      <DependentUpon>PropertySheetPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertySheetPublic.ko.resx">
+      <DependentUpon>PropertySheetPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertySheetPublic.resx">
+      <DependentUpon>PropertySheetPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\PropertySheetPublic.zh-CHS.resx">
+      <DependentUpon>PropertySheetPublic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudioMain.ja.resx">
+      <DependentUpon>StudioMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudioMain.ko.resx">
+      <DependentUpon>StudioMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudioMain.resx">
+      <DependentUpon>StudioMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudioMain.zh-CHS.resx">
+      <DependentUpon>StudioMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <EmbeddedResource Include="Cursor\Spuit.cur" />
+    <EmbeddedResource Include="Cursor\Spuit2.cur" />
+    <EmbeddedResource Include="WebServer\FormConfigWebTagList.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormConfigWebTagList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebServer\FormConfigWebTagList.resx">
+      <DependentUpon>FormConfigWebTagList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebServer\FormConfigWebTagList.vi.resx">
+      <DependentUpon>FormConfigWebTagList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebServer\FormConfigWebTagListAdd.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormConfigWebTagListAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebServer\FormConfigWebTagListAdd.resx">
+      <DependentUpon>FormConfigWebTagListAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cursor\Panning.cur" />
+    <Content Include="Cursor\Spuit3.cur" />
+    <Content Include="FT-Studio.ico" />
+    <Content Include="idr_main.ico" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\biz.autobase.library.www\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\biz.autobase.library.www\WebServiceLibrary.disco" />
+    <None Include="Web References\biz.autobase.library.www\WebServiceLibrary.wsdl" />
+    <Content Include="Studio.ico" />
+    <Content Include="web_studio.ico" />
+    <Content Include="Z_IoT_Studio.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://www.library.autobase.biz/Service/WebServiceLibrary.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\biz.autobase.library.www\</RelPath>
+      <UpdateFromURL>http://www.library.autobase.biz/Service/WebServiceLibrary.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Studio_biz_autobase_library_www_WebServiceLibrary</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
+  </Target>
+</Project>

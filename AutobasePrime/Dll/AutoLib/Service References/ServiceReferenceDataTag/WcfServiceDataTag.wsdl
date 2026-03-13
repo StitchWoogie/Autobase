@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="WcfServiceDataTag" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc?xsd=xsd3" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceDataTag_CheckServiceAlive_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckServiceAlive" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_CheckServiceAlive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckServiceAliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetTagValueList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagValueList" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetTagValueList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagValueListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_WriteCurrAI_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteCurrAI" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_WriteCurrAI_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteCurrAIResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_WriteCurrST_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteCurrST" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_WriteCurrST_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteCurrSTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetDataAi_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataAi" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetDataAi_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataAiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetDataDi_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataDi" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetDataDi_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataDiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetLogLists_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogLists" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetLogLists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetLogFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogFile" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetLogFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetAlarmLists_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmLists" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetAlarmLists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetAlarmFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmFile" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetAlarmFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetAlarmFileByScript_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmFileByScript" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetAlarmFileByScript_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmFileByScriptResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetAlarmFileByScript2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmFileByScript2" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDataTag_GetAlarmFileByScript2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmFileByScript2Response" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceDataTag">
+    <wsdl:operation name="CheckServiceAlive">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/CheckServiceAlive" message="tns:IServiceDataTag_CheckServiceAlive_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/CheckServiceAliveResponse" message="tns:IServiceDataTag_CheckServiceAlive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/GetTagValueList" message="tns:IServiceDataTag_GetTagValueList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/GetTagValueListResponse" message="tns:IServiceDataTag_GetTagValueList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurrAI">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/WriteCurrAI" message="tns:IServiceDataTag_WriteCurrAI_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/WriteCurrAIResponse" message="tns:IServiceDataTag_WriteCurrAI_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurrST">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/WriteCurrST" message="tns:IServiceDataTag_WriteCurrST_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/WriteCurrSTResponse" message="tns:IServiceDataTag_WriteCurrST_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataAi">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/GetDataAi" message="tns:IServiceDataTag_GetDataAi_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/GetDataAiResponse" message="tns:IServiceDataTag_GetDataAi_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataDi">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/GetDataDi" message="tns:IServiceDataTag_GetDataDi_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/GetDataDiResponse" message="tns:IServiceDataTag_GetDataDi_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogLists">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/GetLogLists" message="tns:IServiceDataTag_GetLogLists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/GetLogListsResponse" message="tns:IServiceDataTag_GetLogLists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/GetLogFile" message="tns:IServiceDataTag_GetLogFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/GetLogFileResponse" message="tns:IServiceDataTag_GetLogFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmLists">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/GetAlarmLists" message="tns:IServiceDataTag_GetAlarmLists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/GetAlarmListsResponse" message="tns:IServiceDataTag_GetAlarmLists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/GetAlarmFile" message="tns:IServiceDataTag_GetAlarmFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/GetAlarmFileResponse" message="tns:IServiceDataTag_GetAlarmFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFileByScript">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/GetAlarmFileByScript" message="tns:IServiceDataTag_GetAlarmFileByScript_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/GetAlarmFileByScriptResponse" message="tns:IServiceDataTag_GetAlarmFileByScript_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFileByScript2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDataTag/GetAlarmFileByScript2" message="tns:IServiceDataTag_GetAlarmFileByScript2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDataTag/GetAlarmFileByScript2Response" message="tns:IServiceDataTag_GetAlarmFileByScript2_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServiceDataTag" type="tns:IServiceDataTag">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckServiceAlive">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/CheckServiceAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValueList">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/GetTagValueList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurrAI">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/WriteCurrAI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteCurrST">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/WriteCurrST" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataAi">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/GetDataAi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataDi">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/GetDataDi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogLists">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/GetLogLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFile">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/GetLogFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmLists">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/GetAlarmLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFile">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/GetAlarmFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFileByScript">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/GetAlarmFileByScript" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmFileByScript2">
+      <soap:operation soapAction="http://tempuri.org/IServiceDataTag/GetAlarmFileByScript2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WcfServiceDataTag">
+    <wsdl:port name="BasicHttpBinding_IServiceDataTag" binding="tns:BasicHttpBinding_IServiceDataTag">
+      <soap:address location="http://localhost:63500/AutoWeb/Service/ServiceDataTag.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

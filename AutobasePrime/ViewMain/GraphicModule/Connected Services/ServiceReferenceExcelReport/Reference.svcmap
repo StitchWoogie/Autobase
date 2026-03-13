@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="2ff86199-c8e3-4c3f-b4ed-72af74508abd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63500/AutoWeb/Service/ServiceExcelReport.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceExcelReport.disco" MetadataType="Disco" ID="a2b87f40-1226-4010-9672-74b0e8f2cd54" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceExcelReport.svc?disco" />
+    <MetadataFile FileName="WcfServiceExcelReport.wsdl" MetadataType="Wsdl" ID="33d63e67-30aa-44b5-9e55-1c739bb6e274" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceExcelReport.svc?wsdl" />
+    <MetadataFile FileName="ServiceExcelReport.xsd" MetadataType="Schema" ID="0d5ad678-6774-403a-9d9c-6191de92972b" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceExcelReport.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceExcelReport1.xsd" MetadataType="Schema" ID="b635f66a-5455-46db-bbd7-8144df7f558f" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceExcelReport.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceExcelReport2.xsd" MetadataType="Schema" ID="7f1d2230-ffac-4f0f-898b-3722289424c9" SourceId="1" SourceUrl="http://localhost:63500/AutoWeb/Service/ServiceExcelReport.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

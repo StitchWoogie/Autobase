@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="contextMenu1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="menuItemOpen.Text" xml:space="preserve">
+    <value>&amp;Open</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="menuItemRefresh.Shortcut" type="System.Windows.Forms.Shortcut, System.Windows.Forms">
+    <value>F5</value>
+  </data>
+  <data name="menuItemRefresh.Text" xml:space="preserve">
+    <value>&amp;Refresh</value>
+  </data>
+  <data name="menuItemRename.Text" xml:space="preserve">
+    <value>Re&amp;name</value>
+  </data>
+  <data name="menuItemDelete.Text" xml:space="preserve">
+    <value>&amp;Delete</value>
+  </data>
+  <data name="menuItemNewFolder.Text" xml:space="preserve">
+    <value>New &amp;Folder</value>
+  </data>
+  <data name="menuItem2.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItemNewScriptProject.Text" xml:space="preserve">
+    <value>New Script Project</value>
+  </data>
+  <data name="menuItemExistingScriptProject.Text" xml:space="preserve">
+    <value>Existing Script Project</value>
+  </data>
+  <data name="menuItemAddScriptProject.Text" xml:space="preserve">
+    <value>Add Script Project</value>
+  </data>
+  <data name="menuItemNewScriptClass.Text" xml:space="preserve">
+    <value>New Class</value>
+  </data>
+  <data name="menuItemExistingScriptClass.Text" xml:space="preserve">
+    <value>Existing Class</value>
+  </data>
+  <data name="menuItemAddScriptItem.Text" xml:space="preserve">
+    <value>Add Script Item</value>
+  </data>
+  <data name="menuItemScriptProjectProperties.Text" xml:space="preserve">
+    <value>Project Properties</value>
+  </data>
+  <data name="menuItem3.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="menuItem1.Text" xml:space="preserve">
+    <value>&amp;Close</value>
+  </data>
+  <data name="treeViewSolution.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="treeViewSolution.ImageIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>150, 17</value>
+  </metadata>
+  <data name="imageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACG
+        EAAAAk1TRnQBSQFMAgEBCQEAAUgBAAFIAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        AwABQAMAATADAAEBAQABCAYAAQwYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
+        AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
+        AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
+        AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
+        AZkCAAFmAcwCAAFmAf8CAAGZAwABmQEzAgABmQFmAgACmQIAAZkBzAIAAZkB/wIAAcwDAAHMATMCAAHM
+        AWYCAAHMAZkCAALMAgABzAH/AgAB/wFmAgAB/wGZAgAB/wHMAQABMwH/AgAB/wEAATMBAAEzAQABZgEA
+        ATMBAAGZAQABMwEAAcwBAAEzAQAB/wEAAf8BMwIAAzMBAAIzAWYBAAIzAZkBAAIzAcwBAAIzAf8BAAEz
+        AWYCAAEzAWYBMwEAATMCZgEAATMBZgGZAQABMwFmAcwBAAEzAWYB/wEAATMBmQIAATMBmQEzAQABMwGZ
+        AWYBAAEzApkBAAEzAZkBzAEAATMBmQH/AQABMwHMAgABMwHMATMBAAEzAcwBZgEAATMBzAGZAQABMwLM
+        AQABMwHMAf8BAAEzAf8BMwEAATMB/wFmAQABMwH/AZkBAAEzAf8BzAEAATMC/wEAAWYDAAFmAQABMwEA
+        AWYBAAFmAQABZgEAAZkBAAFmAQABzAEAAWYBAAH/AQABZgEzAgABZgIzAQABZgEzAWYBAAFmATMBmQEA
+        AWYBMwHMAQABZgEzAf8BAAJmAgACZgEzAQADZgEAAmYBmQEAAmYBzAEAAWYBmQIAAWYBmQEzAQABZgGZ
+        AWYBAAFmApkBAAFmAZkBzAEAAWYBmQH/AQABZgHMAgABZgHMATMBAAFmAcwBmQEAAWYCzAEAAWYBzAH/
+        AQABZgH/AgABZgH/ATMBAAFmAf8BmQEAAWYB/wHMAQABzAEAAf8BAAH/AQABzAEAApkCAAGZATMBmQEA
+        AZkBAAGZAQABmQEAAcwBAAGZAwABmQIzAQABmQEAAWYBAAGZATMBzAEAAZkBAAH/AQABmQFmAgABmQFm
+        ATMBAAGZATMBZgEAAZkBZgGZAQABmQFmAcwBAAGZATMB/wEAApkBMwEAApkBZgEAA5kBAAKZAcwBAAKZ
+        Af8BAAGZAcwCAAGZAcwBMwEAAWYBzAFmAQABmQHMAZkBAAGZAswBAAGZAcwB/wEAAZkB/wIAAZkB/wEz
+        AQABmQHMAWYBAAGZAf8BmQEAAZkB/wHMAQABmQL/AQABzAMAAZkBAAEzAQABzAEAAWYBAAHMAQABmQEA
+        AcwBAAHMAQABmQEzAgABzAIzAQABzAEzAWYBAAHMATMBmQEAAcwBMwHMAQABzAEzAf8BAAHMAWYCAAHM
+        AWYBMwEAAZkCZgEAAcwBZgGZAQABzAFmAcwBAAGZAWYB/wEAAcwBmQIAAcwBmQEzAQABzAGZAWYBAAHM
+        ApkBAAHMAZkBzAEAAcwBmQH/AQACzAIAAswBMwEAAswBZgEAAswBmQEAA8wBAALMAf8BAAHMAf8CAAHM
+        Af8BMwEAAZkB/wFmAQABzAH/AZkBAAHMAf8BzAEAAcwC/wEAAcwBAAEzAQAB/wEAAWYBAAH/AQABmQEA
+        AcwBMwIAAf8CMwEAAf8BMwFmAQAB/wEzAZkBAAH/ATMBzAEAAf8BMwH/AQAB/wFmAgAB/wFmATMBAAHM
+        AmYBAAH/AWYBmQEAAf8BZgHMAQABzAFmAf8BAAH/AZkCAAH/AZkBMwEAAf8BmQFmAQAB/wKZAQAB/wGZ
+        AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
+        AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
+        AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
+        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wEAAvQBswusAbMB9DAA
+        Af8PrDAAAa0PrDAABqwBGQP/AQkFrDAABKwBrQf/BKwwAASsCP8B9QOsMAADrAEJAf8BswEJAbMBGQHb
+        AQkC/wOsMAADrAH0Af8BrAIZAa0BswG1Av8BtAKsMAADrAHzAf8BtQEZAbQB9AEJAbQBCQH/AbMCrDAA
+        A6wBrQn/A6wwAASsAfQH/wEJA6wwAAWsAfMF/wEJBKwwAAesAboBCQG0BqwwAAG7D6wwAAH/DqwBs4AA
+        JP8K9AL/EAAD/w1DAv8B9AbzAfQI/wH0Ae0B6ghsAWYB8wH/AwAB7AsHAQAD/wGRC7UBQwL/AfcCbQRs
+        Ae8I/wH0AbUB8Qi1AWwB8wH/AwAB7AryAQcBAAP/AZEBuwq1AUMB8wG8Ae8BGQMJAbsBkQHtBfAD/wH0
+        AbUB8wHdAfAFCQG1AWwB8wH/DAAC8gEHAQAB/wtDA7UBQwH3AUoBtQEZAQkC1gEJAewBbASuAWYB9AL/
+        AfQB7wHyAgcCtQH3Ae0BCQG1AWwB8wH/ARsB7AL/AewG/wEAAvIBBwEAAf8BkQHVAQkBkQEJAf8DCQH/
+        AUMDtQFDAfcBMQHvARkB3QIZAfEB9wHvAbwCCQG7AWwB9AP/AbwB9AHzAfEBvAEHArsBCQG1AWwB8wH/
+        ARsB7AL/AewG/wEAAvIBBwEAAf8BkQHVAQkBkQL/AQkD/wFDArsBtQFDAbUBWQEHAfQB3QG7AZ0BuwHx
+        AZgBCAHzARkBuwFsAfQB/wH0ApgB9AEIAZgCBwK1AQkB7wFsAfMB/wEbAewC/wHsBv8BAALyAQcBAAH/
+        AZEB1QEJAZEBCQH/AwkB/wFDArsBtQFDAe8BegEHAf8B8AKXApgBTwGXAZgBvAEHAWwB9AH/ApcBmAEI
+        AZcBTwGYAQgD8wHvAWwB8wH/ARsB7AL/AewG/wEAAvIBBwEAAf8BkQHVAQkBkQL/AQkD/wFDAgkBtQFD
+        AbUBegG8Af8BCAGXAfQB8wEIA08BmAG8AWwB9AH/AU8C9AEIAZcCTwGXAfMB9AHzAe8BbAHzAf8BGwrs
+        AQAC8gEHAQAB/wqRAUMCCQG1AUMBuwGaAQkB8QEIAVUB9AHxAZgBTwGXAk8BCAHqAfQB/wEtAfQB8wGY
+        AVUBTwGXAU8BCAL0AbsBbAHzAf8BGwHsAv8B7Ab/AQAC8gEHAQAB/wGRAdUBCQGRBtUBQwEZAd0BtQFD
+        AbsBoAIaARsBmAGXAZgBCAFVAk8BlwHwAeoB9AH/AZgClwEIAZcCTwFVAQgB/wG8Ae8BbAHzAf8BGwrs
+        AQAC8gEHAQAB/wqRAUMB8gHxAbUBQwEJA7wC8QEIAcIB/wKXAk8BCAHqAfQC/wIIAf8BCAFPAZcBTwGY
+        AfABrgFsAWYB8wH/AwABkgjyBAAD/wG7BP8D9AHzBEMB/wH0AQcG/wHzAfQBlwGYAfMB6gH0A/8B8AL/
+        AfMBmAGXAfIBvAHvAW0BrgH0Af8DAAGSCPIBkgHyAZIBAAP/AbsI/wGRAd0BkQP/A5cFcgHtAZgB9wHr
+        AUkB9AP/AbwE/wH0Af8BvAGuAZEB8gL/AwABkgjyApICAAP/AbsI/wKRBP8BlwRWBk8BAgFJAfQD/wYJ
+        AwcB8wP/AwAKkgMAA/8JuwGRBf8ClwJyAlABTwVJAUMB9DD/IAAg/xEAAQ8BbQJDARQK6wL/DgAD/xAA
+        AZIL7wIAARAB7wHwAewBFAEOAQ8BEAIOBAAB6wH/DuwBAAL/DOwFAAGSCvMB7wIAAQ8B7wL/AfMB7wEU
+        AQ4BDwEOBAAB6wH/AewB/wH7AQcB+wEHAfsBBwH7AQcB+wEHAfsB7AEAAv8B7AH/AfsBBwH7AQcB+wEH
+        AfsBBwH7AewFAAGSBu8B8APzAe8CAAEOAQcB/wHtAeoBbQHtAesCEAIAAQ4BAAHrAf8B7AH/AQcB+wEH
+        AfsBBwH7AQcB+wEHAfsBBwHsAQAB/wHsAf8B+wEHAfsBBwH7AQcB+wEHAfsBBwEAAewEAAHrCO8B8AHz
+        Ae8CAAEOAfcBbQIAAQ4BQwHtAewCDwIOAQAB6wH/AewB/wH7AQcB+wEHAfsBBwH7AQcB+wEHAfsB7AEA
+        Af8B7AH/AQcB+wEHAfsBBwH7AQcB+wEHAewBAAHsBAACEgIAAhEBEgHvAZIB7wHwAe8CAAEOARABDwIA
+        ARECbQG8ARMBEQEQAQ8BAAHrAf8B7AH/AQcB+wEHAfsBBwH7AQcB+wEHAfsBBwHsAQAB7AH/AQcB+wEH
+        AfsBBwH7AQcB+wEHAfsBAALsAwACEgHtAhED7wISAZIC7wIAAQ4BAAGSAW0BAAEOAfcB7AG8AewBQwER
+        ARABAAHrAf8B7AH/AfsBBwH7AQcB+wEHAfsBBwH7AQcB+wHsAQAB7Ar/AewBAAEHAewCAAESAv8CEQEA
+        ARIC/wLvARIC7wIAARABAAHtAewBAAEOAesB7AHxAfcBFQFDAREBAAHrAf8B7AH/AQcB+wEHAfsBBwH7
+        AQcB+wEHAfsBBwHsAQAN7AH7AewCAAFtAv8BEQH/AREBAAP/AfEB7wESAe8CAAETARECDgEAAQ4BFAHs
+        Af8B7wETARQBFQEAAesB/wHsAf8B+wEHAfsBBwH7AQcB+wEHAfsBBwH7AewBAAH/AewB/wEHAfsBBwH7
+        AQcB+wEHAfsBBwH7AQcB7AMAAm0B8QIRAe0C/wHrAhIB8wHvAwABEgEOAgABDgFtAfAB8QGSARIBEwEU
+        AQAB6wH/AewM/wHsAQAB/wHsAf8B+wEHAfsBBwH7AQcF/wHsBAABbQESAxEBbQHrBPMB7wQAAesB7QTs
+        AesCbQHqARIBAAHrAf8B7AEHAfsBBwH7AQcB+wEHBuwC/wHsAf8BBwH7AQcB+wEHAf8G7AH/AwAB6wjz
+        A+sEAAHrAu0E7AHrAW0DAAHrAv8B7AEHAfsBBwH7AQcB7An/AewF/wHsB/8DAAHtCPMBkgEAAesEAAHr
+        A+0E7AHrAgcB6wEAA/8F7Av/BewI/wMAAZII8wGSAesFAAHrBe0D7AEHAesCACD/AwAKkgYACusDAAFC
+        AU0BPgcAAT4DAAEoAwABQAMAATADAAEBAQABAQUAAYABARYAA/95AAL/BgAC/wYAAeAHAAHgBwAB4AcA
+        AYA/AAHgBwAB4AEBBgAB4AEDBgAB4AEHCgAE/wQAAeABAAGABQAB4AEAAYAFAAHgAQABgAUAAeABAAGA
+        BQAB4AEAAYAFAAHgAQABgAUAAcABAAGABQABgAEAAYAFAAGAAQABgAUAAcABAAHABQAB4AEAAeAFAAHg
+        AQAB4AUAAeABBQHgAQEEAAHgAQMB4AEDBAAB4AEHAeABBws=
+</value>
+  </data>
+  <data name="treeViewSolution.Indent" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="treeViewSolution.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="treeViewSolution.SelectedImageIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="treeViewSolution.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 266</value>
+  </data>
+  <data name="treeViewSolution.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;treeViewSolution.Name" xml:space="preserve">
+    <value>treeViewSolution</value>
+  </data>
+  <data name="&gt;&gt;treeViewSolution.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treeViewSolution.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;treeViewSolution.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>5, 14</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>312, 266</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>FormSolution</value>
+  </data>
+  <data name="&gt;&gt;contextMenu1.Name" xml:space="preserve">
+    <value>contextMenu1</value>
+  </data>
+  <data name="&gt;&gt;contextMenu1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenu, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemOpen.Name" xml:space="preserve">
+    <value>menuItemOpen</value>
+  </data>
+  <data name="&gt;&gt;menuItemOpen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemRefresh.Name" xml:space="preserve">
+    <value>menuItemRefresh</value>
+  </data>
+  <data name="&gt;&gt;menuItemRefresh.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemRename.Name" xml:space="preserve">
+    <value>menuItemRename</value>
+  </data>
+  <data name="&gt;&gt;menuItemRename.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemDelete.Name" xml:space="preserve">
+    <value>menuItemDelete</value>
+  </data>
+  <data name="&gt;&gt;menuItemDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemNewFolder.Name" xml:space="preserve">
+    <value>menuItemNewFolder</value>
+  </data>
+  <data name="&gt;&gt;menuItemNewFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem2.Name" xml:space="preserve">
+    <value>menuItem2</value>
+  </data>
+  <data name="&gt;&gt;menuItem2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAddScriptProject.Name" xml:space="preserve">
+    <value>menuItemAddScriptProject</value>
+  </data>
+  <data name="&gt;&gt;menuItemAddScriptProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemNewScriptProject.Name" xml:space="preserve">
+    <value>menuItemNewScriptProject</value>
+  </data>
+  <data name="&gt;&gt;menuItemNewScriptProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemExistingScriptProject.Name" xml:space="preserve">
+    <value>menuItemExistingScriptProject</value>
+  </data>
+  <data name="&gt;&gt;menuItemExistingScriptProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemAddScriptItem.Name" xml:space="preserve">
+    <value>menuItemAddScriptItem</value>
+  </data>
+  <data name="&gt;&gt;menuItemAddScriptItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemNewScriptClass.Name" xml:space="preserve">
+    <value>menuItemNewScriptClass</value>
+  </data>
+  <data name="&gt;&gt;menuItemNewScriptClass.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemExistingScriptClass.Name" xml:space="preserve">
+    <value>menuItemExistingScriptClass</value>
+  </data>
+  <data name="&gt;&gt;menuItemExistingScriptClass.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemScriptProjectProperties.Name" xml:space="preserve">
+    <value>menuItemScriptProjectProperties</value>
+  </data>
+  <data name="&gt;&gt;menuItemScriptProjectProperties.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem3.Name" xml:space="preserve">
+    <value>menuItem3</value>
+  </data>
+  <data name="&gt;&gt;menuItem3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItem1.Name" xml:space="preserve">
+    <value>menuItem1</value>
+  </data>
+  <data name="&gt;&gt;menuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;imageList1.Name" xml:space="preserve">
+    <value>imageList1</value>
+  </data>
+  <data name="&gt;&gt;imageList1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormSolution</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

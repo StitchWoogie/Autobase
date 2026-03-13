@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="buttonOK.Text" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>사용할 대표소리</value>
+  </data>
+  <data name="radioButtonSoundType1.Text" xml:space="preserve">
+    <value>사운드 카드</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radioButtonSoundType0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 24</value>
+  </data>
+  <data name="radioButtonSoundType0.Text" xml:space="preserve">
+    <value>PC 스피커 소리</value>
+  </data>
+  <data name="checkBoxSoundFlag.Text" xml:space="preserve">
+    <value>경보음 발생</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>경보음 설정</value>
+  </data>
+  <data name="checkBoxProtectAll.Text" xml:space="preserve">
+    <value>전체 경보 금지</value>
+  </data>
+  <data name="checkBoxEnableContextMenuOnAlarmEvent.Text" xml:space="preserve">
+    <value>경보 이벤트창에서 단축메뉴 사용</value>
+  </data>
+  <data name="checkBoxSortingEventWindow.Text" xml:space="preserve">
+    <value>경보 이벤트창 내림차순 정렬</value>
+  </data>
+  <data name="checkBoxAutoDisplayEventWindow.Text" xml:space="preserve">
+    <value>자동으로 경보 확인상자 생성</value>
+  </data>
+  <data name="checkBoxGraphicDisplay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 24</value>
+  </data>
+  <data name="checkBoxGraphicDisplay.Text" xml:space="preserve">
+    <value>경보 발생 시 태그 그림으로 이동</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>기타 설정</value>
+  </data>
+  <data name="checkBoxSaveAsCsvFormat.Text" xml:space="preserve">
+    <value>CSV 형식도 함께 저장</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>초</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>표시시간</value>
+  </data>
+  <data name="checkBoxAlarmScreen.Text" xml:space="preserve">
+    <value>경보 화면 발생</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>경보 화면</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>초(0~60)</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>기다림시간</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>수동조작 실패 경보</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>경보 발생시 디지털 태그로 출력</value>
+  </data>
+  <data name="radioButtonFilter5.Text" xml:space="preserve">
+    <value>메일</value>
+  </data>
+  <data name="checkBoxFilterBit9.Text" xml:space="preserve">
+    <value>수동기입</value>
+  </data>
+  <data name="checkBoxFilterBit6.Text" xml:space="preserve">
+    <value>복귀</value>
+  </data>
+  <data name="checkBoxFilterBit10.Text" xml:space="preserve">
+    <value>디맨드제어</value>
+  </data>
+  <data name="checkBoxFilterBit7.Text" xml:space="preserve">
+    <value>수동조작</value>
+  </data>
+  <data name="checkBoxFilterBit8.Text" xml:space="preserve">
+    <value>변화율초과</value>
+  </data>
+  <data name="radioButtonFilter4.Text" xml:space="preserve">
+    <value>문자메시지</value>
+  </data>
+  <data name="radioButtonFilter3.Text" xml:space="preserve">
+    <value>파일보관</value>
+  </data>
+  <data name="radioButtonFilter2.Text" xml:space="preserve">
+    <value>음성출력</value>
+  </data>
+  <data name="radioButtonFilter1.Text" xml:space="preserve">
+    <value>라인프린터</value>
+  </data>
+  <data name="radioButtonFilter0.Text" xml:space="preserve">
+    <value>이벤트</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>경보 필터</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>기본설정</value>
+  </data>
+  <data name="checkBoxSpecifyTargetFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 16</value>
+  </data>
+  <data name="checkBoxSpecifyTargetFolder.Text" xml:space="preserve">
+    <value>저장 폴더 지정</value>
+  </data>
+  <data name="groupBoxCsvTargetFolder.Text" xml:space="preserve">
+    <value>저장 폴더</value>
+  </data>
+  <data name="checkBoxCsvSaveType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 16</value>
+  </data>
+  <data name="checkBoxCsvSaveType.Text" xml:space="preserve">
+    <value>태그 종류 2</value>
+  </data>
+  <data name="checkBoxCsvSaveAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="checkBoxCsvSaveAddress.Text" xml:space="preserve">
+    <value>주소</value>
+  </data>
+  <data name="checkBoxCsvSaveStation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 16</value>
+  </data>
+  <data name="checkBoxCsvSaveStation.Text" xml:space="preserve">
+    <value>스테이션 번호</value>
+  </data>
+  <data name="checkBoxCsvSavePort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 16</value>
+  </data>
+  <data name="checkBoxCsvSavePort.Text" xml:space="preserve">
+    <value>포트 번호</value>
+  </data>
+  <data name="checkBoxCsvSavePriority.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 16</value>
+  </data>
+  <data name="checkBoxCsvSavePriority.Text" xml:space="preserve">
+    <value>경보 우선순위</value>
+  </data>
+  <data name="checkBoxCsv
+        Type.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 16</value>
+  </data>
+  <data name="checkBoxCsvSaveAlarmType.Text" xml:space="preserve">
+    <value>경보 종류</value>
+  </data>
+  <data name="checkBoxCsvSaveMsg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 16</value>
+  </data>
+  <data name="checkBoxCsvSaveMsg.Text" xml:space="preserve">
+    <value>경보 내용</value>
+  </data>
+  <data name="checkBoxCsvSaveDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 16</value>
+  </data>
+  <data name="checkBoxCsvSaveDescription.Text" xml:space="preserve">
+    <value>태그 설명</value>
+  </data>
+  <data name="checkBoxCsvSaveTag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="checkBoxCsvSaveTag.Text" xml:space="preserve">
+    <value>태그</value>
+  </data>
+  <data name="checkBoxCsvSaveMilliSecond.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 16</value>
+  </data>
+  <data name="checkBoxCsvSaveMilliSecond.Text" xml:space="preserve">
+    <value>밀리초</value>
+  </data>
+  <data name="groupBoxCsvItem.Text" xml:space="preserve">
+    <value>저장할 멤버</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 12</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>초</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 12</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>발송 간격</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 12</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>메일 서버 (SMTP)</value>
+  </data>
+  <data name="buttonMailTest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>207, 127</value>
+  </data>
+  <data name="buttonMailTest.Text" xml:space="preserve">
+    <value>테스트</value>
+  </data>
+  <data name="textBoxMailServer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 37</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 62</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>사용자명</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 12</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>보내는 메일 주소</value>
+  </data>
+  <data name="textBoxMailUsername.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 81</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 110</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>암호</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 12</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>받는 메일 주소</value>
+  </data>
+  <data name="textBoxMailPassword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 129</value>
+  </data>
+  <data name="checkBoxMailSSL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 157</value>
+  </data>
+  <data name="checkBoxMailSSL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 16</value>
+  </data>
+  <data name="checkBoxMailSSL.Text" xml:space="preserve">
+    <value>SSL 사용</value>
+  </data>
+  <data name="groupBoxMail.Text" xml:space="preserve">
+    <value>메일 설정</value>
+  </data>
+  <data name="checkBoxMailActive.Text" xml:space="preserve">
+    <value>메일 경보 사용</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>메일</value>
+  </data>
+  <data name="checkBoxShowUserManualControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 16</value>
+  </data>
+  <data name="checkBoxShowUserManualControl.Text" xml:space="preserve">
+    <value>수동제어 변경자 표시</value>
+  </data>
+  <data name="checkBoxSaveRemoteControlResult.Text" xml:space="preserve">
+    <value>원격 제어 결과를 저장</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>경보 파일</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>기타</value>
+  </data>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Gulim, 9pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>전체경보 환경설정</value>
+  </data>
+</root>

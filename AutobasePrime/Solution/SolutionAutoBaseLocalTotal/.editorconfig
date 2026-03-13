@@ -1,0 +1,11 @@
+﻿root = true
+
+[*]
+charset = utf-8-bom
+end_of_line = crlf
+insert_final_newline = true
+
+[*.cs]
+csharp_prefer_braces = true
+dotnet_style_require_accessibility_modifiers = for_non_interface_members
+csharp_using_directive_placement = outside_namespace

@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="SilverlightGraphicModule.PageInitialWait"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Width="400" Height="300">
+    <UserControl.Resources>
+        <Storyboard x:Name="Storyboard1">
+            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                <SplineColorKeyFrame KeyTime="00:00:00" Value="#7F6295C5"/>
+                <SplineColorKeyFrame KeyTime="00:00:00.4000000" Value="#FF6295C5"/>
+                <SplineColorKeyFrame KeyTime="00:00:00.7000000" Value="#7F6295C5"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF6295C5" x:Name="textBlock">Loading ...</TextBlock>
+    </Grid>
+</UserControl>

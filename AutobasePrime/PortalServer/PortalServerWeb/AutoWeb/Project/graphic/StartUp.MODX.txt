@@ -1,0 +1,25 @@
+Resolution,1024,700
+DefaultLocation,0,0,0
+ModuleOptic,0
+ModuleWindowStyle,0,False,100,1,False
+ModuleWindowStyleFlag,13107200,0
+BackGroundColor,124,220,255,255
+Version, 10,3,6,17,
+ObjectGroup,BEGIN,
+	GroupRect,0,0,1023,699,
+	GroupSize,1024,700,
+ObjectSingleText,BEGIN
+	Rect,241,309,712,410,
+	TextColor,0,0,0,255,
+	String,StartUp.modx,
+	LogFont,Malgun Gothic,53,0,0,0,0,
+	ClassName,SingleText1,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectSingleText,END
+	ClassName,NoName,0,,0,,0,1
+	ExpandScript,BEGIN
+		Active,0
+	ExpandScript,END
+ObjectGroup,END,

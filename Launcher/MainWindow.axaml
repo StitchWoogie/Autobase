@@ -1,0 +1,460 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:icon="clr-namespace:LauncherMain.Icon555"
+        mc:Ignorable="d" d:DesignWidth="850" d:DesignHeight="450"
+        Width="850" Height="450"
+        x:Class="LauncherMain.MainWindow"
+        Title="LauncherMain"
+        Background="#1c1b22"
+        SystemDecorations="Full"
+        CanResize="False"
+        >
+
+
+<Window.Resources>
+       
+
+       <!-- <SolidColorBrush x:Key="Projectmanager">#42FFEB</SolidColorBrush>
+        <SolidColorBrush x:Key="Studio">#B43AFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Localmain">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Plcscan">#A5BCEB</SolidColorBrush>
+        <SolidColorBrush x:Key="Watchdog">#D2AA50</SolidColorBrush>
+
+        <SolidColorBrush x:Key="Exportserver">#54B948</SolidColorBrush>
+        <SolidColorBrush x:Key="Langtool">#B3FCE7</SolidColorBrush>
+        <SolidColorBrush x:Key="Localconfig">#FFFA05</SolidColorBrush>
+        <SolidColorBrush x:Key="Sms">#D6292C</SolidColorBrush>
+        <SolidColorBrush x:Key="Runmain">#F7AE29</SolidColorBrush>
+        <SolidColorBrush x:Key="Viewmain">#00EB47</SolidColorBrush>
+        <SolidColorBrush x:Key="Opcdaclient">#C6FF45</SolidColorBrush>
+        <SolidColorBrush x:Key="Opcuaclient">#319ED5</SolidColorBrush>
+        <SolidColorBrush x:Key="Opcuaserver">#52AB51</SolidColorBrush>
+        <SolidColorBrush x:Key="Apiclient">#0977F7</SolidColorBrush>
+        <SolidColorBrush x:Key="Registernet">#F35F3C</SolidColorBrush>
+        <SolidColorBrush x:Key="Registernet32">#81C6EC</SolidColorBrush>-->
+
+    <SolidColorBrush x:Key="Projectmanager">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Studio">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Localmain">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Plcscan">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Watchdog">#FFFFFF</SolidColorBrush>
+
+        <SolidColorBrush x:Key="Exportserver">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Langtool">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Localconfig">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Sms">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Runmain">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Viewmain">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Opcdaclient">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Opcuaclient">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Opcuaserver">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Apiclient">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Registernet">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="Registernet32">#FFFFFF</SolidColorBrush>
+
+
+       <!--  <SolidColorBrush x:Key="Projectmanager">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Studio">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Localmain">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Plcscan">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Watchdog">#A4CB01</SolidColorBrush>
+
+        <SolidColorBrush x:Key="Exportserver">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Langtool">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Localconfig">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Sms">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Runmain">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Viewmain">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Opcdaclient">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Opcuaclient">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Opcuaserver">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Apiclient">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Registernet">#A4CB01</SolidColorBrush>
+        <SolidColorBrush x:Key="Registernet32">#A4CB01</SolidColorBrush>-->
+    </Window.Resources>
+    
+    <Window.Styles>
+       
+      
+     
+
+         <Style Selector="icon|Icon3D.projectmanager">
+            <Setter Property="BorderBrush" Value="{StaticResource Projectmanager}"/>
+            <Setter Property="STitle" Value="작업선택" />
+        </Style>
+
+        <Style Selector="icon|Icon3D.studio">
+            <Setter Property="BorderBrush" Value="{StaticResource Studio}"/>
+            <Setter Property="STitle" Value="스튜디오" />
+        </Style>
+
+       <Style Selector="icon|Icon3D.localmain">
+            <Setter Property="BorderBrush" Value="{StaticResource Localmain}"/>
+            <Setter Property="STitle" Value="감시프로그램" />
+        </Style>
+
+         <Style Selector="icon|Icon3D.plcscan">
+            <Setter Property="BorderBrush" Value="{StaticResource Plcscan}"/>
+            <Setter Property="STitle" Value="통신프로그램" />
+        </Style>
+
+          <Style Selector="icon|Icon3D.watchdog">
+            <Setter Property="BorderBrush" Value="{StaticResource Watchdog}"/>
+            <Setter Property="STitle" Value="와치독" />
+        </Style>
+
+          <Style Selector="icon|Icon3D.exportserver">
+            <Setter Property="BorderBrush" Value="{StaticResource Exportserver}"/>
+            <Setter Property="STitle" Value="익스포트 서버" />
+        </Style>
+
+          <Style Selector="icon|Icon3D.langtool">
+            <Setter Property="BorderBrush" Value="{StaticResource Langtool}"/>
+            <Setter Property="STitle" Value="언어 선택" />
+        </Style>
+
+          <Style Selector="icon|Icon3D.localconfig">
+            <Setter Property="BorderBrush" Value="{StaticResource Localconfig}"/>
+            <Setter Property="STitle" Value="기본 환경설정" />
+        </Style>
+
+         <Style Selector="icon|Icon3D.sms">
+            <Setter Property="BorderBrush" Value="{StaticResource Sms}"/>
+            <Setter Property="STitle" Value="문자 메시지 관리기" />
+        </Style>
+
+           <Style Selector="icon|Icon3D.sms">
+            <Setter Property="BorderBrush" Value="{StaticResource Sms}"/>
+            <Setter Property="STitle" Value="문자 메시지 관리기" />
+        </Style>
+
+           <Style Selector="icon|Icon3D.runmain">
+            <Setter Property="BorderBrush" Value="{StaticResource Runmain}"/>
+            <Setter Property="STitle" Value="데이터 서버" />
+        </Style>
+
+         <Style Selector="icon|Icon3D.viewmain">
+            <Setter Property="BorderBrush" Value="{StaticResource Viewmain}"/>
+            <Setter Property="STitle" Value="웹 뷰어" />
+        </Style>
+
+         <Style Selector="icon|Icon3D.opcdaclient">
+            <Setter Property="BorderBrush" Value="{StaticResource Opcdaclient}"/>
+            <Setter Property="STitle" Value="OPC DA Client" />
+        </Style>
+
+          <Style Selector="icon|Icon3D.opcuaclient">
+            <Setter Property="BorderBrush" Value="{StaticResource Opcuaclient}"/>
+            <Setter Property="STitle" Value="OPC UA Client" />
+        </Style>
+
+        <Style Selector="icon|Icon3D.opcuaserver">
+            <Setter Property="BorderBrush" Value="{StaticResource Opcuaserver}"/>
+            <Setter Property="STitle" Value="OPC UA Server" />
+        </Style>
+
+          <Style Selector="icon|Icon3D.apiclient">
+            <Setter Property="BorderBrush" Value="{StaticResource Apiclient}"/>
+            <Setter Property="STitle" Value="REST API Client" />
+        </Style>
+
+        <Style Selector="icon|Icon3D.registernet">
+            <Setter Property="BorderBrush" Value="{StaticResource Registernet}"/>
+            <Setter Property="STitle" Value="RegisterNetDLL" />
+        </Style>
+
+         <Style Selector="icon|Icon3D.registernet32">
+            <Setter Property="BorderBrush" Value="{StaticResource Registernet32}"/>
+            <Setter Property="STitle" Value="RegisterNetDLL32" />
+        </Style>
+
+          
+        
+
+    </Window.Styles>
+
+    <Border>
+
+    <Grid ColumnDefinitions="50, *, 50" RowDefinitions="40,*, 40" >
+        
+        <StackPanel  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" >
+			<Button Name="button_01" HorizontalAlignment="Right" VerticalAlignment="Center" Width="90" Height="30" 
+                Background="Dodgerblue" CornerRadius="10" Margin="5,0,0,5"
+                Content="한국어" HorizontalContentAlignment="Center" Foreground="White"
+                Grid.Row="2" Grid.Column="1">
+			<Button.Styles>
+            <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+              <Setter Property="Background" Value="Blue" />
+              <Setter Property="Foreground" Value="White" />
+            </Style>
+
+            <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+              <Setter Property="Background" Value="Blue" />
+              <Setter Property="Foreground" Value="White" />
+            </Style>
+
+          </Button.Styles>
+        </Button>
+            <Button Name="button_02" HorizontalAlignment="Right" VerticalAlignment="Center" Width="90" Height="30" 
+                Background="Dodgerblue" CornerRadius="10" Margin="5,0,0,5"
+                Content="영어" HorizontalContentAlignment="Center" Foreground="White"
+                Grid.Row="2" Grid.Column="1">
+			<Button.Styles>
+            <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+              <Setter Property="Background" Value="Blue" />
+              <Setter Property="Foreground" Value="White" />
+            </Style>
+
+            <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+              <Setter Property="Background" Value="Blue" />
+              <Setter Property="Foreground" Value="White" />
+            </Style>
+
+          </Button.Styles>
+        </Button>
+        </StackPanel>
+
+
+        <Button Name="Page_left" Grid.Row="1" Grid.Column="0" Width="50" Height="50" Foreground="White" Background="Transparent" 
+                Content="≪" FontSize="30" > 
+			<Button.Styles>
+            <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+              <Setter Property="Background" Value="Transparent" />
+              <Setter Property="Foreground" Value="Lime" />
+            </Style>
+
+            <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+              <Setter Property="Background" Value="Transparent" />
+              <Setter Property="Foreground" Value="Lime" />
+            </Style>
+
+          </Button.Styles>
+        </Button>
+
+         <Button Name="Page_right" Grid.Row="1" Grid.Column="2" Width="50" Height="50" Foreground="White" Background="Transparent" 
+                 Content="≫"  FontSize="30"  > 
+			<Button.Styles>
+            <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+              <Setter Property="Background" Value="Transparent" />
+              <Setter Property="Foreground" Value="Lime" />
+            </Style>
+
+            <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+              <Setter Property="Background" Value="Transparent" />
+              <Setter Property="Foreground" Value="Lime" />
+            </Style>
+
+          </Button.Styles>
+        </Button>
+
+    <Grid Name="page_0" RowDefinitions="170,170" Width="650" Grid.Row="1" Grid.Column="1" IsVisible="False" >
+
+        <Grid ColumnDefinitions="*,*,*,*" Grid.Row="0"  Margin="10">
+            
+            <icon:Icon3D Name="border_0" Classes="projectmanager" Grid.Column="0" IsVisible="False" PointerPressed="pressed_0" >      
+                <Grid Width="50" Height="50">
+					<Grid.Background>
+						<ImageBrush Source="avares://LauncherMain/res/Projectmanager.ico" /> 
+                    </Grid.Background>
+                </Grid>
+            </icon:Icon3D>
+
+            <icon:Icon3D Name="border_1"   Classes="studio" Grid.Column="1" IsVisible="False"  PointerPressed="pressed_1" >
+                <Grid Width="50" Height="50">
+					<Grid.Background>
+						<ImageBrush Source="avares://LauncherMain/res/Studio.ico" /> 
+                    </Grid.Background>
+                </Grid>
+            </icon:Icon3D>
+
+            <icon:Icon3D  Name="border_2"  Classes="localmain" Grid.Column="2" IsVisible="False"  PointerPressed="pressed_2"  >
+                <Grid Width="50" Height="50">
+					<Grid.Background>
+						<ImageBrush Source="avares://LauncherMain/res/Localmain.ico" /> 
+                    </Grid.Background>
+                </Grid>
+            </icon:Icon3D>
+
+            <icon:Icon3D   Name="border_3" Classes="plcscan" Grid.Column="3" IsVisible="False"  PointerPressed="pressed_3"  >
+                 <Grid Width="50" Height="50">
+					<Grid.Background>
+						<ImageBrush Source="avares://LauncherMain/res/Plcscan.ico" /> 
+                    </Grid.Background>
+                </Grid>
+            </icon:Icon3D>
+
+           
+
+        </Grid>
+        <Grid ColumnDefinitions="*,*,*,*" Grid.Row="1" Margin="10">
+        
+             <icon:Icon3D  Name="border_4"  Classes="watchdog" Grid.Column="0" IsVisible="False"  PointerPressed="pressed_4"   >
+               <Grid Width="50" Height="50">
+					<Grid.Background>
+						<ImageBrush Source="avares://LauncherMain/res/Watchdog.ico" /> 
+                    </Grid.Background>
+                </Grid>
+            </icon:Icon3D>
+
+            <icon:Icon3D  Name="border_5" Classes="exportserver" Grid.Column="1" IsVisible="False" PointerPressed="pressed_5"   >
+            <Grid Width="50" Height="50">
+					<Grid.Background>
+						<ImageBrush Source="avares://LauncherMain/res/ExportServer.ico" /> 
+                    </Grid.Background>
+                </Grid>
+        </icon:Icon3D>
+        
+
+        <icon:Icon3D  Name="border_8"  Classes="sms"  Grid.Column="2" IsVisible="False" PointerPressed="pressed_8" >
+            <Grid Width="50" Height="50">
+					<Grid.Background>
+						<ImageBrush Source="avares://LauncherMain/res/SMS.ico" /> 
+                    </Grid.Background>
+                </Grid>
+        </icon:Icon3D>
+
+        <icon:Icon3D  Name="border_9"  Classes="runmain"  Grid.Column="3" IsVisible="False" PointerPressed="pressed_9" >
+             <Grid Width="50" Height="50">
+					<Grid.Background>
+						<ImageBrush Source="avares://LauncherMain/res/Runmain.ico" /> 
+                    </Grid.Background>
+                </Grid>
+        </icon:Icon3D>
+
+        </Grid>
+
+
+
+    </Grid>
+
+
+
+        <Grid Name="page_1" RowDefinitions="170,170" Width="650" Grid.Row="1" Grid.Column="1" IsVisible="False" >
+
+                    <Grid ColumnDefinitions="*,*,*,*" Grid.Row="0"  Margin="10">
+                    <icon:Icon3D  Name="border_6"  Classes="langtool" Grid.Column="0" IsVisible="False" PointerPressed="pressed_6"   >
+                    <Grid Width="60" Height="60">
+			                <Grid.Background>
+				                <ImageBrush Source="avares://LauncherMain/res/Langtool.ico" /> 
+                            </Grid.Background>
+                        </Grid>
+                    </icon:Icon3D>
+
+                    <icon:Icon3D  Name="border_7"  Classes="localconfig" Grid.Column="1" IsVisible="False" PointerPressed="pressed_7" >
+                        <Grid Width="50" Height="50">
+			                    <Grid.Background>
+				                    <ImageBrush Source="avares://LauncherMain/res/LocalConfig.ico" /> 
+                                </Grid.Background>
+                            </Grid>
+                    </icon:Icon3D>
+
+                     <icon:Icon3D  Name="border_10"  Classes="viewmain"  Grid.Column="2" IsVisible="False" PointerPressed="pressed_10" >
+                       <Grid Width="50" Height="50">
+			                    <Grid.Background>
+				                    <ImageBrush Source="avares://LauncherMain/res/ViewMain.ico" /> 
+                                </Grid.Background>
+                            </Grid>
+                    </icon:Icon3D>
+
+                </Grid>
+
+                <Grid ColumnDefinitions="*,*,*,*" Grid.Row="2" Margin="10">
+
+  
+                <icon:Icon3D Name="border_11"  Classes="opcdaclient" Grid.Column="0" IsVisible="False" PointerPressed="pressed_11">
+                   <Grid Width="50" Height="50">
+			                <Grid.Background>
+				                <ImageBrush Source="avares://LauncherMain/res/Opcdaclient.ico" /> 
+                            </Grid.Background>
+                        </Grid>
+                </icon:Icon3D>
+                <icon:Icon3D  Name="border_12"  Classes="opcuaclient"  Grid.Column="1" IsVisible="False" PointerPressed="pressed_12">
+                   <Grid Width="50" Height="50">
+			                <Grid.Background>
+				                <ImageBrush Source="avares://LauncherMain/res/Opcuaclient.ico" /> 
+                            </Grid.Background>
+                        </Grid>
+                </icon:Icon3D>
+                <icon:Icon3D  Name="border_13" Classes="opcuaserver"  Grid.Column="2" IsVisible="False" PointerPressed="pressed_13" >
+                   <Grid Width="50" Height="50">
+			                <Grid.Background>
+				                <ImageBrush Source="avares://LauncherMain/res/Opcuaserver.ico" /> 
+                            </Grid.Background>
+                        </Grid>
+                </icon:Icon3D>
+
+                <icon:Icon3D Name="border_14"  Classes="apiclient" Grid.Column="3" IsVisible="False" PointerPressed="pressed_14">
+                   <Grid Width="50" Height="50">
+			                <Grid.Background>
+				                <ImageBrush Source="avares://LauncherMain/res/Apiclient.ico" /> 
+                            </Grid.Background>
+                    </Grid>
+                </icon:Icon3D>
+            </Grid>
+
+
+
+        </Grid>
+
+        <Grid Name="page_2" RowDefinitions="170,170" Width="650" Grid.Row="1" Grid.Column="1" IsVisible="False" >
+
+                    <Grid ColumnDefinitions="*,*,*,*" Grid.Row="0"  Margin="10">
+                    <icon:Icon3D  Name="border_16"  Classes="registernet32" Grid.Column="0" IsVisible="False" PointerPressed="pressed_16"   >
+                    <Grid Width="60" Height="60">
+			                <Grid.Background>
+				                <ImageBrush Source="avares://LauncherMain/res/Registernet.ico" /> 
+                            </Grid.Background>
+                        </Grid>
+                    </icon:Icon3D>
+
+                    <icon:Icon3D  Name="border_17"  Classes="registernet" Grid.Column="1" IsVisible="False" PointerPressed="pressed_17" >
+                        <Grid Width="50" Height="50">
+			                    <Grid.Background>
+				                    <ImageBrush Source="avares://LauncherMain/res/Registernet.ico" /> 
+                                </Grid.Background>
+                            </Grid>
+                    </icon:Icon3D>
+
+                    
+
+                </Grid>
+
+                
+
+
+
+        </Grid>
+
+
+<TextBlock Name="Label_1" Grid.Row="2" Grid.Column="1" Text="" Foreground="Yellow" 
+           VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" />
+
+<TextBlock Name="Label_2" Grid.Row="2" Grid.Column="1" Text="" Foreground="Gray" 
+           VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" />
+
+ <Button Name="button_1" HorizontalAlignment="Right" VerticalAlignment="Center" Width="90" Height="30" 
+                Background="Red" CornerRadius="10" Margin="0,0,0,5"
+                Content="나가기" HorizontalContentAlignment="Center" Foreground="White"
+                Grid.Row="2" Grid.Column="1">
+			<Button.Styles>
+            <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+              <Setter Property="Background" Value="Orange" />
+              <Setter Property="Foreground" Value="White" />
+            </Style>
+
+            <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+              <Setter Property="Background" Value="Orange" />
+              <Setter Property="Foreground" Value="White" />
+            </Style>
+
+          </Button.Styles>
+        </Button>
+
+
+</Grid>
+
+</Border>
+
+</Window>

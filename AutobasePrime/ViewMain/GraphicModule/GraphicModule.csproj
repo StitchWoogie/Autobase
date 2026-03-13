@@ -1,0 +1,1170 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{03415E5F-99CA-4F21-B732-80372B2AA265}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>GraphicModule</AssemblyName>
+    <AssemblyOriginatorKeyFile>autobase.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GraphicModule</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LibVLCSharp, Version=3.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\LibVLCSharp.3.9.4\lib\net471\LibVLCSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LibVLCSharp.WinForms, Version=3.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\LibVLCSharp.WinForms.3.9.4\lib\net40\LibVLCSharp.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Bcl.AsyncInterfaces.10.0.2\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Bcl.HashCode.6.0.0\lib\net462\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.DependencyInjection.Abstractions.10.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=10.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Extensions.Logging.Abstractions.10.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.3485.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Web.WebView2.1.0.3485.44\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.3485.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Web.WebView2.1.0.3485.44\lib\net462\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.3485.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Web.WebView2.1.0.3485.44\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ShareDlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=8.0.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\Npgsql.8.0.7\lib\netstandard2.0\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Svg, Version=3.0.0.0, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ShareDlls\Svg.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=10.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Collections.Immutable.10.0.2\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Diagnostics.DiagnosticSource.10.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.IO.Pipelines.10.0.2\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management">
+      <Name>system.management</Name>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap">
+      <Name>System.Runtime.Serialization.Formatters.Soap</Name>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Text.Encodings.Web.10.0.2\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=10.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Text.Json.10.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <ProjectReference Include="..\..\..\NetTools\CompressLib\CompressLib.csproj">
+      <Project>{62082BA2-BFE1-4830-B552-BB76C2AD1D00}</Project>
+      <Name>CompressLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\NetTools\NetTools.csproj">
+      <Name>NetTools</Name>
+      <Project>{D49B5268-4C34-44C6-B688-80653EE9A189}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\NetTools\PicTools\PicTools.csproj">
+      <Name>PicTools</Name>
+      <Project>{2BA16408-BC41-4D6A-9ACA-595257520DA8}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ScriptLib\ScriptLibEdit\ScriptLibEdit.csproj">
+      <Project>{566DD456-58EA-47D9-91FB-43C7D7EF80BA}</Project>
+      <Name>ScriptLibEdit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ScriptLib\ScriptLibRun\ScriptLibRun.csproj">
+      <Project>{81868C94-AF9B-40A7-BAA8-038CB48600DC}</Project>
+      <Name>ScriptLibRun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\AutoLibLocal\AutoLibLocal.csproj">
+      <Name>AutoLibLocal</Name>
+      <Project>{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\AutoLib\AutoLib.csproj">
+      <Name>AutoLib</Name>
+      <Project>{DFE68F78-7DBA-45BC-AB91-FB685733205B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\DatabaseConnection\DatabaseConnection.csproj">
+      <Name>DatabaseConnection</Name>
+      <Project>{BB25326A-678A-4196-A782-F5A524D6430B}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\DialogClipBoardPrint\DialogClipBoardPrint.csproj">
+      <Name>DialogClipBoardPrint</Name>
+      <Project>{56B44118-0DCF-4EFA-B60C-496AD58C65A7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\DialogHoliday\DialogHoliday.csproj">
+      <Name>DialogHoliday</Name>
+      <Project>{6E0B046D-EC82-46DC-95FC-2F46FDC17F15}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\ReportBasicLib\ReportBasicLib.csproj">
+      <Name>ReportBasicLib</Name>
+      <Project>{46B4BACB-0EFA-49FE-8F3A-0B3279E18DB8}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Dll\ReportModule\ReportModule.csproj">
+      <Name>ReportModule</Name>
+      <Project>{BFC7F4F7-35CD-4FE9-8F34-ACA05EEABB12}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\BasicScreen\BasicScreen.csproj">
+      <Name>BasicScreen</Name>
+      <Project>{E50BFB46-52E6-4467-A4F8-C1B8FBB14CAA}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\DialogControl\DialogControl.csproj">
+      <Name>DialogControl</Name>
+      <Project>{EBA72834-6DBB-416C-8A89-76597EFC0DD2}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <Reference Include="zxing, Version=0.16.11.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\ZXing.Net.0.16.11\lib\net48\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.11.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\SolutionAutoBaseLocalTotal\packages\ZXing.Net.0.16.11\lib\net48\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ALARM_CONFIRMATION_STRUCT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceExcelReport\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceExcelWorkerClient.cs" />
+    <Compile Include="FormDemandNewChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadObjectFromChart.cs" />
+    <Compile Include="LoadObjectFromDonutChart.cs" />
+    <Compile Include="MilliDataWnd_mdb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Object\DemandChartThemeHelper.cs" />
+    <Compile Include="Object\ObjectArgsDemandChart.cs" />
+    <Compile Include="Object\ObjectBarcodeDisplay.cs" />
+    <Compile Include="Object\ObjectBarcodeScanner.cs" />
+    <Compile Include="Object\ObjectChart.cs" />
+    <Compile Include="Object\ObjectCustomChart.cs" />
+    <Compile Include="Object\ObjectDemandChart.cs" />
+    <Compile Include="Object\ObjectDonutChart.cs" />
+    <Compile Include="Object\ObjectAnalogGauge.cs" />
+    <Compile Include="LoadObjectFromMultiGraph.cs" />
+    <Compile Include="Object\ObjectSVG.cs" />
+    <Compile Include="Object\ObjectVLCAx.cs" />
+    <Compile Include="Object\ObjectWebView.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionBarcode.cs" />
+    <Compile Include="Script\ScriptFunctionCustomChart.cs" />
+    <Compile Include="Script\ScriptFunctionDataTable.cs" />
+    <Compile Include="JsonTool.cs" />
+    <Compile Include="Script\ScriptFunctionHttp.cs" />
+    <Compile Include="Script\ScriptFunctionJson.cs" />
+    <Compile Include="Script\ScriptFunctionJsonTmeplate.cs" />
+    <Compile Include="Script\ScriptFunctionProxy.cs" />
+    <Compile Include="LoadObjectFromMilliDataTrend.cs" />
+    <Compile Include="LoadObjectFromDatabaseTrend.cs" />
+    <Compile Include="LoadObjectFromTreeView.cs" />
+    <Compile Include="Script\ScriptFunctionControlTree.cs" />
+    <Compile Include="Object\ObjectControlTreeView.cs" />
+    <Compile Include="Script\ScriptFunctionImage.cs" />
+    <Compile Include="Script\ScriptFunctionPythonAi.cs" />
+    <Compile Include="Script\ScriptFunctionSVG.cs" />
+    <Compile Include="Script\ScriptFunctionVLC.cs" />
+    <Compile Include="Script\ScriptFunctionLang.cs" />
+    <Compile Include="Script\ScriptFunction_SU.cs" />
+    <Compile Include="Script\ScriptFunction_IU.cs" />
+    <Compile Include="Script\ScriptFunction_LU.cs" />
+    <Compile Include="Script\ScriptFunction_lL.cs" />
+    <Compile Include="Script\ScriptFunction_pL.cs" />
+    <Compile Include="Script\ScriptFunction_eL.cs" />
+    <Compile Include="Script\ScriptFunction_tL.cs" />
+    <Compile Include="Script\ScriptFunction_CU.cs" />
+    <Compile Include="Script\ScriptFunction_MU.cs" />
+    <Compile Include="Script\ScriptFunction_TU.cs" />
+    <Compile Include="Script\ScriptFunction_VU.cs" />
+    <Compile Include="Script\ScriptFunction_WU.cs" />
+    <Compile Include="Script\ScriptFunction_OU.cs" />
+    <Compile Include="Script\ScriptFunction_PU.cs" />
+    <Compile Include="Script\ScriptFunction_DU.cs" />
+    <Compile Include="Script\ScriptFunction_rL.cs" />
+    <Compile Include="Script\ScriptFunction_AU.cs" />
+    <Compile Include="Script\ScriptFunction_RU.cs" />
+    <Compile Include="Script\ScriptFunction_cL.cs" />
+    <Compile Include="Script\ScriptFunction_sL.cs" />
+    <Compile Include="Script\ScriptFunction_aL.cs" />
+    <Compile Include="Script\ScriptClassRunNewEngine.cs" />
+    <Compile Include="Script\ScriptFunctionSignage.cs" />
+    <Compile Include="LoadObjectFromButtonDigitalOut.cs" />
+    <Compile Include="Script\ScriptFunctionDateTime.cs" />
+    <Compile Include="Script\ScriptFunctionAts.cs" />
+    <Compile Include="Script\ScriptFunctionFolder.cs" />
+    <Compile Include="LoadObjectFromWindowAlarm.cs" />
+    <Compile Include="Script\ScriptFunctionContextMenu.cs" />
+    <Compile Include="Object\ObjectControlTabControl.cs" />
+    <Compile Include="LoadObjectFromMultiTrend.cs" />
+    <Compile Include="LoadObjectFromDataGrid.cs" />
+    <Compile Include="Script\ScriptFunctionControlTabControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionDataGrid.cs" />
+    <Compile Include="Object\ObjectDataGridView.cs" />
+    <Compile Include="Script\ScriptExternalRun.cs" />
+    <Compile Include="Script\ScriptFunctionMail.cs" />
+    <Compile Include="Script\ScriptFunctionMessage.cs" />
+    <Compile Include="Script\ScriptFunctionMouse.cs" />
+    <Compile Include="Script\ScriptFunctionDde.cs" />
+    <Compile Include="LoadObjectFromXYGraph.cs" />
+    <Compile Include="Script\ScriptFunctionGet.cs" />
+    <Compile Include="Script\ScriptFunctionCircle.cs" />
+    <Compile Include="LoadObjectFromCircle.cs" />
+    <Compile Include="Object\ObjectControlDatePicker.cs" />
+    <Compile Include="Script\ScriptFunctionControlDatePicker.cs" />
+    <Compile Include="Script\ScriptFunctionPrint.cs" />
+    <Compile Include="RealTimeTestStruct.cs" />
+    <Compile Include="RealTimeTestData.cs" />
+    <Compile Include="FormPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPassword.Designer.cs">
+      <DependentUpon>FormPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadObjectItem.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionMilliTrend.cs" />
+    <Compile Include="Object\ObjectMilliDataTrend.cs" />
+    <Compile Include="Script\ScriptFunctionReg.cs" />
+    <Compile Include="Script\ScriptFunctionRecipe.cs" />
+    <Compile Include="Script\ScriptFunctionPreset.cs" />
+    <Compile Include="Script\ScriptFunctionSchedule.cs" />
+    <Compile Include="LoadObjectFromTagAnimation.cs" />
+    <Compile Include="Object\ObjectTagAnimation.cs" />
+    <Compile Include="Object\ObjectLayer.cs" />
+    <Compile Include="Object\ObjectPublicGroupLayer.cs" />
+    <Compile Include="Script\ScriptFunctionGlobal.cs" />
+    <Compile Include="Script\ScriptFunctionReport.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionScript.cs" />
+    <Compile Include="Script\ScriptFunctionSet.cs" />
+    <Compile Include="Script\ScriptFunctionString.cs" />
+    <Compile Include="Script\ScriptFunctionSystem.cs" />
+    <Compile Include="Script\ScriptFunctionToolBar.cs" />
+    <Compile Include="Script\ScriptFunctionWeb.cs" />
+    <Compile Include="FIELD_VIEW_STRUCT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAlarmEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDatabaseOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDatabaseOptionModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDemandControlChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGraphicChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGraphicFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNavigator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraphicTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoadObjectFromMod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoadObjectFromModX.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MilliData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MilliDataWnd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectAnalogMeter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectAnalogRectangle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectAnalogRotate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectAnalogStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectAnalogString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectAnimation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectBack.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectBitmap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectButtonDigitalOut.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectButtonModule3D.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectButtonModuleHide.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectButtonProgram.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectButtonPublic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectChangeValueDisplay.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectCircle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectClock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectControlCheckBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectControlComboBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectControlEditBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectControlListBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectControlRadioButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectCurve.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectDatabase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectDatabaseTrend.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectDate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectDemandWindow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectDigitalAnimation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectDigitalCircle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectDigitalRectangle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectDigitalString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectExpand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectFont.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectGeneral.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectGroupLoadMod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectGroupLoadModX.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectLine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectMilliData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectModule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectMultiGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectMultiTrend.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectPoly.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectPublic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectRealTimeTestGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectRectangle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectRoot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectRoundRectangle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectSingleText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectStringString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectTag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectUnknown.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectWebBrowser.cs" />
+    <Compile Include="Object\ObjectWindowAlarm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Object\ObjectXYGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SaveObjectItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptArgumentString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionAlarm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionAnalog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionAnimation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionBitmap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionCheck.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionCommandLine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionControlCheckBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionControlComboBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionControlEditBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionControlListBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionControlRadioButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionCsv.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionDatabase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionDb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionDbTrend.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionDialog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionElse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionExcel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionLog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionMath.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionMdi.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionMenu.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionMilliData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionModule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionMultiGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionMultiTrend.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionPlcScan.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionProcess.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionRealTimeTestGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionScreen.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionSms.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionSql.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionTag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Script\ScriptFunctionXYGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SharedLocalMain.cs" />
+    <Compile Include="SqlBindList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ToolBarModule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VLCActiveXContol..cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VLCActiveXContol..Designer.cs">
+      <DependentUpon>VLCActiveXContol..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Webview2ActiveXControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Webview2ActiveXControl.Designer.cs">
+      <DependentUpon>Webview2ActiveXControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WndDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WndUserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Cursor\Panning.cur" />
+    <EmbeddedResource Include="Cursor\ZoomIn.cur" />
+    <EmbeddedResource Include="Cursor\ZoomOut.cur" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAlarmEvent.ja.resx">
+      <DependentUpon>FormAlarmEvent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAlarmEvent.ko.resx">
+      <DependentUpon>FormAlarmEvent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAlarmEvent.resx">
+      <DependentUpon>FormAlarmEvent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAlarmEvent.zh-CHS.resx">
+      <DependentUpon>FormAlarmEvent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseOption.ja.resx">
+      <DependentUpon>FormDatabaseOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseOption.ko.resx">
+      <DependentUpon>FormDatabaseOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseOption.resx">
+      <DependentUpon>FormDatabaseOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseOption.zh-CHS.resx">
+      <DependentUpon>FormDatabaseOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseOptionModify.ja.resx">
+      <DependentUpon>FormDatabaseOptionModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseOptionModify.ko.resx">
+      <DependentUpon>FormDatabaseOptionModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseOptionModify.resx">
+      <DependentUpon>FormDatabaseOptionModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseOptionModify.zh-CHS.resx">
+      <DependentUpon>FormDatabaseOptionModify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDemandControlChild.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormDemandControlChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDemandControlChild.resx">
+      <DependentUpon>FormDemandControlChild.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDemandControlChild.vi.resx">
+      <DependentUpon>FormDemandControlChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGraphicChild.ja.resx">
+      <DependentUpon>FormGraphicChild.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGraphicChild.ko.resx">
+      <DependentUpon>FormGraphicChild.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGraphicChild.resx">
+      <DependentUpon>FormGraphicChild.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGraphicChild.vi.resx">
+      <DependentUpon>FormGraphicChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGraphicChild.zh-CHS.resx">
+      <DependentUpon>FormGraphicChild.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGraphicFrame.ja.resx">
+      <DependentUpon>FormGraphicFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGraphicFrame.ko.resx">
+      <DependentUpon>FormGraphicFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGraphicFrame.resx">
+      <DependentUpon>FormGraphicFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGraphicFrame.vi.resx">
+      <DependentUpon>FormGraphicFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGraphicFrame.zh-CHS.resx">
+      <DependentUpon>FormGraphicFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNavigator.ja.resx">
+      <DependentUpon>FormNavigator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNavigator.ko.resx">
+      <DependentUpon>FormNavigator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNavigator.resx">
+      <DependentUpon>FormNavigator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNavigator.vi.resx">
+      <DependentUpon>FormNavigator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNavigator.zh-CHS.resx">
+      <DependentUpon>FormNavigator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPassword.ko.resx">
+      <DependentUpon>FormPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPassword.resx">
+      <DependentUpon>FormPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliDataWnd_mdb.ko.resx">
+      <DependentUpon>MilliDataWnd_mdb.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliDataWnd_mdb.resx">
+      <DependentUpon>MilliDataWnd_mdb.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliDataWnd_mdb.vi.resx">
+      <DependentUpon>MilliDataWnd_mdb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliDataWnd.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MilliDataWnd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliDataWnd.resx">
+      <DependentUpon>MilliDataWnd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MilliDataWnd.vi.resx">
+      <DependentUpon>MilliDataWnd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WndDatabase.ja.resx">
+      <DependentUpon>WndDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WndDatabase.ko.resx">
+      <DependentUpon>WndDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WndDatabase.resx">
+      <DependentUpon>WndDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WndDatabase.zh-CHS.resx">
+      <DependentUpon>WndDatabase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WndUserList.ko.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WndUserList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WndUserList.resx">
+      <DependentUpon>WndUserList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="autobase.snk" />
+    <None Include="Connected Services\ServiceReferenceExcelReport\ServiceExcelReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReferenceExcelReport\ServiceExcelReport1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReferenceExcelReport\ServiceExcelReport2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReferenceExcelReport\WcfServiceExcelReport.wsdl" />
+    <None Include="GraphicModule.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Cursor\cross.cur" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Resources\arrow_right.png" />
+    <None Include="Resources\arrow_right_w.png" />
+    <None Include="Resources\config.png" />
+    <None Include="Resources\config_w.png" />
+    <None Include="Resources\double_arrow_left.png" />
+    <None Include="Resources\double_arrow_left_w.png" />
+    <None Include="Resources\double_arrow_right.png" />
+    <None Include="Resources\double_arrow_right_w.png" />
+    <None Include="Resources\pinch_zoom_in.png" />
+    <None Include="Resources\pinch_zoom_in_w.png" />
+    <None Include="Resources\pinch_zoom_out.png" />
+    <None Include="Resources\pinch_zoom_out_w.png" />
+    <None Include="Resources\start.png" />
+    <None Include="Resources\start_w.png" />
+    <None Include="Resources\stop.png" />
+    <None Include="Resources\stop_w.png" />
+    <None Include="Resources\zoom_in.png" />
+    <None Include="Resources\zoom_in_w.png" />
+    <None Include="Resources\zoom_out.png" />
+    <None Include="Resources\zoom_out_w.png" />
+    <None Include="Resources\arrow_left.png" />
+    <None Include="Resources\arrow_left_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceExcelReport\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceExcelReport\ServiceExcelReport.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceExcelReport\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceExcelReport\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceExcelReport\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Web.WebView2.1.0.3485.44\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Web.WebView2.1.0.3485.44\build\Microsoft.Web.WebView2.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Web.WebView2.1.0.3485.44\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Solution\SolutionAutoBaseLocalTotal\packages\Microsoft.Web.WebView2.1.0.3485.44\build\Microsoft.Web.WebView2.targets'))" />
+    <Error Condition="!Exists('..\..\Solution\SolutionAutoBaseLocalTotal\packages\VideoLAN.LibVLC.Windows.3.0.21\build\VideoLAN.LibVLC.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Solution\SolutionAutoBaseLocalTotal\packages\VideoLAN.LibVLC.Windows.3.0.21\build\VideoLAN.LibVLC.Windows.targets'))" />
+    <Error Condition="!Exists('..\..\Solution\SolutionAutoBaseLocalTotal\packages\StrongNamer.0.2.5\build\StrongNamer.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Solution\SolutionAutoBaseLocalTotal\packages\StrongNamer.0.2.5\build\StrongNamer.targets'))" />
+    <Error Condition="!Exists('..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
+  </Target>
+  <Import Project="..\..\Solution\SolutionAutoBaseLocalTotal\packages\VideoLAN.LibVLC.Windows.3.0.21\build\VideoLAN.LibVLC.Windows.targets" Condition="Exists('..\..\Solution\SolutionAutoBaseLocalTotal\packages\VideoLAN.LibVLC.Windows.3.0.21\build\VideoLAN.LibVLC.Windows.targets')" />
+  <Import Project="..\..\Solution\SolutionAutoBaseLocalTotal\packages\StrongNamer.0.2.5\build\StrongNamer.targets" Condition="Exists('..\..\Solution\SolutionAutoBaseLocalTotal\packages\StrongNamer.0.2.5\build\StrongNamer.targets')" />
+  <Import Project="..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('..\..\Solution\SolutionAutoBaseLocalTotal\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
+</Project>

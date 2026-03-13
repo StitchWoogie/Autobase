@@ -1,0 +1,1290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 6</value>
+  </data>
+  <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="saveAsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="saveAsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lưu như</value>
+  </data>
+  <data name="saveAsBitmapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="saveAsBitmapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lưu như Bitmap</value>
+  </data>
+  <data name="saveAsTempleteLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="saveAsTempleteLibraryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lưu như thư viện tạm thời</value>
+  </data>
+  <data name="saveAsTempleteFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="saveAsTempleteFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lưu như tệp tạm thời</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 6</value>
+  </data>
+  <data name="importToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nhập</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tệp</value>
+  </data>
+  <data name="undoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="undoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hoàn tác</value>
+  </data>
+  <data name="redoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="redoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Làm lại</value>
+  </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 6</value>
+  </data>
+  <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="copyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sao chép</value>
+  </data>
+  <data name="pasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="pasteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dán</value>
+  </data>
+  <data name="autopasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Xóa bỏ</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>Chọn tất cả</value>
+  </data>
+  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 6</value>
+  </data>
+  <data name="linkedTagToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 22</value>
+  </data>
+  <data name="linkedTagToolStripMenuItem.Text" xml:space="preserve">
+    <value>Được liên kết Tag</value>
+  </data>
+  <data name="findAndReplaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="findAndReplaceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tìm/Thay thế</value>
+  </data>
+  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 6</value>
+  </data>
+  <data name="moveToFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="moveToFrontToolStripMenuItem.Text" xml:space="preserve">
+    <value>Di chuyển tới trước</value>
+  </data>
+  <data name="moveToBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="moveToBackToolStripMenuItem.Text" xml:space="preserve">
+    <value>Di chuyển ra sau</value>
+  </data>
+  <data name="moveToPrevFrontToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="moveToPrevFrontToolStripMenuItem.Text" xml:space="preserve">
+    <value>Di chuyển tới kế trước</value>
+  </data>
+  <data name="moveToNextBackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="moveToNextBackToolStripMenuItem.Text" xml:space="preserve">
+    <value>Di chuyển tới kế sau</value>
+  </data>
+  <data name="orderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="orderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trình tự</value>
+  </data>
+  <data name="alignToLeftToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="alignToLeftToolStripMenuItem.Text" xml:space="preserve">
+    <value>Căn trái</value>
+  </data>
+  <data name="alignToHorizontalCenterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="alignToHorizontalCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Căn giữa chiều ngang</value>
+  </data>
+  <data name="alignToRightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="alignToRightToolStripMenuItem.Text" xml:space="preserve">
+    <value>Căn phải</value>
+  </data>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 6</value>
+  </data>
+  <data name="alignToTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="alignToTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Căn trên</value>
+  </data>
+  <data name="alignToVerticalCenterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="alignToVerticalCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Căn giữa chiều dọc</value>
+  </data>
+  <data name="alignToBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="alignToBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Căn dưới</value>
+  </data>
+  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 6</value>
+  </data>
+  <data name="alignToModuleHorizontalCenterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="alignToModuleHorizontalCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Căn ngang giữa module</value>
+  </data>
+  <data name="alignToModuleVerticalCenterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="alignToModuleVerticalCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Căn doc giữa module</value>
+  </data>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 6</value>
+  </data>
+  <data name="spaceHorizontalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="spaceHorizontalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Khoảng trống ngang</value>
+  </data>
+  <data name="spaceVerticalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="spaceVerticalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Khoảng trống dọc</value>
+  </data>
+  <data name="alignToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="alignToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sắp hàng</value>
+  </data>
+  <data name="flipHorizontalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
+  <data name="flipHorizontalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lật ngang</value>
+  </data>
+  <data name="flipVerticalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
+  <data name="flipVerticalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lật dọc</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 6</value>
+  </data>
+  <data name="rotate90DegreeToRightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
+  <data name="rotate90DegreeToRightToolStripMenuItem.Text" xml:space="preserve">
+    <value>Quay 90 độ sang phải</value>
+  </data>
+  <data name="rotate90DegreeToLeftToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
+  <data name="rotate90DegreeToLeftToolStripMenuItem.Text" xml:space="preserve">
+    <value>Quay 90 độ sang trái</value>
+  </data>
+  <data name="flipRotateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="flipRotateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lật /Xoay</value>
+  </data>
+  <data name="widthToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 22</value>
+  </data>
+  <data name="widthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bề rộng</value>
+  </data>
+  <data name="heightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 22</value>
+  </data>
+  <data name="heightToolStripMenuItem.Text" xml:space="preserve">
+    <value>Chiều cao</value>
+  </data>
+  <data name="allToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 22</value>
+  </data>
+  <data name="allToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="makeSameSizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="makeSameSizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tạo kích thước giống nhau</value>
+  </data>
+  <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 6</value>
+  </data>
+  <data name="groupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="groupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nhóm</value>
+  </data>
+  <data name="ungroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="ungroupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rã nhóm</value>
+  </data>
+  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 6</value>
+  </data>
+  <data name="lockToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="lockToolStripMenuItem.Text" xml:space="preserve">
+    <value>Khóa</value>
+  </data>
+  <data name="unlockAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="unlockAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mở khóa tất cả</value>
+  </data>
+  <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 6</value>
+  </data>
+  <data name="registerToLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="registerToLibraryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đăng kí tới thư viện</value>
+  </data>
+  <data name="saveToLibraryFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="saveToLibraryFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lưu tới thư viện tệp</value>
+  </data>
+  <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 6</value>
+  </data>
+  <data name="objectPropertiesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="objectPropertiesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Thuộc tính đối tượng</value>
+  </data>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 20</value>
+  </data>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>Soạn thảo</value>
+  </data>
+  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 6</value>
+  </data>
+  <data name="zoomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 22</value>
+  </data>
+  <data name="zoomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Thu/Phóng</value>
+  </data>
+  <data name="objectNumberToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 22</value>
+  </data>
+  <data name="objectNumberToolStripMenuItem.Text" xml:space="preserve">
+    <value>Số  đối tượng</value>
+  </data>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Xem</value>
+  </data>
+  <data name="moduleSelectionButtonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 22</value>
+  </data>
+  <data name="moduleSelectionButtonToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nút nhấn chọn Module</value>
+  </data>
+  <data name="moduleHideButtonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 22</value>
+  </data>
+  <data name="moduleHideButtonToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nút nhấn ẩn Module</value>
+  </data>
+  <data name="scriptButtonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 22</value>
+  </data>
+  <data name="scriptButtonToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nút nhấn Script</value>
+  </data>
+  <data name="digitalOutputButtonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 22</value>
+  </data>
+  <data name="digitalOutputButtonToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nút nhấn ngõ ra digital</value>
+  </data>
+  <data name="buttonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="buttonToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nút nhấn</value>
+  </data>
+  <data name="digitalAnimationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="digitalAnimationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hoat hình Digital</value>
+  </data>
+  <data name="digitalCircleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="digitalCircleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hình tròn Digital</value>
+  </data>
+  <data name="digitalRectangleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="digitalRectangleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hình chữ nhật Digital</value>
+  </data>
+  <data name="digitalStringToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="digitalStringToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kí tự Digital</value>
+  </data>
+  <data name="digitalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="analogRectangleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 22</value>
+  </data>
+  <data name="analogRectangleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hình chữ nhật Analog</value>
+  </data>
+  <data name="analogStringToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 22</value>
+  </data>
+  <data name="analogStringToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kí tự Analog</value>
+  </data>
+  <data name="analogMeterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 22</value>
+  </data>
+  <data name="analogMeterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dụng cụ đo Analog</value>
+  </data>
+  <data name="analogStatusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 22</value>
+  </data>
+  <data name="analogStatusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trạng thái Analog</value>
+  </data>
+  <data name="analogRotateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 22</value>
+  </data>
+  <data name="analogRotateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trạng thái Analog</value>
+  </data>
+  <data name="analogToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="stringTagToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="tagAnimationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="displayChangesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="displayChangesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hiển thị thay đổi</value>
+  </data>
+  <data name="graphicModuleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="graphicModuleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Module đồ họa</value>
+  </data>
+  <data name="alarmWindowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="alarmWindowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cửa sổ báo động</value>
+  </data>
+  <data name="listBoxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="listBoxToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hộp liệt kê</value>
+  </data>
+  <data name="comboBoxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="comboBoxToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hộp danh sách</value>
+  </data>
+  <data name="editBoxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="editBoxToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hộp soạn thảo</value>
+  </data>
+  <data name="radioButtonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="radioButtonToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nút bấm radio</value>
+  </data>
+  <data name="checkBoxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="checkBoxToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hộp chọn</value>
+  </data>
+  <data name="datePickerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="tabControlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="treeViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="windowControlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="windowControlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cửa sổ điều khiển</value>
+  </data>
+  <data name="multigraphToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="multigraphToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đa đồ thị</value>
+  </data>
+  <data name="multitrendToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="multitrendToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đa xu hướng</value>
+  </data>
+  <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 6</value>
+  </data>
+  <data name="milliDataWindowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="milliDataWindowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cửa sổ dữ liệu mini</value>
+  </data>
+  <data name="milliDataTrendToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="milliDataTrendToolStripMenuItem.Text" xml:space="preserve">
+    <value>Xu hướng dữ liệu mini</value>
+  </data>
+  <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 6</value>
+  </data>
+  <data name="demandWindowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="demandWindowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cửa sổ nhu cầu</value>
+  </data>
+  <data name="realtimeTestGraphToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="realtimeTestGraphToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đồ thị thời gian thực</value>
+  </data>
+  <data name="xYGraphToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="xYGraphToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đồ thị XY</value>
+  </data>
+  <data name="databaseTrendToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="databaseTrendToolStripMenuItem.Text" xml:space="preserve">
+    <value>Xu hướng cơ sở dữ liệu</value>
+  </data>
+  <data name="graphTrendToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="graphTrendToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đồ họa/Xu hướng</value>
+  </data>
+  <data name="databaseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="databaseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cơ sở dữ liệu</value>
+  </data>
+  <data name="dataGridViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 6</value>
+  </data>
+  <data name="bitmapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="animationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="animationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hoạt hình</value>
+  </data>
+  <data name="svgToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="singleLineTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="singleLineTextToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dòng văn bản đơn</value>
+  </data>
+  <data name="rectangleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="rectangleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hình chữ nhật</value>
+  </data>
+  <data name="circleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="circleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đường tròn</value>
+  </data>
+  <data name="lineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="lineToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đường thẳng</value>
+  </data>
+  <data name="roundedRectangleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="roundedRectangleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hình chữ nhật góc tròn</value>
+  </data>
+  <data name="toolStripSeparator20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 6</value>
+  </data>
+  <data name="textToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>Văn bản</value>
+  </data>
+  <data name="clockToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="clockToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đồng hồ</value>
+  </data>
+  <data name="dateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="dateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ngày</value>
+  </data>
+  <data name="webBrowserToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="webBrowserToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trình duyệt Web</value>
+  </data>
+  <data name="webViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="VLCAxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="toolStripSeparator21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 6</value>
+  </data>
+  <data name="objectLibraryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="objectLibraryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Thư viện đối tượng...</value>
+  </data>
+  <data name="buyObjectLibraryFromWebToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="buyObjectLibraryFromWebToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mua đối tượng từ thư viện Web…</value>
+  </data>
+  <data name="libraryFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 22</value>
+  </data>
+  <data name="libraryFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tệp thư viện</value>
+  </data>
+  <data name="objectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 20</value>
+  </data>
+  <data name="objectToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đối tượng</value>
+  </data>
+  <data name="backgroundBitmapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="backgroundBitmapToolStripMenuItem.Text" xml:space="preserve">
+    <value>ảnh nền</value>
+  </data>
+  <data name="backgroundColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="backgroundColorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Màu nền</value>
+  </data>
+  <data name="modulePropertiesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="modulePropertiesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Thuộc tính Module</value>
+  </data>
+  <data name="toolStripSeparator22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 6</value>
+  </data>
+  <data name="scriptOnModuleOpenedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="scriptOnModuleOpenedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Script khi mở Module</value>
+  </data>
+  <data name="scriptOnModuleRunningToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="scriptOnModuleRunningToolStripMenuItem.Text" xml:space="preserve">
+    <value>Script khi Module đang chạy</value>
+  </data>
+  <data name="scriptOnModuleClosedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="scriptOnModuleClosedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Script khi đóng Module</value>
+  </data>
+  <data name="scriptOnModuleActivatedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="scriptOnModuleActivatedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Script khi kích hoạt Module</value>
+  </data>
+  <data name="scriptOnModuleDeactivatedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="scriptOnModuleDeactivatedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Script khi ngừng kích hoạt Module</value>
+  </data>
+  <data name="toolStripSeparator23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 6</value>
+  </data>
+  <data name="guideLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 22</value>
+  </data>
+  <data name="guideLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lưới</value>
+  </data>
+  <data name="configToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 20</value>
+  </data>
+  <data name="configToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cấu hình</value>
+  </data>
+  <data name="cascadeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 22</value>
+  </data>
+  <data name="cascadeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Xếp theo kiểu thác nước</value>
+  </data>
+  <data name="tileHorizontallyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 22</value>
+  </data>
+  <data name="tileHorizontallyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Xếp theo chiều ngang</value>
+  </data>
+  <data name="tileVerticallyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 22</value>
+  </data>
+  <data name="tileVerticallyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Xếp theo chiều dọc</value>
+  </data>
+  <data name="arraygeIconToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 22</value>
+  </data>
+  <data name="arraygeIconToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sắp xếp theo biểu tượng</value>
+  </data>
+  <data name="closeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 22</value>
+  </data>
+  <data name="closeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="closeAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 22</value>
+  </data>
+  <data name="closeAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đóng tất cả</value>
+  </data>
+  <data name="windowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 20</value>
+  </data>
+  <data name="windowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cửa sổ</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>901, 24</value>
+  </data>
+  <data name="toolStripButtonMove.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFpSURBVDhPY0AGy5Yt+29vb88BZDJBREgEM2fO/N/aUk++
+        IR0dHf/v37v+PyI8iDxDiouL/398/+L/6ZMH/5ubGZJuCMiAD++e/z914sD/g/t3kG4IzIBHD67/P7Bv
+        2//ly+aTZgjMCw/vX/t/9PAesAGzZ00h3hCYAQ/uXQUbsGfX5v9zZk/9P6G/gzhDkA04ffLI/w3rV/9P
+        Skr6HxTo89/NzQXZEOwAZsDSJQv+F+Rn/j996sT/+Pj43zY2NgFIWA2qHBOADDhw4MD/ttaG/1paWrvm
+        z53xv7u7+392Zmq1j4+PRkBAAG7NIAAyIDgo4D/IJh4eHru21sb/Bw/s/g+UqvD19dWGqMIDQAaANIPY
+        xsbGIkBq8r492/9XV5X99/Ly0vTz81MHyeEEMM0w4O7u7tLR3gR2hZKSUgVBA9ABMBzYYmJiTp04fui/
+        hYXFLJAroFLEAZABQCqBk5NzF9A12pgGMDAAANgy21eaP1nbAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonLine.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB0SURBVDhPY6Aa2LZ1038okzygpKT0v6y0mHxD5s6dkCgv
+        L/+/sqKMbENkZs/oTlRUVPxfXFRAviEzpnYnSkpK/s/KTKfMEDExsf/JSQmUGSIkJES5Iezs7JQbwsjI
+        SJkhUDzcDGlva6HMkIqKCrINQAIMDACC9z7chFaTeAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripButtonRectangle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADGSURBVDhPrZLBCoJAEIb31ik7hF0iJbv0eF6EFUQEBQUF
+        BRFBQQ/7oH8OJTR2yM1++A47u/MxCyP+EqUUxnFE3/do2xZ1XaMsS+R5jizLkCQJoihCEASQUsJ1XUxt
+        u2f3lGEYqHBfy82x5/eHCSG6rpsL5hqsy5kLmqZ5F3yNYey5oKoqLcHJPHJBURRaAttafCFNUy2Bc7W4
+        II7jbYIwDLcJfN/XEnzsged52wS0mjQWQZfE8ryECV6hgi5MQOPrwgQ/RIgHLiNmsKNX8fgAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="toolStripButtonFillRectangle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHQSURBVDhPrVLLbtpQEGXXVdNFlW6qEjXd5EN5iFCDkWve
+        BmyXgNIg29gCQxDCBBQ7Fd4gseJfTu9MujGsGnWks/D1PY+Zuan/UqZpQtd19Ho9dLtddDodaJqGVquF
+        ZrOJRqOBer2OWq2GarUKRVEgaO9e2aKIvNvt8PvlBdvtFqvVCr7vYzKZYDwew3EcWLYFy7IgyzK+XV+R
+        wI3ABxYg5+fwGcfjEYfDAXEcI4oibDZbBEGA5XKJx8cFZrMZu6e/fE4KUOT1eo39fs9JwjDE+mnNxPl8
+        jul0CtfzRJIxKpUKLi7eJwWoX4od7+JXshBbLBbchud6HH00GuHX/T3K5TI+XX5MCrTbbXaLohBPwpnI
+        5Eq9E3E4HKLf7+OnGLYkfcdV+qQFmjT1t9lsWMj3BVkMb/TwgMFgANMweTua1kbx9hbXX9NJAVoTTTsI
+        Vtyz67rsTGTd0HmldEdVqygUCucCtF/Hsdl9IqLbYmUU2zAMJtMboOnLcgW5XO5cgB6HbdvcuyemTe53
+        /TuOTc7KD4WHVywWkc1mz9+BqqoolUrsQmuiy5IkMYEi5/N5ds5kMowzASJSLAL9JJx+nyIh8Lfo4F+R
+        ELh8AxICb6hU6g+c8bLQ79009gAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripButtonCircle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGKSURBVDhPlVJNS8NAEO3FYg9JIEZompCISZPQIuS7RZEg
+        hfoBftz8XT176qVSPUvx3/neuq2pNqIPHrvM7JuZnZnWLlRVtT8ajY6yLItI3mmT7mashWVZjvM8n4Nv
+        CLCK43g5HA4vcfYbA9FRFEVMYZqmC8/z7h3HmViWdYP7Y5Ikr+BLFEWV7/uqlH2iJp4NBoMr13XHiqL0
+        4XJBS9O0Y9M0zxgUQZ7CMLwAFSEmWDYzU6zrug2TBepgm36JtmEYJrLfosJnVJfSJrLzzyybmWGkeI+K
+        XUASnz1BBXcMuMnO8mTZzNwIJkRDp+yHbduVCLBumgxQL/sHGADvzxmg2+1eb0XEv07x5tcA9Yo7nU4p
+        jJwvA9Ao/tWAer9kMn/jiDBfjohdZqNoE06A99qCzfBmqqqqB9dXv7gcnC9HJDdvegJwlSkMgmAOLiiW
+        oz4Et7/L5eB8OSJ+CaZ3cAUuIX5g2TIzxY2jFgvDx6BY5V6vN8GEQvgc8PuCNYKPDkAuFsn7n4T/QKv1
+        AeZbZeRHAQgcAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonFillCircle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJQSURBVDhPlZJNa1pREIbdVOpCF9aCVZGCVgU3fqAWN1KC
+        0VbQCm4FaXpBEVOIICkVFwqN2DRSqhJJarxKLH4ulJqIG7NRUjB/oz9jOnOihYYI7cALl3PuM+98HMF9
+        4XK5HjocjqdWq9VAom86W11vjjVot9ufcxzHJ5PJH+Fw+MLtdreNRqPHZDI925iILmw2mykej/PRaLQ1
+        u7qC6XQK4/EYhsMhmM3mLqpjMBhcWq1WssJuYw2HQqEvN8slzBcLuJug2+tCu92mRCd6vf4FSrzCBQIq
+        m0pe3iA8n8NsNoPJZAKj0Qj6/QEDeb4B9XodarUaWCyW72q12oKokLlTz1T2gpwJvrz849pqtRDm4bha
+        hXK5AqVSCXAWbazAL5PJnjB3j8fDX1//ZGWTM4M7HWg2m8yxelyFYrEInw8P4VOhwBSJREClUrlYAq/X
+        2yJn6rff7zPXWu0blCsVKB4dQT6fh0wmA+n0B3i/v89ECeRy+UvWAq5omyY8GCB8fg4np6dY6lcooFM2
+        m0UwDalUCnZ330EsFmOwRqMJiEQiOxsi7ZcS9Ho9aDQaUMV+qeSDjwfMmeBEIgEc9xbe7OxAMBgEHKIT
+        US1LQFXQfmlFZ2d1qFTKrN9cLsfc9/aSCHPMORAIAL6DbYlEokFUyhJQ0OOg/dKKaMp3E/j9fvD5fAyW
+        SqUqRB6jhAxeBz0O2i+tyOl0/sKjCeoC1dbpdK+p7JUzwQ9Q94aQ9ks/o7aUSuUrhUKxJRaL9XinRlHZ
+        fztvCPrpEUq5En3/E/gfIRD8BkReTnrZlJQBAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonPoly.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAImSURBVDhPxZLNi1JhFMavzuTUNDU1MhQNRc2iT6iFhaJX
+        Jb2ikyaOYESilvmtTApCC0FBXIgtUmgTbYJ2rmfVH1C72RREEG2miFZBtLff0TsONVHLDhzuPed9nuec
+        95xX2bHhcDjT6/WOdzqdJ91ud7HVapn0o9/NqLthHImNRiPDYDCYa7fbyWaz+eIhViqVFmKxmAmfsVgs
+        +8Tdbves3W4/VKlU1iTW6YpCtVl8qd/vd+v1ugPAXawkZEgLXq/XLKRMJrOZzWa3/H7/S4fDcUmnK4oA
+        G42GxhV61Wp1FdD1eDxeJX8rGAw+QGzL5XI9grQmnk6nvxJf0+mKIZVK7a/Vavdo/z62RHwkGo36C4XC
+        q3w+v0kXpz0ez4rVaj0G8UIul/s8FaB1oxC4c58Wz0o3kvP5fAcjkYhZvhKPwZjT6TyD8KepAARTIpEw
+        0+bjZDK5Mk7+xfYISPvhcHgDvx0IBA6Pk6yJKc+rqnpUvhJP0n8QEFIoFHrKZM9Ju5CWAZ0sFouvy+Xy
+        d2KN1Z2w2WwHgBv2CMiKGNgzSQB2MOF3bOE9/xtM/A5DfCs5/lV5A+RXfxFgcM+ZcAPQBx24DiiAX8aX
+        5UvuJqJvqO5iIyqcLxSeCLC+byh+RP0GwCuapi1yrTl5dRwbd14fflUKMLNt8D/ATAS4t0uqCEhWSGr3
+        je+aQYaJ2HkqB3kH2whcHJ/opOmU/2FGBj6Pn5KB67n/aoryEwYG0nI/JzxiAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonFillPoly.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJXSURBVDhPnZLda5JxFMfV2epivdBu+gvGeqERZqQ+aL5i
+        ibCJhsRUEr0RNRAh1AtRWfgWqYVsdLGxoQtnDSyWu7Hd5N287b/ooheCujh9z7PHZLvoYge+PM/v9zvf
+        zznPc36ycXQ6nalyuXzlFaJYLF7MZrPT0tHJUEiSiysOIpLX6/WzyWTSX6lUtkKh0NNIJDLj8XimoSmV
+        SnWGZTAYlFqt9nw0Gr3Pa8kuk6GaErqcy+WKh6ND+jwcktVqjbAZphmz2TzLpng8/gHg0fKyj3Q63XVB
+        EOZEACciwZLJZMps/nRwQP39fXI6nQ8dDseTdDo90uv1ldXVNWIxAGv1GCAPBALn3G7348FgQCw293rv
+        KRaLDbnq+vqGaGw0XlK93qDFxaUJAK0rALjk9Xpr/X6f9j7uieZut0utdpvG5lqtTpVKlUqlMlks1gmA
+        f5TP55t1uVwver0evdvdhfmtaN7c3KJmsylWLZVKtLLyjPL5AsyGCYDb12g08Z2dLrG2t9/8q8yqVp8T
+        xku5XJ7QLeE/HQfY7fYLFotlrdVqE2tsNJlMX9Hqn0KhQCz8SEqlUoRRk1p9ZwLgEeEzXrPJ7faw8Ts6
+        +oHDOEb1COtvvJdIJIiFaR0H+P3+DSRkMO+fwWDwC0xLOLDj6cTeXbzf5HcGsTkcDosAFD4C2Gy232zG
+        DXuAxAVsqrC+ASkxYgUqXYVu4fw2d2I0mn4xAJ9+BMCN03MVTuJkvhd8OU6EnOGAzqOyQwJcEwHSdZ2X
+        Ev8bnGc0GhcAucdPEXCaYONY0tbpQhCEub8+JVgkmS5PlAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripButtonText.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACZSURBVDhP7Y0xCgMgFEP/BRyLtxDd7ODo4ix4EHH3Tj2g
+        JeKnoi7Sjg1kiMl/0s9Ua33deJx9VEppQogmpWzOuW5kmDM65JxzM8Y8tdaPcU6UUmpKqV6wGTC/YRNj
+        3AH4gUco4BmAzL21dgdwOT+ugBmybokHI3atALzx7rTfdAJc6Q/4EhBC6Mew9/4egoPVVwCMTx71ENEb
+        Z1SCt3Nkm2UAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolStripButtonRoundRectangle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAH2SURBVDhPrZJLbxJhGIX5B67camw3Loy3pUk1XZouTFfq
+        Sl2oSzXhBxDCJRSHS8ZyH6CDFFJLhmEmMFBCmOmQztQwGxJW/JfjvB9O0gmxxsSTfLv3Oee9fIH/qnq9
+        jlqthmq1CkEQUC6XUSqVUCwWUSgUkM/n8bt0UwT/vLzEbDbDdDqFpmno9/vo9XqQZRlSV4IkSchkMpsm
+        BF9YF1itVlgul3AcB7ZtwzRn0HUdk8kEZ2djDIdD8Dzvmdxd066oZcMwsFgsMJ/PYVkWjHODgaPRCIPB
+        AIqqup30kM1mEQqFPIMbzIDmpbadubOGXbPxeMzGUBWVtd7pdPDj5ATpdBpfPn/yG1QqFZZm2xbO3WSC
+        KZVmJ7DdbqPZbOJ7owGO+4p3b9/4DWjTNJ9pmsxI01zYXV7n9BStVgsNscGuIwgVJA8OsL//wm9AZ6Jt
+        6/qUzawoCksm+Eg8YielmsPDHBKJBHZ3n/kN6L6y3GXpfbf1rnsyalsURQbTH1hvP4tYLIbHj+77DXK5
+        nAt12eyqu21KP24es7Ypmf/Gs+Ulk0lEo1Fs3bnlNyClUimWQmeiYo7jGEAtx+NxlhyJRLC9dduD/QYk
+        +iDhcBjBYBAfP7zH61cvsbf3HE93nuDhg3tXkzfhK/IKrnt/hD3dvOb9Ff4HBQK/AM9koPi+DnmdAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonCurve.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADFSURBVDhPxZKxCoMwGIT7DK4+QscuoRrRLSAhS3ApXYII
+        WoLuugi+999cG4p0aG0cenCQP9x9kJ8cIGPMxbl4DCGapomklIIxFvmr36S13geY55myLOMOEAdBUK7r
+        ej/EWktd161BL/vYZyGI8jAMpJSiPM+pqirq+57SNL06n77CXCBCiHN+XrlsmoZgd75thbwb0LJtWzyx
+        wOzj24XSsiwkhLBBAAh7GMcR/0YFQZIkOWIXwQCU/M/9IwDlYACE4tMsvgNkwGI7WQBn1AAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
+  <data name="toolStripButtonPointMove.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEdSURBVDhPlVK7ioRAEJT7AUGMXE+zi4XbVcEXJhooRmLk
+        5kaGG5gcZoJ+gFzml/Z1z42ii4tuQcH0o6p7hhHOwHXdr7IsIUkSqKrql6ePQcI8zyEIAsDzA3l3HMfl
+        5X3oug4zPc9jQt/3b0Tbti9E3rqPOI6BqCgKie+YYsL/6gGocb0BNzgvtiyLrYyhJ8vyewZRFC1i5MUw
+        DFBVFTRNexxegRqu1yvgkYkpNwwDnDYJw3CevjRN0wRFUTATSZJem1DSNM3NdMI4jtD3PTMgiqK4b0JT
+        nqcT6Apt2y4GL03SNN197aZpoOu6RbgmmfA2QcA//oM/7pOHC+q6hizLZsH3mljeDPvg3IAeFldlYgxJ
+        sOYxnsTv45xYEP4AOHCIKLE/vV0AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolStripButtonSpoid.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFFSURBVDhPY6A3kHZycvofGBj4H8SGCBEPpA0MDP7v2LHj
+        v729/f+4uDiQIQSBdEpKykQgrWFmZva/oKDgv5+f338VFZX/rq6uhA0ICQn5397e/h9ks5ycHJy2sLAA
+        abaFqMID8vPz80Ca/P39wZptbW3BGCgF0qwOVoQH8ALxqilTpnSCNMMwUCwGiEGa8QYiWDPQBXYKCgru
+        QK9MhxkAZIPChKDmiqqqKklDQ0MTXl5eLxERkWOxsbHNoDAByikBMU4DQJqTP3782AwyQFxc3ByIj4HE
+        WVlZjYE0SDNOA8CaP336tB2kWVhY2BFNM0iTJBQzATEG8Pj27dum1NRUXJoJgrLNmzdHSEhImIL8DOTz
+        AmmiNZf8+PHjjZiY2CqgzTOAfEkuLi6iNYOAMVAjKIQlgS6wI8XZMABSDNIE00ikZgYGAP9jbRgerd3W
+        AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonInsertFromLibrary.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJfSURBVDhPlZLdS5pRHMe91JXTLvJiInOhKfmWYShiGoWV
+        YrZMrLRUKBJ8uRQKfKEXja66HYPWn5F3T1cKAwW76NLhvTCQ3Y7vzu882QbbGvvBj3M45/l+zvf7nCP5
+        S/nL5bL/af5f5WMtbGxs4OKihk6nc31zc0Nr/ywujMfjaLVaeHx8xP39PTKZDORyOdjeF9rf29v73dXY
+        2NitzWZDr9fDcDjk4lwuh/HxcRLyjkajaDQaaLfbzNnFndVqvWbrNtJLTk5OhJmZGaRSKSQSiWcRdTKZ
+        RLfbRb/fR7PZxNHRESYmJqBWq2E2m6ukl5yengqXl5eoVCqYm5vjQhoJOBgM8PDwgIODAygUCi7W6/WY
+        nZ2Fy+USAYeHh8LZ2RkIsry8zAE0J9vkTCaTQSqVYnJyElqtFiaTCU6nE16vVwQcHx8LZC0Wi8Fut3MA
+        i8Uh1NPT01Aqldy2wWDg7hYWFrCysiIC6B+k02ksLi7yEwiQzWZRLBZBzuhElUqFqakpWCwWss6dhkIh
+        EbC/vy9Qfmq3280BzBW2trY4lGJoNBoYjUY4HA74fD4Eg0FEIpGXI9Ab2NzcBF2xTqfjIx3g9/v5+s7O
+        jgio1Wp/jFAoFHgEEpGL+fl5/g2zju3tbTDNT8DoGkcRSqXScwSyTc48Hg9WV1fJOn8fzLUIuLq6MjDA
+        XbVa/cbyfWdLXwmYz+e5VYLStS0tLSEcDmN3d5dOv2Uu33LAqM7Pz9+xj96z6WsG+EwQ6rW1NX5tgUCA
+        Tv/Isr8RFS8Uc/OqXq8nWH9YX1//xMDsXUVlT9u/lETyA/IkbDAuqw4QAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonInsertFromLibrarySearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGZSURBVDhPlZC/S0JRFMdtiIimRmmLhtyaxM0G4Q1GgeCm
+        8PSpoSj4UvChT2xxCB/+2HyLg7qISyguLtKiCC7+A85C/Qdhp3OuNzXrpX3gcN879/v9nsM1/QFsnXth
+        JN7u/9AZCXYat9kp+BWz2Ww4qVKpHHk8HtB1/ZC39gcADgqFwiOGQDabfeDt7zSbzat8Pn+vqqrMW4x6
+        vX5SrVafafpoNAJRFEFRlFN+vaZUKumtVgu63S40Gg0IBoPhWCxmQzGQudPpAG3gcrlYpdNpKs3r9Sqh
+        UOiShUiS5NY0DSaTCfR6PUgkElAsFqFcLtPUlTmZTAJqWaEZBEFYvx0m3lB6v99nK4/HYxgMBquiLWq1
+        Gju/zDj0jduXYMgdXVAQiSloPp/DdDqFdrvNjFarlaYCPu4ik8mEl84NMMTNV2Nrx+NxVptmWZZfcrnc
+        NTMYgQ8o4gEWi2VV9I/mMybYxXA4PPb5fO/4yYxU0Wj0le72YjabCX6//ykSiSxSqdQHtiAQCKjL239g
+        t9svHA7HrdPpPOetDUymT4Ve8MzqIZvxAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonAlignToLeft.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE7SURBVDhPpZGhjoNAEIaxTRMU1CIQmAshwdVzpgZUc4QH
+        wCFA4GqqWk+CORIUCoGhCssDoNAoEi59hLkdOLYH7ZE29yd/ZjM7+y3Lz6CCIADP897JctM3XtXpdAJV
+        VT/IcpMkCSDwt33fh2HyDx0OBwo4n89wvV6h6zpomqa3aZoIeMN9nL+T67oUgLfVdQ1lWUJRFL13u90y
+        wLZtCtB1HfI8hziOIQzD3mRvGWBZFgUoigKr1QoPULMsuwwwDIMChk4//MiPAZqmzQGvabvdUkCapncx
+        zo2xDyd/JMsyBURRBG3bTmKc23Gc6T8RRZECjscjVFUFl8sFsix7aHwymb0BeJ7/GgH7/R7wGfglY4xz
+        Y1Jk9gZYr9flCJAk6S7GuTmOwzpJ5VMQBJ3UsYGbz5gC5g2sz/o/YphvcW/667zyKbcAAAAASUVORK5C
+        YII=
+</value>
+  </data>
+  <data name="toolStripButtonAlignHorizontalCenter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFASURBVDhPtZGxa4NAFMYzOiW4lODm4iAZBEFwKZm6BARB
+        cMyWKaNpsgpCICCkixAQBIcubk4urg5uxVUQBME/IPur75o4pGeaDP3gx929e/fx/BwN6XA4gGVZb932
+        5afypGzbft7A933wPI/gui44jgO73Q5WqxVcWu5rv99DVVWEsiyhKArI8xwWiwUazDruT7PdbiFNU0IY
+        hnA6nQiqqj5mYBgGKIpCmEwm+IjAsuxjBhdh40zXdRAE4b3bv15rHXSDKIr68I7HIwHzuGWz2eAkv4Xp
+        n89naNsWmqYh1HXdg2cMdr1e0z8F3bEhSRKI43gQ0zTpBjhalmUQBEGfPA1JkugGmqaBLMsgiiI2DDIe
+        j3EdDBMvehiG+aL8BQQfUw2uF1c+OY5bdqt4U0f+Fs/zH/P5fDmdTtHgvzQafQNHLOoofi74VQAAAABJ
+        RU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripButtonAlignToRight.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE7SURBVDhPpZIhi4RAFMfthk1aDAaDCIcIm9zulS0nbDmw
+        WezuZovJuiAIcrtsEgSDxU1WP4DJbBI8/AjvnDkRRzxP7v7wgxln3g+fT+ov8X0fzufza79kv5/MkmUZ
+        JEkCURTB4/GAMAwBFQ3HlOd5sN/v3/vlsuB+v0PXddC2LdR1jRkELz2s4zjrAtd1oaoqKIoC8jzHXC6X
+        UWDb9rqg7w9QG+j1gyDAHI/HUWBZ1rrgdDqBoiiw2+1QEUaSpFFgGMa6YAi6vASr6/omwY/RNI0UxHGM
+        v/Jv4Mt9DocDKbher9A0DTG2OYMAtyDLMikwTRPKsoTn8wlpmi4yHaMgCKQAjQj9ebfbbRzbnOkYGYb5
+        JASqqoIoisBxHLq0yHSMNE0XhGAIOtwCKvrgef5tWI9Bm61MZf8JRX0BZN4Bw5yaL8wAAAAASUVORK5C
+        YII=
+</value>
+  </data>
+  <data name="toolStripButtonSpaceHorizontal.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE4SURBVDhPpZKxaoNQFIbvEyguzRjIYpAOgqDJ0hcQpIPE
+        LU/glCB5gYBjNyEQ8A0cnCzZfQNnQRCkS5fsf89pMcUm17T0wOHg/f/7nR9VcO33+1caD58PNypJklFd
+        bDabNxqP1DdN2+12VBfr9Ro0pIbVaoXj8Yg4jhFFETzPY/93ua47CnAcB+fzGXVdoyxLWJY19C8Wi8uG
+        3W4H3/cHGyaTCbquQ1EUSNMUhmEMAWzoN1RVBdu2BwbW27ZFnuc4HA6sXQOapsHpdEKWZVBV9QrA+iig
+        38AR6ejvAI4vM/wKEIYh+Gssl0tomnYFuPsOaDxTP1Gz0IsXwFhCMZ1O+YAvG9T9xS+Rqk8YBAFM04Si
+        KEPAfD4fHvyo2WzGujShIOo7DSlA13XWpQn5V32hIQXc0/9RQnwAtAnb8Mr063oAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolStripButtonSpaceVertical.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE5SURBVDhPrZOxioNAEIYtLFJFbM5OwUaRKxRB0eJeQJAr
+        BFsfIG3wESyvDgTyBhZWBnvfwFoQBElzjf3czhK9JdlcDu5++LDYmX8d/1H4s7IsO6dpegnDEDRNA1VV
+        YbvdgqIoXLDGNE2wbfvT9/0P9HghvLIcj0eY5xmGYYBxHKHve9jtdkDO3glvbC2BCk1WiqKgTU3TQFVV
+        lCiK0ACbLbaWcK88z6HrOijLEk6nExwOBwiCAA3wRn4TqyRJwPM8kCQJmyiyLP/e4Cp2zoXHr83RUnzL
+        P0vX9bPjOBfMdrPZgCiK3PxZSA8YhnG/B0v+0zTR/HEPFn7YByo635J/Xddr/reQrUUDdh++td/voW3b
+        NXseZIUfxxnHMbiuC5Zl0ex54H9CnnyDq+j3eAIdmcDVcvgMIkH4AkTP2XQR6gxRAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonAlignToTop.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAYAAAC5tzfZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEESURBVChTnZI9ioRAEIU9jvjDiIGCgcGAiMYGgokIOhoM
+        5gZmIt5D0NjIyNQzeABR8BBvqA5WDWZh90En7/VXVVQ3F8cx0jRFFEVwXReapkFVVQiCAJ7n8Xg8oOs6
+        HMdBkiSg+9y/Vdc1qqpClmXwfZ9VJr9pGuR5jqIoEAQBTNM8u5RlieM4sCwL+r6HZVkspCLkr+uKruug
+        KMoJvd9vbNuGcRzRtu0P9Hq9sO875nlm/g2i1gQNw8BC27ZZGIYh86dpYr4kSSfked4NMgyDhc/n8wbR
+        RhlAolVfIVoz+aIosovXwwASjXOFZFk+w2+iB71Ct4rfRD/gzxBt5Tr37xDHfQAmjt6aA0PLIwAAAABJ
+        RU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripButtonAlignVerticalCenter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAKCAYAAAC9vt6cAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEoSURBVChTjZA9roJQEIVZCVELCipDh6UViYJYkNBoYWJC
+        JQU7YAd2LEF2AIWBztiqIbEg8iPrOC8zj4fGYPJOMsnNuXO+uXOFd7muC8uyMJvNMJ/PsVgs0F79T+v1
+        GnVdoyxL5HmO0WjEAM/zsNvtsFqtGKxpWj9Y13UGVFWF6/XaARzHYb8oCtxuN4Zw4FOGYXDj4/HA+Xzu
+        ANvttgNfLhdMp9MXQJZlSJLE9Q44Ho8MoNpsNuzTagRWVZV9yraYX9GnPZ9PNE2DKIq6F9i2zQCaniQJ
+        xuNx/woEoD3v9zsOh0MHME0TWZYhTVPEcQxFUfoBtMLpdOLGIAg6wGQygSiKGAwG7NGZA59aLpcIwxD7
+        /R6+72M4HPY3fhNNoBDV37T26osE4QcSh94N0ycFewAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripButtonAlignToBottom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAYAAAC5tzfZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEdSURBVChTldG9joJAEAfwew4TYkiEAComNJAQEqhILCiV
+        GAzhozKW1vS8AB+vQaMVrU9gQa2d8gz/y05CuGtOb7qd2d/s7uwXi/1+jzRNEUURgiCA7/ugwl+RJAke
+        jwdutxvquobneZ+h+/2Oy+VCyDCM9yiOY0JN0xBaLBbvEXvLgKqqgiRJhLIsw/F4xOFwwGazwXq9Hpv9
+        RGVZQhRFKp5OJ/R9j67rqNnH6PV64Xq90rUtyxoRG/OAiqKAIAhUDMOQUNu2hDRNG9F2u/2FhpN2ux2e
+        zyfO5zPyPMdyuRyRaZpQVRU8z2M6nWIymVDRcRzKsyaz2Qwcx43o38E+lo3TdV3ouo7VagVZlqEoCubz
+        Oa1Z3rZt2pckCb4B6C7bbYtV420AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolStripButtonMakeSameSizeWidth.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAA0AAAALCAYAAACksgdhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEVSURBVChTlZC9ioNAFIV9FMkTCCm0CWIXCCIiqJEQIUSw
+        sfZtxMoqdRobRQgpIpYh6aJgI1jkBc5m7m4GF3Zh98A398z9gZkrTAR2RFGE3W6H7XYL27axWq0o/9I7
+        cvGE7/u43W7o+x5d10HTtGkz98xwPM/DOI54Pp9gUhTlW/0LEjeGYeB8PqOqKhyPR8iyzGsvTT2JEpIk
+        QRRFYjabUaTqDwP/UxzHCMMQ+/0eQRBgvV7DNE3CcRy4rgvLssCevVwuP7fJBq7XK32+bVs8Hg+Kb9id
+        MQwDLpcLVFWFsNlsUBQFmqZBWZY4nU6o65oaptzvd+R5jsViAUHXdaRpisPhgCRJfiXLMoKG5vM539Rf
+        EEURHy3U8Xjm6Q+7AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonMakeSameSizeHeight.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAsAAAAMCAYAAAC0qUeeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD8SURBVChTbZE9rkZQEIbPQkQhfoMoKDS0GiLR6P10Gomo
+        7YJ16OkswDpILGHunfnC59zcN5lw3nm8mTlY3/dQ1zVUVQVlWUIcx8BekiTpex6GAa7rgmVZYBxHiKLo
+        aSJ4Fxld1xG8ritM0wRhGFLjBrhn27YPjMm+7z/JqCcV1TQNl+y6LjVx/jzPqdI0hSAIgBVFwSVblkUw
+        +rjHvu9wnid4ngcMv3wnm6ZJMPrzPMO2bXAcxyfkL2wYBsE4jq7roKoqaJoGoigCy7KMgxVF+S70K27B
+        JEk4WJZlav57dfjH3gu+kxG4iwzHccC2bUpEUxCEB0bhvJ83xn4AB+3cISDK9P8AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="toolStripButtonMoveToPrevFront.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAYAAAC5tzfZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFmSURBVChTdZDLqsFRFIdP50mkfzEzkEsSGUuEXKKEMmJs
+        pkwpiZLLQLkNPICHMGEguUzIAyCXMvrO2VtHTlj1a++1W99e67e+fuM7k8mQTCYJBAKEQiHC4TDBYFDm
+        kUiERCKBKPwXqVSKarVKt9tlOBwyGo0YDAZUKhXq9Tput/sVisfj1Go1ZrMZ6/Wa7XYrz8lkQrPZxGKx
+        vEIul4t2u81ut2O/33M6nbheryyXS8rlMgaD4RVyOp30ej3Z4XA4cD6fJbhYLGg0GhiNxvdQp9Nhs9lw
+        PB65XC7cbjdWq5X0JDp5vV5isRjRaPT+gd/vp9/vMx6PmU6nzOdzCYi81Wqh0+nkm5DYrIR8Ph/5fJ5C
+        oUCxWKRUKpHL5chms3Llz5Ddbr9DYma9Xo9Go0GtVqNSqaTEXVEUtFrtA7LZbK/+/sLj8TwKn2W1Wj9D
+        6XT6LWQymT5DDocDs9ks/YjxxOhCiqLwA5XYLBh0q5MOAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonMoveToNextBack.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAYAAAC5tzfZAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFSSURBVChThZG9isJAFIWXfRVRlAQhRYSYIkYNFilUCDZW
+        gnWKxCbxBxsrfaM0goigQhQSC/ENBNMo2J3dO2uyuCn2wIGZ4X5z/z6+9WkYBur1OkqlEqrVamJ6q9Vq
+        UFUVFPgmXddh2zbzYDCAZVkwTZPdp9MpGo1GGtI0DY7jwPM8HI9HHA4HnM9nrFYrLBYLlMvlNFSpVDCb
+        zbDf7xFFEe73O57PJ4IgwHA4hCzLaUiSJIzHY/i+j8fjwQACd7sdK5V6e4X+igYwmUyw2WxwvV5xu93Q
+        7/fR6/XQ6XTQbrcTt1qtnw9EUWTlrddrbLdbLJdLBp1OJ4Rh+GYCGUSZXNfFfD5n8Gg0SiDy5XJJzrQC
+        BmWzWRSLRXAcB57nIQgCut1uEhibMimKku4vVrPZZNP7C1Irr5C0qGGCYlOWfyFaKJVZKBSQy+WY8/k8
+        MpkMvgB73SaNoUdGDQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripButtonRotateRight.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAwAAAALCAYAAABLcGxfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACpSURBVChTjc0xDoMgGAVgjiMOioYwMXgI7+Bi4uTNREZH
+        RRg9gDd5DbRU0zYNL3n5fyBfIOM4ou97dF33LvkXD87zxHEc0Fqjbds04JwLoGmadDDPM4QQEfh57zMR
+        WGuhlALn/Hq88g32fQ+gqqo0YIwJgDGWBtZ1DaCu6zSwbVsAZVneQdyvOQxDAMuyYJqmXz/4cywhUkoU
+        RYE8z0EpRZZln8DndUfIAwySoNKraDO7AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonRotateLeft.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAwAAAALCAYAAABLcGxfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACqSURBVChTlc9BCoUgEAbg7tIuDTNw0wVqE7isZYHnae0t
+        opX38AZ6kHnMUJLvPeK9HwYdZj7Q4inrusI8z1TTNNF5jr7HGAMxRvDeg7UWxnH8DTjnCHRdlwFs7lUs
+        y0LgOA4CSqkPkAXffAdN0zwDrXUG2rb9DzDGnkHf9xmo65p2rsX3k0AIIQEpZZrh5aqUYRgI7PsO27Zl
+        AJM1GPykEAI451BVFZRlCS+2xJcztNM9dgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
+    <value>6, 15</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9pt</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAvAAAALwAAAC8AAAAvAAAALwAAAC8AAAAvAAAALwAAAC8AAAAvAAAALwAAAC8AAAAvAAAALwAA
+        AC8AAAAAHBwcsmZmZv8zMzOlMzMzeAAAAFUAAABVAAAAVQAAAFUAAABVAAAAVQAAAFUAAABVAAAAVQAA
+        AFUAAABVAAAALyEhIbLj4+P/8PDw/4eHh/9CQkL/FxcX/xwcHP8hISH/FxcX/xcXF/8AAAD/AAAA/wAA
+        AP8AAAD/AAAAVQAAAC8cHByy4+Pj////////////6+vr/7Kysv9CQkL/FxcX/xwcHP8XFxf/AAAA/wAA
+        AP8AAAD/AAAA/wAAAFUAAAAvFxcXsujo6P//////lpaW/15eXv9mZmb/lpaW/3h4eP8hISH/ISEh/wAA
+        AP8AAAD/FxcX/wAAAP8AAABVAAAALxcXF7Le3t7/ZmZm/wAAAP8AAAD/FxcX/zMzM/+Wlpb/h4eH/xwc
+        HP8cHBz/FxcX/xcXF/8AAAD/AAAAVQAAAC8XFxeyZmZm/xwcHP8AAAD/AAAA/ykpKf9mZmb/ZmZm/8zM
+        zP9MTEz/KSkp/yEhIf8cHBz/AAAA/wAAAFUAAAAvFxcXg1JSUv+ZmZn/ZmZm/wAAAP8XFxf/o6Oj/4eH
+        h//MzMz/h4eH/zMzM/8pKSn/ISEh/wAAAP8AAABVAAAALyEhIUMwMDD/lpaW/4eHh/8AAAD/FxcX/3h4
+        eP+Hh4f/3t7e/6Ojo/84ODj/MzMz/ykpKf8AAAD/AAAAVQAAAC8XFxdDKSkp/xcXF/8XFxf/AAAA/xcX
+        F/9ISEj/h4eH///////i4uL/TExM/0JCQv84ODj/AAAA/wAAAFUAAAAvAAAAABcXF0MXFxf/AAAA/yQk
+        JP87Ozv/ZmZm/9bW1v/e3t7/5OTk/1RUVP9MTEz/QkJC/wAAAP8AAABVAAAALwAAAAAAAAAAeHh4/5aW
+        lv+Hh4f/h4eH/4eHh/+Hh4f/eHh4/2ZmZv9mZmb/Xl5e/1RUVP8AAAD/AAAAVQAAAC8AAAAAAAAAAHh4
+        eP+Wlpb/lpaW/4eHh/+Hh4f/h4eH/4eHh/94eHj/QkJC/wAAAP8AAAD/AAAA/wAAAFUAAAAvAAAAAAAA
+        AAB4eHj/lpaW/5aWlv+Wlpb/h4eH/4eHh/+Hh4f/h4eH/0JCQv+/v7//v7+//3h4eP8AAABVAAAAAAAA
+        AAAAAAAAeHh4/5aWlv+Wlpb/lpaW/5aWlv+Wlpb/h4eH/4eHh/9CQkL/v7+//3h4eP8AAAAvAAAAAAAA
+        AAAAAAAAAAAAAHh4eP94eHj/eHh4/3h4eP94eHj/eHh4/3h4eP94eHj/eHh4/3h4eP8AAAAvAAAAAAAA
+        AAAAAAAAAAGsQQAArEEAAKxBAACsQQAArEEAAKxBAACsQQAArEEAAKxBAACsQYAArEHAAKxBwACsQcAB
+        rEHAA6xBwAesQQ==
+</value>
+  </data>
+</root>

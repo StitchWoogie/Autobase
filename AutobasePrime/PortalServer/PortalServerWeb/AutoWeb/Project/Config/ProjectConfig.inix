@@ -1,0 +1,13 @@
+﻿[Date Information]
+Last Used=2024-06-18 13:09:30
+[Information]
+Title=ReportTest
+[Config]
+Platform=0
+[RunMain_ControlBox]
+bUserControlBoxUseAnalogModule=False
+bUserControlBoxUseDigitalModule=False
+bUserControlBoxUseStringModule=False
+sUserControlBoxAnalogModule=
+sUserControlBoxDigitalModule=
+sUserControlBoxStringModule=

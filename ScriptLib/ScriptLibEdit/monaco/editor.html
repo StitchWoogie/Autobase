@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autobase Script Editor</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #FFFFFF;
+        }
+
+        #editor {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Breakpoint glyph - black circle */
+        .breakpoint-glyph {
+            background-color: #000000;
+            border-radius: 50%;
+            width: 10px !important;
+            height: 10px !important;
+            margin-top: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        /* Debug current line - yellow background */
+        .debug-line-highlight {
+            background-color: #FFFF00 !important;
+        }
+
+        /* Debug arrow glyph - yellow arrow indicator */
+        .debug-arrow-glyph {
+            background-color: #FFFF00;
+            width: 10px !important;
+            height: 10px !important;
+            margin-top: 5px;
+            margin-left: 5px;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="editor"></div>
+
+    <script src="monaco-editor/vs/loader.js"></script>
+    <script>
+        if (typeof require !== 'undefined') {
+            require.config({
+                paths: { vs: 'monaco-editor/vs' },
+                'vs/nls': { availableLanguages: { '*': 'ko' } }
+            });
+
+            require(['vs/editor/editor.main'], function () {
+                // Load language definition, theme, completions, and bridge
+                var scripts = [
+                    'autobase-language.js',
+                    'autobase-theme.js',
+                    'autobase-completions.js',
+                    'bridge.js'
+                ];
+
+                var loaded = 0;
+                scripts.forEach(function (src) {
+                    var script = document.createElement('script');
+                    script.src = src;
+                    script.onload = function () {
+                        loaded++;
+                        if (loaded === scripts.length && window.initMonacoEditor) {
+                            try { window.initMonacoEditor(); } catch(e) { console.error('initMonacoEditor failed:', e); }
+                        }
+                    };
+                    script.onerror = function () {
+                        loaded++;
+                        console.error('[MonacoLoader] Failed to load: ' + src);
+                        if (loaded === scripts.length && window.initMonacoEditor) {
+                            try { window.initMonacoEditor(); } catch(e) { console.error('initMonacoEditor failed:', e); }
+                        }
+                    };
+                    document.body.appendChild(script);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+using System;
+using System.Collections;
+
+namespace AutoLibLocal
+{
+	[Flags]
+	public enum EnumProtectFlag : ushort
+	{
+		SCAN = 0x0001,
+		CONTROL = 0x0002,
+		ALARM_DATA = 0x0004,
+		ALARM_EVENT = 0x0008,
+	}
+
+	public enum EnumTagType
+	{
+		none = -1,
+		AI = 0,
+		AO = 1,
+		DI = 2,
+		DO = 3,
+		ST = 9,
+		GDO = 10,
+		GR = 11,	// Group tag
+	}
+
+	/// <summary>
+	/// Summary description for TagPublicClass.
+	/// </summary>
+	/// 
+
+	//[Serializable]
+	public class TagPublicClass
+	{
+		public string	tag;
+		public string	name;                   // 그룹이 포함될때는 그룹명을 제외한 태그이름
+		public string	description;
+		public sbyte   	act;
+
+		public bool		bNeedDataCurr;			// 주기적으로 true를 만든다. 
+		public bool		bChangedDataCurr;		// 스레드에서 결과를 돌려준다.
+        public bool     bScrollBarMoving;       // 현재 스크롤바를 움직이고 있는 중이다. 읽기 루틴에서 읽기를 보류하는 것이 좋다. (아니면 너무 많은 값이 출력된다.)
+
+		public EnumTagType enumTagType = EnumTagType.none;
+
+		public byte		cTagLinkType; 				// 0=PLC_SCAN, 1=DDE, 2=가상태그.
+		public sbyte	bLocalTag;					// 지역태그로 사용
+		// public uint		hSharedTag;				// Shared memory 9.0.11 부터 삭제
+
+        public short    port;
+        public short    station;				// plc station
+
+		public string	sDdeService;		// dde service
+		public string	sDdeTopic;			// dde Topic
+		public string	sDdeItem;			// dde item
+		public byte		bDdeRequest;
+
+		public bool		bDdeLinkFlag;				// DdeTag가 접속되었느냐?
+		public uint		dwDdeService;				// dde pos
+		public uint		dwDdeTopic;					// dde pos
+		public uint		dwDdeItem;					// dde pos
+
+		public string	sOpcServer;
+		public string   sOpcGroup;
+		public string   sOpcItem;
+		public int		nOpcItemPos;				// 여러 Array중에서 선택
+
+		public sbyte	bUseAsOutput=0;	            // 출력으로 사용
+
+        // 다음 버전에서 태그 속성이 추가 되었을 때 이전버전에서 태그를 불러서 저장하면 태그속성이 손실될 수 있기 때문에 reserved로 보관하여 다시 저장해 준다.
+        // 9.3.3 부터 상위 태그파일 원형보존 지원
+        // 9.3.4 부터 뒤는 다시 보류
+        public string pbReserved02;
+        public string pbReserved03;
+        public string pbReserved04;
+        public string pbReserved05;
+        public string pbReserved06;
+        public string pbReserved07;
+        public string pbReserved08;
+        public string pbReserved09;
+        public string pbReserved10;
+        
+        // public string pbReservedLast;            마지막에 이상하게 들어가서 일단 보류 9.3.4부터
+
+		public ASSIGN_TAG_STRUCT assign = null;		// 태그가 간접 태그일때만 사용한다.
+
+		public char		bRightOperation;			// 사용자가 이 태그를 운전할 수 있는 권한이 있는냐?
+
+		public bool		bWriteWait = false;			// 외부의 출력 명령 
+		public string	sWriteWaitValue;			// 출력 명령 문자열
+		public double   fWriteWaitValue;			// 출력 명령 실수
+
+        public bool bRecurseWrite;              // 출력이 Recurse반복 되는것을 막기 위해 SetTagValueDelaySec에서 사용한다.
+                                                // 이것이 True이면 Recurse되고 있다는 뜻이므로 더이상 진행하면 안된다.
+
+		public TagPublicClass()
+		{
+			//
+			// TODO: Add constructor logic here
+			//
+		}
+
+        public virtual object CopyObjectOnStudio()
+		{
+			return this.MemberwiseClone();              // 이것은 간단 변수만 복사되고 클래스 변수는 같은 참조를 하기 때문에 클래스 변수는 복사하는 루틴을 추가로 작성해 주어야 한다.
+            //return NetTools.Tools.CopyObject(this);   속도가 너무 느리다.
+		}
+
+        public bool NeedDataCurr
+        {
+            set
+            {
+                bNeedDataCurr = value;
+
+                if (cTagLinkType == 3 && assign != null && value == true) // 간접 태그일 경우는 연결된 태그도 같이 요구한다.
+                {
+                    TagPublicClass tp = TagLib.GetStructPublic(assign.tag, ref assign.pos);
+                    tp.bNeedDataCurr = value;
+                }
+            }
+            get
+            {
+                return bNeedDataCurr;
+            }
+        }
+
+        public virtual object GetCurr()
+        {
+            return 0;
+        }
+
+        
+	}
+}

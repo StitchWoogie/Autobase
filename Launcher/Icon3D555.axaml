@@ -1,0 +1,78 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:LauncherMain.Icon555"
+        xmlns:emit="using:System.Reflection.Emit">
+    <Design.PreviewWith>
+        <controls:Icon3D BorderBrush="Blue">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        </controls:Icon3D>
+    </Design.PreviewWith>
+
+    <Style Selector="controls|Icon3D">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Green"/>
+        <Setter Property="Width" Value="160" />
+        <Setter Property="Height" Value="150" />
+        <Setter Property="Template">
+            <ControlTemplate >
+                <Grid>
+                    <TextBlock Name="mylabel"  Text="{TemplateBinding STitle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="16" Foreground="{TemplateBinding BorderBrush}" Margin="0,0,0,0"  />
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="{TemplateBinding Background}" x:Name="layer" Margin="0,10,0,0">
+                        <Border />
+                        <Border />
+                        <Border />
+                        <Border />
+                        <Border >
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:pointerover">
+            <Style Selector="^ Border:nth-child(1)">
+                <Setter Property="Opacity" Value="0.2" />
+            </Style>
+            <Style Selector="^ Border:nth-child(2)">
+                <Setter Property="Opacity" Value="0.4" />
+                <Setter Property="RenderTransform" Value="translate(5px, -5px)"/>
+            </Style>
+            <Style Selector="^ Border:nth-child(3)">
+                <Setter Property="Opacity" Value="0.6" />
+                <Setter Property="RenderTransform" Value="translate(10px, -10px)"/>
+            </Style>
+            <Style Selector="^ Border:nth-child(4)">
+                <Setter Property="Opacity" Value="0.8" />
+                <Setter Property="RenderTransform" Value="translate(15px, -15px)"/>
+            </Style>
+            <Style Selector="^ Border:nth-child(5)">
+                <Setter Property="RenderTransform" Value="translate(20px, -20px)"/>
+            </Style>
+            <Style Selector="^ /template/ Grid#layer">
+                <Setter Property="RenderTransform" Value="skew(10deg) rotate(-15deg)"/>
+            </Style>
+        </Style>
+        <Style Selector="^ /template/ Grid#layer">
+            <Setter Property="RenderTransformOrigin" Value="25, 25"></Setter>
+            <Setter Property="RenderTransform" Value="skew(0) rotate(0)" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="^ Border">
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Height" Value="80" />
+            <Setter Property="BorderBrush" Value="{Binding  Path= BorderBrush, RelativeSource={RelativeSource AncestorType= controls:Icon3D}}"/>
+            <Setter Property="CornerRadius" Value="5"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="RenderTransform" Value="translate(0,0)" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3" />
+                </Transitions>
+            </Setter>
+        </Style>
+    </Style>
+</Styles>

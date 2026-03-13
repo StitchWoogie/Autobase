@@ -1,0 +1,111 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpcClient", "OpcClient.csproj", "{84C9F697-30EC-4868-9B23-DA784A3AC367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpcUtil", "OpcUtil\OpcUtil.csproj", "{7AFB7648-494A-44D1-BA65-C426B5C3292A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTools", "..\..\NetTools\NetTools.csproj", "{D49B5268-4C34-44C6-B688-80653EE9A189}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLibLocal", "..\Dll\AutoLibLocal\AutoLibLocal.csproj", "{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPC NET COM Wrapper", "COM Wrapper\OPC NET COM Wrapper.csproj", "{170A5455-A090-4F26-810F-15F71BBF87E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPC NET XML Wrapper", "XML Wrapper\OPC NET XML Wrapper.csproj", "{82283125-79FD-4A52-948A-A928CC51C07B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPC NET API", "OPC NET API\OPC NET API.csproj", "{98B6E5A1-6FED-434E-B568-9C68D5F9959C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+		로컬 전체 컴파일|Any CPU = 로컬 전체 컴파일|Any CPU
+		로컬 전체 컴파일|x86 = 로컬 전체 컴파일|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.Debug|x86.ActiveCfg = Debug|x86
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.Debug|x86.Build.0 = Debug|x86
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.Release|x86.ActiveCfg = Release|x86
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.Release|x86.Build.0 = Release|x86
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.로컬 전체 컴파일|x86.ActiveCfg = 로컬 전체 컴파일|x86
+		{84C9F697-30EC-4868-9B23-DA784A3AC367}.로컬 전체 컴파일|x86.Build.0 = 로컬 전체 컴파일|x86
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.Debug|x86.ActiveCfg = Debug|x86
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.Debug|x86.Build.0 = Debug|x86
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.Release|x86.ActiveCfg = Release|x86
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.Release|x86.Build.0 = Release|x86
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{7AFB7648-494A-44D1-BA65-C426B5C3292A}.로컬 전체 컴파일|x86.ActiveCfg = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|x86.ActiveCfg = Debug|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Debug|x86.Build.0 = Debug|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|x86.ActiveCfg = Release|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.Release|x86.Build.0 = Release|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|x86.ActiveCfg = 로컬 전체 컴파일|x86
+		{D49B5268-4C34-44C6-B688-80653EE9A189}.로컬 전체 컴파일|x86.Build.0 = 로컬 전체 컴파일|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|x86.ActiveCfg = Debug|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Debug|x86.Build.0 = Debug|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|x86.ActiveCfg = Release|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.Release|x86.Build.0 = Release|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|x86.ActiveCfg = 로컬 전체 컴파일|x86
+		{8D7144DE-EBFE-4D1C-B7B7-01C07726CC12}.로컬 전체 컴파일|x86.Build.0 = 로컬 전체 컴파일|x86
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.Debug|x86.ActiveCfg = Debug|x86
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.Debug|x86.Build.0 = Debug|x86
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.Release|x86.ActiveCfg = Release|x86
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.Release|x86.Build.0 = Release|x86
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{170A5455-A090-4F26-810F-15F71BBF87E6}.로컬 전체 컴파일|x86.ActiveCfg = Debug|Any CPU
+		{82283125-79FD-4A52-948A-A928CC51C07B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82283125-79FD-4A52-948A-A928CC51C07B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82283125-79FD-4A52-948A-A928CC51C07B}.Debug|x86.ActiveCfg = Debug|x86
+		{82283125-79FD-4A52-948A-A928CC51C07B}.Debug|x86.Build.0 = Debug|x86
+		{82283125-79FD-4A52-948A-A928CC51C07B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82283125-79FD-4A52-948A-A928CC51C07B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82283125-79FD-4A52-948A-A928CC51C07B}.Release|x86.ActiveCfg = Release|x86
+		{82283125-79FD-4A52-948A-A928CC51C07B}.Release|x86.Build.0 = Release|x86
+		{82283125-79FD-4A52-948A-A928CC51C07B}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{82283125-79FD-4A52-948A-A928CC51C07B}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{82283125-79FD-4A52-948A-A928CC51C07B}.로컬 전체 컴파일|x86.ActiveCfg = Debug|Any CPU
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.Debug|x86.ActiveCfg = Debug|x86
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.Debug|x86.Build.0 = Debug|x86
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.Release|x86.ActiveCfg = Release|x86
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.Release|x86.Build.0 = Release|x86
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.로컬 전체 컴파일|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.로컬 전체 컴파일|Any CPU.Build.0 = Debug|Any CPU
+		{98B6E5A1-6FED-434E-B568-9C68D5F9959C}.로컬 전체 컴파일|x86.ActiveCfg = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

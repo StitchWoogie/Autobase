@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="SilverlightGraphicModule.DialogGraph"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Width="402" Height="205" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+    <Grid x:Name="LayoutRoot" Background="White">
+    	<Button Height="25.605" HorizontalAlignment="Right" Margin="0,8,10,0" VerticalAlignment="Top" Width="79" Content="OK" d:LayoutOverrides="Height" x:Name="buttonOK"/>
+    	<Button Height="25.605" HorizontalAlignment="Right" Margin="0,43,10,0" VerticalAlignment="Top" Width="79" Content="Cancel" d:LayoutOverrides="Height" x:Name="buttonCancel"/>
+    	<CheckBox Height="Auto" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="Auto" Content="Display selected position time" x:Name="checkBoxUseDisplayPointTime"/>
+    	<RadioButton HorizontalAlignment="Left" Margin="10,99,0,84" Width="95" Content="Auto" x:Name="radioButtonStartType0" Checked="radioButtonStartType0_Checked"/>
+    	<RadioButton HorizontalAlignment="Left" Margin="10,0,0,62" Width="95" Content="Selected date" x:Name="radioButtonStartType1" Checked="radioButtonStartType1_Checked" Height="22" VerticalAlignment="Bottom"/>
+    	<TextBox Height="25" HorizontalAlignment="Left" Margin="47,0,0,23" VerticalAlignment="Bottom" Width="52" Text="TextBox" TextWrapping="Wrap" x:Name="textBoxYear"/>
+    	<TextBlock Height="25" HorizontalAlignment="Left" Margin="103,0,0,19" VerticalAlignment="Bottom" Width="21" Text="Y" TextWrapping="Wrap" TextAlignment="Left" x:Name="textBlockYear"/>
+    	<TextBox Height="25" HorizontalAlignment="Left" Margin="124,0,0,23" VerticalAlignment="Bottom" Width="30" Text="TextBox" TextWrapping="Wrap" x:Name="textBoxMonth"/>
+    	<TextBlock Height="25" HorizontalAlignment="Left" Margin="158,0,0,19" VerticalAlignment="Bottom" Width="21" Text="M" TextWrapping="Wrap" TextAlignment="Left" x:Name="textBlockMonth"/>
+    	<TextBox Height="25" Margin="179,0,193,23" VerticalAlignment="Bottom" Text="TextBox" TextWrapping="Wrap" x:Name="textBoxDay"/>
+    	<TextBlock Height="25" Margin="0,0,168,19" VerticalAlignment="Bottom" Text="D" TextWrapping="Wrap" TextAlignment="Left" Width="21" HorizontalAlignment="Right" x:Name="textBlockDay"/>
+    	<TextBox Height="25" HorizontalAlignment="Right" Margin="0,0,127,23" VerticalAlignment="Bottom" Width="30" Text="TextBox" TextWrapping="Wrap" x:Name="textBoxHour"/>
+    	<TextBlock Height="25" Margin="0,0,102,19" VerticalAlignment="Bottom" Text="H" TextWrapping="Wrap" TextAlignment="Left" HorizontalAlignment="Right" Width="21" x:Name="textBlockHour"/>
+    	<TextBox Height="25" HorizontalAlignment="Right" Margin="0,0,72,23" VerticalAlignment="Bottom" Width="30" Text="TextBox" TextWrapping="Wrap" x:Name="textBoxMinute"/>
+    	<TextBlock Height="25" Margin="0,0,47,19" VerticalAlignment="Bottom" Text="m" TextWrapping="Wrap" TextAlignment="Left" Width="21" HorizontalAlignment="Right" x:Name="textBlockMinute"/>
+    	<Button Height="25.605" HorizontalAlignment="Left" Margin="10,0,0,23" Width="27" Content="&lt;--" x:Name="buttonToLeft" VerticalAlignment="Bottom" d:LayoutOverrides="Height" Click="buttonToLeft_Click"/>
+    	<Button Height="25.605" Margin="0,0,8,23" Content="--&gt;" x:Name="buttonToRight" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="27" d:LayoutOverrides="Height" Click="buttonToRight_Click"/>
+    </Grid>
+</UserControl>
