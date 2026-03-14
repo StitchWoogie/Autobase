@@ -150,36 +150,175 @@ public static void UnInit() {
 
 ## 2. GraphicModule Object/ScriptFunction 메모리 누수 및 위험성 분석
 
-### 2.1 ObjectRoot - GDI+ 리소스 누수 (심각도: 치명적)
+### 2.1 ObjectRoot 및 전체 Object 계층 - GDI+ 리소스 누수 (심각도: 치명적)
 
 ```
-위치: ObjectRoot.cs
+위치: ObjectRoot.cs 및 57개 Object*.cs 파일
 ```
 
-#### 문제점 1: Graphics 객체 미해제
+#### 주석/활성 코드 구분 (수정된 분석)
+
+| 코드 | 위치 | 상태 |
+|------|------|------|
+| `Graphics.FromImage(bitmap)` | ObjectRoot.cs:209 | **주석 처리됨** (2007년 DoubleBuffer 전환 시) |
+| `OnPaintBitmap.CreateGraphics(...)` | ObjectRoot.cs:236 | **주석 처리됨** |
+| `new SolidBrush(backcolor)` | ObjectRoot.cs:280 | **활성 코드** — 매 Paint마다 누수 |
+| `new SolidBrush(lBackGroundColor)` | ObjectRoot.cs:301 | **활성 코드** (DisplayPrint) |
+
+#### 전체 Object 파일 GDI 누수 통계
 
 ```
-Line 209: Graphics g = Graphics.FromImage(bitmap);   // using 없음
-Line 236: Graphics g = OnPaintBitmap.CreateGraphics(...)  // using 없음
+전체 57개 Object*.cs 파일 분석 결과:
+- GDI 리소스 할당 총 횟수: 256개소
+- using 처리된 것: 107개소 (42%)
+- using 없이 누수되는 것: 149개소 (58%)
 ```
 
-- `Display()` 메서드에서 Graphics 객체를 생성하지만 `using` 또는 `Dispose()` 없이 사용
-- 타이머에 의해 반복 호출되므로 **GDI 핸들이 지속적으로 증가**
-- Windows의 GDI 핸들 제한(기본 10,000개)에 도달하면 애플리케이션 크래시
+#### 파일별 누수 순위 (상위 9개, using 미적용 개수)
 
-#### 문제점 2: SolidBrush 인라인 생성 미해제
+| 파일 | 누수 개소 | 주요 누수 리소스 |
+|------|-----------|-----------------|
+| ObjectMilliDataTrend.cs | 65개 | Pen, SolidBrush, Font (DrawPattern, DisplayGraph 등) |
+| ObjectMultiGraph.cs | 14개 | Pen (DisplayGraph, DisplayGraphGuideLine) |
+| ObjectDataGridView.cs | 13개 | Brush, Font, StringFormat (DisplayObject) |
+| ObjectText.cs | 7개 | SolidBrush (Paint 사이클) |
+| ObjectSingleText.cs | 7개 | StringFormat, SolidBrush, Font (DisplayObject) |
+| ObjectChart.cs | 6개 | Pen, SolidBrush |
+| ObjectFont.cs | 5개 | Font |
+| ObjectSVG.cs | 4개 | Pen, Brush |
+| ObjectButtonPublic.cs | 4개 | Pen, Brush |
+
+#### 주요 누수 코드 상세 (Paint 사이클마다 호출)
+
+```csharp
+// ObjectLine.cs:38 - DisplayObject() 매 Paint마다 호출
+Pen pen = new Pen(RunColorLine, bthick);          // Pen 누수
+
+// ObjectCircle.cs:94 - DisplayObject()
+Pen pen = new Pen(RunColorLine, bthick);          // Pen 누수
+
+// ObjectRoundRectangle.cs:263 - DisplayObject()
+Pen pen = new Pen(RunColorLine, bthick);          // Pen 누수
+
+// ObjectRectangle.cs:80 - DrawRectLine()
+Pen pen = new Pen(color, thick);                  // Pen 누수
+
+// ObjectMilliDataTrend.cs:7851 - DrawPatternLineOne() 루프 내
+Pen pen = new Pen(pli.color, pli.thick);          // 루프 내 Pen 누수
+
+// ObjectMilliDataTrend.cs:7983 - 루프 내
+g.DrawLine(new Pen(pli.color, pli.thick * 2f), ...); // 인라인 Pen 누수
+
+// ObjectMilliDataTrend.cs:8019 - 루프 내
+g.DrawString(buf, font, new SolidBrush(pli.color), x, dy1); // 인라인 Brush 누수
+
+// ObjectControlComboBox.cs:238,241 - DisplayObject()
+StringFormat format = new StringFormat();          // StringFormat 누수
+Brush brush = new SolidBrush(this.RunColorText);   // Brush 누수
+
+// ObjectControlEditBox.cs:346,356 - DisplayObject()
+StringFormat format = new StringFormat();          // StringFormat 누수
+Brush brush = new SolidBrush(this.RunColorText);   // Brush 누수
+
+// ObjectSingleText.cs:110,111,149 - DisplayObject()
+StringFormat format = new StringFormat();          // StringFormat 누수
+Brush brush = new SolidBrush(RunColorText);        // Brush 누수
+Font font = new Font(...);                         // Font 누수
+
+// ObjectExpand.cs:2207-2208 - DrawMouseZone()
+Pen hPenWhite = new Pen(Color.White, 1);           // Pen 누수
+Pen hPenBlack = new Pen(Color.Black, 1);           // Pen 누수
+```
+
+#### Paint 호출 체인과 승수 효과
 
 ```
-Line 214: g.FillRectangle(new SolidBrush(lBackGroundColor), rcScreen);
-Line 241: g.FillRectangle(new SolidBrush(lBackGroundColor), rcScreen);
-Line 280: new SolidBrush(backcolor)
-Line 301: new SolidBrush(lBackGroundColor)
+FormGraphic_Paint() → ObjectRoot.Display()
+  → new SolidBrush() × 1                              ← ObjectRoot 자체
+  → ObjectGroup.Display() → objectList 순회
+    → 각 ObjectExpand.Display() → DisplayObject()
+      → ObjectMilliDataTrend: new Pen/Brush × 최대 65개소
+      → ObjectMultiGraph:     new Pen/Brush × 최대 14개소
+      → ObjectText:           new Brush × 7개소
+      → ObjectSingleText:     new Brush/Font/StringFormat × 7개소
+      → ObjectRectangle:      new Pen × 3개소
+      → ...
 ```
 
-- 모든 렌더링 호출마다 Brush GDI 핸들 누수
-- **영향:** 장시간 운영 시 GDI 핸들 고갈로 인한 시스템 불안정
+**Object 1,000개 모듈 예시 (Paint 1회당 GDI 핸들 누수):**
 
-#### 문제점 3: Dispose() 불완전
+```
+ObjectRectangle 200개     → 200 × 3 = 600 핸들
+ObjectText 300개           → 300 × 7 = 2,100 핸들
+ObjectSingleText 200개    → 200 × 7 = 1,400 핸들
+ObjectMilliDataTrend 50개 → 50 × 65 = 3,250 핸들
+ObjectButtonPublic 100개  → 100 × 4 = 400 핸들
+기타 150개                 → ~450 핸들
+────────────────────────────────────────────
+합계:                       ~8,200 핸들/Paint
+
+Paint 호출 빈도: 초당 15~30회 (Invalidate → WM_PAINT)
+초당 누수: 8,200 × 20 = ~164,000 핸들/초
+```
+
+#### GDI 핸들 고갈 시 발생하는 예외 (단계별)
+
+```
+[1단계] 핸들 8,000~9,000개 — 시각적 이상
+  증상: 컨트롤이 안 그려짐, 빈 화면, 폰트 깨짐
+  예외: 없음 (GDI+가 조용히 실패)
+
+[2단계] 핸들 ~10,000개 (프로세스 기본 한계) — GDI+ 예외
+  System.Runtime.InteropServices.ExternalException
+    "A generic error occurred in GDI+."
+
+  System.ArgumentException
+    "Parameter is not valid."
+
+  System.OutOfMemoryException  ← 실제 RAM 부족이 아닌 GDI 핸들 부족!
+    at System.Drawing.Graphics.FromHdcInternal()
+
+[3단계] 핸들 고갈 — Win32 예외
+  System.ComponentModel.Win32Exception
+    "Error creating window handle"
+    → 새 Form/Control 생성 불가, MessageBox도 표시 불가
+
+[4단계] 시스템 전역 (65,536 한계)
+  → 다른 프로세스도 창 생성 불가
+  → OS 재시작 외 복구 불가
+```
+
+#### Finalizer 의존의 위험성 — 왜 특정 PC에서만 터지는가
+
+SolidBrush/Pen/Font은 Finalizer(`~Brush()`)를 가지고 있어 GC가 최종적으로
+핸들을 회수하지만, 이는 "보장"이 아닌 "최선의 노력":
+
+```
+핸들 해제 = GC 수집 + Finalizer 스레드 실행 (2단계 필요)
+실패 조건: 핸들 생성 속도 > GC 수집 빈도 × Finalizer 처리 속도
+```
+
+**동일 코드인데 특정 PC에서만 발생하는 원인:**
+
+1. **GC 모드 차이 (가장 흔함)**
+   - Workstation GC: Gen0 수집 빈번 → 핸들 빨리 회수 → 문제 안 터질 수 있음
+   - Server GC: 메모리 압박 시에만 수집 → 핸들 오래 생존 → 고갈 발생
+
+2. **RAM 크기 역설**
+   - RAM 8GB PC: GC 자주 작동 → Finalizer 자주 실행 → 안전
+   - RAM 32GB PC: GC가 "메모리 충분"으로 판단 → 수집 안 함 → 핸들 고갈!
+
+3. **CPU 코어 수** — Server GC가 코어별 힙 생성 → 수집 지연
+
+4. **동시 모듈 수/해상도** — 모니터 3개, 모듈 10개+ → Paint 호출 폭증
+
+5. **.NET Runtime 미세 차이** — 동일 4.8이라도 KB 패치에 따라 GC 동작 상이
+
+6. **백그라운드 프로세스** — 백신/모니터링이 Finalizer 스레드 CPU 선점
+
+**Object 1,000개 규모에서 Finalizer 의존은 위험합니다. using 처리는 필수 조치입니다.**
+
+#### Dispose() 불완전
 
 ```csharp
 public void Dispose() {              // Line 167
@@ -368,3 +507,20 @@ public void AddObject(object p) {
 12. **타이머 간격 조정**: 1ms → 적절한 간격(50~100ms)으로 변경하여 GC 부담 감소
 13. **Object Pool 적용**: NetWorkProtocolRecv 등 빈번하게 생성/파괴되는 객체에 Pool 패턴 적용
 14. **WeakReference 도입**: ScriptExternalRun의 delegate에서 Form 참조 시 WeakReference 사용 검토
+
+---
+
+## 부록: 특정 PC 문제 진단 방법
+
+```
+1. 작업관리자 → 세부정보 → 열 추가 → "GDI 개체"
+   → 시간에 따라 증가하면 누수 확정
+
+2. 문제 PC에서 확인할 것:
+   > [System.Runtime.GCSettings]::IsServerGC    # PowerShell
+   > Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full' -Name Release
+
+3. Performance Monitor → .NET CLR Memory
+   → "# Gen 2 Collections" 카운터 비교
+   → 문제 PC에서 이 값이 낮으면 GC가 덜 돌아가는 것
+```
