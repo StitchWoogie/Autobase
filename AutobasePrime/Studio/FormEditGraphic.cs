@@ -52,6 +52,8 @@ namespace Studio
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem groupToolStripMenuItem;
         private ToolStripMenuItem ungroupToolStripMenuItem;
+        private ToolStripMenuItem mergeToBitmapToolStripMenuItem;
+        private ToolStripMenuItem unmergeBitmapToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItemZoom10;
@@ -244,6 +246,8 @@ namespace Studio
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ungroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeToBitmapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unmergeBitmapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemZoom10 = new System.Windows.Forms.ToolStripMenuItem();
@@ -314,6 +318,8 @@ namespace Studio
             this.toolStripSeparator10,
             this.groupToolStripMenuItem,
             this.ungroupToolStripMenuItem,
+            this.mergeToBitmapToolStripMenuItem,
+            this.unmergeBitmapToolStripMenuItem,
             this.toolStripSeparator3,
             this.toolStripMenuItem1,
             this.toolStripSeparator4,
@@ -676,6 +682,20 @@ namespace Studio
             this.ungroupToolStripMenuItem.Name = "ungroupToolStripMenuItem";
             this.ungroupToolStripMenuItem.ShortcutKeyDisplayString = null;
             this.ungroupToolStripMenuItem.Click += new System.EventHandler(this.ungroupToolStripMenuItem_Click);
+            // 
+            // mergeToBitmapToolStripMenuItem
+            // 
+            this.mergeToBitmapToolStripMenuItem.Name = "mergeToBitmapToolStripMenuItem";
+            this.mergeToBitmapToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.mergeToBitmapToolStripMenuItem.Text = "Merge to Bitmap";
+            this.mergeToBitmapToolStripMenuItem.Click += new System.EventHandler(this.mergeToBitmapToolStripMenuItem_Click);
+            // 
+            // unmergeBitmapToolStripMenuItem
+            // 
+            this.unmergeBitmapToolStripMenuItem.Name = "unmergeBitmapToolStripMenuItem";
+            this.unmergeBitmapToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.unmergeBitmapToolStripMenuItem.Text = "Unmerge Bitmap";
+            this.unmergeBitmapToolStripMenuItem.Click += new System.EventHandler(this.unmergeBitmapToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -4073,6 +4093,16 @@ namespace Studio
             ClassStudioEdit.EditUnGroup(this);
         }
 
+        private void mergeToBitmapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClassStudioEdit.EditMergeToBitmap(this);
+        }
+
+        private void unmergeBitmapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClassStudioEdit.EditUnmergeBitmap(this);
+        }
+
         private void toolStripMenuItemZoom10_Click(object sender, EventArgs e)
         {
             OpticGo(10);
@@ -4160,6 +4190,8 @@ namespace Studio
             this.breakObjectToolStripMenuItem.Enabled = ClassStudioEdit.IsPossibleEditBreakObject(this);
             this.groupToolStripMenuItem.Enabled = ClassStudioEdit.IsPossibleEditGroup(this);
             this.ungroupToolStripMenuItem.Enabled = ClassStudioEdit.IsPossibleEditUnGroup(this);
+            this.mergeToBitmapToolStripMenuItem.Enabled = ClassStudioEdit.IsPossibleEditMergeToBitmap(this);
+            this.unmergeBitmapToolStripMenuItem.Enabled = ClassStudioEdit.IsPossibleEditUnmergeBitmap(this);
 
             string title = "";
             undoToolStripMenuItem.Enabled = ClassStudioEditUndo.IsPossibleEditUndo(this, ref title);
