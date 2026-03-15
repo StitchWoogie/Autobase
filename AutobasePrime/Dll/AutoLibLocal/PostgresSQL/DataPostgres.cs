@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -71,7 +72,6 @@ namespace AutoLibLocal
     {
         private readonly string _connectionString;
         private readonly ConcurrentDictionary<string, int> _tagCache = new ConcurrentDictionary<string, int>();
-        private readonly object _lock = new object();
 
         public TagRepository(string connectionString)
         {
@@ -80,44 +80,30 @@ namespace AutoLibLocal
 
         public async Task<int> GetOrCreateTagIdAsync(string tagName, string description = "", int dataType = 0, float fullScale = 0)
         {
-            // 1) 캐시에 있으면 바로 반환
-            lock (_lock)
-            {
-                if (_tagCache.TryGetValue(tagName, out int cachedId))
-                    return cachedId;
-            }
+            // 1) ConcurrentDictionary는 자체적으로 thread-safe이므로 별도 lock 불필요
+            if (_tagCache.TryGetValue(tagName, out int cachedId))
+                return cachedId;
 
-            // 2) DB 조회 / 생성
+            // 2) INSERT ... ON CONFLICT로 race condition 방지 (TOCTOU 해결)
+            //    동시에 여러 스레드가 같은 tagName으로 진입해도 안전
             using (var connection = new NpgsqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
 
-                using (var selectCommand = new NpgsqlCommand(
-                    "SELECT tag_id FROM system.tags WHERE tag_name = @tagName", connection))
-                {
-                    selectCommand.Parameters.AddWithValue("tagName", tagName);
-                    object result = await selectCommand.ExecuteScalarAsync();
-                    if (result != null)
-                    {
-                        int tagId = (int)result;
-                        _tagCache[tagName] = tagId;
-                        return tagId;
-                    }
-                }
-
-                using (var insertCommand = new NpgsqlCommand(@"
-                    INSERT INTO system.tags (tag_name, description, data_type, full_scale) 
-                    VALUES (@tagName, @description, @dataType, @fullScale) 
+                using (var command = new NpgsqlCommand(@"
+                    INSERT INTO system.tags (tag_name, description, data_type, full_scale)
+                    VALUES (@tagName, @description, @dataType, @fullScale)
+                    ON CONFLICT (tag_name) DO UPDATE SET tag_name = EXCLUDED.tag_name
                     RETURNING tag_id", connection))
                 {
-                    insertCommand.Parameters.AddWithValue("tagName", tagName);
-                    insertCommand.Parameters.AddWithValue("description", description ?? "");
-                    insertCommand.Parameters.AddWithValue("dataType", dataType);
-                    insertCommand.Parameters.AddWithValue("fullScale", fullScale);
+                    command.Parameters.AddWithValue("tagName", tagName);
+                    command.Parameters.AddWithValue("description", description ?? "");
+                    command.Parameters.AddWithValue("dataType", dataType);
+                    command.Parameters.AddWithValue("fullScale", fullScale);
 
-                    int newId = (int)await insertCommand.ExecuteScalarAsync();
-                    lock (_lock) { _tagCache[tagName] = newId; }
-                    return newId;
+                    int tagId = (int)await command.ExecuteScalarAsync();
+                    _tagCache[tagName] = tagId;
+                    return tagId;
                 }
             }
         }
@@ -598,19 +584,28 @@ namespace AutoLibLocal
                 {
                     await connection.OpenAsync();
 
+                    // SQL Injection 방지: 파라미터 바인딩 사용
                     using (var checkCmd = new NpgsqlCommand(
-                        $"SELECT 1 FROM pg_database WHERE datname = '{targetDatabase}'", connection))
+                        "SELECT 1 FROM pg_database WHERE datname = @dbName", connection))
                     {
+                        checkCmd.Parameters.AddWithValue("dbName", targetDatabase);
                         var exists = await checkCmd.ExecuteScalarAsync();
 
                         if (exists == null)
                         {
                             Debug.WriteLine($"데이터베이스 '{targetDatabase}' 생성 중...");
 
-                            using (var createCmd = new NpgsqlCommand(
-                                $"CREATE DATABASE {targetDatabase}", connection))
+                            // CREATE DATABASE는 파라미터 바인딩 불가 → 식별자 안전 검증
+                            // PostgreSQL 식별자: 영문, 숫자, 언더스코어만 허용
+                            if (!System.Text.RegularExpressions.Regex.IsMatch(targetDatabase, @"^[a-zA-Z_][a-zA-Z0-9_]*$"))
                             {
-                                await createCmd.ExecuteNonQueryAsync();                        
+                                throw new ArgumentException($"유효하지 않은 데이터베이스 이름: {targetDatabase}");
+                            }
+
+                            using (var createCmd = new NpgsqlCommand(
+                                $"CREATE DATABASE \"{targetDatabase}\"", connection))
+                            {
+                                await createCmd.ExecuteNonQueryAsync();
                             }
 
                             Debug.WriteLine($"데이터베이스 '{targetDatabase}' 생성 완료");
@@ -2532,8 +2527,8 @@ namespace AutoLibLocal
         private static DataPostgres _instance;
         private static readonly object _instanceLock = new object();
 
-        private Dictionary<string, NpgsqlConnection> _connectionPool = new Dictionary<string, NpgsqlConnection>();
-        //private readonly int _maxPoolSize = 10;
+        // Npgsql은 자체 커넥션 풀을 내장하고 있으므로 별도 풀 관리 불필요
+        // 동일 ConnectionString 사용 시 자동으로 풀링됨 (기본 풀 크기 100)
 
         private System.Timers.Timer _autoDeleteTimer;
         private int _dataRetentionDays = 90;
@@ -3432,17 +3427,18 @@ namespace AutoLibLocal
                                 @port, @station, @address, @subType, @username, @ipAddress, @computerName)
                         ON CONFLICT (alarm_datetime, tag_name, alarm_type) DO NOTHING", connection, transaction))
                             {
-                                // 파라미터 준비
+                                // 파라미터 준비 - DB 컬럼 타입과 일치시킴
+                                // alarm_type, priority, port, station: INTEGER, address: BIGINT
                                 var pAlarmDateTime = command.Parameters.Add("alarmDateTime", NpgsqlTypes.NpgsqlDbType.TimestampTz);
                                 var pTagName = command.Parameters.Add("tagName", NpgsqlTypes.NpgsqlDbType.Varchar);
                                 var pDescription = command.Parameters.Add("description", NpgsqlTypes.NpgsqlDbType.Varchar);
                                 var pMessage = command.Parameters.Add("message", NpgsqlTypes.NpgsqlDbType.Varchar);
-                                var pAlarmType = command.Parameters.Add("alarmType", NpgsqlTypes.NpgsqlDbType.Smallint);
-                                var pPriority = command.Parameters.Add("priority", NpgsqlTypes.NpgsqlDbType.Smallint);
-                                var pPort = command.Parameters.Add("port", NpgsqlTypes.NpgsqlDbType.Smallint);
-                                var pStation = command.Parameters.Add("station", NpgsqlTypes.NpgsqlDbType.Smallint);
-                                var pAddress = command.Parameters.Add("address", NpgsqlTypes.NpgsqlDbType.Integer);
-                                var pSubType = command.Parameters.Add("subType", NpgsqlTypes.NpgsqlDbType.Smallint);
+                                var pAlarmType = command.Parameters.Add("alarmType", NpgsqlTypes.NpgsqlDbType.Integer);
+                                var pPriority = command.Parameters.Add("priority", NpgsqlTypes.NpgsqlDbType.Integer);
+                                var pPort = command.Parameters.Add("port", NpgsqlTypes.NpgsqlDbType.Integer);
+                                var pStation = command.Parameters.Add("station", NpgsqlTypes.NpgsqlDbType.Integer);
+                                var pAddress = command.Parameters.Add("address", NpgsqlTypes.NpgsqlDbType.Bigint);
+                                var pSubType = command.Parameters.Add("subType", NpgsqlTypes.NpgsqlDbType.Integer);
                                 var pUsername = command.Parameters.Add("username", NpgsqlTypes.NpgsqlDbType.Varchar);
                                 var pIpAddress = command.Parameters.Add("ipAddress", NpgsqlTypes.NpgsqlDbType.Varchar);
                                 var pComputerName = command.Parameters.Add("computerName", NpgsqlTypes.NpgsqlDbType.Varchar);
@@ -3885,7 +3881,17 @@ namespace AutoLibLocal
         /// </summary>
         public async Task<bool> SaveLogError(int category, string message, Exception ex = null, string username = null)
         {
-            string detail = ex != null ? $"{{\"error\":\"{ex.Message}\",\"stackTrace\":\"{ex.StackTrace}\"}}".Replace("\"", "\\\"") : null;
+            // JSON 직렬화를 사용하여 특수문자(백슬래시, 개행, 따옴표 등)를 안전하게 처리
+            string detail = null;
+            if (ex != null)
+            {
+                var errorObj = new Dictionary<string, string>
+                {
+                    ["error"] = ex.Message ?? "",
+                    ["stackTrace"] = ex.StackTrace ?? ""
+                };
+                detail = System.Text.Json.JsonSerializer.Serialize(errorObj);
+            }
             return await SaveLog(LogLevel.ERROR, category, message, username,
                 GetClientIpAddress(), Environment.MachineName, detail);
         }
@@ -4419,39 +4425,62 @@ namespace AutoLibLocal
                 {
                     await connection.OpenAsync();
 
-                    try
+                    string[] deleteTables = new string[]
                     {
-                        string[] deleteTables = new string[]
-                        {
                         "operational.minute_analog_data",
                         "operational.minute_digital_data"
-                        };
+                    };
 
-                        foreach (string table in deleteTables)
-                        {
-                            // TimescaleDB의 drop_chunks 함수 사용
-                            string dropChunksQuery = $"SELECT drop_chunks('{table}', older_than => @cutoffDate);";
-
-                            using (var command = new NpgsqlCommand(dropChunksQuery, connection))
-                            {
-                                command.Parameters.AddWithValue("cutoffDate", cutoffDate);
-                                await command.ExecuteNonQueryAsync();
-                                Debug.WriteLine($"{table}에서 {cutoffDate} 이전 chunk 삭제 완료");
-                            }
-                        }
-
-                        Debug.WriteLine($"분 데이터 자동 삭제 완료: {cutoffDate} 이전 데이터");
-                    }
-                    catch (Exception ex)
+                    string[] timeColumns = new string[]
                     {
-                        Debug.WriteLine($"분 데이터 자동 삭제 오류: {ex.Message}");
-                        throw;
+                        "data_time",
+                        "data_time"
+                    };
+
+                    for (int i = 0; i < deleteTables.Length; i++)
+                    {
+                        await DeleteOldDataWithFallback(connection, deleteTables[i], timeColumns[i], cutoffDate);
                     }
+
+                    Debug.WriteLine($"분 데이터 자동 삭제 완료: {cutoffDate} 이전 데이터");
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"분 데이터 자동 삭제 프로세스 오류: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// TimescaleDB drop_chunks 우선 시도, 실패 시 일반 DELETE 폴백
+        /// </summary>
+        private async Task DeleteOldDataWithFallback(NpgsqlConnection connection, string table, string timeColumn, DateTime cutoffDate)
+        {
+            try
+            {
+                // TimescaleDB의 drop_chunks 함수 시도
+                string dropChunksQuery = $"SELECT drop_chunks('{table}', older_than => @cutoffDate);";
+                using (var command = new NpgsqlCommand(dropChunksQuery, connection))
+                {
+                    command.Parameters.AddWithValue("cutoffDate", cutoffDate);
+                    await command.ExecuteNonQueryAsync();
+                    Debug.WriteLine($"{table}에서 {cutoffDate} 이전 chunk 삭제 완료");
+                }
+            }
+            catch (Npgsql.PostgresException pgEx) when (pgEx.SqlState == "42883" || pgEx.SqlState == "TS001")
+            {
+                // 42883 = function does not exist (TimescaleDB 미설치)
+                // TS001 = not a hypertable
+                Debug.WriteLine($"TimescaleDB drop_chunks 불가 ({table}), DELETE 폴백 사용");
+
+                string deleteQuery = $"DELETE FROM {table} WHERE {timeColumn} < @cutoffDate";
+                using (var command = new NpgsqlCommand(deleteQuery, connection))
+                {
+                    command.CommandTimeout = 300; // 대량 삭제 시 타임아웃 5분
+                    command.Parameters.AddWithValue("cutoffDate", cutoffDate);
+                    int deleted = await command.ExecuteNonQueryAsync();
+                    Debug.WriteLine($"{table}에서 {deleted}행 DELETE 완료");
+                }
             }
         }
 
@@ -4468,33 +4497,18 @@ namespace AutoLibLocal
                 {
                     await connection.OpenAsync();
 
-                    try
+                    string[] deleteTables = new string[]
                     {
-                        string[] deleteTables = new string[]
-                        {
                         "operational.hour_analog_data",
                         "operational.hour_digital_data"
-                        };
+                    };
 
-                        foreach (string table in deleteTables)
-                        {
-                            string dropChunksQuery = $"SELECT drop_chunks('{table}', older_than => @cutoffDate);";
-
-                            using (var command = new NpgsqlCommand(dropChunksQuery, connection))
-                            {
-                                command.Parameters.AddWithValue("cutoffDate", cutoffDate);
-                                await command.ExecuteNonQueryAsync();
-                                Debug.WriteLine($"{table}에서 {cutoffDate} 이전 chunk 삭제 완료");
-                            }
-                        }
-
-                        Debug.WriteLine($"시간 데이터 자동 삭제 완료: {cutoffDate} 이전 데이터");
-                    }
-                    catch (Exception ex)
+                    foreach (string table in deleteTables)
                     {
-                        Debug.WriteLine($"시간 데이터 자동 삭제 오류: {ex.Message}");
-                        throw;
+                        await DeleteOldDataWithFallback(connection, table, "data_time", cutoffDate);
                     }
+
+                    Debug.WriteLine($"시간 데이터 자동 삭제 완료: {cutoffDate} 이전 데이터");
                 }
             }
             catch (Exception ex)
@@ -4515,25 +4529,8 @@ namespace AutoLibLocal
                 using (var connection = new NpgsqlConnection(_connectionString))
                 {
                     await connection.OpenAsync();
-
-                    try
-                    {
-                        string dropChunksQuery = "SELECT drop_chunks('operational.alarms', older_than => @cutoffDate);";
-
-                        using (var command = new NpgsqlCommand(dropChunksQuery, connection))
-                        {
-                            command.Parameters.AddWithValue("cutoffDate", cutoffDate);
-                            await command.ExecuteNonQueryAsync();
-                            Debug.WriteLine($"operational.alarms에서 {cutoffDate} 이전 chunk 삭제 완료");
-                        }
-
-                        Debug.WriteLine($"알람 데이터 자동 삭제 완료: {cutoffDate} 이전 데이터");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"알람 데이터 자동 삭제 오류: {ex.Message}");
-                        throw;
-                    }
+                    await DeleteOldDataWithFallback(connection, "operational.alarms", "alarm_datetime", cutoffDate);
+                    Debug.WriteLine($"알람 데이터 자동 삭제 완료: {cutoffDate} 이전 데이터");
                 }
             }
             catch (Exception ex)
@@ -4554,25 +4551,8 @@ namespace AutoLibLocal
                 using (var connection = new NpgsqlConnection(_connectionString))
                 {
                     await connection.OpenAsync();
-
-                    try
-                    {
-                        string dropChunksQuery = "SELECT drop_chunks('operational.logs', older_than => @cutoffDate);";
-
-                        using (var command = new NpgsqlCommand(dropChunksQuery, connection))
-                        {
-                            command.Parameters.AddWithValue("cutoffDate", cutoffDate);
-                            await command.ExecuteNonQueryAsync();
-                            Debug.WriteLine($"operational.logs에서 {cutoffDate} 이전 chunk 삭제 완료");
-                        }
-
-                        Debug.WriteLine($"로그 데이터 자동 삭제 완료: {cutoffDate} 이전 데이터");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"로그 데이터 자동 삭제 오류: {ex.Message}");
-                        throw;
-                    }
+                    await DeleteOldDataWithFallback(connection, "operational.logs", "log_datetime", cutoffDate);
+                    Debug.WriteLine($"로그 데이터 자동 삭제 완료: {cutoffDate} 이전 데이터");
                 }
             }
             catch (Exception ex)
@@ -4589,6 +4569,13 @@ namespace AutoLibLocal
             try
             {
                 DateTime cutoffDate = dateTime;
+
+                // tableName 검증 (SQL Injection 방지)
+                if (!System.Text.RegularExpressions.Regex.IsMatch(tableName, @"^[a-zA-Z_][a-zA-Z0-9_]*$"))
+                {
+                    Debug.WriteLine($"유효하지 않은 테이블 이름: {tableName}");
+                    return;
+                }
 
                 using (var connection = new NpgsqlConnection(_connectionString))
                 {
@@ -4638,33 +4625,18 @@ namespace AutoLibLocal
                 {
                     await connection.OpenAsync();
 
-                    try
+                    string[] deleteTables = new string[]
                     {
-                        string[] deleteTables = new string[]
-                        {
                         "operational.minute_analog_data",
                         "operational.minute_digital_data"
-                        };
+                    };
 
-                        foreach (string table in deleteTables)
-                        {
-                            string dropChunksQuery = $"SELECT drop_chunks('{table}', older_than => @cutoffDate);";
-
-                            using (var command = new NpgsqlCommand(dropChunksQuery, connection))
-                            {
-                                command.Parameters.AddWithValue("cutoffDate", cutoffDateTime);
-                                await command.ExecuteNonQueryAsync();
-                                Debug.WriteLine($"{table}에서 {cutoffDateTime} 이전 chunk 삭제 완료");
-                            }
-                        }
-
-                        Debug.WriteLine($"분 데이터 삭제 완료: {cutoffDateTime} 이전 데이터");
-                    }
-                    catch (Exception ex)
+                    foreach (string table in deleteTables)
                     {
-                        Debug.WriteLine($"분 데이터 삭제 오류: {ex.Message}");
-                        throw;
+                        await DeleteOldDataWithFallback(connection, table, "data_time", cutoffDateTime);
                     }
+
+                    Debug.WriteLine($"분 데이터 삭제 완료: {cutoffDateTime} 이전 데이터");
                 }
             }
             catch (Exception ex)
@@ -4685,33 +4657,18 @@ namespace AutoLibLocal
                 {
                     await connection.OpenAsync();
 
-                    try
+                    string[] deleteTables = new string[]
                     {
-                        string[] deleteTables = new string[]
-                        {
                         "operational.hour_analog_data",
                         "operational.hour_digital_data"
-                        };
+                    };
 
-                        foreach (string table in deleteTables)
-                        {
-                            string dropChunksQuery = $"SELECT drop_chunks('{table}', older_than => @cutoffDate);";
-
-                            using (var command = new NpgsqlCommand(dropChunksQuery, connection))
-                            {
-                                command.Parameters.AddWithValue("cutoffDate", cutoffDateTime);
-                                await command.ExecuteNonQueryAsync();
-                                Debug.WriteLine($"{table}에서 {cutoffDateTime} 이전 chunk 삭제 완료");
-                            }
-                        }
-
-                        Debug.WriteLine($"시간 데이터 삭제 완료: {cutoffDateTime} 이전 데이터");
-                    }
-                    catch (Exception ex)
+                    foreach (string table in deleteTables)
                     {
-                        Debug.WriteLine($"시간 데이터 삭제 오류: {ex.Message}");
-                        throw;
+                        await DeleteOldDataWithFallback(connection, table, "data_time", cutoffDateTime);
                     }
+
+                    Debug.WriteLine($"시간 데이터 삭제 완료: {cutoffDateTime} 이전 데이터");
                 }
             }
             catch (Exception ex)
@@ -4731,25 +4688,8 @@ namespace AutoLibLocal
                 using (var connection = new NpgsqlConnection(_connectionString))
                 {
                     await connection.OpenAsync();
-
-                    try
-                    {
-                        string dropChunksQuery = "SELECT drop_chunks('operational.alarms', older_than => @cutoffDate);";
-
-                        using (var command = new NpgsqlCommand(dropChunksQuery, connection))
-                        {
-                            command.Parameters.AddWithValue("cutoffDate", cutoffDateTime);
-                            await command.ExecuteNonQueryAsync();
-                            Debug.WriteLine($"operational.alarms에서 {cutoffDateTime} 이전 chunk 삭제 완료");
-                        }
-
-                        Debug.WriteLine($"알람 데이터 삭제 완료: {cutoffDateTime} 이전 데이터");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"알람 데이터 삭제 오류: {ex.Message}");
-                        throw;
-                    }
+                    await DeleteOldDataWithFallback(connection, "operational.alarms", "alarm_datetime", cutoffDateTime);
+                    Debug.WriteLine($"알람 데이터 삭제 완료: {cutoffDateTime} 이전 데이터");
                 }
             }
             catch (Exception ex)
@@ -4769,25 +4709,8 @@ namespace AutoLibLocal
                 using (var connection = new NpgsqlConnection(_connectionString))
                 {
                     await connection.OpenAsync();
-
-                    try
-                    {
-                        string dropChunksQuery = "SELECT drop_chunks('operational.logs', older_than => @cutoffDate);";
-
-                        using (var command = new NpgsqlCommand(dropChunksQuery, connection))
-                        {
-                            command.Parameters.AddWithValue("cutoffDate", cutoffDateTime);
-                            await command.ExecuteNonQueryAsync();
-                            Debug.WriteLine($"operational.logs에서 {cutoffDateTime} 이전 chunk 삭제 완료");
-                        }
-
-                        Debug.WriteLine($"로그 데이터 삭제 완료: {cutoffDateTime} 이전 데이터");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"로그 데이터 삭제 오류: {ex.Message}");
-                        throw;
-                    }
+                    await DeleteOldDataWithFallback(connection, "operational.logs", "log_datetime", cutoffDateTime);
+                    Debug.WriteLine($"로그 데이터 삭제 완료: {cutoffDateTime} 이전 데이터");
                 }
             }
             catch (Exception ex)
@@ -4812,52 +4735,39 @@ namespace AutoLibLocal
                 {
                     await connection.OpenAsync();
 
-                    try
+                    Debug.WriteLine($"=== Operational 테이블 자동 삭제 시작: {cutoffDateTime} 이전 데이터 ===");
+
+                    // 테이블명과 시간 컬럼 매핑
+                    var tableTimeColumns = new[]
                     {
-                        Debug.WriteLine($"=== Operational 테이블 자동 삭제 시작: {cutoffDateTime} 이전 데이터 ===");
+                        ("operational.minute_analog_data", "data_time"),
+                        ("operational.minute_digital_data", "data_time"),
+                        ("operational.hour_analog_data", "data_time"),
+                        ("operational.hour_digital_data", "data_time"),
+                        ("operational.alarms", "alarm_datetime"),
+                        ("operational.logs", "log_datetime")
+                    };
 
-                        string[] operationalTables = new string[]
+                    int successCount = 0;
+                    int failCount = 0;
+
+                    foreach (var (table, timeColumn) in tableTimeColumns)
+                    {
+                        try
                         {
-                        "operational.minute_analog_data",
-                        "operational.minute_digital_data",
-                        "operational.hour_analog_data",
-                        "operational.hour_digital_data",
-                        "operational.alarms",
-                        "operational.logs"
-                        };
-
-                        int successCount = 0;
-                        int failCount = 0;
-
-                        foreach (string table in operationalTables)
-                        {
-                            try
-                            {
-                                string dropChunksQuery = $"SELECT drop_chunks('{table}', older_than => @cutoffDate);";
-
-                                using (var command = new NpgsqlCommand(dropChunksQuery, connection))
-                                {
-                                    command.Parameters.AddWithValue("cutoffDate", cutoffDateTime);
-                                    await command.ExecuteNonQueryAsync();
-                                    Debug.WriteLine($"[성공] {table}에서 {cutoffDateTime} 이전 chunk 삭제 완료");
-                                    successCount++;
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Debug.WriteLine($"[실패] {table} 삭제 오류: {ex.Message}");
-                                failCount++;
-                            }
+                            await DeleteOldDataWithFallback(connection, table, timeColumn, cutoffDateTime);
+                            Debug.WriteLine($"[성공] {table}에서 {cutoffDateTime} 이전 데이터 삭제 완료");
+                            successCount++;
                         }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"[실패] {table} 삭제 오류: {ex.Message}");
+                            failCount++;
+                        }
+                    }
 
-                        Debug.WriteLine($"=== Operational 테이블 자동 삭제 완료 ===");
-                        Debug.WriteLine($"성공: {successCount}개, 실패: {failCount}개");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"Operational 테이블 자동 삭제 오류: {ex.Message}");
-                        throw;
-                    }
+                    Debug.WriteLine($"=== Operational 테이블 자동 삭제 완료 ===");
+                    Debug.WriteLine($"성공: {successCount}개, 실패: {failCount}개");
                 }
             }
             catch (Exception ex)
@@ -4877,14 +4787,16 @@ namespace AutoLibLocal
                 _autoDeleteTimer.Dispose();
             }
 
-            foreach (NpgsqlConnection connection in _connectionPool.Values)
+            // Npgsql의 커넥션 풀을 명시적으로 정리
+            // 애플리케이션 종료 시에만 호출 (일반적으로는 Npgsql이 자동 관리)
+            try
             {
-                if (connection != null)
-                {
-                    connection.Dispose();
-                }
+                NpgsqlConnection.ClearAllPools();
             }
-            _connectionPool.Clear();
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"커넥션 풀 정리 오류: {ex.Message}");
+            }
         }
         #endregion
 
@@ -5174,10 +5086,12 @@ namespace AutoLibLocal
                     {
                         try
                         {
+                            // SQL Injection 방지: 파라미터 바인딩 사용
                             using (var command = new NpgsqlCommand(
-                                $"SELECT 1 FROM information_schema.schemata WHERE schema_name = '{schema}'",
+                                "SELECT 1 FROM information_schema.schemata WHERE schema_name = @schemaName",
                                 connection))
                             {
+                                command.Parameters.AddWithValue("schemaName", schema);
                                 var result = await command.ExecuteScalarAsync();
                                 health[schema] = result != null;
                             }

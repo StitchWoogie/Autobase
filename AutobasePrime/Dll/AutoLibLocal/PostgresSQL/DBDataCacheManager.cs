@@ -275,8 +275,19 @@ namespace AutoLibLocal
             bool success = await LoadMonthMinuteDataAI(tag, year, month);
             if (!success) return false;
 
-            // 재귀 호출
-            return await GetMinDataAI(tag, year, month, day, hour, min, data).ConfigureAwait(false);
+            // 로드 후 캐시에서 직접 조회 (재귀 대신 1회 조회로 무한 재귀 방지)
+            lock (_lock)
+            {
+                if (_minuteAIMonthCache.TryGetValue(monthKey, out var loadedCache)
+                    && loadedCache.IsLoaded
+                    && loadedCache.Data.TryGetValue(requestTime, out var loadedData))
+                {
+                    CopyTrendAIData(loadedData, data);
+                    return true;
+                }
+            }
+
+            return false;
         }
         private async Task<bool> LoadMonthMinuteDataAI(string tag, int year, int month)
         {
@@ -374,7 +385,19 @@ namespace AutoLibLocal
             bool success = await LoadMonthMinuteDataDI(tag, year, month);
             if (!success) return false;
 
-            return await GetMinDataDI(tag, year, month, day, hour, min, data).ConfigureAwait(false);
+            // 로드 후 캐시에서 직접 조회 (재귀 대신 1회 조회로 무한 재귀 방지)
+            lock (_lock)
+            {
+                if (_minuteDIMonthCache.TryGetValue(monthKey, out var loadedCache)
+                    && loadedCache.IsLoaded
+                    && loadedCache.Data.TryGetValue(requestTime, out var loadedData))
+                {
+                    CopyTrendDIData(loadedData, data);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private async Task<bool> LoadMonthMinuteDataDI(string tag, int year, int month)
@@ -465,7 +488,19 @@ namespace AutoLibLocal
             bool success = await LoadMonthHourDataAI(tag, year, month);
             if (!success) return false;
 
-            return await GetHourDataAI(tag, year, month, day, hour, data).ConfigureAwait(false);
+            // 로드 후 캐시에서 직접 조회 (재귀 대신 1회 조회로 무한 재귀 방지)
+            lock (_lock)
+            {
+                if (_hourAIMonthCache.TryGetValue(monthKey, out var loadedCache)
+                    && loadedCache.IsLoaded
+                    && loadedCache.Data.TryGetValue(requestTime, out var loadedData))
+                {
+                    CopyHourAIData(loadedData, data);
+                    return loadedData.flag != 0;
+                }
+            }
+
+            return false;
         }
 
         private async Task<bool> LoadMonthHourDataAI(string tag, int year, int month)
@@ -559,7 +594,19 @@ namespace AutoLibLocal
             bool success = await LoadMonthHourDataDI(tag, year, month);
             if (!success) return false;
 
-            return await GetHourDataDI(tag, year, month, day, hour, data).ConfigureAwait(false);
+            // 로드 후 캐시에서 직접 조회 (재귀 대신 1회 조회로 무한 재귀 방지)
+            lock (_lock)
+            {
+                if (_hourDIMonthCache.TryGetValue(monthKey, out var loadedCache)
+                    && loadedCache.IsLoaded
+                    && loadedCache.Data.TryGetValue(requestTime, out var loadedData))
+                {
+                    CopyHourDIData(loadedData, data);
+                    return loadedData.flag != 0;
+                }
+            }
+
+            return false;
         }
 
         private async Task<bool> LoadMonthHourDataDI(string tag, int year, int month)

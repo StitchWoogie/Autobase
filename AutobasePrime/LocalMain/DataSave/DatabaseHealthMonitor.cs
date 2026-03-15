@@ -49,6 +49,7 @@ namespace LocalMain
         private int _consecutiveFailures = 0;
         private readonly Timer _healthCheckTimer;
         private readonly object _stateLock = new object();
+        private int _healthCheckRunning = 0; // 재진입 방지 플래그
 
         public event EventHandler<DbStateChangedEventArgs> StateChanged;
 
@@ -67,7 +68,7 @@ namespace LocalMain
             get { lock (_stateLock) { return _consecutiveFailures; } }
         }
 
-        
+
         /// <summary>
         /// 싱글톤 인스턴스 (private 생성자 사용)
         /// </summary>
@@ -110,7 +111,8 @@ namespace LocalMain
             get { return _instance != null; }
         }
 
-        public DatabaseHealthMonitor(string connectionString)
+        // 싱글톤 패턴이므로 private으로 변경 (Initialize()로만 생성 가능)
+        private DatabaseHealthMonitor(string connectionString)
         {
             _connectionString = connectionString;
             _healthCheckTimer = new Timer(HealthCheckCallback, null,
@@ -119,7 +121,23 @@ namespace LocalMain
 
         private async void HealthCheckCallback(object state)
         {
-            await CheckHealthAsync();
+            // 재진입 방지: 이전 헬스체크가 아직 실행 중이면 스킵
+            if (Interlocked.CompareExchange(ref _healthCheckRunning, 1, 0) != 0)
+                return;
+
+            try
+            {
+                await CheckHealthAsync();
+            }
+            catch (Exception ex)
+            {
+                // async void에서 발생한 예외가 프로세스를 크래시시키지 않도록 방어
+                Debug.WriteLine(string.Format("HealthCheckCallback 예외: {0}", ex.Message));
+            }
+            finally
+            {
+                Interlocked.Exchange(ref _healthCheckRunning, 0);
+            }
         }
 
         /// <summary>
@@ -169,7 +187,7 @@ namespace LocalMain
                 }
 
                 Debug.WriteLine(string.Format("DB Health Check 실패: {0}", ex.Message));
-                MessageDisplay.Show($"DB connection failed: {ex.Message}");
+                // 상태변경 이벤트로 UI에 알림 (30초마다 반복호출 되므로 여기서 MessageDisplay 직접 호출하지 않음)
             }
 
             return false;
