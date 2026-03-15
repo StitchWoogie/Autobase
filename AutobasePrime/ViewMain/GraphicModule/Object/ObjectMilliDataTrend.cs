@@ -6780,7 +6780,8 @@ namespace GraphicModule
 
 
 
-                Brush brush = ObjectRectangle.MakePublicBrush(RunColorFill, 0, 0, width, height);
+                using (Brush brush = ObjectRectangle.MakePublicBrush(RunColorFill, 0, 0, width, height))
+                {
 
 
 
@@ -6843,6 +6844,8 @@ namespace GraphicModule
                 DrawGraphData(g, 0, 0, width - 1, height - 1, gx1, gy1, gx2, gy2);
 
 
+
+                } // end using brush
 
             }
 
@@ -10894,13 +10897,14 @@ namespace GraphicModule
 
 
 
-                Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2);
+                using (Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2))
+                {
 
 
 
-                DrawClass.PopBox2(g, x1, y1, x2, y2, brushback);
+                    DrawClass.PopBox2(g, x1, y1, x2, y2, brushback);
 
-
+                }
 
             }
 
@@ -28775,6 +28779,8 @@ namespace GraphicModule
 
 
 
+            brushToolbar.Dispose();
+
         }
 
 
@@ -29820,7 +29826,8 @@ namespace GraphicModule
 
 
 
-                        Font labelFont = new Font(SystemFonts.DefaultFont.FontFamily, (float)(objArgs.nToolBarTextSize * opticRateX));
+                        using (Font labelFont = new Font(SystemFonts.DefaultFont.FontFamily, (float)(objArgs.nToolBarTextSize * opticRateX)))
+                        {
 
 
 
@@ -29855,6 +29862,8 @@ namespace GraphicModule
 
 
 
+
+                        } // end using labelFont
 
                     }
 
@@ -30305,7 +30314,8 @@ namespace GraphicModule
 
 
 
-                        Font labelFont = new Font(SystemFonts.DefaultFont.FontFamily, (float)(objArgs.nToolBarTextSize * opticRateX));
+                        using (Font labelFont = new Font(SystemFonts.DefaultFont.FontFamily, (float)(objArgs.nToolBarTextSize * opticRateX)))
+                        {
 
 
 
@@ -30340,6 +30350,8 @@ namespace GraphicModule
 
 
 
+
+                        } // end using labelFont
 
                     }
 
@@ -31062,7 +31074,8 @@ namespace GraphicModule
 
 
 
-                    Font labelFont = new Font(SystemFonts.DefaultFont.FontFamily, (float)(objArgs.nToolBarTextSize * opticRateX));
+                    using (Font labelFont = new Font(SystemFonts.DefaultFont.FontFamily, (float)(objArgs.nToolBarTextSize * opticRateX)))
+                    {
 
 
 
@@ -31102,6 +31115,8 @@ namespace GraphicModule
 
 
 
+                    } // end using labelFont
+
                 }
 
 
@@ -31109,6 +31124,8 @@ namespace GraphicModule
             }
 
 
+
+            brushToolbar.Dispose();
 
         }
 
