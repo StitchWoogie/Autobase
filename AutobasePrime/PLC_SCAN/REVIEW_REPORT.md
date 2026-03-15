@@ -780,20 +780,24 @@ if(pt->dll.ProtocolWriteBit == NULL) {   // BUG: ProtocolWriteWord를 검사해�
 
 ---
 
-## HIGH-21: 16진수 주소 atoi 변환 손실
+## ~~HIGH-21~~ → INFO: 16진수 주소 atoi 변환 (의도된 BCD 변환)
 
-**심각도**: HIGH
-**영향**: 16진수 주소 A-F 포함 시 잘못된 PLC 주소에 쓰기
+**심각도**: INFO (수정 불필요)
+**영향**: 없음 - 의도된 설계
 
 **Pro_main.cpp:392-394**:
 ```cpp
-sprintf(buf, "%04X", address);    // 예: 0x00FF → "00FF"
-address = atoi(buf);              // atoi("00FF") → 0 (F에서 중단!)
+if(pt->nScanProtocol != PROTOCOL_DLL) {  // "DLL이 아닐때는 4d로 변환된 주소를 사용해야 한다.(이전 버전 3.05부터)"
+    sprintf(buf, "%04X", address);
+    address = atoi(buf);
+}
 ```
 
-16진수 문자(A-F)가 포함된 주소가 `atoi`에 의해 **잘못된 10진수로 변환**됩니다.
-예: 주소 `0x1A2B` → `"1A2B"` → `atoi` = `1` (A에서 중단).
-이는 **완전히 다른 PLC 주소에 쓰기 명령을 전달**하게 됩니다.
+추가 분석 결과, 이것은 **버전 3.05부터 사용된 의도적 BCD 주소 변환**입니다.
+내부 프로토콜의 주소는 BCD 형식(16진수 표현에 0-9만 사용)으로 저장되므로,
+이 변환은 정상적으로 동작합니다. **수정 시 모든 내부 프로토콜(약 20개)의 주소 체계가 깨지므로 수정하면 안 됩니다.**
+
+DLL 프로토콜은 이 변환을 건너뛰므로, DLL 단에서 독자적으로 주소를 처리합니다.
 
 ---
 
@@ -848,44 +852,44 @@ memcpy(sharePlcscanNetclient->buf, buf, count);  // count 크기 미검증
 
 ## 개선 권장 사항 우선순위
 
-| 순위 | 항목 | 심각도 | 예상 작업량 |
-|------|------|--------|-------------|
-| 1 | `delete` -> `delete[]` 일괄 수정 | CRITICAL | 1시간 |
-| 2 | WRITE_WAIT_STRUCT CriticalSection 적용 | CRITICAL | 2시간 |
-| 3 | **공유 메모리 링버퍼 동기화 추가** | CRITICAL | 3시간 |
-| 4 | **공유 메모리 Open 시 기존 데이터 보존** | CRITICAL | 30분 |
-| 5 | THREAD_PORT_STRUCT volatile 추가 | CRITICAL | 30분 |
-| 6 | VIP 스캔 static 변수 -> 포트별 변수 이동 | CRITICAL | 1시간 |
-| 7 | 재진입 플래그 InterlockedCompareExchange 적용 | CRITICAL | 30분 |
-| 8 | MAX_PORT INI 입력값 범위 검증 추가 | CRITICAL | 30분 |
-| 9 | **Modbus sm->size 범위 검증 추가** | CRITICAL | 30분 |
-| 10 | **UDP 링버퍼 Full 검사 추가** | CRITICAL | 1시간 |
-| 9 | 네트워크 입력 strcpy 경계 검사 추가 | HIGH | 2시간 |
-| 10 | sprintf -> _snprintf 일괄 교체 | HIGH | 4시간 |
-| 11 | TCP 수신 버퍼 경계 검사 수정 | HIGH | 1시간 |
-| 12 | RetryConnect 소켓 누수 수정 | HIGH | 1시간 |
-| 13 | ScanServer 스레드 핸들 CloseHandle 추가 | HIGH | 30분 |
-| 14 | TCP connect() 타임아웃 설정 | HIGH | 1시간 |
-| 15 | PlcDeviceUnInit 반환값 초기화 | HIGH | 30분 |
-| 16 | CreateThread -> _beginthreadex 교체 | HIGH | 1시간 |
-| 17 | WaitForSingleObject 타임아웃 후 처리 개선 | HIGH | 1시간 |
-| 18 | GetWindowLong -> GetWindowLongPtr 교체 | HIGH | 2시간 |
-| 19 | **CreateFileMapping INVALID_HANDLE_VALUE 사용** | HIGH | 10분 |
-| 20 | **ComDeviceSharedMemory NULL 검사 추가** | HIGH | 30분 |
-| 21 | **ScanWorkMemory ANSI/Unicode 불일치 수정** | HIGH | 1시간 |
-| 22 | **WM_DESTROY 핸들러 주석 해제** | HIGH | 30분 |
-| 23 | RS-232 Busy-Wait -> 고해상도 타이머 교체 | HIGH | 2시간 |
-| 24 | PlcDeviceClearTCPIP 벌크 읽기 | HIGH | 30분 |
-| 25 | StackChar(5000) 버퍼 크기 검증/확대 | HIGH | 1시간 |
-| 26 | **Pro_main.cpp ProtocolWriteWord NULL 검사 수정** | HIGH | 10분 |
-| 27 | **Pro_main.cpp 16진수 주소 atoi→strtol 교체** | HIGH | 30분 |
-| 28 | **UDP SocketUnPrepare Dead Code 수정** | HIGH | 30분 |
-| 29 | **공유 메모리 보안 속성(ACL) 설정** | HIGH | 2시간 |
-| 30 | **ComDeviceNetClient memcpy 크기 검증** | HIGH | 30분 |
-| 31 | PortThread.cpp 레거시 코드 정리 | MEDIUM | 1시간 |
-| 32 | #pragma pack 포인터 구조체 분리 | MEDIUM | 설계 필요 |
-| 33 | 포트 인덱스 범위 검사 추가 | MEDIUM | 1시간 |
-| 34 | ScanServer 인증 메커니즘 추가 | MEDIUM | 설계 필요 |
+| 순위 | 항목 | 심각도 | 수정 안전성 | 예상 작업량 |
+|------|------|--------|------------|-------------|
+| 1 | `delete` -> `delete[]` 일괄 수정 | CRITICAL | **안전** | 1시간 |
+| 2 | WRITE_WAIT_STRUCT CriticalSection 적용 | CRITICAL | **주의** - Lock 범위 최소화 필요 | 2시간 |
+| 3 | **공유 메모리 링버퍼 동기화 추가** | CRITICAL | **주의** - Interlocked/SpinLock 권장 (Mutex 시 성능저하) | 3시간 |
+| 4 | **공유 메모리 Open 시 기존 데이터 보존** | CRITICAL | **안전** | 30분 |
+| 5 | THREAD_PORT_STRUCT volatile 추가 | CRITICAL | **안전** | 30분 |
+| 6 | VIP 스캔 static 변수 -> 포트별 변수 이동 | CRITICAL | **주의** - 동작 변경됨 (전체→포트별 독립) | 1시간 |
+| 7 | 재진입 플래그 InterlockedCompareExchange 적용 | CRITICAL | **안전** | 30분 |
+| 8 | MAX_PORT INI 입력값 범위 검증 추가 | CRITICAL | **안전** | 30분 |
+| 9 | **Modbus sm->size 범위 검증 추가** | CRITICAL | **안전** | 30분 |
+| 10 | **UDP 링버퍼 Full 검사 추가** | CRITICAL | **안전** | 1시간 |
+| 11 | 네트워크 입력 strcpy 경계 검사 추가 | HIGH | **안전** | 2시간 |
+| 12 | sprintf -> _snprintf 일괄 교체 | HIGH | **안전** | 4시간 |
+| 13 | TCP 수신 버퍼 경계 검사 수정 | HIGH | **안전** | 1시간 |
+| 14 | RetryConnect 소켓 누수 수정 | HIGH | **안전** | 1시간 |
+| 15 | ScanServer 스레드 핸들 CloseHandle 추가 | HIGH | **안전** | 30분 |
+| 16 | TCP connect() 타임아웃 설정 | HIGH | **안전** | 1시간 |
+| 17 | PlcDeviceUnInit 반환값 초기화 | HIGH | **안전** | 30분 |
+| 18 | CreateThread -> _beginthreadex 교체 | HIGH | **안전** | 1시간 |
+| 19 | WaitForSingleObject 타임아웃 후 처리 개선 | HIGH | **안전** | 1시간 |
+| 20 | GetWindowLong -> GetWindowLongPtr 교체 | HIGH | **안전** | 2시간 |
+| 21 | **CreateFileMapping INVALID_HANDLE_VALUE 사용** | HIGH | **안전** | 10분 |
+| 22 | **ComDeviceSharedMemory NULL 검사 추가** | HIGH | **안전** | 30분 |
+| 23 | **ScanWorkMemory ANSI/Unicode 불일치 수정** | HIGH | **안전** | 1시간 |
+| 24 | **WM_DESTROY 핸들러 주석 해제** | HIGH | **안전** | 30분 |
+| 25 | RS-232 Busy-Wait -> 고해상도 타이머 교체 | HIGH | **주의** - 타이밍 민감한 프로토콜 테스트 필요 | 2시간 |
+| 26 | PlcDeviceClearTCPIP 벌크 읽기 | HIGH | **안전** | 30분 |
+| 27 | StackChar(5000) 버퍼 크기 검증/확대 | HIGH | **안전** | 1시간 |
+| 28 | **Pro_main.cpp ProtocolWriteWord NULL 검사 수정** | HIGH | **안전** - 단순 오타 수정 | 10분 |
+| 29 | **UDP SocketUnPrepare Dead Code 수정** | HIGH | **주의** - 소켓 정리 후 재연결 동작 확인 필요 | 30분 |
+| 30 | **공유 메모리 보안 속성(ACL) 설정** | HIGH | **위험** - 다른 Autobase 모듈과 동시 수정 필요 | 설계 필요 |
+| 31 | **ComDeviceNetClient memcpy 크기 검증** | HIGH | **안전** | 30분 |
+| 32 | ~~Pro_main.cpp 16진수 주소 atoi→strtol 교체~~ | ~~HIGH~~ INFO | **수정 금지** - 의도된 BCD 변환 | - |
+| 33 | PortThread.cpp 레거시 코드 정리 | MEDIUM | **안전** | 1시간 |
+| 34 | #pragma pack 포인터 구조체 분리 | MEDIUM | **주의** - 바이너리 호환성 확인 필요 | 설계 필요 |
+| 35 | 포트 인덱스 범위 검사 추가 | MEDIUM | **안전** | 1시간 |
+| 36 | ScanServer 인증 메커니즘 추가 | MEDIUM | **위험** - 기존 클라이언트 호환성 설계 필요 | 설계 필요 |
 
 ---
 
@@ -903,4 +907,18 @@ C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`), 멀티스레드/�
 4. **CRITICAL-10 (UDP 링버퍼 덮어쓰기)** - 고속 통신 시 데이터 무단 손실
 5. **CRITICAL-1 (`delete[]` 문제)** - 힙 커럽션으로 프로세스 크래시
 
-총 발견 건수: **CRITICAL 10건, HIGH 24건, MEDIUM 6건** = 40건
+## 수정 시 주의사항
+
+다음 항목은 수정 시 연쇄 영향이 있으므로 단독 수정을 피해야 합니다:
+
+1. **공유 메모리 ACL 추가 (순위 30)**: HMI, OPC서버, 이중화 모듈 등 Autobase 전체 시스템이
+   동일 공유 메모리에 접근합니다. ACL 추가 시 **모든 연관 프로세스를 동시에 수정**하지 않으면
+   기존 프로세스가 공유 메모리에 접근 불가하게 됩니다.
+
+2. **sprintf/atoi 주소 변환 (순위 32)**: BCD 스타일 주소 변환은 버전 3.05부터의 의도된 설계로,
+   **모든 내부 프로토콜(약 20개)이 이 변환된 주소를 기대합니다. 절대 수정하면 안 됩니다.**
+
+3. **VIP 스캔 static 변수 (순위 6)**: 현재 전체 포트에서 static 공유. 포트별 분리 시
+   VIP 스캔 동작이 달라지므로 원래 의도 확인 후 수정해야 합니다.
+
+총 발견 건수: **CRITICAL 10건, HIGH 23건, MEDIUM 6건, INFO 1건** = 40건
