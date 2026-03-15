@@ -54,6 +54,8 @@ namespace Studio
         private ToolStripMenuItem ungroupToolStripMenuItem;
         private ToolStripMenuItem mergeToBitmapToolStripMenuItem;
         private ToolStripMenuItem unmergeBitmapToolStripMenuItem;
+        private ToolStripMenuItem mergeToBitmapSimpleToolStripMenuItem;
+        private ToolStripMenuItem unmergeBitmapSimpleToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItemZoom10;
@@ -248,6 +250,8 @@ namespace Studio
             this.ungroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mergeToBitmapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unmergeBitmapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeToBitmapSimpleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unmergeBitmapSimpleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemZoom10 = new System.Windows.Forms.ToolStripMenuItem();
@@ -320,6 +324,8 @@ namespace Studio
             this.ungroupToolStripMenuItem,
             this.mergeToBitmapToolStripMenuItem,
             this.unmergeBitmapToolStripMenuItem,
+            this.mergeToBitmapSimpleToolStripMenuItem,
+            this.unmergeBitmapSimpleToolStripMenuItem,
             this.toolStripSeparator3,
             this.toolStripMenuItem1,
             this.toolStripSeparator4,
@@ -696,6 +702,20 @@ namespace Studio
             this.unmergeBitmapToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.unmergeBitmapToolStripMenuItem.Text = "Unmerge Bitmap";
             this.unmergeBitmapToolStripMenuItem.Click += new System.EventHandler(this.unmergeBitmapToolStripMenuItem_Click);
+            //
+            // mergeToBitmapSimpleToolStripMenuItem
+            //
+            this.mergeToBitmapSimpleToolStripMenuItem.Name = "mergeToBitmapSimpleToolStripMenuItem";
+            this.mergeToBitmapSimpleToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.mergeToBitmapSimpleToolStripMenuItem.Text = "Merge to Bitmap (CE)";
+            this.mergeToBitmapSimpleToolStripMenuItem.Click += new System.EventHandler(this.mergeToBitmapSimpleToolStripMenuItem_Click);
+            //
+            // unmergeBitmapSimpleToolStripMenuItem
+            //
+            this.unmergeBitmapSimpleToolStripMenuItem.Name = "unmergeBitmapSimpleToolStripMenuItem";
+            this.unmergeBitmapSimpleToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.unmergeBitmapSimpleToolStripMenuItem.Text = "Unmerge Bitmap (CE)";
+            this.unmergeBitmapSimpleToolStripMenuItem.Click += new System.EventHandler(this.unmergeBitmapSimpleToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -4103,6 +4123,16 @@ namespace Studio
             ClassStudioEdit.EditUnmergeBitmap(this);
         }
 
+        private void mergeToBitmapSimpleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClassStudioEdit.EditMergeToBitmapSimple(this);
+        }
+
+        private void unmergeBitmapSimpleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClassStudioEdit.EditUnmergeBitmapSimple(this);
+        }
+
         private void toolStripMenuItemZoom10_Click(object sender, EventArgs e)
         {
             OpticGo(10);
@@ -4192,6 +4222,8 @@ namespace Studio
             this.ungroupToolStripMenuItem.Enabled = ClassStudioEdit.IsPossibleEditUnGroup(this);
             this.mergeToBitmapToolStripMenuItem.Enabled = ClassStudioEdit.IsPossibleEditMergeToBitmap(this);
             this.unmergeBitmapToolStripMenuItem.Enabled = ClassStudioEdit.IsPossibleEditUnmergeBitmap(this);
+            this.mergeToBitmapSimpleToolStripMenuItem.Enabled = ClassStudioEdit.IsPossibleEditMergeToBitmapSimple(this);
+            this.unmergeBitmapSimpleToolStripMenuItem.Enabled = ClassStudioEdit.IsPossibleEditUnmergeBitmapSimple(this);
 
             string title = "";
             undoToolStripMenuItem.Enabled = ClassStudioEditUndo.IsPossibleEditUndo(this, ref title);

@@ -69,7 +69,8 @@ namespace GraphicModule
         DemandChart,
         BarcodeDisplay,  //26-03-09 바코드/QR 표시 오브젝트
         BarcodeScanner,  //26-03-09 바코드 스캐너 상태 오브젝트
-        MergedBitmap     //26-03-14 정적 오브젝트 Bitmap 병합
+        MergedBitmap,     //26-03-14 정적 오브젝트 Bitmap 병합
+        MergedBitmapSimple //26-03-15 CE호환 정적 오브젝트 Bitmap 병합
     }
 	/// <summary>
 	/// Summary description for ObjectType.

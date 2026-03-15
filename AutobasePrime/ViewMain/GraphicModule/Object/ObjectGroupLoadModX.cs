@@ -507,7 +507,7 @@ namespace GraphicModule
 		{
 			LoadObjectFromModX load = new LoadObjectFromModX(ocp);
 
-			if(load.run(reader, command)) 
+			if(load.run(reader, command))
 			{
 				ObjectArgsBitmap args = new ObjectArgsBitmap();
 				CommaTextReader comma = new CommaTextReader();
@@ -516,8 +516,17 @@ namespace GraphicModule
 				args.nOverlayMethod = load.nOverlayMethod;
                 args.nRotateFlip = load.nRotateFlip;
 
-				parent.AddObject(new ObjectBitmap(ocp, form, load.rRect, load.eID, load.objGeneral,
-					args));
+				// CE 호환 병합 Bitmap 감지: MergedOriginalData가 있으면 ObjectMergedBitmapSimple로 생성
+				if (load.mergedOriginalData != null && load.nMergedOriginalCount > 0)
+				{
+					parent.AddObject(new ObjectMergedBitmapSimple(ocp, form, load.rRect, load.eID, load.objGeneral,
+						args, load.mergedOriginalData, load.nMergedOriginalCount));
+				}
+				else
+				{
+					parent.AddObject(new ObjectBitmap(ocp, form, load.rRect, load.eID, load.objGeneral,
+						args));
+				}
 			}
 		}
 

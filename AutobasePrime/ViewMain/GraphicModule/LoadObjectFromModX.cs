@@ -56,6 +56,10 @@ namespace GraphicModule
 
 		public int		nOverlayMethod;
         public int      nRotateFlip = 0;
+
+        // CE 호환 Bitmap 병합 데이터 (ObjectBitmap으로 저장된 MergedBitmapSimple에서 사용)
+        public int nMergedOriginalCount = 0;
+        public byte[] mergedOriginalData = null;
 		//public int		nTagDigitalOutputMethod;
 		//public int		nTagDigitalOutputDelayTime;
 		public MOUSE_RESPONSE_STRUCT mouseResponse = new MOUSE_RESPONSE_STRUCT();
@@ -453,6 +457,20 @@ namespace GraphicModule
                 {
                     comma.GetInt(ref nOverlayMethod);
                     comma.GetInt(ref nRotateFlip);
+                }
+                else if (String.Compare(buf, "MergedOriginalCount") == 0)
+                {
+                    comma.GetInt(ref nMergedOriginalCount);
+                }
+                else if (String.Compare(buf, "MergedOriginalData") == 0)
+                {
+                    string base64 = "";
+                    comma.GetString(ref base64);
+                    if (!string.IsNullOrEmpty(base64))
+                    {
+                        try { mergedOriginalData = Convert.FromBase64String(base64); }
+                        catch { mergedOriginalData = null; }
+                    }
                 }
                 else if (String.Compare(buf, "LogFont") == 0)
                 {
