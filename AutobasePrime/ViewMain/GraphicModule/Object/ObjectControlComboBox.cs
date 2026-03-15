@@ -223,8 +223,8 @@ namespace GraphicModule
 
 				RECT r = new RECT();
 
-                Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2);
-                DrawClass.PushBox2(g, x1, y1, x2, y1 + cyChar + 1, brushback);
+                using (Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2))
+                    DrawClass.PushBox2(g, x1, y1, x2, y1 + cyChar + 1, brushback);
 
 				r.left = x1+1;
 				r.top =  y1+1;
@@ -235,12 +235,13 @@ namespace GraphicModule
 
 				str = objGeneral.GetClassName();
 
-				StringFormat format = new StringFormat();
-				format.Alignment = StringAlignment.Near;
-				format.LineAlignment = StringAlignment.Center;
-                Brush brush = new SolidBrush(this.RunColorText);
-
-				DrawClass.DrawText(g, str, font, brush, r, format);
+				using (StringFormat format = new StringFormat())
+				using (Brush brush = new SolidBrush(this.RunColorText))
+				{
+					format.Alignment = StringAlignment.Near;
+					format.LineAlignment = StringAlignment.Center;
+					DrawClass.DrawText(g, str, font, brush, r, format);
+				}
 
 				if((objArgs.dwWindowStyle & EnumWindowStyleFlags.CBS_DROPDOWNLIST) > 0) 
 				{

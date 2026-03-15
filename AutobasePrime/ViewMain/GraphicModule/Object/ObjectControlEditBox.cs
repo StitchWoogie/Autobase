@@ -331,8 +331,8 @@ namespace GraphicModule
                     g.DrawRectangle(Pens.LightGray, x1, y1, x2 - x1 + 1, y2 - y1 + 1);
 				}
 
-                Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2);
-				DrawClass.gcls(g, x1+1, y1+1, x2-1, y2-1, brushback);
+                using (Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2))
+					DrawClass.gcls(g, x1+1, y1+1, x2-1, y2-1, brushback);
 
 				r.left = x1+1;
 				r.top =  y1+1;
@@ -343,19 +343,19 @@ namespace GraphicModule
 
 				str = objGeneral.GetClassName();
 
-				StringFormat format = new StringFormat();
+				using (StringFormat format = new StringFormat())
+				using (Brush brush = new SolidBrush(this.RunColorText))
+				{
+					if(objArgs.nHorzAlign == 1)
+						format.Alignment = StringAlignment.Center;
+					else if (objArgs.nHorzAlign == 2)
+						format.Alignment = StringAlignment.Far;
+					else
+						format.Alignment = StringAlignment.Near;
 
-                if(objArgs.nHorzAlign == 1)
-				    format.Alignment = StringAlignment.Center;
-                else if (objArgs.nHorzAlign == 2)
-                    format.Alignment = StringAlignment.Far;
-                else
-                    format.Alignment = StringAlignment.Near;
-
-				format.LineAlignment = StringAlignment.Center;
-				Brush brush = new SolidBrush(this.RunColorText);
-
-				DrawClass.DrawText(g, str, font, brush, r, format);
+					format.LineAlignment = StringAlignment.Center;
+					DrawClass.DrawText(g, str, font, brush, r, format);
+				}
 			}
 
             else if (TotalConfig.defineMode == EnumDefineMode.MODE_RUN)

@@ -161,17 +161,18 @@ namespace GraphicModule
 
 				RECT r = new RECT();
 
-                Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2);
-				DrawClass.PopBox2(g, x1, y1, x2, y2, brushback);
+                using (Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2))
+					DrawClass.PopBox2(g, x1, y1, x2, y2, brushback);
 
 				string buf;
 				int i, y;
 
-				StringFormat format = new StringFormat();
-				format.Alignment = StringAlignment.Near;
-				format.LineAlignment = StringAlignment.Near;
-				format.FormatFlags |= StringFormatFlags.NoWrap;
-				Brush brush = new SolidBrush(RunColorText);
+				using (StringFormat format = new StringFormat())
+				using (Brush brush = new SolidBrush(RunColorText))
+				{
+					format.Alignment = StringAlignment.Near;
+					format.LineAlignment = StringAlignment.Near;
+					format.FormatFlags |= StringFormatFlags.NoWrap;
 				Color altColor = Color.FromArgb(245, 248, 252);
 
 				int drawY2 = y2;
@@ -242,16 +243,19 @@ namespace GraphicModule
 
 					int pageCount = objArgs.nPageSize > 0 ? (100 / objArgs.nPageSize + 1) : 1;
 					string pageText = String.Format("<  1/{0}  >", pageCount);
-					StringFormat sfPage = new StringFormat();
-					sfPage.Alignment = StringAlignment.Far;
-					sfPage.LineAlignment = StringAlignment.Center;
+					using (StringFormat sfPage = new StringFormat())
+					{
+						sfPage.Alignment = StringAlignment.Far;
+						sfPage.LineAlignment = StringAlignment.Center;
 					RECT rPage = new RECT();
 					rPage.left = x1;
 					rPage.top = barY;
 					rPage.right = x2 - 4;
 					rPage.bottom = y2;
-					DrawClass.DrawText(g, pageText, font, brush, rPage, sfPage);
+						DrawClass.DrawText(g, pageText, font, brush, rPage, sfPage);
+					} // using sfPage
 				}
+				} // using format + brush
 			}
             else if (TotalConfig.defineMode == EnumDefineMode.MODE_RUN)
             {

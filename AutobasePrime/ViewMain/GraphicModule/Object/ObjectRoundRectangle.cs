@@ -244,32 +244,34 @@ namespace GraphicModule
             ex(x1, y1, x2, y2, out polygon, out polyatr, round_x, round_y);
             //ex(x1, y1, x2, y2, out polygon, out polyatr, objArgs.round_x, objArgs.round_y);
 
-            GraphicsPath path = new GraphicsPath(polygon, polyatr);
-
-            if (nLineOption == 0 && nFillOption == 0)
+            using (GraphicsPath path = new GraphicsPath(polygon, polyatr))
             {
-                nLineOption = 1;
-                nFillOption = 1;
-            }
-
-            if (nFillOption != 0)
-            {
-                Brush brush = ObjectRectangle.MakePublicBrush(RunColorFill, x1, y1, x2, y2);
-                g.FillPath(brush, path);
-            }
-
-            if (nLineOption != 0)
-            {
-                Pen pen = new Pen(RunColorLine, bthick);
-                pen.DashStyle = ObjectRectangle.GetDashStyle(nLineOption);
-
-                try
+                if (nLineOption == 0 && nFillOption == 0)
                 {
-                    g.DrawPath(pen, path);          // Start부터 Close까지 포인트의 이동이 전혀 없는 경우 메모리 부족 Exception이 발생한다. (FillPath는 상관없다.) 레이어에서 작은 Preview이미지를 그릴 때 발생한다.
+                    nLineOption = 1;
+                    nFillOption = 1;
                 }
-                catch
-                {
 
+                if (nFillOption != 0)
+                {
+                    using (Brush brush = ObjectRectangle.MakePublicBrush(RunColorFill, x1, y1, x2, y2))
+                        g.FillPath(brush, path);
+                }
+
+                if (nLineOption != 0)
+                {
+                    using (Pen pen = new Pen(RunColorLine, bthick))
+                    {
+                        pen.DashStyle = ObjectRectangle.GetDashStyle(nLineOption);
+
+                        try
+                        {
+                            g.DrawPath(pen, path);          // Start부터 Close까지 포인트의 이동이 전혀 없는 경우 메모리 부족 Exception이 발생한다. (FillPath는 상관없다.) 레이어에서 작은 Preview이미지를 그릴 때 발생한다.
+                }
+                        catch
+                        {
+                        }
+                    }
                 }
             }
             

@@ -260,8 +260,8 @@ namespace GraphicModule
                     DrawClass.PushRectangle2(g, x1, y1, x2, y2);
                 //}
 
-                Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2);
-                DrawClass.gcls(g, x1 + 1, y1 + 1, x2 - 1, y2 - 1, brushback);
+                using (Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2))
+                    DrawClass.gcls(g, x1 + 1, y1 + 1, x2 - 1, y2 - 1, brushback);
 
                 r.left = x1 + 1;
                 r.top = y1 + 1;
@@ -272,12 +272,13 @@ namespace GraphicModule
 
                 str = String.Format("{0}", "TabControl");
 
-                StringFormat format = new StringFormat();
-                format.Alignment = StringAlignment.Near;
-                format.LineAlignment = StringAlignment.Center;
-                Brush brush = new SolidBrush(this.RunColorText);
-
-                DrawClass.DrawText(g, str, font, brush, r, format);
+                using (StringFormat format = new StringFormat())
+                using (Brush brush = new SolidBrush(this.RunColorText))
+                {
+                    format.Alignment = StringAlignment.Near;
+                    format.LineAlignment = StringAlignment.Center;
+                    DrawClass.DrawText(g, str, font, brush, r, format);
+                }
             }
 
             else if (TotalConfig.defineMode == EnumDefineMode.MODE_RUN)

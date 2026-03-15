@@ -2204,23 +2204,24 @@ namespace GraphicModule
 			x2 += eID.expand.structMouseZone.x2;
 			y2 += eID.expand.structMouseZone.y2;
 
-			Pen hPenWhite = new Pen(Color.White, 1);
-			Pen hPenBlack = new Pen(Color.Black, 1);
+			using (Pen hPenWhite = new Pen(Color.White, 1))
+			using (Pen hPenBlack = new Pen(Color.Black, 1))
+			{
+				g.DrawLine(hPenWhite, x1, y1, x2, y1);
+				g.DrawLine(hPenWhite, x2, y1, x2, y2);
+				g.DrawLine(hPenWhite, x2, y2, x1, y2);
+				g.DrawLine(hPenWhite, x1, y2, x1, y1);
 
-			g.DrawLine(hPenWhite, x1, y1, x2, y1);
-			g.DrawLine(hPenWhite, x2, y1, x2, y2);
-			g.DrawLine(hPenWhite, x2, y2, x1, y2);
-			g.DrawLine(hPenWhite, x1, y2, x1, y1);
+				g.DrawLine(hPenBlack, x1-1, y1-1, x2+1, y1-1);
+				g.DrawLine(hPenBlack, x2+1, y1-1, x2+1, y2+1);
+				g.DrawLine(hPenBlack, x2+1, y2+1, x1-1, y2+1);
+				g.DrawLine(hPenBlack, x1-1, y2+1, x1-1, y1-1);
 
-			g.DrawLine(hPenBlack, x1-1, y1-1, x2+1, y1-1);
-			g.DrawLine(hPenBlack, x2+1, y1-1, x2+1, y2+1);
-			g.DrawLine(hPenBlack, x2+1, y2+1, x1-1, y2+1);
-			g.DrawLine(hPenBlack, x1-1, y2+1, x1-1, y1-1);
-
-			g.DrawLine(hPenBlack, x1+1, y1+1, x2-1, y1+1);
-			g.DrawLine(hPenBlack, x2-1, y1+1, x2-1, y2-1);
-			g.DrawLine(hPenBlack, x2-1, y2-1, x1+1, y2-1);
-			g.DrawLine(hPenBlack, x1+1, y2-1, x1+1, y1+1);
+				g.DrawLine(hPenBlack, x1+1, y1+1, x2-1, y1+1);
+				g.DrawLine(hPenBlack, x2-1, y1+1, x2-1, y2-1);
+				g.DrawLine(hPenBlack, x2-1, y2-1, x1+1, y2-1);
+				g.DrawLine(hPenBlack, x1+1, y2-1, x1+1, y1+1);
+			}
 		}
 
         public bool IsMouseInViewZone(MouseEventArgs e)

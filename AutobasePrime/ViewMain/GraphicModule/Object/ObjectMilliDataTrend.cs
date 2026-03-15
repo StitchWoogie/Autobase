@@ -7612,6 +7612,7 @@ namespace GraphicModule
 
 
 
+            pen.Dispose();
         }
 
 
@@ -7980,7 +7981,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), drawX, dy1 + 1, drawX, dy2);
+                        using (Pen linePen1 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen1, drawX, dy1 + 1, drawX, dy2);
 
 
 
@@ -8016,7 +8018,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, font, new SolidBrush(pli.color), x, dy1);
+                    using (Brush textBrush1 = new SolidBrush(pli.color))
+                        g.DrawString(buf, font, textBrush1, x, dy1);
 
 
 
@@ -8104,7 +8107,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), drawX, dy1 + 1, drawX, dy2);
+                        using (Pen linePen2 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen2, drawX, dy1 + 1, drawX, dy2);
 
 
 
@@ -8140,7 +8144,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, font, new SolidBrush(pli.color), x, dy1);
+                    using (Brush textBrush2 = new SolidBrush(pli.color))
+                        g.DrawString(buf, font, textBrush2, x, dy1);
 
 
 
@@ -8228,7 +8233,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), drawX, dy1 + 1, drawX, dy2);
+                        using (Pen linePen3 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen3, drawX, dy1 + 1, drawX, dy2);
 
 
 
@@ -8264,7 +8270,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, font, new SolidBrush(pli.color), x, dy1);
+                    using (Brush textBrush3 = new SolidBrush(pli.color))
+                        g.DrawString(buf, font, textBrush3, x, dy1);
 
 
 
@@ -8352,7 +8359,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), drawX, dy1 + 1, drawX, dy2);
+                        using (Pen linePen4 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen4, drawX, dy1 + 1, drawX, dy2);
 
 
 
@@ -8388,7 +8396,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, font, new SolidBrush(pli.color), x, dy1);
+                    using (Brush textBrush4 = new SolidBrush(pli.color))
+                        g.DrawString(buf, font, textBrush4, x, dy1);
 
 
 
@@ -8476,7 +8485,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), drawX, dy1 + 1, drawX, dy2);
+                        using (Pen linePen5 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen5, drawX, dy1 + 1, drawX, dy2);
 
 
 
@@ -8512,7 +8522,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, font, new SolidBrush(pli.color), x, dy1);
+                    using (Brush textBrush5 = new SolidBrush(pli.color))
+                        g.DrawString(buf, font, textBrush5, x, dy1);
 
 
 
@@ -8612,7 +8623,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), drawX, dy1 + 1, drawX, dy2);
+                        using (Pen linePen6 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen6, drawX, dy1 + 1, drawX, dy2);
 
 
 
@@ -8648,7 +8660,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, font, new SolidBrush(pli.color), x, dy1);
+                    using (Brush textBrush6 = new SolidBrush(pli.color))
+                        g.DrawString(buf, font, textBrush6, x, dy1);
 
 
 
@@ -8740,7 +8753,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), drawX, dy1 + 1, drawX, dy2);
+                        using (Pen linePen7 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen7, drawX, dy1 + 1, drawX, dy2);
 
 
 
@@ -8776,7 +8790,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, font, new SolidBrush(pli.color), x, dy1);
+                    using (Brush textBrush7 = new SolidBrush(pli.color))
+                        g.DrawString(buf, font, textBrush7, x, dy1);
 
 
 
@@ -8788,6 +8803,7 @@ namespace GraphicModule
 
 
 
+            pen.Dispose();
         }
 
 
@@ -8872,7 +8888,7 @@ namespace GraphicModule
 
 
 
-            Brush brush = new SolidBrush(Color.Black);
+            // Brush brush removed - was never used (GDI leak)
 
 
 
@@ -9360,6 +9376,7 @@ namespace GraphicModule
 
 
 
+                    hPenLimit.Dispose();
                 }
 
 
@@ -10032,6 +10049,7 @@ namespace GraphicModule
 
 
 
+                pen.Dispose();
             }
 
 
@@ -13252,6 +13270,7 @@ namespace GraphicModule
 
 
 
+            brush.Dispose();
         }
 
 
@@ -14096,6 +14115,7 @@ namespace GraphicModule
 
 
 
+                brush.Dispose();
                 brush = new SolidBrush(memberDisplay.color);
 
 
@@ -14436,6 +14456,8 @@ namespace GraphicModule
 
 
 
+            format.Dispose();
+            brush.Dispose();
         }
 
 
@@ -15744,6 +15766,7 @@ namespace GraphicModule
 
 
 
+                        brush.Dispose();
                         brush = new SolidBrush(objArgs.pub.colorPanelText);
 
 
@@ -15760,6 +15783,7 @@ namespace GraphicModule
 
 
 
+                        brush.Dispose();
                         brush = new SolidBrush(member.color);
 
 
@@ -16040,6 +16064,7 @@ namespace GraphicModule
 
 
 
+                    brush.Dispose();
                     brush = new SolidBrush(objArgs.pub.colorPanelText);
 
 
@@ -16176,6 +16201,7 @@ namespace GraphicModule
 
 
 
+                    brush.Dispose();
                     brush = new SolidBrush(objArgs.pub.colorPanelText);
 
 
@@ -16320,6 +16346,7 @@ namespace GraphicModule
 
 
 
+                    brush.Dispose();
                     brush = new SolidBrush(objArgs.pub.colorPanelText);
 
 
@@ -16464,6 +16491,7 @@ namespace GraphicModule
 
 
 
+                    brush.Dispose();
                     brush = new SolidBrush(objArgs.pub.colorPanelText);
 
 
@@ -16672,6 +16700,8 @@ namespace GraphicModule
 
 
 
+            format.Dispose();
+            brush.Dispose();
         }
 
 
@@ -17000,6 +17030,8 @@ namespace GraphicModule
 
 
 
+            pen.Dispose();
+            brush.Dispose();
         }
 
 
@@ -17840,7 +17872,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), pos, gy1 + 1, pos, gy2);
+                        using (Pen linePen8 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen8, pos, gy1 + 1, pos, gy2);
 
 
 
@@ -17888,7 +17921,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, MakeFont(), new SolidBrush(pli.color), x, gy1);
+                    using (Brush textBrush8 = new SolidBrush(pli.color))
+                        g.DrawString(buf, MakeFont(), textBrush8, x, gy1);
 
 
 
@@ -17972,7 +18006,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), pos, gy1 + 1, pos, gy2);
+                        using (Pen linePen9 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen9, pos, gy1 + 1, pos, gy2);
 
 
 
@@ -18020,7 +18055,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, MakeFont(), new SolidBrush(pli.color), x, gy1);
+                    using (Brush textBrush9 = new SolidBrush(pli.color))
+                        g.DrawString(buf, MakeFont(), textBrush9, x, gy1);
 
 
 
@@ -18104,7 +18140,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), pos, gy1 + 1, pos, gy2);
+                        using (Pen linePen10 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen10, pos, gy1 + 1, pos, gy2);
 
 
 
@@ -18152,7 +18189,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, MakeFont(), new SolidBrush(pli.color), x, gy1);
+                    using (Brush textBrush10 = new SolidBrush(pli.color))
+                        g.DrawString(buf, MakeFont(), textBrush10, x, gy1);
 
 
 
@@ -18236,7 +18274,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), pos, gy1 + 1, pos, gy2);
+                        using (Pen linePen11 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen11, pos, gy1 + 1, pos, gy2);
 
 
 
@@ -18284,7 +18323,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, MakeFont(), new SolidBrush(pli.color), x, gy1);
+                    using (Brush textBrush11 = new SolidBrush(pli.color))
+                        g.DrawString(buf, MakeFont(), textBrush11, x, gy1);
 
 
 
@@ -18368,7 +18408,8 @@ namespace GraphicModule
 
 
 
-                        g.DrawLine(new Pen(pli.color, pli.thick * 2f), pos, gy1 + 1, pos, gy2);
+                        using (Pen linePen12 = new Pen(pli.color, pli.thick * 2f))
+                            g.DrawLine(linePen12, pos, gy1 + 1, pos, gy2);
 
 
 
@@ -18416,7 +18457,8 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(buf, MakeFont(), new SolidBrush(pli.color), x, gy1);
+                    using (Brush textBrush12 = new SolidBrush(pli.color))
+                        g.DrawString(buf, MakeFont(), textBrush12, x, gy1);
 
 
 
@@ -18564,6 +18606,7 @@ namespace GraphicModule
 
 
 
+            pen.Dispose();
         }
 
 
@@ -20644,6 +20687,9 @@ namespace GraphicModule
 
 
 
+            brush_fill.Dispose();
+            brush.Dispose();
+            format.Dispose();
         }
 
 
@@ -21140,6 +21186,7 @@ namespace GraphicModule
 
 
 
+            pen.Dispose();
         }
 
 
@@ -29548,7 +29595,8 @@ namespace GraphicModule
 
 
 
-                        g.FillRectangle(new SolidBrush(labelBackColor), labelX, labelY, labelWidth, labelHeight);
+                        using (Brush fillBrush = new SolidBrush(labelBackColor))
+                            g.FillRectangle(fillBrush, labelX, labelY, labelWidth, labelHeight);
 
 
 
@@ -29792,15 +29840,19 @@ namespace GraphicModule
 
 
 
-                        g.DrawString(labelText, labelFont, new SolidBrush(labelTextColor),
-
-
-
+                        using (Brush lblBrush = new SolidBrush(labelTextColor))
+                        using (StringFormat lblFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
+                            g.DrawString(labelText, labelFont, lblBrush,
                             new Rectangle(labelX, labelY, labelWidth, labelHeight),
+                            lblFormat);
 
 
 
-                            new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+
+
+
+
 
 
 
@@ -30028,7 +30080,8 @@ namespace GraphicModule
 
 
 
-                        g.FillRectangle(new SolidBrush(labelBackColor), labelX, labelY, labelWidth, labelHeight);
+                        using (Brush fillBrush = new SolidBrush(labelBackColor))
+                            g.FillRectangle(fillBrush, labelX, labelY, labelWidth, labelHeight);
 
 
 
@@ -30272,15 +30325,19 @@ namespace GraphicModule
 
 
 
-                        g.DrawString(labelText, labelFont, new SolidBrush(labelTextColor),
-
-
-
+                        using (Brush lblBrush = new SolidBrush(labelTextColor))
+                        using (StringFormat lblFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
+                            g.DrawString(labelText, labelFont, lblBrush,
                             new Rectangle(labelX, labelY, labelWidth, labelHeight),
+                            lblFormat);
 
 
 
-                            new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+
+
+
+
 
 
 
@@ -30784,7 +30841,8 @@ namespace GraphicModule
 
 
 
-                    g.FillRectangle(new SolidBrush(labelBackColor), labelRect);
+                    using (Brush fillBrush = new SolidBrush(labelBackColor))
+                        g.FillRectangle(fillBrush, labelRect);
 
 
 
@@ -31028,15 +31086,19 @@ namespace GraphicModule
 
 
 
-                    g.DrawString(labelText, labelFont, new SolidBrush(labelTextColor),
-
-
-
+                    using (Brush lblBrush = new SolidBrush(labelTextColor))
+                    using (StringFormat lblFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
+                        g.DrawString(labelText, labelFont, lblBrush,
                         new Rectangle(labelX + 5, labelY + 5, labelWidth - 10, labelHeight - 10),
+                        lblFormat);
 
 
 
-                        new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+
+
+
+
+
 
 
 

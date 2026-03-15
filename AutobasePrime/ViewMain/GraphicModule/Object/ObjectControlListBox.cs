@@ -422,8 +422,8 @@ namespace GraphicModule
 					DrawClass.PushRectangle2(g, x1, y1, x2, y2);
 				}
 
-                Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2);
-                DrawClass.gcls(g, x1 + 1, y1 + 1, x2 - 1, y2 - 1, brushback);
+                using (Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2))
+                    DrawClass.gcls(g, x1 + 1, y1 + 1, x2 - 1, y2 - 1, brushback);
 
 				if(objArgs.arrayListData != null && objArgs.arrayListData.Count > 0) 
 				{
@@ -438,11 +438,13 @@ namespace GraphicModule
 						r.right = x2-1;
 						r.bottom = y+cyChar;
 
-						StringFormat format = new StringFormat();
-						format.Alignment = StringAlignment.Near;
-						format.LineAlignment = StringAlignment.Center;
-
-						DrawClass.DrawText(g, buf, font, new SolidBrush(this.RunColorText), r, format);
+						using (StringFormat format = new StringFormat())
+						using (Brush textBrush = new SolidBrush(this.RunColorText))
+						{
+							format.Alignment = StringAlignment.Near;
+							format.LineAlignment = StringAlignment.Center;
+							DrawClass.DrawText(g, buf, font, textBrush, r, format);
+						}
 					}
 				}
 				else 
@@ -456,11 +458,13 @@ namespace GraphicModule
 
 					str = objGeneral.GetClassName();
 
-					StringFormat format = new StringFormat();
-					format.Alignment = StringAlignment.Center;
-					format.LineAlignment = StringAlignment.Center;
-
-                    DrawClass.DrawText(g, str, font, new SolidBrush(this.RunColorText), r, format);
+					using (StringFormat format = new StringFormat())
+					using (Brush textBrush = new SolidBrush(this.RunColorText))
+					{
+						format.Alignment = StringAlignment.Center;
+						format.LineAlignment = StringAlignment.Center;
+						DrawClass.DrawText(g, str, font, textBrush, r, format);
+					}
 				}
 			}
             else if (TotalConfig.defineMode == EnumDefineMode.MODE_RUN)

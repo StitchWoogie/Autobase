@@ -107,13 +107,12 @@ namespace GraphicModule
 			if(y1 > y2)	Tools.Temp(ref y1, ref y2);
 
 			Font font = MakeFont();
-			StringFormat format = new StringFormat();
-			Brush brush = new SolidBrush(RunColorText);
-
-			format.Alignment = StringAlignment.Near;
-			//format.LineAlignment = StringAlignment.Center;
-            
-            SafeException.SafeDrawString(g, GetDisplayText(), font, brush, x1, y1, format);
+			using (StringFormat format = new StringFormat())
+			using (Brush brush = new SolidBrush(RunColorText))
+			{
+				format.Alignment = StringAlignment.Near;
+				SafeException.SafeDrawString(g, GetDisplayText(), font, brush, x1, y1, format);
+			}
 		}
 
 		// Text의 값을 바꾸었거나 폰트를 바꾸었을때는 사각형의 오른쪽 아래의 크기만을 다시 계산하여야 한다.
@@ -148,8 +147,8 @@ namespace GraphicModule
 			float gab = 1.0f;
 			Font  font = new Font(logFont.lfFaceName, size, logFont.style);
 
-			Graphics g = form.CreateGraphics();
-
+			using (Graphics g = form.CreateGraphics())
+			{
 			if(Math.Abs(x2-x1) < Math.Abs(nRight-nLeft)) // 작아졌다.
 			{
 				while(true) 
@@ -191,6 +190,7 @@ namespace GraphicModule
 			nTop = y1;
 
 			RecalcRectSize(g);
+			} // using Graphics
 		}
 
         protected override void OnObjectSetText(string text)
@@ -213,10 +213,8 @@ namespace GraphicModule
             nLeft = nx1;
             nTop = ny1;
 
-            Graphics g = objCommonProperty.form.CreateGraphics();
-            RecalcRectSize(g); 
-
-            //base.EditRotateRight(nx1, ny1, nx2, ny2);
+            using (Graphics g = objCommonProperty.form.CreateGraphics())
+                RecalcRectSize(g);
         }
 
         public override void EditRotateLeft(int nx1, int ny1, int nx2, int ny2)
@@ -227,10 +225,8 @@ namespace GraphicModule
             nLeft = nx1;
             nTop = ny1;
 
-            Graphics g = objCommonProperty.form.CreateGraphics();
-            RecalcRectSize(g); 
-
-            //base.EditRotateLeft(nx1, ny1, nx2, ny2);
+            using (Graphics g = objCommonProperty.form.CreateGraphics())
+                RecalcRectSize(g);
         }
 
         protected override void DisplayPreviewObject(Graphics g, int x1, int y1, int x2, int y2, int thick)
@@ -248,9 +244,10 @@ namespace GraphicModule
                 font = new Font("Arial", height, logFont.style);
             }
 
-            Brush brush = new SolidBrush(RunColorText);
+            using (Brush brush = new SolidBrush(RunColorText))
+                SafeException.SafeDrawString(g, GetDisplayText(), font, brush, 0, 0);
 
-            SafeException.SafeDrawString(g, GetDisplayText(), font, brush, 0, 0);
+            font.Dispose();
         }
 
         public override void Dispose()

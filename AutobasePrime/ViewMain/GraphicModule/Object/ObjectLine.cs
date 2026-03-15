@@ -35,11 +35,11 @@ namespace GraphicModule
 		{
 			DrawClass draw = new DrawClass();
 	
-			Pen pen = new Pen(RunColorLine, bthick);
-
-			pen.DashStyle = ObjectRectangle.GetDashStyle(nLineOption);
-
-			g.DrawLine(pen, x1, y1, x2, y2);
+			using (Pen pen = new Pen(RunColorLine, bthick))
+			{
+				pen.DashStyle = ObjectRectangle.GetDashStyle(nLineOption);
+				g.DrawLine(pen, x1, y1, x2, y2);
+			}
 		}
 
 		public override void ObjectSave(CommaTextWriter writer)

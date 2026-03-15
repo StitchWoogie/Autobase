@@ -885,7 +885,6 @@ namespace GraphicModule
 			bool moveto_flag = false;
 			int move_x=0, move_y=0;
 			Font font = MakeFont();
-			brush = new SolidBrush(Color.Black);
 			int result_y;
 
 			point_radios = (gy2-gy1+1)*objArgs.pub.wPointSize/1000;
@@ -932,8 +931,8 @@ namespace GraphicModule
 
                 if (member.nType == EnumTagType.AI)
                 {	// AI 일때만 경계치 표시
-                    Pen hPenLimit = new Pen(member.color);
-                    //hPenLimit.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+                    using (Pen hPenLimit = new Pen(member.color))
+                    {
 
                     if ((member.wFlags & 0x0001) > 0)
                     {	// hihi
@@ -1015,9 +1014,11 @@ namespace GraphicModule
 
                         g.DrawLine(hPenLimit, gx1 + 1, y, gx2, y);
                     }
+                    } // using hPenLimit
                 }
-                                
-                Pen pen = new Pen(member.color, member.nLineThick);
+
+                using (Pen pen = new Pen(member.color, member.nLineThick))
+                {
 
                 pos = nBufPos + 1;
                 moveto_flag = false;
@@ -1206,6 +1207,7 @@ namespace GraphicModule
                     FlushGraphSegment(g, pen, continuousPoints, member.nGraphType, baseY, member.color, member.nPointType, point_radios);
                     continuousPoints.Clear();
                 }
+                } // using pen
             }
 		}
 
@@ -1281,9 +1283,8 @@ namespace GraphicModule
 				r.right = x2*(gx2-gx1)/(objArgs.wShowUnit-1)+gx1;
 			}
 
-			Brush brush_fill = new SolidBrush(Color.FromArgb(0x80, objArgs.lColorGuideLine));
-			
-			g.FillRectangle(brush_fill, r.left, r.top, r.right-r.left, r.bottom-r.top);
+			using (Brush brush_fill = new SolidBrush(Color.FromArgb(0x80, objArgs.lColorGuideLine)))
+				g.FillRectangle(brush_fill, r.left, r.top, r.right-r.left, r.bottom-r.top);
 			//DrawClass.InvertRect(g, r.left, r.top, r.right, r.bottom);
 
 			if(bDisplayPointDate) 
@@ -1304,9 +1305,10 @@ namespace GraphicModule
 			int   displayed_pos_up = -1;
 			//int   displayed_pos_down = -1;
 
-			Brush brush = new SolidBrush(RunColorText);
 			Font font = MakeFont();
-			StringFormat format = new StringFormat();
+			using (Brush brush = new SolidBrush(RunColorText))
+			using (StringFormat format = new StringFormat())
+			{
 
 			DateTime dt = new DateTime(dtLastData.Ticks);
 
@@ -1400,6 +1402,7 @@ namespace GraphicModule
 					}
 				}
 			}
+			} // using brush + format
 		}
 
 		void DisplayDescriptionY(Graphics g, int x1, int y1, int x2, int y2, int gx1, int gy1, int gx2, int gy2)
@@ -1424,8 +1427,8 @@ namespace GraphicModule
 			TagDiClass di = null;
 			Font font = MakeFont();
 
-			StringFormat format = new StringFormat();
-
+			using (StringFormat format = new StringFormat())
+			{
 			format.Alignment = StringAlignment.Far;
 			format.LineAlignment = StringAlignment.Center;
 
@@ -1472,14 +1475,17 @@ namespace GraphicModule
 				rZone.top = gy2-(member.nLevelTo)*(gy2-gy1)/100;
 				rZone.bottom = gy2-(member.nLevelFrom)*(gy2-gy1)/100;
 
-                Brush brush = ObjectRectangle.MakePublicBrush(RunColorFill, rZone.left, rZone.top, rZone.right, rZone.bottom);
+                using (Brush fillBrush = ObjectRectangle.MakePublicBrush(RunColorFill, rZone.left, rZone.top, rZone.right, rZone.bottom))
+                {
                 //DrawClass.PushBox2(g, rZone.left, rZone.top, rZone.right, rZone.bottom, brush); 
 
-                if (TotalConfigProject.eProjectPlatform == EnumProjectPlatform.CE) DrawClass.PushBox2(g, rZone.left, rZone.top, rZone.right, rZone.bottom, brush); //CE업데이트시 삭제.
-                else if (IsBackBorder()) DrawClass.PushBox2(g, rZone.left, rZone.top, rZone.right, rZone.bottom, brush); //20250206 PSU 배경판 옵션 사용 추가
-                else { DrawClass.gcls(g, rZone.left - 2, rZone.top, rZone.right + 2, rZone.bottom, brush); } //배경판 미사용 시 pushbox 제거. 좌우 2씩 추가해야 요소 뒤 색상이 안보임.
+                if (TotalConfigProject.eProjectPlatform == EnumProjectPlatform.CE) DrawClass.PushBox2(g, rZone.left, rZone.top, rZone.right, rZone.bottom, fillBrush); //CE업데이트시 삭제.
+                else if (IsBackBorder()) DrawClass.PushBox2(g, rZone.left, rZone.top, rZone.right, rZone.bottom, fillBrush); //20250206 PSU 배경판 옵션 사용 추가
+                else { DrawClass.gcls(g, rZone.left - 2, rZone.top, rZone.right + 2, rZone.bottom, fillBrush); }
+                } //배경판 미사용 시 pushbox 제거. 좌우 2씩 추가해야 요소 뒤 색상이 안보임.
 
-				brush = new SolidBrush(memberDisplay.color);
+				using (Brush brush = new SolidBrush(memberDisplay.color))
+				{
 
 				real_size = (member.nLevelTo-member.nLevelFrom)*(gy2-gy1)/100;
 				if(member.bReverseY == 1)
@@ -1555,7 +1561,9 @@ namespace GraphicModule
 
                     SafeException.SafeDrawString(g, buf, font, brush, rt, format);
 				}
+				} // using brush
 			}
+			} // using format
 		}
 
 		int GetDisplayTimeDevide(int gx1, int gx2)
@@ -1580,13 +1588,13 @@ namespace GraphicModule
 			int   i;
 			int   time_devide = GetDisplayTimeDevide(gx1, gx2);
 
-			Pen pen = new Pen(objArgs.lColorGuideLine, 1);
-
-			for(i = 1; i < objArgs.wLevelDevide; i++) 
+			using (Pen pen = new Pen(objArgs.lColorGuideLine, 1))
 			{
-				pos = gy2-(gy2-gy1)*i/objArgs.wLevelDevide;
-				g.DrawLine(pen, gx1+1, pos, gx2, pos);
-			}
+				for(i = 1; i < objArgs.wLevelDevide; i++) 
+				{
+					pos = gy2-(gy2-gy1)*i/objArgs.wLevelDevide;
+					g.DrawLine(pen, gx1+1, pos, gx2, pos);
+				}
 
 			int w;
 
@@ -1612,6 +1620,7 @@ namespace GraphicModule
 					g.DrawLine(pen, pos, gy1+1, pos, gy2);
 				}
 			}
+			} // using pen
 		}
 
 		void DisplayTagColor(Graphics g, int ox1, int oy1, int ox2, int oy2, int gx1, int gy1, int gx2, int gy2)
@@ -1639,8 +1648,9 @@ namespace GraphicModule
 			r.right = x2;
 
 			Font font = MakeFont();
-            Brush brush = new SolidBrush(objArgs.pub.colorPanelText);
-			StringFormat format = new StringFormat();
+            using (Brush brush = new SolidBrush(objArgs.pub.colorPanelText))
+			using (StringFormat format = new StringFormat())
+			{
 			format.Alignment = StringAlignment.Center;
 			format.LineAlignment = StringAlignment.Center;
 
@@ -2010,6 +2020,7 @@ namespace GraphicModule
 
             // 이전 상태로 복원  20250206 PSU
             g.SmoothingMode = prevMode;
+			} // using brush + format
 		}
 
 		bool GetCursorValue(ANALOG_GRAPH_MEMBER member, out double curr, out double min, out double max)

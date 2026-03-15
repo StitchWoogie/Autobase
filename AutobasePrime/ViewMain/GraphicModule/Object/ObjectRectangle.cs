@@ -77,11 +77,11 @@ namespace GraphicModule
 			DrawClass.gcls(g, x2, y1, x2+thick, y2+thick, color);
 			*/
 
-			Pen pen = new Pen(color, thick);
-
-			pen.DashStyle = ObjectRectangle.GetDashStyle(nLineOption);
-
-			g.DrawRectangle(pen, x1, y1, x2-x1, y2-y1);
+			using (Pen pen = new Pen(color, thick))
+			{
+				pen.DashStyle = ObjectRectangle.GetDashStyle(nLineOption);
+				g.DrawRectangle(pen, x1, y1, x2-x1, y2-y1);
+			}
 		}
 
         // 기본 컬러 블랜드를 만든다.

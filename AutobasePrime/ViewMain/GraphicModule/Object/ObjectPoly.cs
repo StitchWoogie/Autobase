@@ -98,17 +98,19 @@ namespace GraphicModule
 					polygon[l].Y = y1+((polygon[l].Y-rPolySize.top )*(tar_sizey)/(org_sizey));
 			}
 
-			if(nFillOption > 0) 
+			if(nFillOption > 0)
 			{
-                Brush brush = ObjectRectangle.MakePublicBrush(RunColorFill, x1, y1, x2, y2);
-				g.FillPolygon(brush, polygon);
+				using (Brush brush = ObjectRectangle.MakePublicBrush(RunColorFill, x1, y1, x2, y2))
+					g.FillPolygon(brush, polygon);
 			}
 
-			if(nLineOption > 0) 
+			if(nLineOption > 0)
 			{
-				Pen pen = new Pen(RunColorLine, bthick);
-				pen.DashStyle = ObjectRectangle.GetDashStyle(nLineOption);
-				g.DrawPolygon(pen, polygon);
+				using (Pen pen = new Pen(RunColorLine, bthick))
+				{
+					pen.DashStyle = ObjectRectangle.GetDashStyle(nLineOption);
+					g.DrawPolygon(pen, polygon);
+				}
 			}
 		}
 

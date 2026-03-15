@@ -295,15 +295,15 @@ namespace GraphicModule
                 g.SetClip(clipRect);
 
                 // 배경 그리기
-                Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2);
-                DrawClass.PopBox2(g, x1, y1, x2, y2, brushback);
+                using (Brush brushback = ObjectRectangle.MakePublicBrush(RunColorBack, x1, y1, x2, y2))
+                    DrawClass.PopBox2(g, x1, y1, x2, y2, brushback);
 
                 Font font = MakeFont();
-                Brush textBrush = new SolidBrush(RunColorText);
+                Brush textBrush = new SolidBrush(RunColorText); // disposed below
 
                 int padding = 0; //padding 필요없음.
                 int lineHeight = (int)font.GetHeight() + 3;
-                StringFormat infoFormat = new StringFormat();
+                StringFormat infoFormat = new StringFormat(); // disposed below
 
                 // 실제 그리드 영역 (전체 영역 사용)
                 int gridY = y1 + padding;
@@ -352,6 +352,7 @@ namespace GraphicModule
                 {
                     columnHeaderFont = new Font("Arial", columnFontHeight, logFont.style);
                 }
+                // Note: columnHeaderFont is disposed at end of DisplayObject
                 int headerHeight = (int)columnHeaderFont.GetHeight() + 3;
 
                 // 데이터 영역 총 높이 계산
@@ -387,20 +388,14 @@ namespace GraphicModule
                 {
                     int rowY = gridY + headerHeight + (row * lineHeight);
 
-                    Brush rowBrush;
                     // 번갈아가는 행 색상 옵션이 켜져 있으면 적용
-                    if (objArgs.bUseAlternatingRowColors && row % 2 == 1)
+                    Color rowColor = (objArgs.bUseAlternatingRowColors && row % 2 == 1)
+                        ? objArgs.lAlternatingRowBackColor : objArgs.lCellBackColor;
+                    using (Brush rowBrush = new SolidBrush(rowColor))
                     {
-                        rowBrush = new SolidBrush(objArgs.lAlternatingRowBackColor);
+                        Rectangle rowRect = new Rectangle(contentX, rowY, x2 - contentX, lineHeight);
+                        g.FillRectangle(rowBrush, rowRect);
                     }
-                    else
-                    {
-                        rowBrush = new SolidBrush(objArgs.lCellBackColor);
-                    }
-
-                    // 행 배경색
-                    Rectangle rowRect = new Rectangle(contentX, rowY, x2 - contentX, lineHeight);
-                    g.FillRectangle(rowBrush, rowRect);
 
                     // 선택된 행 효과 (두 번째 행은 선택된 것처럼 표시)
                     if (row == 1)
@@ -436,36 +431,36 @@ namespace GraphicModule
                         // 선택된 행에는 선택 표시자 그리기
                         if (row == 1) // 선택된 행
                         {
-                            StringFormat headerFormat = new StringFormat();
-                            headerFormat.Alignment = StringAlignment.Center;
-                            headerFormat.LineAlignment = StringAlignment.Center;
-
-                            g.DrawString("▶", font,
-                                new SolidBrush(objArgs.lRowHeadersDefaultForeColor),
-                                rowHeaderRect, headerFormat);
+                            using (StringFormat headerFormat = new StringFormat())
+                            using (Brush rowHeaderFgBrush = new SolidBrush(objArgs.lRowHeadersDefaultForeColor))
+                            {
+                                headerFormat.Alignment = StringAlignment.Center;
+                                headerFormat.LineAlignment = StringAlignment.Center;
+                                g.DrawString("▶", font, rowHeaderFgBrush, rowHeaderRect, headerFormat);
+                            }
                         }
                     }
 
                     // 행 텍스트 색상 결정
-                    Brush cellTextBrush;
-                    if (row == 1) // 선택된 행
-                    {
-                        cellTextBrush = new SolidBrush(objArgs.lSelectionForeColor);
-                    }
-                    else if (objArgs.bUseAlternatingRowColors && row % 2 == 1)
-                    {
-                        cellTextBrush = new SolidBrush(objArgs.lAlternatingRowForeColor);
-                    }
-                    else
-                    {
-                        cellTextBrush = textBrush;
-                    }
+                    // 행 텍스트 색상 결정
+                    Color cellTextColor;
+                    bool disposeCellBrush;
+                    if (row == 1) { cellTextColor = objArgs.lSelectionForeColor; disposeCellBrush = true; }
+                    else if (objArgs.bUseAlternatingRowColors && row % 2 == 1) { cellTextColor = objArgs.lAlternatingRowForeColor; disposeCellBrush = true; }
+                    else { cellTextColor = RunColorText; disposeCellBrush = false; }
 
-                    // 행 데이터 표시
-                    for (int col = 0; col < sampleData[row].Length; col++)
+                    Brush cellTextBrush = disposeCellBrush ? new SolidBrush(cellTextColor) : textBrush;
+                    try
                     {
-                        Rectangle cellRect = new Rectangle(contentX + (col * colWidth), rowY, colWidth, lineHeight);
-                        g.DrawString(sampleData[row][col], font, cellTextBrush, cellRect, infoFormat);
+                        for (int col = 0; col < sampleData[row].Length; col++)
+                        {
+                            Rectangle cellRect = new Rectangle(contentX + (col * colWidth), rowY, colWidth, lineHeight);
+                            g.DrawString(sampleData[row][col], font, cellTextBrush, cellRect, infoFormat);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeCellBrush) cellTextBrush.Dispose();
                     }
                 }
 
@@ -572,20 +567,25 @@ namespace GraphicModule
                     }
 
                     // 정보 박스 제목
-                    Font titleFont = new Font(font.FontFamily, 10, FontStyle.Bold);
-                    Font contentFont = new Font(font.FontFamily, 9, FontStyle.Regular);
-                    g.DrawString(titleText, titleFont, Brushes.DarkBlue,
-                        infoBoxX + padding * 2, infoBoxY + padding * 2 + 2);
-
-                    // 설정 정보 내용 (여백 추가)
-                    for (int i = 0; i < settings.Length; i++)
+                    using (Font titleFont = new Font(font.FontFamily, 10, FontStyle.Bold))
+                    using (Font contentFont = new Font(font.FontFamily, 9, FontStyle.Regular))
                     {
-                        g.DrawString(settings[i], contentFont, Brushes.Black,
-                            infoBoxX + padding * 2,
-                            infoBoxY + padding * 3 + lineHeight + (i * (lineHeight + 2)));
+                        g.DrawString(titleText, titleFont, Brushes.DarkBlue,
+                            infoBoxX + padding * 2, infoBoxY + padding * 2 + 2);
+
+                        // 설정 정보 내용 (여백 추가)
+                        for (int i = 0; i < settings.Length; i++)
+                        {
+                            g.DrawString(settings[i], contentFont, Brushes.Black,
+                                infoBoxX + padding * 2,
+                                infoBoxY + padding * 3 + lineHeight + (i * (lineHeight + 2)));
+                        }
                     }
                 }
 
+                textBrush.Dispose();
+                infoFormat.Dispose();
+                columnHeaderFont.Dispose();
                 g.Clip = originalClip;
             }
 

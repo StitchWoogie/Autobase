@@ -238,9 +238,10 @@ namespace GraphicModule
                 font = new Font("Arial", height, logFont.style);
             }
 
-            Brush brush = new SolidBrush(RunColorText);
+            using (Brush brush = new SolidBrush(RunColorText))
+                SafeException.SafeDrawString(g, GetDisplayText(), font, brush, 0, 0);
 
-            SafeException.SafeDrawString(g, GetDisplayText(), font, brush, 0, 0);  
+            font.Dispose();
          }
 
 		public override void ObjectSave(CommaTextWriter writer)
@@ -462,22 +463,23 @@ namespace GraphicModule
 
                 CaptionItem ci = arrayCaption[nCaptionPos];
 
-                Brush brush = new SolidBrush(ci.colorText);
-
-                Graphics g = form.CreateGraphics();
-
-                SizeF size = g.MeasureString(ci.sText, ci.font);
+                SizeF size;
+                using (Graphics gMeasure = form.CreateGraphics())
+                    size = gMeasure.MeasureString(ci.sText, ci.font);
 
                 bitmap = new Bitmap((int)size.Width + 10, (int)size.Height);
 
-                g = Graphics.FromImage(bitmap);
-
-                if (backColor.A != 0)
+                using (Graphics g = Graphics.FromImage(bitmap))
                 {
-                    g.FillRectangle(new SolidBrush(backColor), 0, 0, size.Width+10, size.Height);
-                }
+                    if (backColor.A != 0)
+                    {
+                        using (Brush bgBrush = new SolidBrush(backColor))
+                            g.FillRectangle(bgBrush, 0, 0, size.Width+10, size.Height);
+                    }
 
-                g.DrawString(ci.sText, ci.font, brush, 0+5, 0);
+                    using (Brush brush = new SolidBrush(ci.colorText))
+                        g.DrawString(ci.sText, ci.font, brush, 0+5, 0);
+                }
             }
 
             int ticks = System.Environment.TickCount;
