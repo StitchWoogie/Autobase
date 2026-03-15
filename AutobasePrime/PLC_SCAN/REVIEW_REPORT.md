@@ -765,39 +765,54 @@ local->pos_total %= MAX_UDPIP_RECV_BUF;
 
 ---
 
-## HIGH-20: Pro_main.cpp 복사-붙여넣기 버그 (NULL 함수 포인터 크래시)
+## HIGH-20: Pro_main.cpp DLL 로딩 시 잘못된 NULL 검사 (WriteBit ≠ WriteWord)
 
 **심각도**: HIGH
-**영향**: DLL 프로토콜 사용 시 워드 쓰기 크래시
+**영향**: DLL에 ProtocolWriteWord 함수가 없을 경우 AO 쓰기 시 크래시
 
-**Pro_main.cpp:1242** - `ProtocolWriteWord` 할당 후 `ProtocolWriteBit`를 검사:
+**Pro_main.cpp:1232-1246** - `ProtocolWriteBit`(DO 쓰기)과 `ProtocolWriteWord`(AO 쓰기)는
+완전히 다른 기능인데, 복사-붙여넣기 실수로 동일한 변수를 검사:
 ```cpp
-pt->dll.ProtocolWriteWord = (LPFNPROTOCOLWRITEWORD) GetProcAddress(pt->dll.hInst, sProc);
-if(pt->dll.ProtocolWriteBit == NULL) {   // BUG: ProtocolWriteWord를 검사해야 함
+// Line 1232-1238: WriteBit (DO 쓰기) 로드 - 정상
+strcpy(sProc, "ProtocolWriteBit");
+pt->dll.ProtocolWriteBit = GetProcAddress(pt->dll.hInst, sProc);
+if(pt->dll.ProtocolWriteBit == NULL) { ... return 0; }  // ← WriteBit 검사 ✓
+
+// Line 1240-1246: WriteWord (AO 쓰기) 로드 - 버그
+strcpy(sProc, "ProtocolWriteWord");
+pt->dll.ProtocolWriteWord = GetProcAddress(pt->dll.hInst, sProc);
+if(pt->dll.ProtocolWriteBit == NULL) { ... return 0; }  // ← WriteBit를 재검사! (이미 통과한 값)
+//  ↑ ProtocolWriteWord를 검사해야 함
 ```
 
-`ProtocolWriteWord`가 NULL이어도 검사를 통과하여, 실제 호출 시 **NULL 함수 포인터 호출로 즉시 크래시**합니다.
+`ProtocolWriteBit`는 이미 line 1234에서 NULL 아님이 확인되었으므로 line 1242 조건은 **항상 false**.
+DLL에 `ProtocolWriteWord` 함수가 없어도 에러 없이 통과하고,
+이후 AO 쓰기 시 **NULL 함수 포인터 호출 → 크래시**.
 
 ---
 
-## ~~HIGH-21~~ → INFO: 16진수 주소 atoi 변환 (의도된 BCD 변환)
+## HIGH-21: 내부 프로토콜 Write 주소 손상 (sprintf/atoi 변환 버그)
 
-**심각도**: INFO (수정 불필요)
-**영향**: 없음 - 의도된 설계
+**심각도**: HIGH
+**영향**: 내부 프로토콜(~20개)의 Write 시 잘못된 PLC 주소에 쓰기 가능
 
-**Pro_main.cpp:392-394**:
+**Pro_main.cpp:392-394** (PlcProtocolWriteWord) 및 **537-539** (PlcProtocolWriteBit):
 ```cpp
-if(pt->nScanProtocol != PROTOCOL_DLL) {  // "DLL이 아닐때는 4d로 변환된 주소를 사용해야 한다.(이전 버전 3.05부터)"
-    sprintf(buf, "%04X", address);
-    address = atoi(buf);
+if(pt->nScanProtocol != PROTOCOL_DLL) {
+    sprintf(buf, "%04X", address);    // 100 → "0064"
+    address = atoi(buf);              // "0064" → 64 (잘못된 값!)
 }
 ```
 
-추가 분석 결과, 이것은 **버전 3.05부터 사용된 의도적 BCD 주소 변환**입니다.
-내부 프로토콜의 주소는 BCD 형식(16진수 표현에 0-9만 사용)으로 저장되므로,
-이 변환은 정상적으로 동작합니다. **수정 시 모든 내부 프로토콜(약 20개)의 주소 체계가 깨지므로 수정하면 안 됩니다.**
+**동일 프로토콜에서 Read와 Write가 주소를 다르게 처리하는 비대칭 버그입니다:**
+- **Read 경로** (Modicon.cpp:139): `HIBYTE(sm->address)` — 변환 없이 직접 사용
+- **Write 경로** (Modicon.cpp:232): `HIBYTE(address)` — sprintf/atoi 변환 후 사용
 
-DLL 프로토콜은 이 변환을 건너뛰므로, DLL 단에서 독자적으로 주소를 처리합니다.
+같은 Modbus 레지스터 100번에 대해 Read는 100번을, Write는 64번을 접근합니다.
+16진수 A-F가 포함되는 주소(10 이상의 대부분의 주소)에서 주소가 손상됩니다.
+
+**수정 방법**: `sprintf/atoi` 변환 블록을 제거하고 `address_org`를 직접 사용하도록 변경.
+`PlcProtocolWriteBit`의 동일 패턴(line 537-539)도 함께 수정 필요.
 
 ---
 
@@ -885,7 +900,7 @@ memcpy(sharePlcscanNetclient->buf, buf, count);  // count 크기 미검증
 | 29 | **UDP SocketUnPrepare Dead Code 수정** | HIGH | **주의** - 소켓 정리 후 재연결 동작 확인 필요 | 30분 |
 | 30 | **공유 메모리 보안 속성(ACL) 설정** | HIGH | **위험** - 다른 Autobase 모듈과 동시 수정 필요 | 설계 필요 |
 | 31 | **ComDeviceNetClient memcpy 크기 검증** | HIGH | **안전** | 30분 |
-| 32 | ~~Pro_main.cpp 16진수 주소 atoi→strtol 교체~~ | ~~HIGH~~ INFO | **수정 금지** - 의도된 BCD 변환 | - |
+| 32 | **Pro_main.cpp Write 주소 sprintf/atoi 변환 제거** | HIGH | **안전** - Read와 동일하게 주소 직접 사용 | 30분 |
 | 33 | PortThread.cpp 레거시 코드 정리 | MEDIUM | **안전** | 1시간 |
 | 34 | #pragma pack 포인터 구조체 분리 | MEDIUM | **주의** - 바이너리 호환성 확인 필요 | 설계 필요 |
 | 35 | 포트 인덱스 범위 검사 추가 | MEDIUM | **안전** | 1시간 |
@@ -915,10 +930,12 @@ C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`), 멀티스레드/�
    동일 공유 메모리에 접근합니다. ACL 추가 시 **모든 연관 프로세스를 동시에 수정**하지 않으면
    기존 프로세스가 공유 메모리에 접근 불가하게 됩니다.
 
-2. **sprintf/atoi 주소 변환 (순위 32)**: BCD 스타일 주소 변환은 버전 3.05부터의 의도된 설계로,
-   **모든 내부 프로토콜(약 20개)이 이 변환된 주소를 기대합니다. 절대 수정하면 안 됩니다.**
+2. **sprintf/atoi 주소 변환 제거 (순위 32)**: Read 경로는 주소를 직접 사용하는 반면
+   Write 경로만 sprintf/atoi 변환을 거칩니다. 동일 프로토콜에서 Read/Write의 주소 처리가
+   비대칭인 버그이므로, 변환 블록을 제거하여 Write도 Read와 동일하게 수정해야 합니다.
+   `PlcProtocolWriteWord`와 `PlcProtocolWriteBit` 두 함수 모두 수정 필요.
 
 3. **VIP 스캔 static 변수 (순위 6)**: 현재 전체 포트에서 static 공유. 포트별 분리 시
    VIP 스캔 동작이 달라지므로 원래 의도 확인 후 수정해야 합니다.
 
-총 발견 건수: **CRITICAL 10건, HIGH 23건, MEDIUM 6건, INFO 1건** = 40건
+총 발견 건수: **CRITICAL 10건, HIGH 24건, MEDIUM 6건** = 40건
