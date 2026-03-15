@@ -1072,16 +1072,26 @@ namespace Studio
                 tagSb.Append("]");
                 this.userControlScriptEditor1.SetCompletionTags(tagSb.ToString());
 
-                // 메서드 목록 구축
-                var methodList = ScriptExternalRun.scriptExternal.GetMethodCompletionList();
+                // 메서드 목록 구축 (파라미터 상세 정보 포함)
+                var sigList = ScriptExternalRun.scriptExternal.GetMethodSignatureList();
                 var methodSb = new System.Text.StringBuilder("[");
-                for (int i = 0; i < methodList.Count; i++)
+                for (int i = 0; i < sigList.Count; i++)
                 {
                     if (i > 0) methodSb.Append(",");
-                    string name = EscapeJsonString(methodList[i][0]);
-                    string retn = EscapeJsonString(methodList[i][1]);
-                    string sig = EscapeJsonString(methodList[i][2]);
-                    methodSb.AppendFormat("{{\"name\":\"{0}\",\"returnType\":\"{1}\",\"signature\":\"{2}\"}}", name, retn, sig);
+                    var info = sigList[i];
+                    string name = EscapeJsonString(info.name);
+                    string retn = EscapeJsonString(info.returnType);
+                    string sig = EscapeJsonString(info.signature);
+
+                    methodSb.AppendFormat("{{\"name\":\"{0}\",\"returnType\":\"{1}\",\"signature\":\"{2}\",\"params\":[", name, retn, sig);
+                    for (int k = 0; k < info.parameters.Count; k++)
+                    {
+                        if (k > 0) methodSb.Append(",");
+                        var p = info.parameters[k];
+                        methodSb.AppendFormat("{{\"name\":\"{0}\",\"type\":\"{1}\",\"direction\":\"{2}\"}}",
+                            EscapeJsonString(p.name), EscapeJsonString(p.type), EscapeJsonString(p.direction));
+                    }
+                    methodSb.Append("]}");
                 }
                 methodSb.Append("]");
                 this.userControlScriptEditor1.SetCompletionMethods(methodSb.ToString());

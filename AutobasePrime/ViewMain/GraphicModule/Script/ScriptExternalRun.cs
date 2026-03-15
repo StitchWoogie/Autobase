@@ -726,6 +726,64 @@ namespace GraphicModule
             return list;
         }
 
+        /// <summary>
+        /// Monaco Editor 시그니처 헬프용 메서드 상세 목록을 반환한다.
+        /// 각 항목에 파라미터 타입, 이름, 방향(in/out/ref) 정보가 포함된다.
+        /// </summary>
+        public List<MethodSignatureInfo> GetMethodSignatureList()
+        {
+            var list = new List<MethodSignatureInfo>();
+            for (int i = 0; i < arrayGroup.Count; i++)
+            {
+                for (int j = 0; j < arrayGroup[i].arrayMethod.Count; j++)
+                {
+                    var lm = arrayGroup[i].arrayMethod[j];
+                    var info = new MethodSignatureInfo();
+                    info.name = lm.sMethodName;
+                    info.returnType = lm.retn ?? "void";
+                    info.signature = MakeMethodUsageBody(lm);
+                    info.parameters = new List<MethodParamInfo>();
+
+                    if (lm.args != null)
+                    {
+                        for (int k = 0; k < lm.args.Count; k++)
+                        {
+                            var ma = lm.args[k];
+                            var pi = new MethodParamInfo();
+                            pi.name = ma.pVar.sVarName ?? ("arg" + k);
+                            pi.type = ma.pVar.sVarType ?? "object";
+                            switch (ma.eInOut)
+                            {
+                                case EnumInOut.Out: pi.direction = "out"; break;
+                                case EnumInOut.Ref: pi.direction = "ref"; break;
+                                case EnumInOut.Params: pi.direction = "params"; break;
+                                default: pi.direction = "in"; break;
+                            }
+                            info.parameters.Add(pi);
+                        }
+                    }
+
+                    list.Add(info);
+                }
+            }
+            return list;
+        }
+
+        public class MethodSignatureInfo
+        {
+            public string name;
+            public string returnType;
+            public string signature;
+            public List<MethodParamInfo> parameters;
+        }
+
+        public class MethodParamInfo
+        {
+            public string name;
+            public string type;
+            public string direction;
+        }
+
         public override int IsExistVariable(string varname)
         {
             if (varname.Length == 0) return 0;

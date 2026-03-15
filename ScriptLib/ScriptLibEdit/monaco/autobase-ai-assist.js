@@ -116,32 +116,132 @@
     };
 
     // Add signatures from completion data (methods populated by C#)
+    var _signaturesEnriched = false;
+
     function enrichSignatures() {
         var data = window.autobaseCompletionData;
-        if (data && data.methods) {
-            data.methods.forEach(function (m) {
-                if (!methodSignatures[m.name]) {
-                    var params = [];
-                    if (m.signature) {
-                        // Parse "methodName(param1, param2)" format
-                        var match = m.signature.match(/\(([^)]*)\)/);
-                        if (match && match[1]) {
-                            match[1].split(',').forEach(function (p) {
-                                params.push({
-                                    label: p.trim(),
-                                    documentation: ''
-                                });
+        if (!data || !data.methods) return;
+        // Re-enrich every time to catch late-loaded methods
+        data.methods.forEach(function (m) {
+            if (methodSignatures[m.name]) return;
+
+            var params = [];
+            // Use structured params array if available (new format from C#)
+            if (m.params && m.params.length > 0) {
+                m.params.forEach(function (p) {
+                    var dirPrefix = '';
+                    if (p.direction === 'out') dirPrefix = 'out ';
+                    else if (p.direction === 'ref') dirPrefix = 'ref ';
+                    else if (p.direction === 'params') dirPrefix = 'params ';
+
+                    params.push({
+                        label: p.name,
+                        documentation: '**' + dirPrefix + p.type + '** \u2014 `' + p.name + '`'
+                    });
+                });
+            } else if (m.signature) {
+                // Fallback: parse "methodName(type1 param1, type2 param2)" format
+                var match = m.signature.match(/\(([^)]*)\)/);
+                if (match && match[1]) {
+                    match[1].split(',').forEach(function (p) {
+                        var trimmed = p.trim();
+                        var parts = trimmed.split(/\s+/);
+                        if (parts.length >= 2) {
+                            params.push({
+                                label: parts[parts.length - 1],
+                                documentation: '**' + parts.slice(0, -1).join(' ') + '** \u2014 `' + parts[parts.length - 1] + '`'
                             });
+                        } else if (trimmed) {
+                            params.push({ label: trimmed, documentation: '' });
                         }
-                    }
-                    methodSignatures[m.name] = {
-                        label: '@' + (m.signature || m.name + '()'),
-                        documentation: m.description || '',
-                        parameters: params
-                    };
+                    });
                 }
-            });
+            }
+
+            var retStr = (m.returnType && m.returnType !== 'void') ? ('  \u2192 ' + m.returnType) : '';
+            methodSignatures[m.name] = {
+                label: '@' + (m.signature || m.name + '()'),
+                documentation: (m.description || '') + retStr,
+                parameters: params
+            };
+        });
+    }
+
+    // Parse user-defined functions from the script source code
+    function parseUserFunctions(model) {
+        var code = model.getValue();
+        var funcPattern = /(?:void|int|double|float|string|bool|object)\s+(\w+)\s*\(([^)]*)\)/g;
+        var match;
+        while ((match = funcPattern.exec(code)) !== null) {
+            var funcName = match[1];
+            if (methodSignatures['__user_' + funcName]) continue;
+
+            var retType = code.substring(match.index, match.index + match[0].indexOf(funcName)).trim();
+            var params = [];
+            if (match[2].trim()) {
+                match[2].split(',').forEach(function (p) {
+                    var trimmed = p.trim();
+                    var parts = trimmed.split(/\s+/);
+                    if (parts.length >= 2) {
+                        params.push({
+                            label: parts[parts.length - 1],
+                            documentation: '**' + parts.slice(0, -1).join(' ') + '** \u2014 `' + parts[parts.length - 1] + '`'
+                        });
+                    } else if (trimmed) {
+                        params.push({ label: trimmed, documentation: '' });
+                    }
+                });
+            }
+
+            var sigLabel = funcName + '(' + params.map(function (p) { return p.label; }).join(', ') + ')';
+            var retStr = (retType && retType !== 'void') ? ('  \u2192 ' + retType) : '';
+            methodSignatures['__user_' + funcName] = {
+                label: sigLabel,
+                documentation: '\uc0ac\uc6a9\uc790 \uc815\uc758 \ud568\uc218' + retStr,
+                parameters: params
+            };
         }
+    }
+
+    // Find the active function call at the cursor position, handling nested parentheses
+    function findActiveCall(text) {
+        var depth = 0;
+        var commaCount = 0;
+        var funcEnd = -1;
+
+        // Walk backwards from the end
+        for (var i = text.length - 1; i >= 0; i--) {
+            var ch = text.charAt(i);
+            if (ch === ')') {
+                depth++;
+            } else if (ch === '(') {
+                if (depth > 0) {
+                    depth--;
+                } else {
+                    funcEnd = i;
+                    break;
+                }
+            } else if (ch === ',' && depth === 0) {
+                commaCount++;
+            }
+        }
+
+        if (funcEnd < 0) return null;
+
+        // Extract function name before '('
+        var before = text.substring(0, funcEnd);
+        // Try @Method pattern first
+        var atMatch = before.match(/@(\w[\w.]*)$/);
+        if (atMatch) {
+            return { name: atMatch[1], commaCount: commaCount, isBuiltin: true };
+        }
+        // Try user-defined function name
+        var fnMatch = before.match(/(\w+)\s*$/);
+        if (fnMatch) {
+            return { name: fnMatch[1], commaCount: commaCount, isBuiltin: false };
+        }
+
+        return null;
     }
 
     monaco.languages.registerSignatureHelpProvider('autobase-script', {
@@ -150,25 +250,31 @@
 
         provideSignatureHelp: function (model, position) {
             enrichSignatures();
+            parseUserFunctions(model);
 
-            var textBefore = model.getValueInRange({
-                startLineNumber: position.lineNumber,
-                startColumn: 1,
-                endLineNumber: position.lineNumber,
-                endColumn: position.column
-            });
+            // Build text from line start to cursor, handling multi-line calls
+            var textBefore = '';
+            for (var ln = 1; ln <= position.lineNumber; ln++) {
+                var lineContent = model.getLineContent(ln);
+                if (ln === position.lineNumber) {
+                    textBefore += lineContent.substring(0, position.column - 1);
+                } else {
+                    textBefore += lineContent + ' ';
+                }
+            }
 
-            // Find the method name before '('
-            var match = textBefore.match(/@(\w+)\s*\(([^)]*)$/);
-            if (!match) return null;
+            var callInfo = findActiveCall(textBefore);
+            if (!callInfo) return null;
 
-            var methodName = match[1];
-            var argsText = match[2] || '';
-            var sig = methodSignatures[methodName];
+            // Look up signature
+            var sig = null;
+            if (callInfo.isBuiltin) {
+                sig = methodSignatures[callInfo.name];
+            } else {
+                // Try user-defined function
+                sig = methodSignatures['__user_' + callInfo.name];
+            }
             if (!sig) return null;
-
-            // Count commas to determine active parameter
-            var commaCount = (argsText.match(/,/g) || []).length;
 
             return {
                 value: {
@@ -183,7 +289,7 @@
                         })
                     }],
                     activeSignature: 0,
-                    activeParameter: Math.min(commaCount, sig.parameters.length - 1)
+                    activeParameter: Math.min(callInfo.commaCount, Math.max(sig.parameters.length - 1, 0))
                 },
                 dispose: function () { }
             };
