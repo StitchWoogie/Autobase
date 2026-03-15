@@ -624,7 +624,166 @@ namespace ScriptLibEdit.Editor
                         tcs.TrySetResult(msg.position);
                     }
                     break;
+
+                case "aiAssistRequest":
+                    HandleAiAssistRequest(msg);
+                    break;
+
+                case "aiValidateRequest":
+                    HandleAiValidateRequest(msg);
+                    break;
             }
+        }
+
+        /// <summary>AI 코드 생성 요청 처리</summary>
+        private async void HandleAiAssistRequest(MonacoMessage msg)
+        {
+            try
+            {
+                string prompt = msg.text ?? "";
+                string requestId = msg.requestId ?? "";
+                string content = msg.content ?? "";
+
+                // 태그 목록 수집
+                var tagNames = new List<string>();
+                if (window.autobaseCompletionData?.tags != null)
+                {
+                    // pendingTagsJson에서 태그 이름 추출 (이미 로드된 데이터 활용)
+                }
+
+                var context = new
+                {
+                    existing_code = content,
+                    cursor_line = _cursorLine
+                };
+                var payload = new { prompt = prompt, context = context };
+
+                // Python AI Engine 호출 시도
+                string resultCode = "";
+                string explanation = "";
+                try
+                {
+                    // PythonAiManager가 사용 가능한 경우 호출
+                    // 런타임에서만 사용 가능하므로, Studio에서는 로컬 폴백 사용
+                    resultCode = GenerateCodeLocal(prompt, content);
+                    explanation = "로컬 템플릿 기반 생성";
+                }
+                catch
+                {
+                    resultCode = "// " + prompt + "\n// TODO: 구현 필요";
+                    explanation = "코드 생성 실패";
+                }
+
+                string escapedCode = MonacoMessageProtocol.EscapeForJs(resultCode);
+                string escapedExplanation = MonacoMessageProtocol.EscapeForJs(explanation);
+                EnqueueScript(string.Format(
+                    "window.autobaseAiAssist && window.autobaseAiAssist.onGenerateResult(\"{0}\", \"{1}\", \"{2}\")",
+                    requestId, escapedCode, escapedExplanation));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("AI Assist error: " + ex.Message);
+            }
+        }
+
+        /// <summary>AI 코드 검증 요청 처리</summary>
+        private async void HandleAiValidateRequest(MonacoMessage msg)
+        {
+            try
+            {
+                string code = msg.content ?? "";
+                string requestId = msg.requestId ?? "";
+
+                var diagnostics = ValidateCodeLocal(code);
+
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(diagnostics);
+                string escaped = MonacoMessageProtocol.EscapeForJs(json);
+                EnqueueScript(string.Format(
+                    "window.autobaseAiAssist && window.autobaseAiAssist.onValidateResult(\"{0}\", \"{1}\")",
+                    requestId, escaped));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("AI Validate error: " + ex.Message);
+            }
+        }
+
+        /// <summary>로컬 코드 생성 (Python AI Engine 미사용 시 폴백)</summary>
+        private string GenerateCodeLocal(string prompt, string existingCode)
+        {
+            string lower = prompt.ToLower();
+
+            if (lower.Contains("알람") || lower.Contains("alarm"))
+            {
+                return "// 알람 체크\ndouble val = $Tag.value;\nif (val > $Tag.hihi)\n{\n\t@SetAlarm(\"TAG_HI\");\n}\nelse if (val < $Tag.lolo)\n{\n\t@SetAlarm(\"TAG_LO\");\n}";
+            }
+            if (lower.Contains("로그") || lower.Contains("log") || lower.Contains("기록"))
+            {
+                return "// 데이터 기록\ndouble val = $Tag.value;\n@LogToDatabase(\"Tag\", val, DateTime.Now);";
+            }
+            if (lower.Contains("토글") || lower.Contains("toggle"))
+            {
+                return "// 토글 제어\nif ($Tag.value == 0)\n\t$Tag.value = 1;\nelse\n\t$Tag.value = 0;";
+            }
+            if (lower.Contains("for") || lower.Contains("반복") || lower.Contains("loop"))
+            {
+                return "for (int i = 0; i < 10; i++)\n{\n\t// TODO: 반복 처리\n}";
+            }
+
+            return "// " + prompt + "\n// TODO: 구현 필요";
+        }
+
+        /// <summary>로컬 코드 검증</summary>
+        private List<object> ValidateCodeLocal(string code)
+        {
+            var diagnostics = new List<object>();
+            if (string.IsNullOrEmpty(code)) return diagnostics;
+
+            string[] lines = code.Split('\n');
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i].TrimEnd('\r');
+                string trimmed = line.Trim();
+
+                // Skip empty lines and comments
+                if (string.IsNullOrEmpty(trimmed) || trimmed.StartsWith("//") || trimmed.StartsWith("/*"))
+                    continue;
+
+                // Check for statements without semicolons
+                if (!trimmed.EndsWith(";") && !trimmed.EndsWith("{") && !trimmed.EndsWith("}")
+                    && !trimmed.EndsWith(",") && !trimmed.EndsWith("(")
+                    && !trimmed.StartsWith("if") && !trimmed.StartsWith("else")
+                    && !trimmed.StartsWith("for") && !trimmed.StartsWith("while")
+                    && !trimmed.StartsWith("//") && !trimmed.StartsWith("#")
+                    && trimmed.Contains("="))
+                {
+                    diagnostics.Add(new { line = i + 1, column = 1, severity = 2, message = "세미콜론(;)이 누락되었을 수 있습니다" });
+                }
+
+                // Check for assignment in condition
+                if ((trimmed.StartsWith("if") || trimmed.StartsWith("while"))
+                    && trimmed.Contains("(") && trimmed.Contains("=")
+                    && !trimmed.Contains("==") && !trimmed.Contains("!=")
+                    && !trimmed.Contains(">=") && !trimmed.Contains("<="))
+                {
+                    diagnostics.Add(new { line = i + 1, column = 1, severity = 1, message = "'=='(비교)를 의도하셨나요? ('='는 대입)" });
+                }
+            }
+
+            // Check bracket balance
+            int openBraces = 0, closeBraces = 0;
+            foreach (char c in code)
+            {
+                if (c == '{') openBraces++;
+                else if (c == '}') closeBraces++;
+            }
+            if (openBraces != closeBraces)
+            {
+                diagnostics.Add(new { line = lines.Length, column = 1, severity = 0,
+                    message = string.Format("중괄호 불균형: 열기 {0}개, 닫기 {1}개", openBraces, closeBraces) });
+            }
+
+            return diagnostics;
         }
 
         private void OnEditorReady()

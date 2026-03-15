@@ -377,6 +377,97 @@ namespace LocalMain.PythonAi
             return CallAsync("train/cancel", payload, 5000);
         }
 
+        // ==================== Codegen API ====================
+
+        /// <summary>코드 생성 (자연어 → Autobase Script)</summary>
+        public static Task<PythonAiMessage> CodegenGenerateAsync(
+            string prompt, object context = null, string tag = null, PythonCallOptions options = null)
+        {
+            var payload = new { prompt = prompt, context = context, tag = tag };
+            return CallAsync("codegen/generate", payload, options ?? PythonCallOptions.RealtimePredict);
+        }
+
+        /// <summary>코드 설명</summary>
+        public static Task<PythonAiMessage> CodegenExplainAsync(string code, PythonCallOptions options = null)
+        {
+            var payload = new { code = code };
+            return CallAsync("codegen/explain", payload, options ?? PythonCallOptions.RealtimePredict);
+        }
+
+        /// <summary>코드 오류 수정 제안</summary>
+        public static Task<PythonAiMessage> CodegenFixAsync(
+            string code, object[] errors = null, string[] availableTags = null, PythonCallOptions options = null)
+        {
+            var payload = new { code = code, errors = errors, available_tags = availableTags };
+            return CallAsync("codegen/fix", payload, options ?? PythonCallOptions.RealtimePredict);
+        }
+
+        /// <summary>코드 검증 (실시간 진단)</summary>
+        public static Task<PythonAiMessage> CodegenValidateAsync(
+            string code, string[] availableTags = null, PythonCallOptions options = null)
+        {
+            var payload = new { code = code, available_tags = availableTags };
+            return CallAsync("codegen/validate", payload, options ?? PythonCallOptions.RealtimePredict);
+        }
+
+        /// <summary>코드 템플릿 목록 조회</summary>
+        public static Task<PythonAiMessage> CodegenTemplatesAsync(
+            string tagType, string tagName = null, PythonCallOptions options = null)
+        {
+            var payload = new { tag_type = tagType, tag_name = tagName };
+            return CallAsync("codegen/templates", payload, options ?? PythonCallOptions.RealtimePredict);
+        }
+
+        // ==================== Layout API ====================
+
+        /// <summary>레이아웃 추천</summary>
+        public static Task<PythonAiMessage> LayoutSuggestAsync(
+            object canvasSize, object[] objects, string algorithm = "auto",
+            object options = null, PythonCallOptions callOptions = null)
+        {
+            var payload = new {
+                canvas_size = canvasSize,
+                objects = objects,
+                algorithm = algorithm,
+                options = options
+            };
+            return CallAsync("layout/suggest", payload, callOptions ?? PythonCallOptions.RealtimePredict);
+        }
+
+        /// <summary>레이아웃 최적화</summary>
+        public static Task<PythonAiMessage> LayoutOptimizeAsync(
+            object canvasSize, object[] positions, object options = null, PythonCallOptions callOptions = null)
+        {
+            var payload = new {
+                canvas_size = canvasSize,
+                positions = positions,
+                options = options
+            };
+            return CallAsync("layout/optimize", payload, callOptions ?? PythonCallOptions.RealtimePredict);
+        }
+
+        /// <summary>레이아웃 검증</summary>
+        public static Task<PythonAiMessage> LayoutValidateAsync(
+            object canvasSize, object[] positions, PythonCallOptions callOptions = null)
+        {
+            var payload = new { canvas_size = canvasSize, positions = positions };
+            return CallAsync("layout/validate", payload, callOptions ?? PythonCallOptions.RealtimePredict);
+        }
+
+        /// <summary>스마트 배치 (단일 오브젝트 최적 위치 계산)</summary>
+        public static Task<PythonAiMessage> LayoutSmartPlaceAsync(
+            object canvasSize, object[] existingObjects, object newObject,
+            object preferredPosition = null, PythonCallOptions callOptions = null)
+        {
+            var payload = new {
+                canvas_size = canvasSize,
+                existing_objects = existingObjects,
+                new_object = newObject,
+                preferred_position = preferredPosition
+            };
+            return CallAsync("layout/smart-place", payload, callOptions ?? PythonCallOptions.RealtimePredict);
+        }
+
         // ==================== Monitor Loop ====================
 
         private static async Task MonitorLoop(CancellationToken ct)

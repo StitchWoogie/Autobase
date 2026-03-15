@@ -37,6 +37,8 @@ from services import (
     vision_service,
     train_service,
     script_service,
+    codegen_service,
+    layout_service,
 )
 
 
@@ -61,6 +63,22 @@ def build_validator(cfg: EngineConfig) -> Validator:
     validator.register_schema('script/execute', SchemaEntry(
         required_fields=['code'],
         field_types={'code': str},
+    ))
+    validator.register_schema('codegen/generate', SchemaEntry(
+        required_fields=[],
+        field_types={'prompt': str, 'template': str, 'tag': str},
+    ))
+    validator.register_schema('codegen/validate', SchemaEntry(
+        required_fields=['code'],
+        field_types={'code': str},
+    ))
+    validator.register_schema('layout/suggest', SchemaEntry(
+        required_fields=['objects'],
+        field_types={'objects': list},
+    ))
+    validator.register_schema('layout/optimize', SchemaEntry(
+        required_fields=['positions'],
+        field_types={'positions': list},
     ))
     return validator
 
@@ -129,6 +147,12 @@ async def main(host: str, port: int, config_path: str = None):
 
     # Training services (Phase 4)
     train_service.register(router)
+
+    # Codegen services (code generation, validation, fix)
+    codegen_service.register(router)
+
+    # Layout services (placement, optimization, validation)
+    layout_service.register(router)
 
     # Script sandbox service (Phase 3)
     sandbox_policy = SandboxPolicy(
