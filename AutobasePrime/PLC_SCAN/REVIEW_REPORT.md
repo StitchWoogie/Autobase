@@ -765,10 +765,10 @@ local->pos_total %= MAX_UDPIP_RECV_BUF;
 
 ---
 
-## HIGH-20: Pro_main.cpp DLL 로딩 시 잘못된 NULL 검사 (WriteBit ≠ WriteWord)
+## ~~HIGH-20~~ → LOW: Pro_main.cpp DLL 로딩 시 잘못된 NULL 검사 (WriteBit ≠ WriteWord)
 
-**심각도**: HIGH
-**영향**: DLL에 ProtocolWriteWord 함수가 없을 경우 AO 쓰기 시 크래시
+**심각도**: LOW (코드 버그이나 현실 영향 없음)
+**영향**: 이론적으로 DLL에 ProtocolWriteWord가 없으면 크래시 가능. 단, 현실에서는 발생하지 않음.
 
 **Pro_main.cpp:1232-1246** - `ProtocolWriteBit`(DO 쓰기)과 `ProtocolWriteWord`(AO 쓰기)는
 완전히 다른 기능인데, 복사-붙여넣기 실수로 동일한 변수를 검사:
@@ -785,9 +785,13 @@ if(pt->dll.ProtocolWriteBit == NULL) { ... return 0; }  // ← WriteBit를 재�
 //  ↑ ProtocolWriteWord를 검사해야 함
 ```
 
-`ProtocolWriteBit`는 이미 line 1234에서 NULL 아님이 확인되었으므로 line 1242 조건은 **항상 false**.
-DLL에 `ProtocolWriteWord` 함수가 없어도 에러 없이 통과하고,
-이후 AO 쓰기 시 **NULL 함수 포인터 호출 → 크래시**.
+**코드 버그는 맞으나 현실 영향은 없습니다:**
+현존하는 모든 DLL 프로토콜(Dll_lib, TestDll4, MODBUS_RTU2, TestAutobase48, Test2,
+TestDoubleInt64Memory, TestOptionDialogBox)이 `ProtocolWriteBit`과 `ProtocolWriteWord`를
+**항상 쌍으로 export**합니다. `WriteBit`이 있으면 `WriteWord`도 반드시 있으므로
+실제 크래시 발생 가능성은 없습니다.
+
+방어적 코딩 관점에서 수정 권장하나, 우선순위는 낮습니다.
 
 ---
 
@@ -896,7 +900,7 @@ memcpy(sharePlcscanNetclient->buf, buf, count);  // count 크기 미검증
 | 25 | RS-232 Busy-Wait -> 고해상도 타이머 교체 | HIGH | **주의** - 타이밍 민감한 프로토콜 테스트 필요 | 2시간 |
 | 26 | PlcDeviceClearTCPIP 벌크 읽기 | HIGH | **안전** | 30분 |
 | 27 | StackChar(5000) 버퍼 크기 검증/확대 | HIGH | **안전** | 1시간 |
-| 28 | **Pro_main.cpp ProtocolWriteWord NULL 검사 수정** | HIGH | **안전** - 단순 오타 수정 | 10분 |
+| 28 | Pro_main.cpp ProtocolWriteWord NULL 검사 수정 | LOW | **안전** - 단순 오타. 현존 DLL 전부 양쪽 export하므로 현실 영향 없음 | 10분 |
 | 29 | **UDP SocketUnPrepare Dead Code 수정** | HIGH | **주의** - 소켓 정리 후 재연결 동작 확인 필요 | 30분 |
 | 30 | **공유 메모리 보안 속성(ACL) 설정** | HIGH | **위험** - 다른 Autobase 모듈과 동시 수정 필요 | 설계 필요 |
 | 31 | **ComDeviceNetClient memcpy 크기 검증** | HIGH | **안전** | 30분 |
@@ -938,4 +942,4 @@ C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`), 멀티스레드/�
 3. **VIP 스캔 static 변수 (순위 6)**: 현재 전체 포트에서 static 공유. 포트별 분리 시
    VIP 스캔 동작이 달라지므로 원래 의도 확인 후 수정해야 합니다.
 
-총 발견 건수: **CRITICAL 10건, HIGH 24건, MEDIUM 6건** = 40건
+총 발견 건수: **CRITICAL 10건, HIGH 23건, MEDIUM 6건, LOW 1건** = 40건
