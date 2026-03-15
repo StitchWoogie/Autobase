@@ -142,8 +142,37 @@ namespace AutoLibLocal
         // 단일 데이터베이스 연결 문자열
         public static string sConnectionString;
 
-        private static readonly byte[] EncryptionKey = Encoding.UTF8.GetBytes("AutoBaseDBpasswd"); // 16, 24, or 32 bytes
-        private static readonly byte[] EncryptionIV = Encoding.UTF8.GetBytes("passwdDBAutoBase"); // 16 bytes
+        // AES 암호화 키: 외부 설정 파일(pgCrypto.key)에서 로드, 없으면 기본값 사용
+        private static readonly byte[] EncryptionKey;
+        private static readonly byte[] EncryptionIV;
+
+        static ConfigDataDB()
+        {
+            string keyFile = Path.Combine(TotalConfig.sDirWorkProject ?? ".", "Config", "pgCrypto.key");
+            try
+            {
+                if (File.Exists(keyFile))
+                {
+                    string[] lines = File.ReadAllLines(keyFile);
+                    if (lines.Length >= 2
+                        && Encoding.UTF8.GetByteCount(lines[0].Trim()) >= 16
+                        && Encoding.UTF8.GetByteCount(lines[1].Trim()) >= 16)
+                    {
+                        EncryptionKey = Encoding.UTF8.GetBytes(lines[0].Trim().Substring(0, 16));
+                        EncryptionIV = Encoding.UTF8.GetBytes(lines[1].Trim().Substring(0, 16));
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"pgCrypto.key 로드 실패, 기본값 사용: {ex.Message}");
+            }
+
+            // 기본값 (하위 호환)
+            EncryptionKey = Encoding.UTF8.GetBytes("AutoBaseDBpasswd");
+            EncryptionIV = Encoding.UTF8.GetBytes("passwdDBAutoBase");
+        }
 
         /// <summary>
         /// .inix 파일에서 PostgreSQL 설정을 로드
@@ -907,49 +936,8 @@ namespace AutoLibLocal
             // ISA-88 마이그레이션: 테이블/컬럼 생성 + 제약조건 추가 (개별 try-catch로 안전 실행)
             string[] recipeMigrations = new string[]
             {
-                // 안전망: recipe_unit 테이블 (systemTables에서 누락되었을 경우 대비)
-                @"CREATE TABLE IF NOT EXISTS system.recipe_unit (
-                    unit_id SERIAL PRIMARY KEY,
-                    recipe_id INT NOT NULL REFERENCES system.recipe(recipe_id) ON DELETE CASCADE,
-                    unit_name VARCHAR(200) NOT NULL,
-                    unit_order INT NOT NULL DEFAULT 0,
-                    description VARCHAR(500),
-                    UNIQUE(recipe_id, unit_name),
-                    UNIQUE(recipe_id, unit_order)
-                );",
-
-                // 안전망: recipe_execution_log 테이블 (history 스키마)
-                @"CREATE TABLE IF NOT EXISTS history.recipe_execution_log (
-                    log_id BIGSERIAL PRIMARY KEY,
-                    recipe_id INT,
-                    recipe_name VARCHAR(200),
-                    unit_name VARCHAR(200),
-                    action VARCHAR(20) NOT NULL,
-                    status VARCHAR(20) NOT NULL,
-                    step_index INT,
-                    total_steps INT,
-                    error_message TEXT,
-                    username VARCHAR(50),
-                    machine_name VARCHAR(100),
-                    execution_start TIMESTAMPTZ,
-                    execution_end TIMESTAMPTZ,
-                    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-                );",
-
-                // 안전망: recipe_audit_log 테이블 (history 스키마)
-                @"CREATE TABLE IF NOT EXISTS history.recipe_audit_log (
-                    log_id BIGSERIAL PRIMARY KEY,
-                    recipe_id INT,
-                    recipe_name VARCHAR(200),
-                    action VARCHAR(20) NOT NULL,
-                    target_type VARCHAR(30),
-                    target_name VARCHAR(200),
-                    old_value TEXT,
-                    new_value TEXT,
-                    username VARCHAR(50),
-                    machine_name VARCHAR(100),
-                    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-                );",
+                // recipe_unit, recipe_execution_log, recipe_audit_log 테이블은
+                // CreateSystemTables()에서 이미 생성되므로 여기서는 중복 제거
 
                 // recipe_step에 unit_id FK 추가
                 @"DO $$ BEGIN
@@ -1631,12 +1619,10 @@ namespace AutoLibLocal
             string[] indexes = new string[]
             {
                  // 데이터 테이블 인덱스
-                "CREATE INDEX IF NOT EXISTS idx_minute_analog_tag_time ON operational.minute_analog_data(tag_id, data_time);",
-                "CREATE INDEX IF NOT EXISTS idx_hour_analog_tag_time ON operational.hour_analog_data(tag_id, data_time);",
-                "CREATE INDEX IF NOT EXISTS idx_minute_digital_tag_time ON operational.minute_digital_data(tag_id, data_time);",
-                "CREATE INDEX IF NOT EXISTS idx_hour_digital_tag_time ON operational.hour_digital_data(tag_id, data_time);",
+                // PK(tag_id, data_time)와 동일한 ASC 인덱스는 중복이므로 제거
+                // DESC 인덱스만 아래에서 별도 생성
 
-                 // 경보 인덱스 
+                 // 경보 인덱스
                 "CREATE INDEX IF NOT EXISTS idx_alarms_datetime ON operational.alarms(alarm_datetime DESC);",
                 "CREATE INDEX IF NOT EXISTS idx_alarms_tag_datetime ON operational.alarms(tag_name, alarm_datetime DESC);",
                 "CREATE INDEX IF NOT EXISTS idx_alarms_priority_datetime ON operational.alarms(priority, alarm_datetime DESC);",
@@ -1867,655 +1853,6 @@ namespace AutoLibLocal
 
             return result;
         }
-    }
-
-    #region Recipe Data Classes
-
-    /// <summary>
-    /// 레시피 단계별 태그-값 쌍
-    /// </summary>
-    public class RecipeItemData
-    {
-        public int item_id;
-        public string tag_name = "";
-        public string set_value = "";
-        public string value_type = "double"; // "double", "int", "string", "bool"
-        public int item_order;
-
-        public RecipeItemData Clone()
-        {
-            RecipeItemData item = new RecipeItemData();
-            item.item_id = item_id;
-            item.tag_name = tag_name;
-            item.set_value = set_value;
-            item.value_type = value_type;
-            item.item_order = item_order;
-            return item;
-        }
-    }
-
-    /// <summary>
-    /// ISA-88 Step Transition 타입
-    /// </summary>
-    public enum TransitionType
-    {
-        Complete = 0,    // 정상 완료 → 다음 Step
-        Exception = 1,   // 예외 → abort_actions 실행 후 배치 실패
-        Abort = 2,       // 즉시 중단
-        Loop = 3,        // target_step_order로 점프 (max_loop_count 제한)
-        End = 4          // 레시피 전체 종료 (나머지 Step 건너뛰기)
-    }
-
-    /// <summary>
-    /// Step 전이 정의 (ISA-88 Transition-based Flow)
-    /// </summary>
-    public class StepTransition
-    {
-        /// <summary>평가 우선순위 (낮을수록 먼저 평가, 0 = 최고)</summary>
-        public int priority;
-
-        /// <summary>전이 조건 표현식 (RecipeExpressionEvaluator 문법)</summary>
-        public string expression = "";
-
-        /// <summary>전이 타입</summary>
-        public TransitionType type = TransitionType.Complete;
-
-        /// <summary>Loop 전이 시 점프 대상 step_order (-1 = 현재 Step 반복)</summary>
-        public int target_step_order = -1;
-
-        /// <summary>Loop 전이 시 최대 반복 횟수 (0 = 무제한)</summary>
-        public int max_loop_count = 10;
-
-        /// <summary>전이 설명 (UI 표시용)</summary>
-        public string description = "";
-
-        /// <summary>자동 전이 타임아웃 (ms). 0 = expression으로만 평가, >0 = step 시작 후 X ms에 자동 발동</summary>
-        public int timeout_ms = 0;
-
-        public StepTransition Clone()
-        {
-            return new StepTransition
-            {
-                priority = this.priority,
-                expression = this.expression ?? "",
-                type = this.type,
-                target_step_order = this.target_step_order,
-                max_loop_count = this.max_loop_count,
-                description = this.description ?? "",
-                timeout_ms = this.timeout_ms
-            };
-        }
-    }
-
-    /// <summary>
-    /// 레시피 단계 (순차 실행 단위)
-    /// </summary>
-    public class RecipeStepData
-    {
-        public int step_id;
-        public int unit_id;                 // 0 = recipe 직속 (Unit 없음)
-        public int step_order;
-        public string step_name = "";
-        public int wait_time_ms;            // 조건 체크 전 최소 대기시간 (ms)
-        public int timeout_ms = 30000;      // 종료 조건 대기 타임아웃 (기본 30초)
-        public string condition_tag = "";    // 종료 조건 태그 (빈 문자열이면 조건 없음)
-        public string condition_value = "";  // 종료 조건 비교값
-        public string condition_type = "none"; // "none", "equal", "greater", "less"
-
-        // ISA-88 Entry Condition (시작 조건)
-        public string entry_condition_tag = "";      // 시작 조건 태그 (빈 문자열이면 조건 없음)
-        public string entry_condition_value = "";    // 시작 조건 비교값
-        public string entry_condition_type = "none"; // "none", "equal", "greater", "less"
-        public int entry_timeout_ms = 0;             // 시작 조건 타임아웃 (0 = 무제한)
-
-        // 표현식 기반 조건 (B-3: Item 5) — expression이 있으면 legacy 단일태그보다 우선
-        public string entry_expression = "";         // "$AI_0000 > 10 && $DI_0001 == 1"
-        public string exit_expression = "";          // "$TI_100 >= 80 || $DI_0005 == 1"
-
-        // 확장 Step 실행 모델 (C-5: Item 11)
-        public string running_expression = "";       // 실행 중 지속 체크; false → exception
-        public string exit_actions_json = "";        // JSON: [{"tag_name":"..","set_value":"..","value_type":".."}]
-        public string abort_actions_json = "";       // JSON: 동일 형식
-
-        // ISA-88 Full Transition Model
-        public string transitions_json = "";         // JSON: List<StepTransition> — 우선순위별 전이 목록
-
-        public ArrayList items = new ArrayList(); // RecipeItemData 목록
-
-        public RecipeStepData Clone()
-        {
-            RecipeStepData step = new RecipeStepData();
-            step.step_id = step_id;
-            step.unit_id = unit_id;
-            step.step_order = step_order;
-            step.step_name = step_name;
-            step.wait_time_ms = wait_time_ms;
-            step.timeout_ms = timeout_ms;
-            step.condition_tag = condition_tag;
-            step.condition_value = condition_value;
-            step.condition_type = condition_type;
-            step.entry_condition_tag = entry_condition_tag;
-            step.entry_condition_value = entry_condition_value;
-            step.entry_condition_type = entry_condition_type;
-            step.entry_timeout_ms = entry_timeout_ms;
-            step.entry_expression = entry_expression;
-            step.exit_expression = exit_expression;
-            step.running_expression = running_expression;
-            step.exit_actions_json = exit_actions_json;
-            step.abort_actions_json = abort_actions_json;
-            step.transitions_json = transitions_json;
-            for (int i = 0; i < items.Count; i++)
-                step.items.Add(((RecipeItemData)items[i]).Clone());
-            return step;
-        }
-    }
-
-    /// <summary>
-    /// ISA-88 Unit 계층 (Recipe → Unit → Step)
-    /// </summary>
-    public class RecipeUnitData
-    {
-        public int unit_id;
-        public int recipe_id;
-        public string unit_name = "";
-        public int unit_order;
-        public string description = "";
-        public ArrayList steps = new ArrayList(); // RecipeStepData 목록
-
-        public RecipeUnitData Clone()
-        {
-            RecipeUnitData unit = new RecipeUnitData();
-            unit.unit_id = unit_id;
-            unit.recipe_id = recipe_id;
-            unit.unit_name = unit_name;
-            unit.unit_order = unit_order;
-            unit.description = description;
-            for (int i = 0; i < steps.Count; i++)
-                unit.steps.Add(((RecipeStepData)steps[i]).Clone());
-            return unit;
-        }
-    }
-
-    /// <summary>
-    /// 레시피 목록 표시용 기본 정보
-    /// </summary>
-    public class RecipeInfo
-    {
-        public int recipe_id;
-        public string recipe_name = "";
-        public string description = "";
-        public string recipe_guid = "";       // 불변 크로스시스템 식별자 (GUID 32자리 hex)
-        public string recipe_code = "";       // 사람이 읽는 코드 — deprecated (항상 빈 문자열)
-        public int version = 1;              // Studio 저장 시 자동 증가
-        public bool is_active = true;        // 소프트 삭제 플래그
-        public string status = "draft";      // "draft", "approved", "obsolete"
-        public string approved_by = "";       // 승인자 사용자명
-        public DateTime? approved_at;         // 승인 일시
-        public string recipe_mode = "standard"; // "quick" or "standard"
-        public DateTime created_at;
-        public DateTime updated_at;
-    }
-
-    /// <summary>
-    /// 레시피 전체 데이터 (Steps + Items 포함)
-    /// </summary>
-    public class RecipeData : RecipeInfo
-    {
-        public ArrayList steps = new ArrayList(); // RecipeStepData 목록 (recipe 직속, Unit 없는 step)
-        public ArrayList units = new ArrayList(); // RecipeUnitData 목록 (ISA-88 Unit 계층)
-
-        public RecipeData Clone()
-        {
-            RecipeData recipe = new RecipeData();
-            recipe.recipe_id = recipe_id;
-            recipe.recipe_name = recipe_name;
-            recipe.description = description;
-            recipe.recipe_guid = recipe_guid;
-            recipe.recipe_code = recipe_code;
-            recipe.version = version;
-            recipe.is_active = is_active;
-            recipe.status = status;
-            recipe.approved_by = approved_by;
-            recipe.approved_at = approved_at;
-            recipe.recipe_mode = recipe_mode;
-            recipe.created_at = created_at;
-            recipe.updated_at = updated_at;
-            for (int i = 0; i < steps.Count; i++)
-                recipe.steps.Add(((RecipeStepData)steps[i]).Clone());
-            for (int i = 0; i < units.Count; i++)
-                recipe.units.Add(((RecipeUnitData)units[i]).Clone());
-            return recipe;
-        }
-    }
-
-    /// <summary>
-    /// ISA-88 Control Recipe — 배치별 동결된 Master Recipe 스냅샷
-    /// </summary>
-    public class ControlRecipeInfo
-    {
-        public int control_recipe_id;
-        public int master_recipe_id;
-        public int master_version;
-        public string batch_id = "";
-        public string status = "pending";  // pending, running, completed, aborted
-        public DateTime created_at;
-        public string created_by = "";
-    }
-
-    /// <summary>
-    /// ISA-88 Batch Execution Record — 배치 실행 이력 (감사/추적)
-    /// </summary>
-    public class BatchExecutionRecord
-    {
-        public string batch_id = "";
-        public int control_recipe_id;
-        public int master_recipe_id;
-        public string master_recipe_name = "";
-        public int master_version;
-        public string operator_id = "";
-        public DateTime? start_time;
-        public DateTime? end_time;
-        public string result = "";       // completed, aborted, failed
-        public string status = "idle";   // ISA-88 state: idle, running, holding, held, restarting, aborting, aborted, complete
-        public DateTime created_at;
-    }
-
-    /// <summary>
-    /// 레시피 실행 로그 엔트리 (recipe_execution_log 조회용)
-    /// </summary>
-    public class RecipeExecutionLogEntry
-    {
-        public long log_id;
-        public int recipe_id;
-        public string recipe_name = "";
-        public string unit_name = "";
-        public string action = "";
-        public string status = "";
-        public int step_index;
-        public int total_steps;
-        public string error_message = "";
-        public string username = "";
-        public DateTime? execution_start;
-        public DateTime? execution_end;
-        public DateTime created_at;
-    }
-
-    #endregion
-
-    /// <summary>
-    /// 레시피 CSV 내보내기/가져오기 유틸리티
-    /// </summary>
-    public static class RecipeCsvHelper
-    {
-        public static bool ExportToCsv(RecipeData recipe, string filePath, out string error)
-        {
-            error = null;
-            try
-            {
-                using (var writer = new System.IO.StreamWriter(filePath, false, new System.Text.UTF8Encoding(true)))
-                {
-                    // [RECIPE] 섹션
-                    writer.WriteLine("[RECIPE]");
-                    writer.WriteLine("Name,Description");
-                    writer.WriteLine("{0},{1}", CsvEscape(recipe.recipe_name), CsvEscape(recipe.description));
-                    writer.WriteLine();
-
-                    // [UNIT] 섹션 (Unit이 있는 경우에만)
-                    if (recipe.units.Count > 0)
-                    {
-                        writer.WriteLine("[UNIT]");
-                        writer.WriteLine("UnitOrder,UnitName,Description");
-                        for (int u = 0; u < recipe.units.Count; u++)
-                        {
-                            var unit = (RecipeUnitData)recipe.units[u];
-                            writer.WriteLine("{0},{1},{2}", unit.unit_order, CsvEscape(unit.unit_name), CsvEscape(unit.description));
-                        }
-                        writer.WriteLine();
-                    }
-
-                    // [STEP] 섹션 - UnitOrder 포함 (-1 = recipe 직속)
-                    writer.WriteLine("[STEP]");
-                    writer.WriteLine("UnitOrder,StepOrder,StepName,WaitTimeMs,TimeoutMs,ConditionTag,ConditionValue,ConditionType");
-
-                    // Recipe 직속 step
-                    for (int s = 0; s < recipe.steps.Count; s++)
-                    {
-                        var step = (RecipeStepData)recipe.steps[s];
-                        writer.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7}",
-                            -1, step.step_order, CsvEscape(step.step_name), step.wait_time_ms, step.timeout_ms,
-                            CsvEscape(step.condition_tag), CsvEscape(step.condition_value), CsvEscape(step.condition_type));
-                    }
-
-                    // Unit 소속 step
-                    for (int u = 0; u < recipe.units.Count; u++)
-                    {
-                        var unit = (RecipeUnitData)recipe.units[u];
-                        for (int s = 0; s < unit.steps.Count; s++)
-                        {
-                            var step = (RecipeStepData)unit.steps[s];
-                            writer.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7}",
-                                unit.unit_order, step.step_order, CsvEscape(step.step_name), step.wait_time_ms, step.timeout_ms,
-                                CsvEscape(step.condition_tag), CsvEscape(step.condition_value), CsvEscape(step.condition_type));
-                        }
-                    }
-                    writer.WriteLine();
-
-                    // [STEP_ITEM] 섹션
-                    writer.WriteLine("[STEP_ITEM]");
-                    writer.WriteLine("StepOrder,TagName,SetValue,ValueType,ItemOrder");
-
-                    // Recipe 직속
-                    for (int s = 0; s < recipe.steps.Count; s++)
-                    {
-                        var step = (RecipeStepData)recipe.steps[s];
-                        WriteStepItems(writer, step);
-                    }
-
-                    // Unit 소속
-                    for (int u = 0; u < recipe.units.Count; u++)
-                    {
-                        var unit = (RecipeUnitData)recipe.units[u];
-                        for (int s = 0; s < unit.steps.Count; s++)
-                        {
-                            var step = (RecipeStepData)unit.steps[s];
-                            WriteStepItems(writer, step);
-                        }
-                    }
-                    writer.WriteLine();
-
-                    // [STEP_TRANSITION] 섹션 — transitions_json 보유 Step만 출력
-                    bool hasTransitions = false;
-                    for (int s = 0; s < recipe.steps.Count; s++)
-                    {
-                        if (!string.IsNullOrEmpty(((RecipeStepData)recipe.steps[s]).transitions_json))
-                        { hasTransitions = true; break; }
-                    }
-                    if (!hasTransitions)
-                    {
-                        for (int u = 0; u < recipe.units.Count && !hasTransitions; u++)
-                        {
-                            var unit = (RecipeUnitData)recipe.units[u];
-                            for (int s = 0; s < unit.steps.Count; s++)
-                            {
-                                if (!string.IsNullOrEmpty(((RecipeStepData)unit.steps[s]).transitions_json))
-                                { hasTransitions = true; break; }
-                            }
-                        }
-                    }
-
-                    if (hasTransitions)
-                    {
-                        writer.WriteLine("[STEP_TRANSITION]");
-                        writer.WriteLine("StepOrder,Priority,Expression,Type,TargetStep,MaxLoop,TimeoutMs,Description");
-                        WriteStepTransitions(writer, recipe.steps);
-                        for (int u = 0; u < recipe.units.Count; u++)
-                            WriteStepTransitions(writer, ((RecipeUnitData)recipe.units[u]).steps);
-                    }
-                }
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                error = ex.Message;
-                return false;
-            }
-        }
-
-        static void WriteStepItems(System.IO.StreamWriter writer, RecipeStepData step)
-        {
-            for (int i = 0; i < step.items.Count; i++)
-            {
-                var item = (RecipeItemData)step.items[i];
-                writer.WriteLine("{0},{1},{2},{3},{4}",
-                    step.step_order, CsvEscape(item.tag_name), CsvEscape(item.set_value),
-                    CsvEscape(item.value_type), item.item_order);
-            }
-        }
-
-        static void WriteStepTransitions(System.IO.StreamWriter writer, System.Collections.ArrayList steps)
-        {
-            for (int s = 0; s < steps.Count; s++)
-            {
-                var step = (RecipeStepData)steps[s];
-                if (string.IsNullOrEmpty(step.transitions_json)) continue;
-                try
-                {
-                    var transitions = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<StepTransition>>(step.transitions_json);
-                    if (transitions == null) continue;
-                    for (int t = 0; t < transitions.Count; t++)
-                    {
-                        var tr = transitions[t];
-                        writer.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7}",
-                            step.step_order, tr.priority, CsvEscape(tr.expression),
-                            tr.type.ToString(), tr.target_step_order, tr.max_loop_count,
-                            tr.timeout_ms, CsvEscape(tr.description));
-                    }
-                }
-                catch { }
-            }
-        }
-
-        public static RecipeData ImportFromCsv(string filePath, out string error)
-        {
-            error = null;
-            try
-            {
-                if (!System.IO.File.Exists(filePath))
-                {
-                    error = "파일이 존재하지 않습니다.";
-                    return null;
-                }
-
-                RecipeData recipe = new RecipeData();
-                string currentSection = "";
-                System.Collections.Hashtable stepOrderMap = new System.Collections.Hashtable(); // stepOrder → RecipeStepData
-                System.Collections.Hashtable unitOrderMap = new System.Collections.Hashtable(); // unitOrder → RecipeUnitData
-                System.Collections.Hashtable transitionsPerStep = new System.Collections.Hashtable(); // stepOrder → List<StepTransition>
-                bool hasUnitSection = false;
-                bool newStepFormat = false; // UnitOrder,StepOrder,...  (8 fields) vs StepOrder,... (7 fields)
-                string[] lines = System.IO.File.ReadAllLines(filePath, System.Text.Encoding.UTF8);
-
-                // 사전 스캔: [UNIT] 섹션 및 새 STEP 포맷 존재 여부
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    string l = lines[i].Trim();
-                    if (l == "[UNIT]") hasUnitSection = true;
-                    if (l.StartsWith("UnitOrder,StepOrder,")) newStepFormat = true;
-                }
-
-                for (int lineNum = 0; lineNum < lines.Length; lineNum++)
-                {
-                    string line = lines[lineNum].Trim();
-                    if (string.IsNullOrEmpty(line)) continue;
-
-                    if (line.StartsWith("[") && line.EndsWith("]"))
-                    {
-                        currentSection = line;
-                        continue;
-                    }
-
-                    // 헤더 행 스킵
-                    if (line.StartsWith("Name,") || line.StartsWith("StepOrder,") ||
-                        line.StartsWith("UnitOrder,StepOrder,") || line.StartsWith("UnitOrder,UnitName,") ||
-                        (currentSection == "[STEP_TRANSITION]" && line.StartsWith("StepOrder,Priority,")))
-                        continue;
-
-                    string[] fields = CsvParseLine(line);
-
-                    if (currentSection == "[RECIPE]")
-                    {
-                        if (fields.Length < 2) { error = string.Format("Line {0}: RECIPE 필드 부족.", lineNum + 1); return null; }
-                        recipe.recipe_name = fields[0];
-                        recipe.description = fields[1];
-                    }
-                    else if (currentSection == "[UNIT]")
-                    {
-                        if (fields.Length < 3) { error = string.Format("Line {0}: UNIT 필드 부족.", lineNum + 1); return null; }
-                        var unit = new RecipeUnitData();
-                        int unitOrder;
-                        if (!int.TryParse(fields[0], out unitOrder)) { error = string.Format("Line {0}: UnitOrder 무효.", lineNum + 1); return null; }
-                        unit.unit_order = unitOrder;
-                        unit.unit_name = fields[1];
-                        unit.description = fields[2];
-                        recipe.units.Add(unit);
-                        unitOrderMap[unitOrder] = unit;
-                    }
-                    else if (currentSection == "[STEP]")
-                    {
-                        if (newStepFormat)
-                        {
-                            // 새 포맷: UnitOrder,StepOrder,StepName,...
-                            if (fields.Length < 8) { error = string.Format("Line {0}: STEP 필드 부족.", lineNum + 1); return null; }
-                            int unitOrder;
-                            int.TryParse(fields[0], out unitOrder);
-                            var step = new RecipeStepData();
-                            int stepOrder;
-                            if (!int.TryParse(fields[1], out stepOrder)) { error = string.Format("Line {0}: StepOrder 무효.", lineNum + 1); return null; }
-                            step.step_order = stepOrder;
-                            step.step_name = fields[2];
-                            int.TryParse(fields[3], out step.wait_time_ms);
-                            int.TryParse(fields[4], out step.timeout_ms);
-                            if (step.timeout_ms <= 0) step.timeout_ms = 30000;
-                            step.condition_tag = fields[5];
-                            step.condition_value = fields[6];
-                            step.condition_type = fields[7];
-                            if (string.IsNullOrEmpty(step.condition_type)) step.condition_type = "none";
-
-                            if (unitOrder >= 0 && unitOrderMap.ContainsKey(unitOrder))
-                                ((RecipeUnitData)unitOrderMap[unitOrder]).steps.Add(step);
-                            else
-                                recipe.steps.Add(step);
-
-                            stepOrderMap[stepOrder] = step;
-                        }
-                        else
-                        {
-                            // 기존 포맷 호환: StepOrder,StepName,...
-                            if (fields.Length < 7) { error = string.Format("Line {0}: STEP 필드 부족.", lineNum + 1); return null; }
-                            var step = new RecipeStepData();
-                            int stepOrder;
-                            if (!int.TryParse(fields[0], out stepOrder)) { error = string.Format("Line {0}: StepOrder 무효.", lineNum + 1); return null; }
-                            if (stepOrderMap.ContainsKey(stepOrder)) { error = string.Format("Line {0}: StepOrder {1} 중복.", lineNum + 1, stepOrder); return null; }
-                            step.step_order = stepOrder;
-                            step.step_name = fields[1];
-                            int.TryParse(fields[2], out step.wait_time_ms);
-                            int.TryParse(fields[3], out step.timeout_ms);
-                            if (step.timeout_ms <= 0) step.timeout_ms = 30000;
-                            step.condition_tag = fields[4];
-                            step.condition_value = fields[5];
-                            step.condition_type = fields[6];
-                            if (string.IsNullOrEmpty(step.condition_type)) step.condition_type = "none";
-                            recipe.steps.Add(step);
-                            stepOrderMap[stepOrder] = step;
-                        }
-                    }
-                    else if (currentSection == "[STEP_ITEM]")
-                    {
-                        if (fields.Length < 5) { error = string.Format("Line {0}: STEP_ITEM 필드 부족.", lineNum + 1); return null; }
-                        int stepOrder;
-                        if (!int.TryParse(fields[0], out stepOrder)) { error = string.Format("Line {0}: StepOrder 무효.", lineNum + 1); return null; }
-                        if (!stepOrderMap.ContainsKey(stepOrder)) { error = string.Format("Line {0}: StepOrder {1} STEP 없음.", lineNum + 1, stepOrder); return null; }
-                        var step = (RecipeStepData)stepOrderMap[stepOrder];
-                        var item = new RecipeItemData();
-                        item.tag_name = fields[1];
-                        item.set_value = fields[2];
-                        item.value_type = fields[3];
-                        int.TryParse(fields[4], out item.item_order);
-                        if (string.IsNullOrEmpty(item.tag_name)) { error = string.Format("Line {0}: TagName 비어있음.", lineNum + 1); return null; }
-                        step.items.Add(item);
-                    }
-                    else if (currentSection == "[STEP_TRANSITION]")
-                    {
-                        // StepOrder,Priority,Expression,Type,TargetStep,MaxLoop,TimeoutMs,Description
-                        if (fields.Length < 7) continue;
-                        int stepOrder;
-                        if (!int.TryParse(fields[0], out stepOrder)) continue;
-                        if (!stepOrderMap.ContainsKey(stepOrder)) continue;
-
-                        var tr = new StepTransition();
-                        int.TryParse(fields[1], out tr.priority);
-                        tr.expression = fields[2];
-                        TransitionType ttype;
-                        if (System.Enum.TryParse(fields[3], true, out ttype))
-                            tr.type = ttype;
-                        int.TryParse(fields[4], out tr.target_step_order);
-                        int.TryParse(fields[5], out tr.max_loop_count);
-                        int.TryParse(fields[6], out tr.timeout_ms);
-                        if (fields.Length >= 8) tr.description = fields[7];
-
-                        // transitionsPerStep에 누적
-                        if (!transitionsPerStep.ContainsKey(stepOrder))
-                            transitionsPerStep[stepOrder] = new System.Collections.Generic.List<StepTransition>();
-                        ((System.Collections.Generic.List<StepTransition>)transitionsPerStep[stepOrder]).Add(tr);
-                    }
-                }
-
-                // [STEP_TRANSITION] 수집된 전이를 transitions_json으로 직렬화
-                foreach (System.Collections.DictionaryEntry de in transitionsPerStep)
-                {
-                    int so = (int)de.Key;
-                    if (stepOrderMap.ContainsKey(so))
-                    {
-                        var step = (RecipeStepData)stepOrderMap[so];
-                        var trList = (System.Collections.Generic.List<StepTransition>)de.Value;
-                        step.transitions_json = Newtonsoft.Json.JsonConvert.SerializeObject(trList);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(recipe.recipe_name)) { error = "레시피 이름이 없습니다."; return null; }
-                return recipe;
-            }
-            catch (System.Exception ex)
-            {
-                error = ex.Message;
-                return null;
-            }
-        }
-
-        static string CsvEscape(string val)
-        {
-            if (val == null) return "";
-            if (val.Contains(",") || val.Contains("\"") || val.Contains("\n"))
-                return "\"" + val.Replace("\"", "\"\"") + "\"";
-            return val;
-        }
-
-        static string[] CsvParseLine(string line)
-        {
-            System.Collections.ArrayList fields = new System.Collections.ArrayList();
-            System.Text.StringBuilder current = new System.Text.StringBuilder();
-            bool inQuotes = false;
-            for (int i = 0; i < line.Length; i++)
-            {
-                char c = line[i];
-                if (inQuotes)
-                {
-                    if (c == '"') { if (i + 1 < line.Length && line[i + 1] == '"') { current.Append('"'); i++; } else { inQuotes = false; } }
-                    else { current.Append(c); }
-                }
-                else
-                {
-                    if (c == '"') { inQuotes = true; }
-                    else if (c == ',') { fields.Add(current.ToString()); current.Clear(); }
-                    else { current.Append(c); }
-                }
-            }
-            fields.Add(current.ToString());
-            string[] result = new string[fields.Count];
-            for (int i = 0; i < fields.Count; i++) result[i] = (string)fields[i];
-            return result;
-        }
-    }
-
-    /// <summary>
-    /// MilliData 태그 정보 클래스
-    /// </summary>
-    public class MilliDataTagInfo
-    {
-        public string TagName { get; set; }
-        public int TagType { get; set; }  // 0: AI, 1: DI, 9: ST
-        public float FullScale { get; set; }
-        public float BaseValue { get; set; }
     }
 
 
@@ -4236,8 +3573,13 @@ namespace AutoLibLocal
 
         #region Batch Operations
 
+        // 임시 테이블을 이용한 COPY + UPSERT 전략의 임계치
+        // 이 값 미만이면 multi-row INSERT, 이상이면 COPY 사용
+        private const int COPY_THRESHOLD = 50;
+
         /// <summary>
         /// 분 아날로그 데이터 배치 저장 (성능 최적화)
+        /// 소량: multi-row INSERT, 대량: COPY + temp table UPSERT
         /// </summary>
         public async Task<int> SaveMinDataAIBatch(List<(string tagName, DateTime dataTime, TREND_AI_STRUCT trend)> dataList)
         {
@@ -4251,17 +3593,15 @@ namespace AutoLibLocal
                 {
                     await connection.OpenAsync();
 
-                    // Tag ID 일괄 조회 (최적화)
+                    // Tag ID 일괄 조회
                     var uniqueTagNames = dataList.Select(d => d.tagName).Distinct().ToList();
                     var tagIdMap = new Dictionary<string, int>();
-
                     foreach (var tagName in uniqueTagNames)
                     {
                         tagIdMap[tagName] = await _tagRepo.GetOrCreateTagIdAsync(tagName);
                     }
 
-                    // (tag_id, normalizedTime) 기준으로 중복 제거 - 마지막 항목 유지
-                    // ON CONFLICT DO UPDATE는 같은 문장 내에서 동일 행을 두 번 갱신할 수 없으므로 사전에 중복 제거 필요
+                    // 중복 제거 (ON CONFLICT는 같은 문장 내 동일 행을 두 번 갱신 불가)
                     var deduped = new Dictionary<(int tagId, DateTime time), (string tagName, DateTime dataTime, TREND_AI_STRUCT trend)>();
                     foreach (var data in dataList)
                     {
@@ -4271,48 +3611,20 @@ namespace AutoLibLocal
                     }
 
                     var dedupedList = deduped.ToList();
-
                     if (dedupedList.Count < dataList.Count)
                     {
                         Debug.WriteLine($"SaveMinDataAIBatch: 중복 제거 {dataList.Count} → {dedupedList.Count}건");
                     }
 
-                    // VALUES 구문 생성
-                    var valuesBuilder = new System.Text.StringBuilder();
-                    var parameters = new List<NpgsqlParameter>();
-
-                    for (int i = 0; i < dedupedList.Count; i++)
+                    if (dedupedList.Count >= COPY_THRESHOLD)
                     {
-                        var key = dedupedList[i].Key;
-                        var data = dedupedList[i].Value;
-
-                        if (i > 0) valuesBuilder.Append(",");
-                        valuesBuilder.Append($"(@tagId{i}, @dataTime{i}, @sumMin{i}, @avg{i}, @min{i}, @max{i}, @curr{i})");
-
-                        parameters.Add(new NpgsqlParameter($"tagId{i}", key.tagId));
-                        parameters.Add(new NpgsqlParameter($"dataTime{i}", key.time));
-                        parameters.Add(new NpgsqlParameter($"sumMin{i}", data.trend.fSumMin));
-                        parameters.Add(new NpgsqlParameter($"avg{i}", data.trend.fAverage));
-                        parameters.Add(new NpgsqlParameter($"min{i}", data.trend.fMin));
-                        parameters.Add(new NpgsqlParameter($"max{i}", data.trend.fMax));
-                        parameters.Add(new NpgsqlParameter($"curr{i}", data.trend.fCurr));
+                        // 대량 배치: COPY → temp table → UPSERT (10배 이상 빠름)
+                        savedCount = await SaveMinDataAIBatchCopy(connection, dedupedList);
                     }
-
-                    string sql = $@"
-                INSERT INTO operational.minute_analog_data
-                (tag_id, data_time, sum_min, average, min_value, max_value, curr_value)
-                VALUES {valuesBuilder}
-                ON CONFLICT (tag_id, data_time) DO UPDATE SET
-                    sum_min = EXCLUDED.sum_min,
-                    average = EXCLUDED.average,
-                    min_value = EXCLUDED.min_value,
-                    max_value = EXCLUDED.max_value,
-                    curr_value = EXCLUDED.curr_value";
-
-                    using (var cmd = new NpgsqlCommand(sql, connection))
+                    else
                     {
-                        cmd.Parameters.AddRange(parameters.ToArray());
-                        savedCount = await cmd.ExecuteNonQueryAsync();
+                        // 소량 배치: multi-row INSERT
+                        savedCount = await SaveMinDataAIBatchInsert(connection, dedupedList);
                     }
                 }
             }
@@ -4325,7 +3637,111 @@ namespace AutoLibLocal
         }
 
         /// <summary>
+        /// AI 소량 배치 - multi-row INSERT
+        /// </summary>
+        private async Task<int> SaveMinDataAIBatchInsert(NpgsqlConnection connection,
+            List<KeyValuePair<(int tagId, DateTime time), (string tagName, DateTime dataTime, TREND_AI_STRUCT trend)>> dedupedList)
+        {
+            var valuesBuilder = new System.Text.StringBuilder();
+            var parameters = new List<NpgsqlParameter>();
+
+            for (int i = 0; i < dedupedList.Count; i++)
+            {
+                var key = dedupedList[i].Key;
+                var data = dedupedList[i].Value;
+
+                if (i > 0) valuesBuilder.Append(",");
+                valuesBuilder.Append($"(@tagId{i}, @dataTime{i}, @sumMin{i}, @avg{i}, @min{i}, @max{i}, @curr{i})");
+
+                parameters.Add(new NpgsqlParameter($"tagId{i}", key.tagId));
+                parameters.Add(new NpgsqlParameter($"dataTime{i}", key.time));
+                parameters.Add(new NpgsqlParameter($"sumMin{i}", data.trend.fSumMin));
+                parameters.Add(new NpgsqlParameter($"avg{i}", data.trend.fAverage));
+                parameters.Add(new NpgsqlParameter($"min{i}", data.trend.fMin));
+                parameters.Add(new NpgsqlParameter($"max{i}", data.trend.fMax));
+                parameters.Add(new NpgsqlParameter($"curr{i}", data.trend.fCurr));
+            }
+
+            string sql = $@"
+                INSERT INTO operational.minute_analog_data
+                (tag_id, data_time, sum_min, average, min_value, max_value, curr_value)
+                VALUES {valuesBuilder}
+                ON CONFLICT (tag_id, data_time) DO UPDATE SET
+                    sum_min = EXCLUDED.sum_min,
+                    average = EXCLUDED.average,
+                    min_value = EXCLUDED.min_value,
+                    max_value = EXCLUDED.max_value,
+                    curr_value = EXCLUDED.curr_value";
+
+            using (var cmd = new NpgsqlCommand(sql, connection))
+            {
+                cmd.Parameters.AddRange(parameters.ToArray());
+                return await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
+        /// <summary>
+        /// AI 대량 배치 - COPY binary → temp table → UPSERT
+        /// PostgreSQL COPY는 INSERT 대비 10배 이상 빠름
+        /// </summary>
+        private async Task<int> SaveMinDataAIBatchCopy(NpgsqlConnection connection,
+            List<KeyValuePair<(int tagId, DateTime time), (string tagName, DateTime dataTime, TREND_AI_STRUCT trend)>> dedupedList)
+        {
+            // 1. 임시 테이블 생성 (세션 종료 시 자동 삭제)
+            using (var cmd = new NpgsqlCommand(@"
+                CREATE TEMP TABLE IF NOT EXISTS _tmp_minute_ai (
+                    tag_id INTEGER, data_time TIMESTAMPTZ,
+                    sum_min REAL, average REAL, min_value REAL, max_value REAL, curr_value REAL
+                ) ON COMMIT DELETE ROWS", connection))
+            {
+                await cmd.ExecuteNonQueryAsync();
+            }
+
+            // TRUNCATE로 이전 세션의 잔여 데이터 정리
+            using (var cmd = new NpgsqlCommand("TRUNCATE _tmp_minute_ai", connection))
+            {
+                await cmd.ExecuteNonQueryAsync();
+            }
+
+            // 2. COPY binary로 임시 테이블에 고속 삽입
+            using (var writer = connection.BeginBinaryImport(
+                "COPY _tmp_minute_ai (tag_id, data_time, sum_min, average, min_value, max_value, curr_value) FROM STDIN (FORMAT BINARY)"))
+            {
+                foreach (var kvp in dedupedList)
+                {
+                    writer.StartRow();
+                    writer.Write(kvp.Key.tagId, NpgsqlTypes.NpgsqlDbType.Integer);
+                    writer.Write(kvp.Key.time, NpgsqlTypes.NpgsqlDbType.TimestampTz);
+                    writer.Write(kvp.Value.trend.fSumMin, NpgsqlTypes.NpgsqlDbType.Real);
+                    writer.Write(kvp.Value.trend.fAverage, NpgsqlTypes.NpgsqlDbType.Real);
+                    writer.Write(kvp.Value.trend.fMin, NpgsqlTypes.NpgsqlDbType.Real);
+                    writer.Write(kvp.Value.trend.fMax, NpgsqlTypes.NpgsqlDbType.Real);
+                    writer.Write(kvp.Value.trend.fCurr, NpgsqlTypes.NpgsqlDbType.Real);
+                }
+                writer.Complete();
+            }
+
+            // 3. temp → 본 테이블 UPSERT
+            using (var cmd = new NpgsqlCommand(@"
+                INSERT INTO operational.minute_analog_data
+                    (tag_id, data_time, sum_min, average, min_value, max_value, curr_value)
+                SELECT tag_id, data_time, sum_min, average, min_value, max_value, curr_value
+                FROM _tmp_minute_ai
+                ON CONFLICT (tag_id, data_time) DO UPDATE SET
+                    sum_min = EXCLUDED.sum_min,
+                    average = EXCLUDED.average,
+                    min_value = EXCLUDED.min_value,
+                    max_value = EXCLUDED.max_value,
+                    curr_value = EXCLUDED.curr_value", connection))
+            {
+                return await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
+
+        /// <summary>
         /// 분 디지털 데이터 배치 저장 (성능 최적화)
+        /// 소량: multi-row INSERT, 대량: COPY + temp table UPSERT
         /// </summary>
         public async Task<int> SaveMinDataDIBatch(List<(string tagName, DateTime dataTime, TREND_DI_STRUCT trend)> dataList)
         {
@@ -4339,17 +3755,15 @@ namespace AutoLibLocal
                 {
                     await connection.OpenAsync();
 
-                    // Tag ID 일괄 조회 (최적화)
+                    // Tag ID 일괄 조회
                     var uniqueTagNames = dataList.Select(d => d.tagName).Distinct().ToList();
                     var tagIdMap = new Dictionary<string, int>();
-
                     foreach (var tagName in uniqueTagNames)
                     {
                         tagIdMap[tagName] = await _tagRepo.GetOrCreateTagIdAsync(tagName, "", 1);
                     }
 
-                    // (tag_id, normalizedTime) 기준으로 중복 제거 - 마지막 항목 유지
-                    // ON CONFLICT DO UPDATE는 같은 문장 내에서 동일 행을 두 번 갱신할 수 없으므로 사전에 중복 제거 필요
+                    // 중복 제거
                     var deduped = new Dictionary<(int tagId, DateTime time), (string tagName, DateTime dataTime, TREND_DI_STRUCT trend)>();
                     foreach (var data in dataList)
                     {
@@ -4359,44 +3773,18 @@ namespace AutoLibLocal
                     }
 
                     var dedupedList = deduped.ToList();
-
                     if (dedupedList.Count < dataList.Count)
                     {
                         Debug.WriteLine($"SaveMinDataDIBatch: 중복 제거 {dataList.Count} → {dedupedList.Count}건");
                     }
 
-                    // VALUES 구문 생성
-                    var valuesBuilder = new System.Text.StringBuilder();
-                    var parameters = new List<NpgsqlParameter>();
-
-                    for (int i = 0; i < dedupedList.Count; i++)
+                    if (dedupedList.Count >= COPY_THRESHOLD)
                     {
-                        var key = dedupedList[i].Key;
-                        var data = dedupedList[i].Value;
-
-                        if (i > 0) valuesBuilder.Append(",");
-                        valuesBuilder.Append($"(@tagId{i}, @dataTime{i}, @countOnOff{i}, @onOffState{i}, @onTime{i})");
-
-                        parameters.Add(new NpgsqlParameter($"tagId{i}", key.tagId));
-                        parameters.Add(new NpgsqlParameter($"dataTime{i}", key.time));
-                        parameters.Add(new NpgsqlParameter($"countOnOff{i}", data.trend.nCountOnOff));
-                        parameters.Add(new NpgsqlParameter($"onOffState{i}", data.trend.bOnOff != 0));
-                        parameters.Add(new NpgsqlParameter($"onTime{i}", data.trend.cOnTime));
+                        savedCount = await SaveMinDataDIBatchCopy(connection, dedupedList);
                     }
-
-                    string sql = $@"
-                INSERT INTO operational.minute_digital_data
-                (tag_id, data_time, count_on_off, on_off_state, on_time)
-                VALUES {valuesBuilder}
-                ON CONFLICT (tag_id, data_time) DO UPDATE SET
-                    count_on_off = EXCLUDED.count_on_off,
-                    on_off_state = EXCLUDED.on_off_state,
-                    on_time = EXCLUDED.on_time";
-
-                    using (var cmd = new NpgsqlCommand(sql, connection))
+                    else
                     {
-                        cmd.Parameters.AddRange(parameters.ToArray());
-                        savedCount = await cmd.ExecuteNonQueryAsync();
+                        savedCount = await SaveMinDataDIBatchInsert(connection, dedupedList);
                     }
                 }
             }
@@ -4406,6 +3794,95 @@ namespace AutoLibLocal
             }
 
             return savedCount;
+        }
+
+        /// <summary>
+        /// DI 소량 배치 - multi-row INSERT
+        /// </summary>
+        private async Task<int> SaveMinDataDIBatchInsert(NpgsqlConnection connection,
+            List<KeyValuePair<(int tagId, DateTime time), (string tagName, DateTime dataTime, TREND_DI_STRUCT trend)>> dedupedList)
+        {
+            var valuesBuilder = new System.Text.StringBuilder();
+            var parameters = new List<NpgsqlParameter>();
+
+            for (int i = 0; i < dedupedList.Count; i++)
+            {
+                var key = dedupedList[i].Key;
+                var data = dedupedList[i].Value;
+
+                if (i > 0) valuesBuilder.Append(",");
+                valuesBuilder.Append($"(@tagId{i}, @dataTime{i}, @countOnOff{i}, @onOffState{i}, @onTime{i})");
+
+                parameters.Add(new NpgsqlParameter($"tagId{i}", key.tagId));
+                parameters.Add(new NpgsqlParameter($"dataTime{i}", key.time));
+                parameters.Add(new NpgsqlParameter($"countOnOff{i}", data.trend.nCountOnOff));
+                parameters.Add(new NpgsqlParameter($"onOffState{i}", data.trend.bOnOff != 0));
+                parameters.Add(new NpgsqlParameter($"onTime{i}", data.trend.cOnTime));
+            }
+
+            string sql = $@"
+                INSERT INTO operational.minute_digital_data
+                (tag_id, data_time, count_on_off, on_off_state, on_time)
+                VALUES {valuesBuilder}
+                ON CONFLICT (tag_id, data_time) DO UPDATE SET
+                    count_on_off = EXCLUDED.count_on_off,
+                    on_off_state = EXCLUDED.on_off_state,
+                    on_time = EXCLUDED.on_time";
+
+            using (var cmd = new NpgsqlCommand(sql, connection))
+            {
+                cmd.Parameters.AddRange(parameters.ToArray());
+                return await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
+        /// <summary>
+        /// DI 대량 배치 - COPY binary → temp table → UPSERT
+        /// </summary>
+        private async Task<int> SaveMinDataDIBatchCopy(NpgsqlConnection connection,
+            List<KeyValuePair<(int tagId, DateTime time), (string tagName, DateTime dataTime, TREND_DI_STRUCT trend)>> dedupedList)
+        {
+            using (var cmd = new NpgsqlCommand(@"
+                CREATE TEMP TABLE IF NOT EXISTS _tmp_minute_di (
+                    tag_id INTEGER, data_time TIMESTAMPTZ,
+                    count_on_off SMALLINT, on_off_state BOOLEAN, on_time SMALLINT
+                ) ON COMMIT DELETE ROWS", connection))
+            {
+                await cmd.ExecuteNonQueryAsync();
+            }
+
+            using (var cmd = new NpgsqlCommand("TRUNCATE _tmp_minute_di", connection))
+            {
+                await cmd.ExecuteNonQueryAsync();
+            }
+
+            using (var writer = connection.BeginBinaryImport(
+                "COPY _tmp_minute_di (tag_id, data_time, count_on_off, on_off_state, on_time) FROM STDIN (FORMAT BINARY)"))
+            {
+                foreach (var kvp in dedupedList)
+                {
+                    writer.StartRow();
+                    writer.Write(kvp.Key.tagId, NpgsqlTypes.NpgsqlDbType.Integer);
+                    writer.Write(kvp.Key.time, NpgsqlTypes.NpgsqlDbType.TimestampTz);
+                    writer.Write(kvp.Value.trend.nCountOnOff, NpgsqlTypes.NpgsqlDbType.Smallint);
+                    writer.Write(kvp.Value.trend.bOnOff != 0, NpgsqlTypes.NpgsqlDbType.Boolean);
+                    writer.Write((short)kvp.Value.trend.cOnTime, NpgsqlTypes.NpgsqlDbType.Smallint);
+                }
+                writer.Complete();
+            }
+
+            using (var cmd = new NpgsqlCommand(@"
+                INSERT INTO operational.minute_digital_data
+                    (tag_id, data_time, count_on_off, on_off_state, on_time)
+                SELECT tag_id, data_time, count_on_off, on_off_state, on_time
+                FROM _tmp_minute_di
+                ON CONFLICT (tag_id, data_time) DO UPDATE SET
+                    count_on_off = EXCLUDED.count_on_off,
+                    on_off_state = EXCLUDED.on_off_state,
+                    on_time = EXCLUDED.on_time", connection))
+            {
+                return await cmd.ExecuteNonQueryAsync();
+            }
         }
 
         #endregion
@@ -5426,1549 +4903,4 @@ namespace AutoLibLocal
             }
         }
     }
-
-    #region Recipe CRUD
-
-    public partial class DataPostgres
-    {
-        /// <summary>
-        /// 레시피 목록 조회
-        /// </summary>
-        public async Task<ArrayList> GetRecipeListAsync()
-        {
-            ArrayList list = new ArrayList();
-
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string query = @"SELECT recipe_id, recipe_name, description, created_at, updated_at,
-                        recipe_guid, recipe_code, version, is_active,
-                        status, approved_by, approved_at, recipe_mode
-                        FROM system.recipe
-                        WHERE is_active = true OR is_active IS NULL
-                        ORDER BY recipe_name, version DESC";
-
-                    using (var cmd = new NpgsqlCommand(query, conn))
-                    using (var reader = await cmd.ExecuteReaderAsync())
-                    {
-                        while (await reader.ReadAsync())
-                        {
-                            var info = new RecipeInfo();
-                            info.recipe_id = reader.GetInt32(0);
-                            info.recipe_name = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                            info.description = reader.IsDBNull(2) ? "" : reader.GetString(2);
-                            info.created_at = reader.IsDBNull(3) ? DateTime.MinValue : reader.GetDateTime(3);
-                            info.updated_at = reader.IsDBNull(4) ? DateTime.MinValue : reader.GetDateTime(4);
-                            info.recipe_guid = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                            info.recipe_code = reader.IsDBNull(6) ? "" : reader.GetString(6);
-                            info.version = reader.IsDBNull(7) ? 1 : reader.GetInt32(7);
-                            info.is_active = reader.IsDBNull(8) ? true : reader.GetBoolean(8);
-                            info.status = reader.IsDBNull(9) ? "draft" : reader.GetString(9);
-                            info.approved_by = reader.IsDBNull(10) ? "" : reader.GetString(10);
-                            info.approved_at = reader.IsDBNull(11) ? (DateTime?)null : reader.GetDateTime(11);
-                            info.recipe_mode = reader.IsDBNull(12) ? "standard" : reader.GetString(12);
-                            list.Add(info);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"레시피 목록 조회 오류: {ex.Message}");
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// 레시피 상세 조회 (Steps + Items 포함)
-        /// </summary>
-        public async Task<RecipeData> GetRecipeAsync(int recipeId)
-        {
-            RecipeData recipe = null;
-
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    // 1. 레시피 마스터
-                    string recipeQuery = @"SELECT recipe_id, recipe_name, description, created_at, updated_at,
-                        recipe_guid, recipe_code, version, is_active,
-                        status, approved_by, approved_at, recipe_mode
-                        FROM system.recipe WHERE recipe_id = @id";
-                    using (var cmd = new NpgsqlCommand(recipeQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", recipeId);
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            if (await reader.ReadAsync())
-                            {
-                                recipe = new RecipeData();
-                                recipe.recipe_id = reader.GetInt32(0);
-                                recipe.recipe_name = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                                recipe.description = reader.IsDBNull(2) ? "" : reader.GetString(2);
-                                recipe.created_at = reader.IsDBNull(3) ? DateTime.MinValue : reader.GetDateTime(3);
-                                recipe.updated_at = reader.IsDBNull(4) ? DateTime.MinValue : reader.GetDateTime(4);
-                                recipe.recipe_guid = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                                recipe.recipe_code = reader.IsDBNull(6) ? "" : reader.GetString(6);
-                                recipe.version = reader.IsDBNull(7) ? 1 : reader.GetInt32(7);
-                                recipe.is_active = reader.IsDBNull(8) ? true : reader.GetBoolean(8);
-                                recipe.status = reader.IsDBNull(9) ? "draft" : reader.GetString(9);
-                                recipe.approved_by = reader.IsDBNull(10) ? "" : reader.GetString(10);
-                                recipe.approved_at = reader.IsDBNull(11) ? (DateTime?)null : reader.GetDateTime(11);
-                                recipe.recipe_mode = reader.IsDBNull(12) ? "standard" : reader.GetString(12);
-                            }
-                        }
-                    }
-
-                    if (recipe == null) return null;
-
-                    // 2. Unit 계층 조회
-                    Hashtable unitMap = new Hashtable(); // unit_id → RecipeUnitData
-                    string unitQuery = @"SELECT unit_id, unit_name, unit_order, description
-                        FROM system.recipe_unit WHERE recipe_id = @id ORDER BY unit_order";
-                    using (var cmd = new NpgsqlCommand(unitQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", recipeId);
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            while (await reader.ReadAsync())
-                            {
-                                var unit = new RecipeUnitData();
-                                unit.unit_id = reader.GetInt32(0);
-                                unit.recipe_id = recipeId;
-                                unit.unit_name = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                                unit.unit_order = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
-                                unit.description = reader.IsDBNull(3) ? "" : reader.GetString(3);
-                                recipe.units.Add(unit);
-                                unitMap[unit.unit_id] = unit;
-                            }
-                        }
-                    }
-
-                    // 3. 레시피 단계 (unit_id + entry_condition + expression + 확장 모델 포함)
-                    string stepQuery = @"SELECT step_id, step_order, step_name, wait_time_ms, timeout_ms,
-                        condition_tag, condition_value, condition_type, unit_id,
-                        entry_condition_tag, entry_condition_value, entry_condition_type, entry_timeout_ms,
-                        entry_expression, exit_expression,
-                        running_expression, exit_actions_json, abort_actions_json,
-                        transitions_json
-                        FROM system.recipe_step WHERE recipe_id = @id ORDER BY step_order";
-                    using (var cmd = new NpgsqlCommand(stepQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", recipeId);
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            while (await reader.ReadAsync())
-                            {
-                                var step = new RecipeStepData();
-                                step.step_id = reader.GetInt32(0);
-                                step.step_order = reader.GetInt32(1);
-                                step.step_name = reader.IsDBNull(2) ? "" : reader.GetString(2);
-                                step.wait_time_ms = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
-                                step.timeout_ms = reader.IsDBNull(4) ? 30000 : reader.GetInt32(4);
-                                step.condition_tag = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                                step.condition_value = reader.IsDBNull(6) ? "" : reader.GetString(6);
-                                step.condition_type = reader.IsDBNull(7) ? "none" : reader.GetString(7);
-                                step.unit_id = reader.IsDBNull(8) ? 0 : reader.GetInt32(8);
-                                step.entry_condition_tag = reader.IsDBNull(9) ? "" : reader.GetString(9);
-                                step.entry_condition_value = reader.IsDBNull(10) ? "" : reader.GetString(10);
-                                step.entry_condition_type = reader.IsDBNull(11) ? "none" : reader.GetString(11);
-                                step.entry_timeout_ms = reader.IsDBNull(12) ? 0 : reader.GetInt32(12);
-                                step.entry_expression = reader.IsDBNull(13) ? "" : reader.GetString(13);
-                                step.exit_expression = reader.IsDBNull(14) ? "" : reader.GetString(14);
-                                step.running_expression = reader.IsDBNull(15) ? "" : reader.GetString(15);
-                                step.exit_actions_json = reader.IsDBNull(16) ? "" : reader.GetString(16);
-                                step.abort_actions_json = reader.IsDBNull(17) ? "" : reader.GetString(17);
-                                step.transitions_json = reader.IsDBNull(18) ? "" : reader.GetString(18);
-
-                                // unit_id가 있으면 해당 Unit의 steps에 배치, 없으면 recipe 직속
-                                if (step.unit_id > 0 && unitMap.ContainsKey(step.unit_id))
-                                    ((RecipeUnitData)unitMap[step.unit_id]).steps.Add(step);
-                                else
-                                    recipe.steps.Add(step);
-                            }
-                        }
-                    }
-
-                    // 4. 모든 step의 items 조회 (recipe 직속 + unit 소속)
-                    ArrayList allSteps = new ArrayList();
-                    for (int i = 0; i < recipe.steps.Count; i++)
-                        allSteps.Add(recipe.steps[i]);
-                    for (int u = 0; u < recipe.units.Count; u++)
-                    {
-                        var unit = (RecipeUnitData)recipe.units[u];
-                        for (int s = 0; s < unit.steps.Count; s++)
-                            allSteps.Add(unit.steps[s]);
-                    }
-
-                    for (int i = 0; i < allSteps.Count; i++)
-                    {
-                        var step = (RecipeStepData)allSteps[i];
-
-                        string itemQuery = @"SELECT item_id, tag_name, set_value, value_type, item_order
-                            FROM system.recipe_step_item WHERE step_id = @stepId ORDER BY item_order";
-                        using (var cmd = new NpgsqlCommand(itemQuery, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@stepId", step.step_id);
-                            using (var reader = await cmd.ExecuteReaderAsync())
-                            {
-                                while (await reader.ReadAsync())
-                                {
-                                    var item = new RecipeItemData();
-                                    item.item_id = reader.GetInt32(0);
-                                    item.tag_name = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                                    item.set_value = reader.IsDBNull(2) ? "" : reader.GetString(2);
-                                    item.value_type = reader.IsDBNull(3) ? "double" : reader.GetString(3);
-                                    item.item_order = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
-                                    step.items.Add(item);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"레시피 상세 조회 오류: {ex.Message}");
-            }
-
-            return recipe;
-        }
-
-        /// <summary>
-        /// 레시피 이름으로 조회
-        /// </summary>
-        public async Task<RecipeData> GetRecipeByNameAsync(string recipeName)
-        {
-            int recipeId = -1;
-
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string query = "SELECT recipe_id FROM system.recipe WHERE recipe_name = @name AND (is_active = true OR is_active IS NULL)";
-                    using (var cmd = new NpgsqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@name", recipeName);
-                        var result = await cmd.ExecuteScalarAsync();
-                        if (result != null)
-                            recipeId = Convert.ToInt32(result);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"레시피 이름 조회 오류: {ex.Message}");
-            }
-
-            if (recipeId < 0) return null;
-            return await GetRecipeAsync(recipeId);
-        }
-
-        /// <summary>
-        /// 레시피 저장 (신규 INSERT / 기존 UPDATE 통합, 트랜잭션)
-        /// </summary>
-        public async Task<(int recipeId, string error)> SaveRecipeAsync(RecipeData recipe)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    using (var transaction = conn.BeginTransaction())
-                    {
-                        try
-                        {
-                            int recipeId;
-
-                            // GUID 자동 생성 (하위호환)
-                            if (string.IsNullOrEmpty(recipe.recipe_guid))
-                                recipe.recipe_guid = Guid.NewGuid().ToString("N");
-                            if (recipe.version <= 0)
-                                recipe.version = 1;
-
-                            if (recipe.recipe_id > 0)
-                            {
-                                // 기존 레시피 UPDATE
-                                string updateQuery = @"UPDATE system.recipe SET recipe_name = @name, description = @desc,
-                                    recipe_guid = @guid, recipe_code = @code, version = @ver,
-                                    status = @status, approved_by = @approvedBy, approved_at = @approvedAt,
-                                    recipe_mode = @mode
-                                    WHERE recipe_id = @id";
-                                using (var cmd = new NpgsqlCommand(updateQuery, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@id", recipe.recipe_id);
-                                    cmd.Parameters.AddWithValue("@name", recipe.recipe_name);
-                                    cmd.Parameters.AddWithValue("@desc", (object)recipe.description ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@guid", (object)recipe.recipe_guid ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@code", (object)recipe.recipe_code ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@ver", recipe.version);
-                                    cmd.Parameters.AddWithValue("@status", (object)recipe.status ?? "draft");
-                                    cmd.Parameters.AddWithValue("@approvedBy", (object)recipe.approved_by ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@approvedAt", recipe.approved_at.HasValue ? (object)recipe.approved_at.Value : DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@mode", (object)recipe.recipe_mode ?? "standard");
-                                    await cmd.ExecuteNonQueryAsync();
-                                }
-                                recipeId = recipe.recipe_id;
-
-                                // 기존 units 삭제 (CASCADE로 unit 소속 steps/items 함께 삭제)
-                                string deleteUnits = "DELETE FROM system.recipe_unit WHERE recipe_id = @id";
-                                using (var cmd = new NpgsqlCommand(deleteUnits, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@id", recipeId);
-                                    await cmd.ExecuteNonQueryAsync();
-                                }
-
-                                // 기존 recipe 직속 steps/items 삭제 (unit_id IS NULL인 것만)
-                                string deleteSteps = "DELETE FROM system.recipe_step WHERE recipe_id = @id AND unit_id IS NULL";
-                                using (var cmd = new NpgsqlCommand(deleteSteps, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@id", recipeId);
-                                    await cmd.ExecuteNonQueryAsync();
-                                }
-                            }
-                            else
-                            {
-                                // 신규 레시피 INSERT
-                                string insertQuery = @"INSERT INTO system.recipe
-                                    (recipe_name, description, recipe_guid, recipe_code, version,
-                                     status, approved_by, approved_at, recipe_mode)
-                                    VALUES (@name, @desc, @guid, @code, @ver,
-                                            @status, @approvedBy, @approvedAt, @mode) RETURNING recipe_id";
-                                using (var cmd = new NpgsqlCommand(insertQuery, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@name", recipe.recipe_name);
-                                    cmd.Parameters.AddWithValue("@desc", (object)recipe.description ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@guid", (object)recipe.recipe_guid ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@code", (object)recipe.recipe_code ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@ver", recipe.version);
-                                    cmd.Parameters.AddWithValue("@status", (object)recipe.status ?? "draft");
-                                    cmd.Parameters.AddWithValue("@approvedBy", (object)recipe.approved_by ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@approvedAt", recipe.approved_at.HasValue ? (object)recipe.approved_at.Value : DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@mode", (object)recipe.recipe_mode ?? "standard");
-                                    recipeId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
-                                }
-                            }
-
-                            // Units INSERT
-                            for (int u = 0; u < recipe.units.Count; u++)
-                            {
-                                var unit = (RecipeUnitData)recipe.units[u];
-
-                                string unitInsert = @"INSERT INTO system.recipe_unit
-                                    (recipe_id, unit_name, unit_order, description)
-                                    VALUES (@recipeId, @name, @order, @desc)
-                                    RETURNING unit_id";
-
-                                int unitId;
-                                using (var cmd = new NpgsqlCommand(unitInsert, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@recipeId", recipeId);
-                                    cmd.Parameters.AddWithValue("@name", unit.unit_name);
-                                    cmd.Parameters.AddWithValue("@order", unit.unit_order);
-                                    cmd.Parameters.AddWithValue("@desc", (object)unit.description ?? DBNull.Value);
-                                    unitId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
-                                }
-
-                                // Unit 소속 Steps INSERT
-                                await InsertStepsAsync(conn, transaction, recipeId, unitId, unit.steps);
-                            }
-
-                            // Recipe 직속 Steps INSERT (unit_id = NULL)
-                            await InsertStepsAsync(conn, transaction, recipeId, 0, recipe.steps);
-
-                            transaction.Commit();
-                            return (recipeId, null);
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            Debug.WriteLine($"레시피 저장 트랜잭션 실패: {ex.Message}");
-                            return (-1, ex.Message);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"레시피 저장 오류: {ex.Message}");
-                return (-1, ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// 레시피 삭제 (FK CASCADE로 연쇄 삭제)
-        /// </summary>
-        public async Task<string> DeleteRecipeAsync(int recipeId)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string query = "DELETE FROM system.recipe WHERE recipe_id = @id";
-                    using (var cmd = new NpgsqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", recipeId);
-                        int affected = await cmd.ExecuteNonQueryAsync();
-                        if (affected == 0)
-                            return "레시피를 찾을 수 없습니다.";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"레시피 삭제 오류: {ex.Message}");
-                return ex.Message;
-            }
-
-            return null; // 성공
-        }
-
-        /// <summary>
-        /// Steps + Items INSERT 헬퍼 (Unit 소속 또는 Recipe 직속)
-        /// </summary>
-        private async Task InsertStepsAsync(NpgsqlConnection conn, NpgsqlTransaction transaction,
-            int recipeId, int unitId, ArrayList steps)
-        {
-            for (int s = 0; s < steps.Count; s++)
-            {
-                var step = (RecipeStepData)steps[s];
-
-                string stepInsert = @"INSERT INTO system.recipe_step
-                    (recipe_id, unit_id, step_order, step_name, wait_time_ms, timeout_ms,
-                     condition_tag, condition_value, condition_type,
-                     entry_condition_tag, entry_condition_value, entry_condition_type, entry_timeout_ms,
-                     entry_expression, exit_expression,
-                     running_expression, exit_actions_json, abort_actions_json,
-                     transitions_json)
-                    VALUES (@recipeId, @unitId, @order, @name, @waitMs, @timeoutMs,
-                            @condTag, @condVal, @condType,
-                            @entryTag, @entryVal, @entryType, @entryTimeoutMs,
-                            @entryExpr, @exitExpr,
-                            @runExpr, @exitActions, @abortActions,
-                            @transJson)
-                    RETURNING step_id";
-
-                int stepId;
-                using (var cmd = new NpgsqlCommand(stepInsert, conn, transaction))
-                {
-                    cmd.Parameters.AddWithValue("@recipeId", recipeId);
-                    cmd.Parameters.AddWithValue("@unitId", unitId > 0 ? (object)unitId : DBNull.Value);
-                    cmd.Parameters.AddWithValue("@order", step.step_order);
-                    cmd.Parameters.AddWithValue("@name", (object)step.step_name ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@waitMs", step.wait_time_ms);
-                    cmd.Parameters.AddWithValue("@timeoutMs", step.timeout_ms);
-                    cmd.Parameters.AddWithValue("@condTag", (object)step.condition_tag ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@condVal", (object)step.condition_value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@condType", (object)step.condition_type ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@entryTag", (object)step.entry_condition_tag ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@entryVal", (object)step.entry_condition_value ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@entryType", (object)step.entry_condition_type ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@entryTimeoutMs", step.entry_timeout_ms);
-                    cmd.Parameters.AddWithValue("@entryExpr", (object)step.entry_expression ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@exitExpr", (object)step.exit_expression ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@runExpr", (object)step.running_expression ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@exitActions", (object)step.exit_actions_json ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@abortActions", (object)step.abort_actions_json ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@transJson", (object)step.transitions_json ?? DBNull.Value);
-                    stepId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
-                }
-
-                // Items INSERT
-                for (int i = 0; i < step.items.Count; i++)
-                {
-                    var item = (RecipeItemData)step.items[i];
-
-                    string itemInsert = @"INSERT INTO system.recipe_step_item
-                        (step_id, tag_name, set_value, value_type, item_order)
-                        VALUES (@stepId, @tag, @val, @valType, @order)";
-
-                    using (var cmd = new NpgsqlCommand(itemInsert, conn, transaction))
-                    {
-                        cmd.Parameters.AddWithValue("@stepId", stepId);
-                        cmd.Parameters.AddWithValue("@tag", item.tag_name);
-                        cmd.Parameters.AddWithValue("@val", item.set_value);
-                        cmd.Parameters.AddWithValue("@valType", (object)item.value_type ?? "double");
-                        cmd.Parameters.AddWithValue("@order", item.item_order);
-                        await cmd.ExecuteNonQueryAsync();
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// GUID로 활성 레시피 정보 조회 (Import 비교용)
-        /// </summary>
-        public async Task<RecipeInfo> GetRecipeInfoByGuidAsync(string recipeGuid)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string query = @"SELECT recipe_id, recipe_name, description, created_at, updated_at,
-                        recipe_guid, recipe_code, version, is_active,
-                        status, approved_by, approved_at, recipe_mode
-                        FROM system.recipe
-                        WHERE recipe_guid = @guid AND (is_active = true OR is_active IS NULL)";
-
-                    using (var cmd = new NpgsqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@guid", recipeGuid);
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            if (await reader.ReadAsync())
-                            {
-                                var info = new RecipeInfo();
-                                info.recipe_id = reader.GetInt32(0);
-                                info.recipe_name = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                                info.description = reader.IsDBNull(2) ? "" : reader.GetString(2);
-                                info.created_at = reader.IsDBNull(3) ? DateTime.MinValue : reader.GetDateTime(3);
-                                info.updated_at = reader.IsDBNull(4) ? DateTime.MinValue : reader.GetDateTime(4);
-                                info.recipe_guid = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                                info.recipe_code = reader.IsDBNull(6) ? "" : reader.GetString(6);
-                                info.version = reader.IsDBNull(7) ? 1 : reader.GetInt32(7);
-                                info.is_active = reader.IsDBNull(8) ? true : reader.GetBoolean(8);
-                                info.status = reader.IsDBNull(9) ? "draft" : reader.GetString(9);
-                                info.approved_by = reader.IsDBNull(10) ? "" : reader.GetString(10);
-                                info.approved_at = reader.IsDBNull(11) ? (DateTime?)null : reader.GetDateTime(11);
-                                info.recipe_mode = reader.IsDBNull(12) ? "standard" : reader.GetString(12);
-                                return info;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"GUID 기반 레시피 조회 오류: {ex.Message}");
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Import 배치 처리: 단일 트랜잭션으로 여러 레시피를 일괄 Import
-        /// - softArchiveExisting=true이면 기존 활성 레시피를 is_active=false로 비활성화
-        /// - 새 레시피를 INSERT (Units/Steps/Items 포함)
-        /// - 감사 로그 기록
-        /// </summary>
-        public async Task<(int imported, string error)> ImportRecipeBatchAsync(
-            List<(RecipeData recipe, bool softArchiveExisting)> importItems,
-            string username, string machineName)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    using (var transaction = conn.BeginTransaction())
-                    {
-                        try
-                        {
-                            int imported = 0;
-
-                            for (int i = 0; i < importItems.Count; i++)
-                            {
-                                var recipe = importItems[i].recipe;
-                                bool softArchive = importItems[i].softArchiveExisting;
-
-                                // 1. 기존 활성 레시피 비활성화 (소프트 삭제)
-                                if (softArchive && !string.IsNullOrEmpty(recipe.recipe_guid))
-                                {
-                                    string archiveSql = @"UPDATE system.recipe SET is_active = false
-                                        WHERE recipe_guid = @guid AND (is_active = true OR is_active IS NULL)";
-                                    using (var cmd = new NpgsqlCommand(archiveSql, conn, transaction))
-                                    {
-                                        cmd.Parameters.AddWithValue("@guid", recipe.recipe_guid);
-                                        await cmd.ExecuteNonQueryAsync();
-                                    }
-                                }
-
-                                // 2. 새 레시피 INSERT
-                                string insertSql = @"INSERT INTO system.recipe
-                                    (recipe_name, description, recipe_guid, recipe_code, version, is_active,
-                                     status, approved_by, approved_at, recipe_mode)
-                                    VALUES (@name, @desc, @guid, @code, @ver, true,
-                                            @status, @approvedBy, @approvedAt, @mode)
-                                    RETURNING recipe_id";
-
-                                int newRecipeId;
-                                using (var cmd = new NpgsqlCommand(insertSql, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@name", recipe.recipe_name);
-                                    cmd.Parameters.AddWithValue("@desc", (object)recipe.description ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@guid", (object)recipe.recipe_guid ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@code", (object)recipe.recipe_code ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@ver", recipe.version);
-                                    cmd.Parameters.AddWithValue("@status", (object)recipe.status ?? "draft");
-                                    cmd.Parameters.AddWithValue("@approvedBy", (object)recipe.approved_by ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@approvedAt", recipe.approved_at.HasValue ? (object)recipe.approved_at.Value : DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@mode", (object)recipe.recipe_mode ?? "standard");
-                                    newRecipeId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
-                                }
-
-                                // 3. Units INSERT
-                                for (int u = 0; u < recipe.units.Count; u++)
-                                {
-                                    var unit = (RecipeUnitData)recipe.units[u];
-
-                                    string unitInsert = @"INSERT INTO system.recipe_unit
-                                        (recipe_id, unit_name, unit_order, description)
-                                        VALUES (@recipeId, @name, @order, @desc)
-                                        RETURNING unit_id";
-
-                                    int unitId;
-                                    using (var cmd = new NpgsqlCommand(unitInsert, conn, transaction))
-                                    {
-                                        cmd.Parameters.AddWithValue("@recipeId", newRecipeId);
-                                        cmd.Parameters.AddWithValue("@name", unit.unit_name);
-                                        cmd.Parameters.AddWithValue("@order", unit.unit_order);
-                                        cmd.Parameters.AddWithValue("@desc", (object)unit.description ?? DBNull.Value);
-                                        unitId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
-                                    }
-
-                                    // Unit 소속 Steps INSERT
-                                    await InsertStepsAsync(conn, transaction, newRecipeId, unitId, unit.steps);
-                                }
-
-                                // 4. Recipe 직속 Steps INSERT (unit_id = NULL)
-                                await InsertStepsAsync(conn, transaction, newRecipeId, 0, recipe.steps);
-
-                                // 5. 감사 로그
-                                string auditSql = @"INSERT INTO history.recipe_audit_log
-                                    (recipe_id, recipe_name, action, target_type, target_name,
-                                     old_value, new_value, username, machine_name)
-                                    VALUES (@rid, @rname, 'IMPORT', 'RECIPE', @tname,
-                                            @oldVal, @newVal, @user, @machine)";
-                                using (var cmd = new NpgsqlCommand(auditSql, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@rid", newRecipeId);
-                                    cmd.Parameters.AddWithValue("@rname", recipe.recipe_name);
-                                    cmd.Parameters.AddWithValue("@tname", recipe.recipe_name);
-                                    cmd.Parameters.AddWithValue("@oldVal",
-                                        softArchive ? (object)$"{{\"action\":\"archive\",\"guid\":\"{recipe.recipe_guid}\"}}" : DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@newVal",
-                                        (object)$"{{\"guid\":\"{recipe.recipe_guid}\",\"version\":{recipe.version}}}");
-                                    cmd.Parameters.AddWithValue("@user", (object)username ?? DBNull.Value);
-                                    cmd.Parameters.AddWithValue("@machine", (object)machineName ?? DBNull.Value);
-                                    await cmd.ExecuteNonQueryAsync();
-                                }
-
-                                imported++;
-                            }
-
-                            transaction.Commit();
-                            return (imported, null);
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            Debug.WriteLine($"Import 트랜잭션 실패: {ex.Message}");
-                            return (0, ex.Message);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Import 배치 오류: {ex.Message}");
-                return (0, ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// 레시피 실행 로그 INSERT (INSERT 전용 테이블)
-        /// </summary>
-        public async Task<long> InsertRecipeExecutionLogAsync(
-            int recipeId, string recipeName, string unitName,
-            string action, string status, int stepIndex, int totalSteps,
-            string errorMessage, string username, string machineName,
-            DateTime? executionStart, DateTime? executionEnd)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"INSERT INTO history.recipe_execution_log
-                        (recipe_id, recipe_name, unit_name, action, status, step_index, total_steps,
-                         error_message, username, machine_name, execution_start, execution_end)
-                        VALUES (@rid, @rname, @uname, @action, @status, @sidx, @total,
-                                @err, @user, @machine, @start, @end)
-                        RETURNING log_id";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@rid", recipeId > 0 ? (object)recipeId : DBNull.Value);
-                        cmd.Parameters.AddWithValue("@rname", (object)recipeName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@uname", (object)unitName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@action", action);
-                        cmd.Parameters.AddWithValue("@status", status);
-                        cmd.Parameters.AddWithValue("@sidx", stepIndex);
-                        cmd.Parameters.AddWithValue("@total", totalSteps);
-                        cmd.Parameters.AddWithValue("@err", (object)errorMessage ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@user", (object)username ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@machine", (object)machineName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@start", executionStart.HasValue ? (object)executionStart.Value : DBNull.Value);
-                        cmd.Parameters.AddWithValue("@end", executionEnd.HasValue ? (object)executionEnd.Value : DBNull.Value);
-
-                        var result = await cmd.ExecuteScalarAsync();
-                        return result != null ? Convert.ToInt64(result) : -1;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"실행 로그 INSERT 오류: {ex.Message}");
-                return -1;
-            }
-        }
-
-        /// <summary>
-        /// 실행 로그 배치 INSERT — 여러 로그를 한 번의 INSERT로 기록
-        /// </summary>
-        public async Task InsertRecipeExecutionLogBatchAsync(
-            List<(int recipeId, string recipeName, string unitName, string action, string status,
-                int stepIndex, int totalSteps, string errorMessage,
-                string username, string machineName,
-                DateTime? executionStart, DateTime? executionEnd)> entries)
-        {
-            if (entries == null || entries.Count == 0) return;
-
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    var sb = new System.Text.StringBuilder();
-                    sb.Append(@"INSERT INTO history.recipe_execution_log
-                        (recipe_id, recipe_name, unit_name, action, status, step_index, total_steps,
-                         error_message, username, machine_name, execution_start, execution_end)
-                        VALUES ");
-
-                    using (var cmd = new NpgsqlCommand())
-                    {
-                        cmd.Connection = conn;
-
-                        for (int i = 0; i < entries.Count; i++)
-                        {
-                            var e = entries[i];
-                            if (i > 0) sb.Append(", ");
-                            sb.AppendFormat("(@rid{0}, @rname{0}, @uname{0}, @action{0}, @status{0}, @sidx{0}, @total{0}, @err{0}, @user{0}, @machine{0}, @start{0}, @end{0})", i);
-
-                            cmd.Parameters.AddWithValue($"@rid{i}", e.recipeId > 0 ? (object)e.recipeId : DBNull.Value);
-                            cmd.Parameters.AddWithValue($"@rname{i}", (object)e.recipeName ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue($"@uname{i}", (object)e.unitName ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue($"@action{i}", e.action);
-                            cmd.Parameters.AddWithValue($"@status{i}", e.status);
-                            cmd.Parameters.AddWithValue($"@sidx{i}", e.stepIndex);
-                            cmd.Parameters.AddWithValue($"@total{i}", e.totalSteps);
-                            cmd.Parameters.AddWithValue($"@err{i}", (object)e.errorMessage ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue($"@user{i}", (object)e.username ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue($"@machine{i}", (object)e.machineName ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue($"@start{i}", e.executionStart.HasValue ? (object)e.executionStart.Value : DBNull.Value);
-                            cmd.Parameters.AddWithValue($"@end{i}", e.executionEnd.HasValue ? (object)e.executionEnd.Value : DBNull.Value);
-                        }
-
-                        cmd.CommandText = sb.ToString();
-                        await cmd.ExecuteNonQueryAsync();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"실행 로그 배치 INSERT 오류: {ex.Message}");
-            }
-        }
-
-        #region ISA-88 Phase 3: Transition Execution Log
-
-        /// <summary>
-        /// 전이 실행 감사 로그 INSERT (INSERT 전용 — 변경/삭제 불가)
-        /// </summary>
-        public async Task<long> InsertTransitionLogAsync(
-            string batchId, int stepOrder, string stepName,
-            int transitionIndex, string transitionType, string expression,
-            bool evaluatedResult, string actionTaken, string unitName,
-            string errorMessage, string username, string machineName)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-                    string sql = @"INSERT INTO history.transition_execution_log
-                        (batch_id, step_order, step_name, transition_index, transition_type,
-                         expression, evaluated_result, action_taken, unit_name,
-                         error_message, username, machine_name)
-                        VALUES (@bid, @sorder, @sname, @tidx, @ttype,
-                                @expr, @result, @action, @uname,
-                                @err, @user, @machine)
-                        RETURNING log_id";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@bid", (object)batchId ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@sorder", stepOrder);
-                        cmd.Parameters.AddWithValue("@sname", (object)stepName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@tidx", transitionIndex);
-                        cmd.Parameters.AddWithValue("@ttype", transitionType);
-                        cmd.Parameters.AddWithValue("@expr", (object)expression ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@result", evaluatedResult);
-                        cmd.Parameters.AddWithValue("@action", (object)actionTaken ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@uname", (object)unitName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@err", (object)errorMessage ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@user", (object)username ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@machine", (object)machineName ?? DBNull.Value);
-
-                        var result = await cmd.ExecuteScalarAsync();
-                        return result != null ? Convert.ToInt64(result) : -1;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"전이 로그 INSERT 오류: {ex.Message}");
-                return -1;
-            }
-        }
-
-        #endregion
-
-        #region ISA-88 Phase 2: Control Recipe + Batch Execution CRUD
-
-        /// <summary>
-        /// Control Recipe 생성 — Master 레시피를 JSON 스냅샷으로 동결하여 저장
-        /// </summary>
-        public async Task<int> CreateControlRecipeAsync(int masterRecipeId, int masterVersion,
-            string batchId, string snapshotJson, string username)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"INSERT INTO operational.control_recipe
-                        (master_recipe_id, master_version, batch_id, recipe_snapshot, status, created_by)
-                        VALUES (@masterId, @ver, @batchId, @snapshot::jsonb, 'pending', @user)
-                        RETURNING control_recipe_id";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@masterId", masterRecipeId);
-                        cmd.Parameters.AddWithValue("@ver", masterVersion);
-                        cmd.Parameters.AddWithValue("@batchId", batchId);
-                        cmd.Parameters.AddWithValue("@snapshot", snapshotJson);
-                        cmd.Parameters.AddWithValue("@user", (object)username ?? DBNull.Value);
-
-                        var result = await cmd.ExecuteScalarAsync();
-                        return result != null ? Convert.ToInt32(result) : -1;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Control Recipe 생성 오류: {ex.Message}");
-                return -1;
-            }
-        }
-
-        /// <summary>
-        /// Control Recipe 조회 — 스냅샷 JSON 포함
-        /// </summary>
-        public async Task<(ControlRecipeInfo info, string snapshotJson)> GetControlRecipeAsync(int controlRecipeId)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"SELECT control_recipe_id, master_recipe_id, master_version,
-                        batch_id, recipe_snapshot::text, status, created_at, created_by
-                        FROM operational.control_recipe WHERE control_recipe_id = @id";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", controlRecipeId);
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            if (await reader.ReadAsync())
-                            {
-                                var info = new ControlRecipeInfo();
-                                info.control_recipe_id = reader.GetInt32(0);
-                                info.master_recipe_id = reader.GetInt32(1);
-                                info.master_version = reader.GetInt32(2);
-                                info.batch_id = reader.IsDBNull(3) ? "" : reader.GetString(3);
-                                string snapshot = reader.IsDBNull(4) ? "{}" : reader.GetString(4);
-                                info.status = reader.IsDBNull(5) ? "pending" : reader.GetString(5);
-                                info.created_at = reader.IsDBNull(6) ? DateTime.MinValue : reader.GetDateTime(6);
-                                info.created_by = reader.IsDBNull(7) ? "" : reader.GetString(7);
-                                return (info, snapshot);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Control Recipe 조회 오류: {ex.Message}");
-            }
-            return (null, null);
-        }
-
-        /// <summary>
-        /// Control Recipe 상태 업데이트 (pending → running → completed/aborted)
-        /// </summary>
-        public async Task<bool> UpdateControlRecipeStatusAsync(int controlRecipeId, string newStatus)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"UPDATE operational.control_recipe SET status = @status
-                        WHERE control_recipe_id = @id";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@status", newStatus);
-                        cmd.Parameters.AddWithValue("@id", controlRecipeId);
-                        int rows = await cmd.ExecuteNonQueryAsync();
-                        return rows > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Control Recipe 상태 업데이트 오류: {ex.Message}");
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Batch Execution 레코드 생성 — 배치 시작 시 호출
-        /// </summary>
-        public async Task<bool> CreateBatchExecutionAsync(BatchExecutionRecord record)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"INSERT INTO history.batch_execution
-                        (batch_id, control_recipe_id, master_recipe_id, master_recipe_name,
-                         master_version, operator_id, start_time, status)
-                        VALUES (@batchId, @ctrlId, @masterId, @masterName,
-                                @ver, @operator, @startTime, @status)";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@batchId", record.batch_id);
-                        cmd.Parameters.AddWithValue("@ctrlId", record.control_recipe_id);
-                        cmd.Parameters.AddWithValue("@masterId", record.master_recipe_id);
-                        cmd.Parameters.AddWithValue("@masterName", (object)record.master_recipe_name ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@ver", record.master_version);
-                        cmd.Parameters.AddWithValue("@operator", (object)record.operator_id ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@startTime", record.start_time.HasValue ? (object)record.start_time.Value : DBNull.Value);
-                        cmd.Parameters.AddWithValue("@status", (object)record.status ?? "idle");
-                        await cmd.ExecuteNonQueryAsync();
-                        return true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Batch Execution 생성 오류: {ex.Message}");
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Batch Execution 상태/결과 업데이트 (실행 중 → 완료/실패/중단)
-        /// </summary>
-        public async Task<bool> UpdateBatchStatusAsync(string batchId, string status, string result, DateTime? endTime)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"UPDATE history.batch_execution
-                        SET status = @status, result = @result, end_time = @endTime
-                        WHERE batch_id = @batchId";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@status", (object)status ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@result", (object)result ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@endTime", endTime.HasValue ? (object)endTime.Value : DBNull.Value);
-                        cmd.Parameters.AddWithValue("@batchId", batchId);
-                        int rows = await cmd.ExecuteNonQueryAsync();
-                        return rows > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Batch 상태 업데이트 오류: {ex.Message}");
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Batch Execution 목록 조회 (특정 Master Recipe 기준 또는 전체)
-        /// </summary>
-        public async Task<List<BatchExecutionRecord>> GetBatchExecutionListAsync(int? masterRecipeId = null, int limit = 100)
-        {
-            var list = new List<BatchExecutionRecord>();
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"SELECT batch_id, control_recipe_id, master_recipe_id,
-                        master_recipe_name, master_version, operator_id,
-                        start_time, end_time, result, status, created_at
-                        FROM history.batch_execution";
-                    if (masterRecipeId.HasValue)
-                        sql += " WHERE master_recipe_id = @masterId";
-                    sql += " ORDER BY created_at DESC LIMIT @limit";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        if (masterRecipeId.HasValue)
-                            cmd.Parameters.AddWithValue("@masterId", masterRecipeId.Value);
-                        cmd.Parameters.AddWithValue("@limit", limit);
-
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            while (await reader.ReadAsync())
-                            {
-                                var rec = new BatchExecutionRecord();
-                                rec.batch_id = reader.IsDBNull(0) ? "" : reader.GetString(0);
-                                rec.control_recipe_id = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
-                                rec.master_recipe_id = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
-                                rec.master_recipe_name = reader.IsDBNull(3) ? "" : reader.GetString(3);
-                                rec.master_version = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
-                                rec.operator_id = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                                rec.start_time = reader.IsDBNull(6) ? (DateTime?)null : reader.GetDateTime(6);
-                                rec.end_time = reader.IsDBNull(7) ? (DateTime?)null : reader.GetDateTime(7);
-                                rec.result = reader.IsDBNull(8) ? "" : reader.GetString(8);
-                                rec.status = reader.IsDBNull(9) ? "idle" : reader.GetString(9);
-                                rec.created_at = reader.IsDBNull(10) ? DateTime.MinValue : reader.GetDateTime(10);
-                                list.Add(rec);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Batch Execution 목록 조회 오류: {ex.Message}");
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// 배치 실행 이력 조회 — 날짜 범위 필터
-        /// </summary>
-        public async Task<List<BatchExecutionRecord>> GetBatchExecutionListAsync(
-            int? masterRecipeId, DateTime dateFrom, DateTime dateTo, int limit = 500)
-        {
-            var list = new List<BatchExecutionRecord>();
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"SELECT batch_id, control_recipe_id, master_recipe_id,
-                        master_recipe_name, master_version, operator_id,
-                        start_time, end_time, result, status, created_at
-                        FROM history.batch_execution
-                        WHERE start_time >= @from AND start_time < @to";
-                    if (masterRecipeId.HasValue)
-                        sql += " AND master_recipe_id = @masterId";
-                    sql += " ORDER BY created_at DESC LIMIT @limit";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@from", dateFrom);
-                        cmd.Parameters.AddWithValue("@to", dateTo);
-                        if (masterRecipeId.HasValue)
-                            cmd.Parameters.AddWithValue("@masterId", masterRecipeId.Value);
-                        cmd.Parameters.AddWithValue("@limit", limit);
-
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            while (await reader.ReadAsync())
-                            {
-                                var rec = new BatchExecutionRecord();
-                                rec.batch_id = reader.IsDBNull(0) ? "" : reader.GetString(0);
-                                rec.control_recipe_id = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
-                                rec.master_recipe_id = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
-                                rec.master_recipe_name = reader.IsDBNull(3) ? "" : reader.GetString(3);
-                                rec.master_version = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
-                                rec.operator_id = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                                rec.start_time = reader.IsDBNull(6) ? (DateTime?)null : reader.GetDateTime(6);
-                                rec.end_time = reader.IsDBNull(7) ? (DateTime?)null : reader.GetDateTime(7);
-                                rec.result = reader.IsDBNull(8) ? "" : reader.GetString(8);
-                                rec.status = reader.IsDBNull(9) ? "idle" : reader.GetString(9);
-                                rec.created_at = reader.IsDBNull(10) ? DateTime.MinValue : reader.GetDateTime(10);
-                                list.Add(rec);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Batch Execution(날짜) 조회 오류: {ex.Message}");
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// 최근 실행 로그 조회 (recipe_execution_log)
-        /// </summary>
-        public async Task<ArrayList> GetRecentExecutionLogsAsync(string recipeName, int limit = 50)
-        {
-            var list = new ArrayList();
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"SELECT log_id, recipe_id, recipe_name, unit_name, action, status,
-                        step_index, total_steps, error_message, username,
-                        execution_start, execution_end, created_at
-                        FROM history.recipe_execution_log
-                        WHERE recipe_name = @name
-                        ORDER BY created_at DESC LIMIT @limit";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@name", recipeName);
-                        cmd.Parameters.AddWithValue("@limit", limit);
-
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            while (await reader.ReadAsync())
-                            {
-                                var entry = new RecipeExecutionLogEntry();
-                                entry.log_id = reader.GetInt64(0);
-                                entry.recipe_id = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
-                                entry.recipe_name = reader.IsDBNull(2) ? "" : reader.GetString(2);
-                                entry.unit_name = reader.IsDBNull(3) ? "" : reader.GetString(3);
-                                entry.action = reader.IsDBNull(4) ? "" : reader.GetString(4);
-                                entry.status = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                                entry.step_index = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
-                                entry.total_steps = reader.IsDBNull(7) ? 0 : reader.GetInt32(7);
-                                entry.error_message = reader.IsDBNull(8) ? "" : reader.GetString(8);
-                                entry.username = reader.IsDBNull(9) ? "" : reader.GetString(9);
-                                entry.execution_start = reader.IsDBNull(10) ? (DateTime?)null : reader.GetDateTime(10);
-                                entry.execution_end = reader.IsDBNull(11) ? (DateTime?)null : reader.GetDateTime(11);
-                                entry.created_at = reader.IsDBNull(12) ? DateTime.MinValue : reader.GetDateTime(12);
-                                list.Add(entry);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"실행 로그 조회 오류: {ex.Message}");
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// 실행 로그 조회 — 날짜 범위 필터
-        /// </summary>
-        public async Task<ArrayList> GetRecentExecutionLogsAsync(
-            string recipeName, DateTime dateFrom, DateTime dateTo, int limit = 500)
-        {
-            var list = new ArrayList();
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"SELECT log_id, recipe_id, recipe_name, unit_name, action, status,
-                        step_index, total_steps, error_message, username,
-                        execution_start, execution_end, created_at
-                        FROM history.recipe_execution_log
-                        WHERE recipe_name = @name AND created_at >= @from AND created_at < @to
-                        ORDER BY created_at DESC LIMIT @limit";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@name", recipeName);
-                        cmd.Parameters.AddWithValue("@from", dateFrom);
-                        cmd.Parameters.AddWithValue("@to", dateTo);
-                        cmd.Parameters.AddWithValue("@limit", limit);
-
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            while (await reader.ReadAsync())
-                            {
-                                var entry = new RecipeExecutionLogEntry();
-                                entry.log_id = reader.GetInt64(0);
-                                entry.recipe_id = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
-                                entry.recipe_name = reader.IsDBNull(2) ? "" : reader.GetString(2);
-                                entry.unit_name = reader.IsDBNull(3) ? "" : reader.GetString(3);
-                                entry.action = reader.IsDBNull(4) ? "" : reader.GetString(4);
-                                entry.status = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                                entry.step_index = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
-                                entry.total_steps = reader.IsDBNull(7) ? 0 : reader.GetInt32(7);
-                                entry.error_message = reader.IsDBNull(8) ? "" : reader.GetString(8);
-                                entry.username = reader.IsDBNull(9) ? "" : reader.GetString(9);
-                                entry.execution_start = reader.IsDBNull(10) ? (DateTime?)null : reader.GetDateTime(10);
-                                entry.execution_end = reader.IsDBNull(11) ? (DateTime?)null : reader.GetDateTime(11);
-                                entry.created_at = reader.IsDBNull(12) ? DateTime.MinValue : reader.GetDateTime(12);
-                                list.Add(entry);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"실행 로그(날짜) 조회 오류: {ex.Message}");
-            }
-            return list;
-        }
-
-        #endregion
-
-        /// <summary>
-        /// 레시피 감사 로그 INSERT (INSERT 전용 테이블)
-        /// </summary>
-        public async Task<long> InsertRecipeAuditLogAsync(
-            int recipeId, string recipeName, string action,
-            string targetType, string targetName,
-            string oldValue, string newValue,
-            string username, string machineName)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"INSERT INTO history.recipe_audit_log
-                        (recipe_id, recipe_name, action, target_type, target_name,
-                         old_value, new_value, username, machine_name)
-                        VALUES (@rid, @rname, @action, @ttype, @tname,
-                                @oldval, @newval, @user, @machine)
-                        RETURNING log_id";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@rid", recipeId > 0 ? (object)recipeId : DBNull.Value);
-                        cmd.Parameters.AddWithValue("@rname", (object)recipeName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@action", action);
-                        cmd.Parameters.AddWithValue("@ttype", (object)targetType ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@tname", (object)targetName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@oldval", (object)oldValue ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@newval", (object)newValue ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@user", (object)username ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@machine", (object)machineName ?? DBNull.Value);
-
-                        var result = await cmd.ExecuteScalarAsync();
-                        return result != null ? Convert.ToInt64(result) : -1;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"감사 로그 INSERT 오류: {ex.Message}");
-                return -1;
-            }
-        }
-
-        /// <summary>
-        /// 레시피 감사 로그 INSERT (전자서명 포함)
-        /// </summary>
-        public async Task<long> InsertRecipeAuditLogAsync(
-            int recipeId, string recipeName, string action,
-            string targetType, string targetName,
-            string oldValue, string newValue,
-            string username, string machineName,
-            string signature, string reason)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"INSERT INTO history.recipe_audit_log
-                        (recipe_id, recipe_name, action, target_type, target_name,
-                         old_value, new_value, username, machine_name, signature, reason)
-                        VALUES (@rid, @rname, @action, @ttype, @tname,
-                                @oldval, @newval, @user, @machine, @sig, @reason)
-                        RETURNING log_id";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@rid", recipeId > 0 ? (object)recipeId : DBNull.Value);
-                        cmd.Parameters.AddWithValue("@rname", (object)recipeName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@action", action);
-                        cmd.Parameters.AddWithValue("@ttype", (object)targetType ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@tname", (object)targetName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@oldval", (object)oldValue ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@newval", (object)newValue ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@user", (object)username ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@machine", (object)machineName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@sig", (object)signature ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@reason", (object)reason ?? DBNull.Value);
-
-                        var result = await cmd.ExecuteScalarAsync();
-                        return result != null ? Convert.ToInt64(result) : -1;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"감사 로그(서명) INSERT 오류: {ex.Message}");
-                return -1;
-            }
-        }
-
-        /// <summary>
-        /// operational.audit_log 에 감사 로그 삽입 (전자서명 이력 포함)
-        /// </summary>
-        /// <param name="userName">사용자명</param>
-        /// <param name="action">액션명 (BATCH_START, APPROVE, OBSOLETE 등)</param>
-        /// <param name="objectType">대상 객체 유형 (RECIPE, BATCH 등)</param>
-        /// <param name="objectName">대상 객체 이름</param>
-        /// <param name="objectVersion">대상 객체 버전</param>
-        /// <param name="reason">사유</param>
-        /// <param name="result">결과 (success, fail 등)</param>
-        /// <param name="source">출처 (서명 문자열 등)</param>
-        /// <param name="clientIp">클라이언트 IP / 머신명</param>
-        /// <param name="extraJson">추가 JSONB 데이터 (null 가능)</param>
-        public async Task<long> InsertOperationalAuditLogAsync(
-            string userName, string action,
-            string objectType, string objectName, int objectVersion,
-            string reason, string result,
-            string source, string clientIp,
-            string extraJson = null)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"INSERT INTO operational.audit_log
-                        (event_time, user_name, action, object_type, object_name,
-                         object_version, reason, result, source, client_ip, extra)
-                        VALUES (CURRENT_TIMESTAMP, @user, @action, @otype, @oname,
-                                @over, @reason, @result, @source, @cip,
-                                @extra::jsonb)
-                        RETURNING id";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@user", (object)userName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@action", action);
-                        cmd.Parameters.AddWithValue("@otype", (object)objectType ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@oname", (object)objectName ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@over", objectVersion);
-                        cmd.Parameters.AddWithValue("@reason", (object)reason ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@result", (object)result ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@source", (object)source ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@cip", (object)clientIp ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@extra", (object)extraJson ?? DBNull.Value);
-
-                        var id = await cmd.ExecuteScalarAsync();
-                        return id != null ? Convert.ToInt64(id) : -1;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"operational.audit_log INSERT 오류: {ex.Message}");
-                return -1;
-            }
-        }
-
-        /// <summary>
-        /// 레시피 승인 상태 업데이트 (status, approved_by, approved_at)
-        /// </summary>
-        public async Task<bool> UpdateRecipeStatusAsync(int recipeId, string newStatus, string approvedBy)
-        {
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-                    using (var transaction = conn.BeginTransaction())
-                    {
-                        try
-                        {
-                            // 대상 레시피 상태 업데이트
-                            string sql = @"UPDATE system.recipe
-                                SET status = @status, approved_by = @approvedBy, approved_at = @approvedAt
-                                WHERE recipe_id = @rid";
-
-                            using (var cmd = new NpgsqlCommand(sql, conn, transaction))
-                            {
-                                cmd.Parameters.AddWithValue("@rid", recipeId);
-                                cmd.Parameters.AddWithValue("@status", newStatus);
-                                cmd.Parameters.AddWithValue("@approvedBy", (object)approvedBy ?? DBNull.Value);
-                                cmd.Parameters.AddWithValue("@approvedAt",
-                                    (newStatus == "approved") ? (object)DateTime.Now : DBNull.Value);
-
-                                int rows = await cmd.ExecuteNonQueryAsync();
-                                if (rows == 0)
-                                {
-                                    transaction.Rollback();
-                                    return false;
-                                }
-                            }
-
-                            // ISA-88: approve 시 같은 recipe_guid의 이전 approved 버전 → obsolete
-                            if (newStatus == "approved")
-                            {
-                                string obsoleteSql = @"UPDATE system.recipe
-                                    SET status = 'obsolete'
-                                    WHERE recipe_guid = (SELECT recipe_guid FROM system.recipe WHERE recipe_id = @rid)
-                                      AND recipe_id != @rid
-                                      AND status = 'approved'
-                                      AND (is_active = true OR is_active IS NULL)";
-
-                                using (var cmd = new NpgsqlCommand(obsoleteSql, conn, transaction))
-                                {
-                                    cmd.Parameters.AddWithValue("@rid", recipeId);
-                                    int obsoleted = await cmd.ExecuteNonQueryAsync();
-                                    if (obsoleted > 0)
-                                        Debug.WriteLine($"ISA-88: {obsoleted} previous approved version(s) set to obsolete for recipe_id={recipeId}");
-                                }
-                            }
-
-                            transaction.Commit();
-                            return true;
-                        }
-                        catch
-                        {
-                            transaction.Rollback();
-                            throw;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"레시피 상태 업데이트 오류: {ex.Message}");
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 레시피 감사 로그 조회 (Revision History)
-        /// </summary>
-        public async Task<ArrayList> GetRecipeAuditLogsAsync(int recipeId, int maxRows = 100)
-        {
-            var list = new ArrayList();
-            try
-            {
-                using (var conn = new NpgsqlConnection(_connectionString))
-                {
-                    await conn.OpenAsync();
-
-                    string sql = @"SELECT log_id, recipe_id, recipe_name, action,
-                            target_type, target_name, old_value, new_value,
-                            username, machine_name, created_at,
-                            COALESCE(signature, '') AS signature,
-                            COALESCE(reason, '') AS reason
-                        FROM history.recipe_audit_log
-                        WHERE recipe_id = @rid
-                        ORDER BY created_at DESC
-                        LIMIT @lim";
-
-                    using (var cmd = new NpgsqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@rid", recipeId);
-                        cmd.Parameters.AddWithValue("@lim", maxRows);
-
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            while (await reader.ReadAsync())
-                            {
-                                var entry = new RecipeAuditLogEntry();
-                                entry.log_id = reader.GetInt64(0);
-                                entry.recipe_id = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
-                                entry.recipe_name = reader.IsDBNull(2) ? "" : reader.GetString(2);
-                                entry.action = reader.IsDBNull(3) ? "" : reader.GetString(3);
-                                entry.target_type = reader.IsDBNull(4) ? "" : reader.GetString(4);
-                                entry.target_name = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                                entry.old_value = reader.IsDBNull(6) ? "" : reader.GetString(6);
-                                entry.new_value = reader.IsDBNull(7) ? "" : reader.GetString(7);
-                                entry.username = reader.IsDBNull(8) ? "" : reader.GetString(8);
-                                entry.machine_name = reader.IsDBNull(9) ? "" : reader.GetString(9);
-                                entry.created_at = reader.IsDBNull(10) ? DateTime.MinValue : reader.GetDateTime(10);
-                                entry.signature = reader.IsDBNull(11) ? "" : reader.GetString(11);
-                                entry.reason = reader.IsDBNull(12) ? "" : reader.GetString(12);
-                                list.Add(entry);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"감사 로그 조회 오류: {ex.Message}");
-            }
-            return list;
-        }
-    }
-
-    /// <summary>
-    /// 레시피 감사 로그 엔트리
-    /// </summary>
-    public class RecipeAuditLogEntry
-    {
-        public long log_id;
-        public int recipe_id;
-        public string recipe_name = "";
-        public string action = "";
-        public string target_type = "";
-        public string target_name = "";
-        public string old_value = "";
-        public string new_value = "";
-        public string username = "";
-        public string machine_name = "";
-        public DateTime created_at;
-        public string signature = "";
-        public string reason = "";
-    }
-
-    #endregion
 }

@@ -300,6 +300,8 @@
     <Compile Include="LanguageManager.cs" />
     <Compile Include="PostgresSQL\DataDBLocal.cs" />
     <Compile Include="PostgresSQL\DataPostgres.cs" />
+    <Compile Include="PostgresSQL\DataPostgres.Recipe.cs" />
+    <Compile Include="PostgresSQL\DataPostgres.Models.cs" />
     <Compile Include="PostgresSQL\DBDataCacheManager.cs" />
     <Compile Include="RecipeJsonHelper.cs" />
     <Compile Include="RecipeExpressionEvaluator.cs" />

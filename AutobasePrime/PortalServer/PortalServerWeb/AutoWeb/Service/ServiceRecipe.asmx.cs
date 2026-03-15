@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Data;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Web.Services;
 using AutoLibLocal;
 using PortalServerWeb.Library;
@@ -36,7 +37,8 @@ namespace PortalServerWeb.AutoWeb.Service
 					return null;
 				}
 
-				ArrayList list = db.GetRecipeListAsync().GetAwaiter().GetResult();
+				// Task.Run으로 별도 스레드풀에서 실행하여 ASP.NET SynchronizationContext 데드락 방지
+				ArrayList list = Task.Run(() => db.GetRecipeListAsync()).GetAwaiter().GetResult();
 
 				DataSet ds = new DataSet();
 				DataTable dt = new DataTable("RecipeList");
@@ -83,7 +85,8 @@ namespace PortalServerWeb.AutoWeb.Service
 					return null;
 				}
 
-				RecipeData recipe = db.GetRecipeAsync(recipeId).GetAwaiter().GetResult();
+				// Task.Run으로 별도 스레드풀에서 실행하여 ASP.NET SynchronizationContext 데드락 방지
+				RecipeData recipe = Task.Run(() => db.GetRecipeAsync(recipeId)).GetAwaiter().GetResult();
 				if (recipe == null)
 				{
 					error = "레시피를 찾을 수 없습니다.";
