@@ -21,7 +21,7 @@ namespace LocalMain
 		}
 
 		/// <summary>
-		/// DB에서 레시피 목록 재로드
+		/// DB에서 레시피 목록 재로드 (delegate 호환 유지를 위해 void 시그니처)
 		/// </summary>
 		public static async void ReLoad()
 		{
@@ -34,7 +34,9 @@ namespace LocalMain
 			}
 			catch (Exception ex)
 			{
-				Debug.WriteLine($"RecipeManager.ReLoad 오류: {ex.Message}");
+				// async void에서 미처리 예외는 앱 크래시 → 반드시 catch
+				Debug.WriteLine($"[RecipeManager] ReLoad 오류: {ex}");
+				try { SmLog.Message("[RecipeManager] ReLoad 오류: {0}", ex.Message); } catch { }
 			}
 		}
 

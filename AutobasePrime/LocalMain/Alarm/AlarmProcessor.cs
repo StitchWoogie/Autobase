@@ -82,65 +82,79 @@ namespace LocalMain.Alarm
                 {
                     while (!_cts.Token.IsCancellationRequested)
                     {
-                        // 먼저 DB 상태와 큐 크기 확인
-                        bool isDbConnected = _healthMonitor?.CurrentState == DbConnectionState.Connected;
-                        int currentQueueSize = _alarmQueue.Count;
-
-                        // 큐가 최대 크기를 초과한 경우 정리
-                        if (currentQueueSize > MAX_QUEUE_SIZE)
+                        try
                         {
-                            int removedCount = CleanupOldAlarms();
-                            string warningMsg = $"경보 큐 크기 초과 ({currentQueueSize}개). 오래된 경보 {removedCount}개 제거됨";
-                            Debug.WriteLine(warningMsg);
-                            WriteErrorToFile(warningMsg);
-                        }
+                            // 먼저 DB 상태와 큐 크기 확인
+                            bool isDbConnected = _healthMonitor?.CurrentState == DbConnectionState.Connected;
+                            int currentQueueSize = _alarmQueue.Count;
 
-                        // DB가 연결되지 않은 경우 대기
-                        if (!isDbConnected)
-                        {
-                            if (batch.Count > 0)
+                            // 큐가 최대 크기를 초과한 경우 정리
+                            if (currentQueueSize > MAX_QUEUE_SIZE)
                             {
-                                Debug.WriteLine($"DB 연결 불량. 현재 경보 배치 {batch.Count}개 보관 중. 큐 대기: {_alarmQueue.Count}개");
+                                int removedCount = CleanupOldAlarms();
+                                string warningMsg = $"경보 큐 크기 초과 ({currentQueueSize}개). 오래된 경보 {removedCount}개 제거됨";
+                                Debug.WriteLine(warningMsg);
+                                WriteErrorToFile(warningMsg);
                             }
 
-                            // 일정 시간 대기 후 다시 확인
-                            await Task.Delay(BATCH_TIMEOUT_MS, _cts.Token);
-                            continue;
-                        }
-
-                        if (_alarmQueue.TryTake(out var item, BATCH_TIMEOUT_MS, _cts.Token))
-                        {
-                            batch.Add(item);
-
-                            // 동적 배치 크기 도달 시 저장
-                            if (batch.Count >= _currentBatchSize)
+                            // DB가 연결되지 않은 경우 대기
+                            if (!isDbConnected)
                             {
-                                var saveStartTime = DateTime.UtcNow;
+                                if (batch.Count > 0)
+                                {
+                                    Debug.WriteLine($"DB 연결 불량. 현재 경보 배치 {batch.Count}개 보관 중. 큐 대기: {_alarmQueue.Count}개");
+                                }
 
-                                // 배치 복사 후 즉시 비우기
-                                var batchToSave = new List<AlarmItem>(batch);
-                                batch.Clear();
+                                // 일정 시간 대기 후 다시 확인
+                                await Task.Delay(BATCH_TIMEOUT_MS, _cts.Token);
+                                continue;
+                            }
 
-                                // 복사본 저장
-                                await SaveAlarmBatch(batchToSave);
+                            if (_alarmQueue.TryTake(out var item, BATCH_TIMEOUT_MS, _cts.Token))
+                            {
+                                batch.Add(item);
 
-                                // 저장 시간 측정 및 배치 크기 동적 조정
-                                var saveTime = (DateTime.UtcNow - saveStartTime).TotalMilliseconds;
-                                AdjustBatchSize(saveTime, _alarmQueue.Count);
+                                // 동적 배치 크기 도달 시 저장
+                                if (batch.Count >= _currentBatchSize)
+                                {
+                                    var saveStartTime = DateTime.UtcNow;
 
-                                lastSaveTime = DateTime.UtcNow;
+                                    // 배치 복사 후 즉시 비우기
+                                    var batchToSave = new List<AlarmItem>(batch);
+                                    batch.Clear();
+
+                                    // 복사본 저장
+                                    await SaveAlarmBatch(batchToSave);
+
+                                    // 저장 시간 측정 및 배치 크기 동적 조정
+                                    var saveTime = (DateTime.UtcNow - saveStartTime).TotalMilliseconds;
+                                    AdjustBatchSize(saveTime, _alarmQueue.Count);
+
+                                    lastSaveTime = DateTime.UtcNow;
+                                }
+                            }
+                            else
+                            {
+                                // 타임아웃: 대기 중인 데이터 저장
+                                if (batch.Count > 0)
+                                {
+                                    var batchToSave = new List<AlarmItem>(batch);
+                                    batch.Clear();
+                                    await SaveAlarmBatch(batchToSave);
+                                    lastSaveTime = DateTime.UtcNow;
+                                }
                             }
                         }
-                        else
+                        catch (OperationCanceledException)
                         {
-                            // 타임아웃: 대기 중인 데이터 저장
-                            if (batch.Count > 0)
-                            {
-                                var batchToSave = new List<AlarmItem>(batch);
-                                batch.Clear();
-                                await SaveAlarmBatch(batchToSave);
-                                lastSaveTime = DateTime.UtcNow;
-                            }
+                            throw; // 상위 catch로 전파하여 정상 종료 처리
+                        }
+                        catch (Exception ex)
+                        {
+                            // 개별 반복 예외 → 루프 계속 (경보 프로세서 영구 정지 방지)
+                            Debug.WriteLine($"[AlarmProcessor] 루프 반복 오류: {ex.Message}");
+                            WriteErrorToFile($"루프 반복 오류: {ex.Message}");
+                            await Task.Delay(1000); // 빠른 실패 루프 방지
                         }
                     }
                 }
@@ -150,7 +164,9 @@ namespace LocalMain.Alarm
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"경보 프로세서 오류: {ex.Message}");
+                    // while 루프 자체가 실패한 치명적 상황
+                    Debug.WriteLine($"[AlarmProcessor] 치명적 오류로 프로세서 종료: {ex}");
+                    WriteErrorToFile($"치명적 오류로 프로세서 종료: {ex.Message}");
                 }
                 finally
                 {

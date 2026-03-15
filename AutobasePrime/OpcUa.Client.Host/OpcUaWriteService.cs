@@ -38,14 +38,35 @@ namespace OPCUA.Client.Host
 
         private async Task WorkerAsync()
         {
-            while (!_cts.IsCancellationRequested)
+            try
             {
-                await _signal.WaitAsync(_cts.Token).ConfigureAwait(false);
+                while (!_cts.IsCancellationRequested)
+                {
+                    try
+                    {
+                        await _signal.WaitAsync(_cts.Token).ConfigureAwait(false);
 
-                if (!_queue.TryDequeue(out var req))
-                    continue;
+                        if (!_queue.TryDequeue(out var req))
+                            continue;
 
-                await ExecuteAsync(req).ConfigureAwait(false);
+                        await ExecuteAsync(req).ConfigureAwait(false);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Write 실패가 워커 루프를 죽이지 않도록 격리
+                        System.Diagnostics.Debug.WriteLine(
+                            $"[OpcUaWriteService] Worker iteration error: {ex.Message}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"[OpcUaWriteService] Worker fatal error: {ex.Message}");
             }
         }
 

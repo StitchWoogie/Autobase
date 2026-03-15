@@ -31,7 +31,7 @@ namespace AutobaseRESTAPIMonitor
         private static readonly Dictionary<string, ConcurrentQueue<(string response, int CallCount)>> _clientQueues =
     new Dictionary<string, ConcurrentQueue<(string, int)>>();
 
-        private static readonly Dictionary<string, bool> TagExistenceCache = new Dictionary<string, bool>();
+        private static readonly ConcurrentDictionary<string, bool> TagExistenceCache = new ConcurrentDictionary<string, bool>();
 
         private static bool _initialized;
 
@@ -72,10 +72,7 @@ namespace AutobaseRESTAPIMonitor
 
             foreach (var tag in tags)
             {
-                if (!TagExistenceCache.ContainsKey(tag))
-                {
-                    TagExistenceCache[tag] = TagLib.IsTagExist(tag);
-                }
+                TagExistenceCache.TryAdd(tag, TagLib.IsTagExist(tag));
             }
         }
 
@@ -83,11 +80,8 @@ namespace AutobaseRESTAPIMonitor
         {
             foreach (var tag in tags)
             {
-                // 태그가 캐시에 없거나 갱신이 필요하면 다시 체크
-                if (!TagExistenceCache.ContainsKey(tag))
-                {
-                    TagExistenceCache[tag] = TagLib.IsTagExist(tag);
-                }
+                // 태그가 캐시에 없으면 추가
+                TagExistenceCache.TryAdd(tag, TagLib.IsTagExist(tag));
             }
         }
 
@@ -96,16 +90,7 @@ namespace AutobaseRESTAPIMonitor
             if (string.IsNullOrEmpty(tag))
                 return false;
 
-            if (TagExistenceCache.TryGetValue(tag, out bool exists))
-            {
-                return exists;
-            }
-
-            // 캐시에 없으면 외부 메서드 호출 후 추가
-            exists = TagLib.IsTagExist(tag);
-            TagExistenceCache[tag] = exists;
-
-            return exists;
+            return TagExistenceCache.GetOrAdd(tag, t => TagLib.IsTagExist(t));
         }
 
 

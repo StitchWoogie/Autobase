@@ -170,8 +170,17 @@ namespace OpcUa.Client.Host
             // 최초 1회 즉시 연결
             _ = Task.Run(async () =>
             {
-                await _runtime.ConnectAllAsync();
-                RaiseServersChanged();          // 초기 연결 결과를 UI에 반영
+                try
+                {
+                    await _runtime.ConnectAllAsync();
+                    RaiseServersChanged();          // 초기 연결 결과를 UI에 반영
+                }
+                catch (Exception ex)
+                {
+                    RaiseHostState(OpcUaHostState.Error,
+                        $"Initial ConnectAll failed: {ex.Message}");
+                    _logger?.LogError(ex, "Initial ConnectAllAsync failed");
+                }
             });
 
             // 재연결 Timer
@@ -199,16 +208,21 @@ namespace OpcUa.Client.Host
 
             Log("OPC UA Host stopping...");
 
-            try { _reconnectTimer?.Dispose(); } catch { }
-            try { _cts.Cancel(); } catch { }
+            try { _reconnectTimer?.Dispose(); }
+            catch (Exception ex) { _logger?.LogWarning(ex, "ReconnectTimer dispose failed"); }
+
+            try { _cts.Cancel(); }
+            catch (Exception ex) { _logger?.LogWarning(ex, "CTS cancel failed"); }
 
             // 런타임 종료 전에 최종값을 Config에 반영
-            try { SnapshotLastValues(); } catch { }
+            try { SnapshotLastValues(); }
+            catch (Exception ex) { _logger?.LogWarning(ex, "SnapshotLastValues failed"); }
 
             try { await _runtime.StopAsync().ConfigureAwait(false); }
-            catch { }
+            catch (Exception ex) { _logger?.LogError(ex, "Runtime StopAsync failed"); }
 
-            try { OpcUaClientConfigManager.Save(); } catch { }
+            try { OpcUaClientConfigManager.Save(); }
+            catch (Exception ex) { _logger?.LogWarning(ex, "Config save on shutdown failed"); }
 
             RaiseHostState(OpcUaHostState.Stopped, "Host stopped");
             Log("OPC UA Host stopped.");
