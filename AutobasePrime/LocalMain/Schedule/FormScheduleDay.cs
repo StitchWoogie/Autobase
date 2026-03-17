@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using NetTools;
 using NetTools.OldDefine;
 using AutoLib;
+using AutoLibLocal;
 using DialogHoliday;
 using PublicStudioLocalMain.Schedule;
 
@@ -14,6 +15,12 @@ namespace LocalMain
 	/// <summary>
 	/// Summary description for FormScheduleDay.
 	/// </summary>
+	class ScheduleDayNodeInfo
+	{
+		public SCHEDULE_MODEL_STRUCT model;
+		public int itemIndex = -1;  // -1 = model node, >=0 = item node
+	}
+
 	public class FormScheduleDay : System.Windows.Forms.Form
 	{
 		private System.Windows.Forms.Panel panel1;
@@ -21,9 +28,13 @@ namespace LocalMain
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TreeView m_tree;
-		private System.Windows.Forms.TreeView m_treeOrder; 
+		private System.Windows.Forms.TreeView m_treeOrder;
 		private System.Windows.Forms.ImageList imageList1;
 		private System.ComponentModel.IContainer components;
+		private System.Windows.Forms.ContextMenuStrip contextMenuTree;
+		private System.Windows.Forms.ToolStripMenuItem menuItemAddItem;
+		private System.Windows.Forms.ToolStripMenuItem menuItemEditItem;
+		private System.Windows.Forms.ToolStripMenuItem menuItemDeleteItem;
 
 		public FormScheduleDay()
 		{
@@ -191,6 +202,57 @@ namespace LocalMain
 		{
 			tTime = DateTime.Now;
 			UpdateLabel();
+			InitContextMenu();
+		}
+
+		void InitContextMenu()
+		{
+			contextMenuTree = new ContextMenuStrip();
+			menuItemAddItem = new ToolStripMenuItem();
+			menuItemEditItem = new ToolStripMenuItem();
+			menuItemDeleteItem = new ToolStripMenuItem();
+
+			if(Tools.IsLangKorean())
+			{
+				menuItemAddItem.Text = "아이템 추가";
+				menuItemEditItem.Text = "아이템 수정";
+				menuItemDeleteItem.Text = "아이템 삭제";
+			}
+			else if(Tools.IsLangJapanese())
+			{
+				menuItemAddItem.Text = "アイテム追加";
+				menuItemEditItem.Text = "アイテム修正";
+				menuItemDeleteItem.Text = "アイテム削除";
+			}
+			else if(Tools.IsLangChinese())
+			{
+				menuItemAddItem.Text = "添加项目";
+				menuItemEditItem.Text = "修改项目";
+				menuItemDeleteItem.Text = "删除项目";
+			}
+			else if(Tools.IsLangVietnamese())
+			{
+				menuItemAddItem.Text = "Thêm mục";
+				menuItemEditItem.Text = "Sửa mục";
+				menuItemDeleteItem.Text = "Xóa mục";
+			}
+			else
+			{
+				menuItemAddItem.Text = "Add Item";
+				menuItemEditItem.Text = "Edit Item";
+				menuItemDeleteItem.Text = "Delete Item";
+			}
+
+			menuItemAddItem.Click += new EventHandler(menuItemAddItem_Click);
+			menuItemEditItem.Click += new EventHandler(menuItemEditItem_Click);
+			menuItemDeleteItem.Click += new EventHandler(menuItemDeleteItem_Click);
+
+			contextMenuTree.Items.AddRange(new ToolStripItem[] { menuItemAddItem, menuItemEditItem, menuItemDeleteItem });
+			contextMenuTree.Opening += new System.ComponentModel.CancelEventHandler(contextMenuTree_Opening);
+
+			m_tree.ContextMenuStrip = contextMenuTree;
+			m_tree.NodeMouseClick += new TreeNodeMouseClickEventHandler(m_tree_NodeMouseClick);
+			m_tree.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(m_tree_NodeMouseDoubleClick);
 		}
 
 		void UpdateLabel()
@@ -263,6 +325,7 @@ namespace LocalMain
 				str += buf;
 
 				TreeNode node = new TreeNode(str, item.hour%24, item.hour%24);
+				node.Tag = new ScheduleDayNodeInfo { model = model, itemIndex = m };
 				tree.Nodes.Add(node);
 			}
 		}
@@ -403,6 +466,8 @@ namespace LocalMain
 					}
 
 					TreeNode hTree2 = new TreeNode(buf, model_retn?25:24, model_retn?25:24);
+					if(model_retn)
+						hTree2.Tag = new ScheduleDayNodeInfo { model = model, itemIndex = -1 };
 					hTree.Nodes.Add(hTree2);
 
 					if(!model_retn)	continue;
@@ -489,6 +554,7 @@ namespace LocalMain
 
 					if(!model_retn)	continue;
 
+					hTree2.Tag = new ScheduleDayNodeInfo { model = model, itemIndex = -1 };
 					AddModelTree(hTree2, model, tTime);
 					CheckEngineSchedule.AddModelToGoBlock(blockGo, model, model_pos, tTime);
 				}
@@ -506,6 +572,191 @@ namespace LocalMain
 		private void FormScheduleDay_SizeChanged(object sender, System.EventArgs e)
 		{
 			this.panel1.Width = this.ClientRectangle.Width/2;
+		}
+
+		void m_tree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+		{
+			if(e.Button == MouseButtons.Right)
+				m_tree.SelectedNode = e.Node;
+		}
+
+		void m_tree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+		{
+			ScheduleDayNodeInfo info = e.Node.Tag as ScheduleDayNodeInfo;
+			if(info == null) return;
+
+			if(info.itemIndex >= 0)
+				EditModelItem(info);
+		}
+
+		void contextMenuTree_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			TreeNode node = m_tree.SelectedNode;
+			if(node == null)
+			{
+				e.Cancel = true;
+				return;
+			}
+
+			ScheduleDayNodeInfo info = node.Tag as ScheduleDayNodeInfo;
+			if(info == null)
+			{
+				e.Cancel = true;
+				return;
+			}
+
+			bool isModelNode = (info.itemIndex == -1);
+			bool isItemNode = (info.itemIndex >= 0);
+
+			menuItemAddItem.Visible = isModelNode;
+			menuItemEditItem.Visible = isItemNode;
+			menuItemDeleteItem.Visible = isItemNode;
+		}
+
+		void menuItemAddItem_Click(object sender, EventArgs e)
+		{
+			TreeNode node = m_tree.SelectedNode;
+			if(node == null) return;
+
+			ScheduleDayNodeInfo info = node.Tag as ScheduleDayNodeInfo;
+			if(info == null || info.itemIndex != -1) return;
+
+			AddModelItem(info);
+		}
+
+		void menuItemEditItem_Click(object sender, EventArgs e)
+		{
+			TreeNode node = m_tree.SelectedNode;
+			if(node == null) return;
+
+			ScheduleDayNodeInfo info = node.Tag as ScheduleDayNodeInfo;
+			if(info == null || info.itemIndex < 0) return;
+
+			EditModelItem(info);
+		}
+
+		void menuItemDeleteItem_Click(object sender, EventArgs e)
+		{
+			TreeNode node = m_tree.SelectedNode;
+			if(node == null) return;
+
+			ScheduleDayNodeInfo info = node.Tag as ScheduleDayNodeInfo;
+			if(info == null || info.itemIndex < 0) return;
+
+			DeleteModelItem(info);
+		}
+
+		void AddModelItem(ScheduleDayNodeInfo info)
+		{
+			FormConfigModelItem dialog = new FormConfigModelItem();
+			dialog.StartPosition = FormStartPosition.CenterParent;
+
+			if(Tools.IsLangKorean())
+				dialog.Text = "모델 아이템 추가";
+			else if(Tools.IsLangJapanese())
+				dialog.Text = "モデル アイテムの追加";
+			else if(Tools.IsLangChinese())
+				dialog.Text = "添加模型项";
+			else if(Tools.IsLangVietnamese())
+				dialog.Text = "Thêm kiểu mục";
+			else
+				dialog.Text = "Add Model Item";
+
+			if(dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				SCHEDULE_MODEL_ITEM_STRUCT item = new SCHEDULE_MODEL_ITEM_STRUCT();
+				dialog.GetStruct(item);
+				item.hour = dialog.m_nHour;
+				item.minute = dialog.m_nMinute;
+				item.script = dialog.textBoxScript.Text;
+				item.blockTag = (ArrayList)Tools.CopyObject(dialog.blockTemp);
+
+				info.model.blockItem.Add(item);
+				SaveAndRefresh();
+			}
+		}
+
+		void EditModelItem(ScheduleDayNodeInfo info)
+		{
+			if(info.itemIndex < 0 || info.itemIndex >= info.model.blockItem.Count) return;
+
+			SCHEDULE_MODEL_ITEM_STRUCT item = (SCHEDULE_MODEL_ITEM_STRUCT)info.model.blockItem[info.itemIndex];
+
+			FormConfigModelItem dialog = new FormConfigModelItem();
+			dialog.m_nHour = item.hour;
+			dialog.m_nMinute = item.minute;
+			dialog.textBoxScript.Text = item.script;
+			dialog.blockTemp = (ArrayList)Tools.CopyObject(item.blockTag);
+			dialog.SetStruct(item);
+			dialog.StartPosition = FormStartPosition.CenterParent;
+
+			if(Tools.IsLangKorean())
+				dialog.Text = "모델 아이템 수정";
+			else if(Tools.IsLangJapanese())
+				dialog.Text = "モデル アイテムの修正";
+			else if(Tools.IsLangChinese())
+				dialog.Text = "修改模型项";
+			else if(Tools.IsLangVietnamese())
+				dialog.Text = "Sửa kiểu mục";
+			else
+				dialog.Text = "Edit Model Item";
+
+			if(dialog.ShowDialog(this) == DialogResult.OK)
+			{
+				dialog.GetStruct(item);
+				item.hour = dialog.m_nHour;
+				item.minute = dialog.m_nMinute;
+				item.script = dialog.textBoxScript.Text;
+				item.blockTag = (ArrayList)Tools.CopyObject(dialog.blockTemp);
+
+				SaveAndRefresh();
+			}
+		}
+
+		void DeleteModelItem(ScheduleDayNodeInfo info)
+		{
+			if(info.itemIndex < 0 || info.itemIndex >= info.model.blockItem.Count) return;
+
+			string msg;
+			string title;
+
+			if(Tools.IsLangKorean())
+			{
+				msg = "선택한 아이템을 삭제하시겠습니까?";
+				title = "아이템 삭제";
+			}
+			else if(Tools.IsLangJapanese())
+			{
+				msg = "選択したアイテムを削除しますか？";
+				title = "アイテム削除";
+			}
+			else if(Tools.IsLangChinese())
+			{
+				msg = "确定删除选中的项目吗？";
+				title = "删除项目";
+			}
+			else if(Tools.IsLangVietnamese())
+			{
+				msg = "Bạn có muốn xóa mục đã chọn không?";
+				title = "Xóa mục";
+			}
+			else
+			{
+				msg = "Do you want to delete the selected item?";
+				title = "Delete Item";
+			}
+
+			if(MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				info.model.blockItem.RemoveAt(info.itemIndex);
+				SaveAndRefresh();
+			}
+		}
+
+		void SaveAndRefresh()
+		{
+			ScheduleLib.ModelSave(Schedule.blockScheduleModel);
+			FormSchedule.OnScheduleStructChanged();
 		}
 	}
 }
