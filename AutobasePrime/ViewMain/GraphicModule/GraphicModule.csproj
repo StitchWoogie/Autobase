@@ -573,9 +573,6 @@
     <Compile Include="Object\ObjectBitmap.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Object\ObjectMergedBitmap.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Object\ObjectMergedBitmapSimple.cs">
       <SubType>Code</SubType>
     </Compile>

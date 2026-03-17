@@ -129,11 +129,6 @@ namespace GraphicModule
 				{
 					LoadBitmap(ocp, form, reader, imsi);
 				}
-				else if(imsi == "ObjectMergedBitmap")
-				{
-					LoadMergedBitmap(ocp, reader, imsi);
-				}
-
 				else if(imsi == "ObjectButtonModule3D") 
 				{
 					LoadButtonModule3D(ocp, reader, imsi);
@@ -527,19 +522,6 @@ namespace GraphicModule
 					parent.AddObject(new ObjectBitmap(ocp, form, load.rRect, load.eID, load.objGeneral,
 						args));
 				}
-			}
-		}
-
-		void LoadMergedBitmap(ObjectCommonProperty ocp, TextReader reader, string command)
-		{
-			LoadObjectFromModX load = new LoadObjectFromModX(ocp);
-
-			if (load.run(reader, command))
-			{
-				ObjectMergedBitmap obj = new ObjectMergedBitmap(ocp, load.rRect, load.eID, load.objGeneral,
-					null, 0, 0, 0);
-				obj.LoadMergedData(reader, command);
-				parent.AddObject(obj);
 			}
 		}
 
