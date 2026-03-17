@@ -1948,6 +1948,26 @@ namespace Studio
             InsertPublic(form, obj, "Insert Barcode Scanner");
         }
 
+        //26-03-17 테이블 오브젝트 삽입
+        public static void EditInsertTable(FormEditGraphic form)
+        {
+            WORK_MODULE_STRUCT work = form.workThis;
+
+            RECT rect = new RECT();
+            rect.left = GetNewPosX(form);
+            rect.top = GetNewPosY(form);
+            rect.right = rect.left + 400;
+            rect.bottom = rect.top + 200;
+
+            ObjectArgsTable args = new ObjectArgsTable();
+            args.InitializeCells();
+
+            object obj = new ObjectTable(work.obj.objCommonProperty, form, rect, null,
+                new ObjectGeneral(GetUniqueClassName(work, "Table")), GetNewFont(), args);
+
+            InsertPublic(form, obj, "Insert Table");
+        }
+
     }
 }
 

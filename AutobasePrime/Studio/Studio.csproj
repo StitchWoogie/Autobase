@@ -638,6 +638,9 @@
     <Compile Include="Property\PropertyPageObjectBarcodeScanner.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Property\PropertyPageObjectTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Property\PropertyPageObjectVLCAx.Designer.cs">
       <DependentUpon>PropertyPageObjectVLCAx.cs</DependentUpon>
     </Compile>

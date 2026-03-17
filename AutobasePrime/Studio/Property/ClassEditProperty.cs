@@ -275,6 +275,9 @@ namespace Studio
                     case EnumObjectType.BarcodeScanner:
                         PropertyBarcodeScanner(obj, multi_select);
                         break;
+                    case EnumObjectType.Table:
+                        PropertyTable(obj, multi_select);
+                        break;
 
 				}
 			}
@@ -4820,6 +4823,55 @@ namespace Studio
             {
                 PropertyPageObjectBarcodeScanner local = (PropertyPageObjectBarcodeScanner)prop;
                 ObjectBarcodeScanner obj2 = (ObjectBarcodeScanner)obj;
+                obj2.ObjectArgs = local.ObjectArgs;
+            }
+        }
+
+        //26-03-17 테이블 프로퍼티
+        public static void PropertyTable(object obj, bool multi_select)
+        {
+            propertySheet.AddObject(obj, new Property_Recv(PropertyTable_Recv));
+
+            PropertyPageObjectTable local = new PropertyPageObjectTable();
+            PropertyPageExpandOption expand = new PropertyPageExpandOption((ObjectExpand)obj);
+
+            local = (PropertyPageObjectTable)propertySheet.AddPage(local, true, multi_select);
+            propertySheet.AddPageFont(obj, multi_select);
+            propertySheet.AddPageClassName(obj, multi_select);
+            propertySheet.AddPageExpand(expand, obj, multi_select);
+
+            ObjectTable obj2 = (ObjectTable)obj;
+            local.ObjectArgs = obj2.ObjectArgs;
+
+            expand.bUseSizeWidth = true;
+            expand.bUseSizeHeight = true;
+            expand.bUseLocationX = true;
+            expand.bUseLocationY = true;
+            expand.bUseEventKeyDown = false;
+            expand.bUseEventSelChange = false;
+            expand.bUseZoneDisplay = true;
+            expand.bUseVisible = true;
+            expand.bUseBlinking = false;
+            expand.bUseAnimationSpeed = false;
+            expand.bUseSliderHorz = false;
+            expand.bUseSliderVert = false;
+            expand.bUseColorText = false;
+            expand.bUseColorBack = false;
+            expand.bUseThickLine = false;
+
+            propertySheet.Run();
+        }
+
+        private static void PropertyTable_Recv(object obj, Form prop)
+        {
+            if (PropertyRecv_ClassName(obj, prop)) return;
+            if (PropertyRecv_Font(obj, prop)) return;
+            if (PropertyRecv_ExpandOption(obj, prop)) return;
+
+            if (((Form)prop).Name == "PropertyPageObjectTable")
+            {
+                PropertyPageObjectTable local = (PropertyPageObjectTable)prop;
+                ObjectTable obj2 = (ObjectTable)obj;
                 obj2.ObjectArgs = local.ObjectArgs;
             }
         }

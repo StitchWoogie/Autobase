@@ -392,6 +392,8 @@
     <Compile Include="Object\ObjectArgsDemandChart.cs" />
     <Compile Include="Object\ObjectBarcodeDisplay.cs" />
     <Compile Include="Object\ObjectBarcodeScanner.cs" />
+    <Compile Include="Object\ObjectTable.cs" />
+    <Compile Include="LoadObjectFromTable.cs" />
     <Compile Include="Object\ObjectChart.cs" />
     <Compile Include="Object\ObjectCustomChart.cs" />
     <Compile Include="Object\ObjectDemandChart.cs" />

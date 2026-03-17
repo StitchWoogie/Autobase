@@ -235,6 +235,7 @@ namespace Studio
         private ToolStripMenuItem demandChartToolStripMenuItem;
         private ToolStripMenuItem barcodeDisplayToolStripMenuItem;
         private ToolStripMenuItem barcodeScannerToolStripMenuItem;
+        private ToolStripMenuItem tableToolStripMenuItem;
         public FormEditGraphic formChild;
 
 		public FormEditGraphicFrame(string filename, int new_flag, StatusBar status_bar, CallBackOnMdiActivated callbackmdi, ObjectRoot root)
@@ -464,6 +465,7 @@ namespace Studio
             this.VLCAxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.barcodeDisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.barcodeScannerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
             this.objectLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buyObjectLibraryFromWebToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1185,6 +1187,7 @@ namespace Studio
             this.VLCAxToolStripMenuItem,
             this.barcodeDisplayToolStripMenuItem,
             this.barcodeScannerToolStripMenuItem,
+            this.tableToolStripMenuItem,
             this.toolStripSeparator21,
             this.objectLibraryToolStripMenuItem,
             this.buyObjectLibraryFromWebToolStripMenuItem,
@@ -1613,7 +1616,14 @@ namespace Studio
             this.barcodeScannerToolStripMenuItem.Name = "barcodeScannerToolStripMenuItem";
             resources.ApplyResources(this.barcodeScannerToolStripMenuItem, "barcodeScannerToolStripMenuItem");
             this.barcodeScannerToolStripMenuItem.Click += new System.EventHandler(this.menuItemInsertBarcodeScanner_Click);
-            // 
+            //
+            // tableToolStripMenuItem
+            //
+            this.tableToolStripMenuItem.Name = "tableToolStripMenuItem";
+            this.tableToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.tableToolStripMenuItem.Text = "Table";
+            this.tableToolStripMenuItem.Click += new System.EventHandler(this.tableToolStripMenuItem_Click);
+            //
             // toolStripSeparator21
             // 
             this.toolStripSeparator21.Name = "toolStripSeparator21";
@@ -3161,6 +3171,11 @@ namespace Studio
         private void DonutChartToolStripMenuItem_Click(object sender, EventArgs e) //도넛차트용 추가 hsjeong 25-02-04
         {
             ClassEditInsert.EditInsertDonutChart(this.formChild);
+        }
+
+        private void tableToolStripMenuItem_Click(object sender, EventArgs e) //26-03-17 테이블
+        {
+            ClassEditInsert.EditInsertTable(this.formChild);
         }
 
         private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)

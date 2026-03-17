@@ -68,7 +68,8 @@ namespace GraphicModule
         CustomChart,     //25-02-24 Chart 컨트롤 기반 사용자 지정 차트
         DemandChart,
         BarcodeDisplay,  //26-03-09 바코드/QR 표시 오브젝트
-        BarcodeScanner   //26-03-09 바코드 스캐너 상태 오브젝트
+        BarcodeScanner,  //26-03-09 바코드 스캐너 상태 오브젝트
+        Table            //26-03-17 테이블 오브젝트
     }
 	/// <summary>
 	/// Summary description for ObjectType.

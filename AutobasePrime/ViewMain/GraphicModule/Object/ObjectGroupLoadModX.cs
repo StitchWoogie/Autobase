@@ -230,6 +230,10 @@ namespace GraphicModule
                 {
                     LoadBarcodeScanner(ocp, form, reader, imsi);
                 }
+                else if (imsi == "ObjectTable") //26-03-17 테이블
+                {
+                    LoadObjectTable(ocp, form, reader, imsi);
+                }
 				else if(imsi == "ObjectStringString") 
 				{
 					LoadStringString(ocp, reader, imsi);
@@ -2185,6 +2189,65 @@ namespace GraphicModule
                 }
 
                 parent.AddObject(new ObjectBarcodeScanner(ocp, form, load.rRect, load.eID, load.objGeneral, args));
+            }
+        }
+
+        //26-03-17 테이블 오브젝트 로딩
+        void LoadObjectTable(ObjectCommonProperty ocp, Form form, TextReader reader, string command)
+        {
+            LoadObjectFromTable load = new LoadObjectFromTable(ocp);
+
+            if (load.run(reader, command))
+            {
+                ObjectArgsTable args = new ObjectArgsTable();
+
+                CommaTextReader comma = new CommaTextReader();
+                comma.Set(load.sStringOption);
+
+                comma.GetInt(ref args.nRowCount);
+                comma.GetInt(ref args.nColCount);
+
+                int gridColor = 0;
+                comma.GetInt(ref gridColor);
+                if (gridColor != 0) args.lGridColor = Color.FromArgb(gridColor);
+
+                int headerBackColor = 0;
+                comma.GetInt(ref headerBackColor);
+                if (headerBackColor != 0) args.lHeaderBackColor = Color.FromArgb(headerBackColor);
+
+                int headerForeColor = 0;
+                comma.GetInt(ref headerForeColor);
+                if (headerForeColor != 0) args.lHeaderForeColor = Color.FromArgb(headerForeColor);
+
+                int cellBackColor = 0;
+                comma.GetInt(ref cellBackColor);
+                if (cellBackColor != 0) args.lCellBackColor = Color.FromArgb(cellBackColor);
+
+                int cellForeColor = 0;
+                comma.GetInt(ref cellForeColor);
+                if (cellForeColor != 0) args.lCellForeColor = Color.FromArgb(cellForeColor);
+
+                comma.GetInt(ref args.nGridLineWidth);
+
+                int showHeader = 1;
+                comma.GetInt(ref showHeader);
+                args.bShowHeader = (showHeader == 1);
+
+                int autoSize = 0;
+                comma.GetInt(ref autoSize);
+                args.bAutoSizeColumns = (autoSize == 1);
+
+                // 로딩된 셀 데이터 적용
+                if (load.columnWidths.Count > 0)
+                    args.columnWidths = load.columnWidths;
+                if (load.rowHeights.Count > 0)
+                    args.rowHeights = load.rowHeights;
+                if (load.cells.Count > 0)
+                    args.cells = load.cells;
+
+                args.scriptEventCellClick = load.scriptEventCellClick;
+
+                parent.AddObject(new ObjectTable(ocp, form, load.rRect, load.eID, load.objGeneral, load.fontStruct, args));
             }
         }
 
