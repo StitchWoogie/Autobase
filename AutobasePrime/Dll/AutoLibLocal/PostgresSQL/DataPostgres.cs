@@ -60,7 +60,8 @@ namespace AutoLibLocal
     - external DB 설정
     - postgresSQL 설치 방법 동시설치 / 별도설치
 
-    - DB 이중화. 이중화 사용 시 처리. 현재 데이터 이중화 제대로 구현안되어있음. 이중화 시 데이터로드, 저장 등.
+    - DB 이중화. PostgresReplicationManager 클래스를 통한 Streaming Replication 이중화 구현 완료.
+      Primary/Standby 구성, 자동 Failover, R/W Split 지원.
     */
     #endregion
 
@@ -156,6 +157,23 @@ namespace AutoLibLocal
         // 단일 데이터베이스 연결 문자열
         public static string sConnectionString;
 
+        #region 이중화(Replication) 설정
+        /// <summary>이중화 사용 여부</summary>
+        public static bool sUseReplication;
+        /// <summary>Standby 서버 호스트</summary>
+        public static string sStandbyHost;
+        /// <summary>Standby 서버 포트</summary>
+        public static string sStandbyPort;
+        /// <summary>Standby 서버 사용자명</summary>
+        public static string sStandbyUsername;
+        /// <summary>Standby 서버 비밀번호</summary>
+        public static string sStandbyPassword;
+        /// <summary>읽기/쓰기 분리 사용 여부</summary>
+        public static bool sUseReadWriteSplit;
+        /// <summary>자동 Failover 사용 여부</summary>
+        public static bool sAutoFailover;
+        #endregion
+
         private static readonly byte[] EncryptionKey = Encoding.UTF8.GetBytes("AutoBaseDBpasswd"); // 16, 24, or 32 bytes
         private static readonly byte[] EncryptionIV = Encoding.UTF8.GetBytes("passwdDBAutoBase"); // 16 bytes
 
@@ -195,6 +213,9 @@ namespace AutoLibLocal
 
                 // 연결 문자열 생성
                 BuildConnectionString();
+
+                // 이중화 설정 초기화
+                InitializeReplication();
             }
             catch (Exception ex)
             {
@@ -296,6 +317,14 @@ namespace AutoLibLocal
                     case "password": sPostgresPassword = DecryptPassword(value); break;
                     case "database": sPostgresDatabase = value; break;
                     case "timezone": sPostgresTimezone = value; break;
+                    // 이중화 설정
+                    case "usereplication": sUseReplication = value.Equals("true", StringComparison.OrdinalIgnoreCase); break;
+                    case "standbyhost": sStandbyHost = value; break;
+                    case "standbyport": sStandbyPort = value; break;
+                    case "standbyusername": sStandbyUsername = value; break;
+                    case "standbypassword": sStandbyPassword = DecryptPassword(value); break;
+                    case "usereadwritesplit": sUseReadWriteSplit = value.Equals("true", StringComparison.OrdinalIgnoreCase); break;
+                    case "autofailover": sAutoFailover = value.Equals("true", StringComparison.OrdinalIgnoreCase); break;
                 }
             }
         }
@@ -401,8 +430,17 @@ namespace AutoLibLocal
             sPostgresUsername = "admin";
             sPostgresPassword = "admin";
             sPostgresDatabase = "autobase_db";
-            sPostgresTimezone = "Asia/Seoul";  
+            sPostgresTimezone = "Asia/Seoul";
             //sOperationalDataRetentionDays = "90";
+
+            // 이중화 기본값
+            sUseReplication = false;
+            sStandbyHost = "";
+            sStandbyPort = "5432";
+            sStandbyUsername = "";
+            sStandbyPassword = "";
+            sUseReadWriteSplit = false;
+            sAutoFailover = true;
         }
 
         /// <summary>
@@ -430,6 +468,19 @@ namespace AutoLibLocal
                 configContent.AppendLine($"Database={sPostgresDatabase}");
                 configContent.AppendLine($"Timezone={sPostgresTimezone}");
                 //configContent.AppendLine($"DataRetentionDays={sOperationalDataRetentionDays}");
+
+                // 이중화 설정
+                configContent.AppendLine();
+                configContent.AppendLine("[Replication Configuration]");
+                configContent.AppendLine($"UseReplication={sUseReplication.ToString().ToLower()}");
+                configContent.AppendLine($"StandbyHost={sStandbyHost}");
+                configContent.AppendLine($"StandbyPort={sStandbyPort}");
+                configContent.AppendLine($"StandbyUsername={sStandbyUsername}");
+                string encStandbyPwd = !string.IsNullOrEmpty(sStandbyPassword) ? EncryptPassword(sStandbyPassword) : "";
+                configContent.AppendLine($"StandbyPassword={encStandbyPwd}");
+                configContent.AppendLine($"UseReadWriteSplit={sUseReadWriteSplit.ToString().ToLower()}");
+                configContent.AppendLine($"AutoFailover={sAutoFailover.ToString().ToLower()}");
+
                 configContent.AppendLine($"# Created: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
 
                 File.WriteAllText(filePath, configContent.ToString(), Encoding.UTF8);
@@ -468,6 +519,67 @@ namespace AutoLibLocal
             //builder.Append("Options=-c lc_messages=C;");
 
             sConnectionString = builder.ToString();
+        }
+
+        /// <summary>
+        /// 외부에서 연결 문자열 재구성 (Failover 시 사용)
+        /// </summary>
+        public static void RebuildConnectionString()
+        {
+            BuildConnectionString();
+        }
+
+        /// <summary>
+        /// 이중화(Replication) 설정 초기화
+        /// </summary>
+        private static void InitializeReplication()
+        {
+            if (!sUseReplication || string.IsNullOrEmpty(sStandbyHost))
+            {
+                Debug.WriteLine("[ConfigDataDB] 이중화 미사용");
+                return;
+            }
+
+            try
+            {
+                var primary = new ReplicationServerInfo
+                {
+                    Host = sPostgresHost,
+                    Port = sPostgresPort,
+                    Username = sPostgresUsername,
+                    Password = sPostgresPassword,
+                    Database = sPostgresDatabase,
+                    Timezone = sPostgresTimezone,
+                    Role = ReplicationServerRole.Primary
+                };
+
+                var standby = new ReplicationServerInfo
+                {
+                    Host = sStandbyHost,
+                    Port = !string.IsNullOrEmpty(sStandbyPort) ? sStandbyPort : "5432",
+                    Username = !string.IsNullOrEmpty(sStandbyUsername) ? sStandbyUsername : sPostgresUsername,
+                    Password = !string.IsNullOrEmpty(sStandbyPassword) ? sStandbyPassword : sPostgresPassword,
+                    Database = sPostgresDatabase,
+                    Timezone = sPostgresTimezone,
+                    Role = ReplicationServerRole.Standby
+                };
+
+                PostgresReplicationManager.Instance.Initialize(
+                    primary,
+                    standby,
+                    ReplicationMode.StreamingReplication,
+                    sUseReadWriteSplit,
+                    sAutoFailover
+                );
+
+                PostgresReplicationManager.Instance.StartHealthCheck();
+
+                Debug.WriteLine($"[ConfigDataDB] 이중화 초기화 완료 - Primary: {sPostgresHost}:{sPostgresPort}, Standby: {sStandbyHost}:{sStandbyPort}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ConfigDataDB] 이중화 초기화 실패: {ex.Message}");
+            }
         }
 
         #region 암호화/복호화 메서드
@@ -2571,6 +2683,62 @@ namespace AutoLibLocal
         {
             ConfigDataDB.LoadConfig();
             _connectionString = ConfigDataDB.sConnectionString;
+        }
+
+        #endregion
+
+        #region Replication Connection Helpers
+
+        /// <summary>
+        /// 쓰기용 연결 문자열 (항상 Primary 서버)
+        /// </summary>
+        private string GetWriteConnectionString()
+        {
+            if (ConfigDataDB.sUseReplication && PostgresReplicationManager.Instance.IsReplicationEnabled)
+            {
+                return PostgresReplicationManager.Instance.GetAvailableConnectionString(forWrite: true);
+            }
+            return _connectionString;
+        }
+
+        /// <summary>
+        /// 읽기용 연결 문자열 (이중화 + R/W Split 시 Standby 서버)
+        /// </summary>
+        private string GetReadConnectionString()
+        {
+            if (ConfigDataDB.sUseReplication && PostgresReplicationManager.Instance.IsReplicationEnabled)
+            {
+                return PostgresReplicationManager.Instance.GetAvailableConnectionString(forWrite: false);
+            }
+            return _connectionString;
+        }
+
+        /// <summary>
+        /// 이중화 상태 정보 조회
+        /// </summary>
+        public async Task<PostgresSQL.ReplicationStatusInfo> GetReplicationStatus()
+        {
+            if (!ConfigDataDB.sUseReplication || !PostgresReplicationManager.Instance.IsReplicationEnabled)
+                return null;
+
+            return await PostgresReplicationManager.Instance.GetReplicationStatus();
+        }
+
+        /// <summary>
+        /// 수동 Failover 실행
+        /// </summary>
+        public async Task<bool> ExecuteManualFailover()
+        {
+            if (!ConfigDataDB.sUseReplication || !PostgresReplicationManager.Instance.IsReplicationEnabled)
+                return false;
+
+            bool result = await PostgresReplicationManager.Instance.ManualFailover();
+            if (result)
+            {
+                // Failover 후 연결 문자열 갱신
+                _connectionString = ConfigDataDB.sConnectionString;
+            }
+            return result;
         }
 
         #endregion
@@ -4885,6 +5053,12 @@ namespace AutoLibLocal
                 }
             }
             _connectionPool.Clear();
+
+            // 이중화 매니저 정리
+            if (ConfigDataDB.sUseReplication)
+            {
+                PostgresReplicationManager.Instance?.Dispose();
+            }
         }
         #endregion
 

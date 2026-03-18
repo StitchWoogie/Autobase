@@ -1,4 +1,4 @@
-﻿using Npgsql;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,6 +69,17 @@ namespace AutoLibLocal.PostgresSQL
                 btnSave.Text = "저장";
                 btnCancel.Text = "취소";
                 btnTest.Text = "연결 테스트";
+
+                // 이중화 한국어 설정
+                grpReplication.Text = "이중화 (Standby 서버)";
+                chkUseReplication.Text = "이중화 사용";
+                lblStandbyHost.Text = "Standby 호스트";
+                lblStandbyPort.Text = "Standby 포트";
+                lblStandbyUsername.Text = "Standby 사용자명";
+                lblStandbyPassword.Text = "Standby 비밀번호";
+                chkReadWriteSplit.Text = "읽기/쓰기 분리";
+                chkAutoFailover.Text = "자동 Failover";
+                btnTestStandby.Text = "Standby 연결 테스트";
             }
 
             SetDefaultValues();
@@ -122,13 +133,18 @@ namespace AutoLibLocal.PostgresSQL
                     cmbTimezone.SelectedIndex = index;
             }
 
-            //if (!string.IsNullOrEmpty(ConfigDataDB.sOperationalDataRetentionDays))
-            //{
-            //    if (int.TryParse(ConfigDataDB.sOperationalDataRetentionDays, out int days))
-            //    {
-            //        numericUpDownRetetionDay.Value = days;
-            //    }
-            //}
+            // 이중화 설정 로드
+            chkUseReplication.Checked = ConfigDataDB.sUseReplication;
+            if (!string.IsNullOrEmpty(ConfigDataDB.sStandbyHost))
+                txtStandbyHost.Text = ConfigDataDB.sStandbyHost;
+            if (!string.IsNullOrEmpty(ConfigDataDB.sStandbyPort))
+                txtStandbyPort.Text = ConfigDataDB.sStandbyPort;
+            if (!string.IsNullOrEmpty(ConfigDataDB.sStandbyUsername))
+                txtStandbyUsername.Text = ConfigDataDB.sStandbyUsername;
+            if (!string.IsNullOrEmpty(ConfigDataDB.sStandbyPassword))
+                txtStandbyPassword.Text = ConfigDataDB.sStandbyPassword;
+            chkReadWriteSplit.Checked = ConfigDataDB.sUseReadWriteSplit;
+            chkAutoFailover.Checked = ConfigDataDB.sAutoFailover;
         }
         private void SetDefaultValues()
         {
@@ -137,6 +153,10 @@ namespace AutoLibLocal.PostgresSQL
             txtPort.Text = "5432";
             cmbTimezone.Text = "Asia/Seoul";
             //numericUpDownRetetionDay.Value = 90;
+
+            // 이중화 기본값
+            txtStandbyPort.Text = "5432";
+            chkAutoFailover.Checked = true;
         }
 
 
@@ -172,7 +192,7 @@ namespace AutoLibLocal.PostgresSQL
                         else
                         {
                             lblStatus.ForeColor = Color.Orange;
-                            lblStatus.Text = Tools.IsLangKorean() ? "✓ 연결 성공! 단, TimescaleDB 확장이 설치되어 있지 않습니다." 
+                            lblStatus.Text = Tools.IsLangKorean() ? "✓ 연결 성공! 단, TimescaleDB 확장이 설치되어 있지 않습니다."
                                 : "✓ Connection successful! However, TimescaleDB extension is not installed." ;
                         }
                     }
@@ -209,6 +229,19 @@ namespace AutoLibLocal.PostgresSQL
                 }
                 txtPasswordConfirm.Focus();
                 txtPasswordConfirm.SelectAll();
+                return;
+            }
+
+            // 이중화 사용 시 Standby 호스트 필수 체크
+            if (chkUseReplication.Checked && string.IsNullOrWhiteSpace(txtStandbyHost.Text))
+            {
+                if (Tools.IsLangKorean())
+                    MessageBox.Show("이중화 사용 시 Standby 호스트를 입력해주세요.", "입력 확인",
+                                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                    MessageBox.Show("Please enter the Standby host when replication is enabled.", "Input Check",
+                                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtStandbyHost.Focus();
                 return;
             }
 
@@ -259,6 +292,15 @@ namespace AutoLibLocal.PostgresSQL
                 ConfigDataDB.sPostgresDatabase = txtDatabase.Text.Trim();
                 ConfigDataDB.sPostgresTimezone = cmbTimezone.SelectedItem.ToString();
                // ConfigDataDB.sOperationalDataRetentionDays = numericUpDownRetetionDay.Value.ToString();
+
+                // 이중화 설정 저장
+                ConfigDataDB.sUseReplication = chkUseReplication.Checked;
+                ConfigDataDB.sStandbyHost = txtStandbyHost.Text.Trim();
+                ConfigDataDB.sStandbyPort = txtStandbyPort.Text.Trim();
+                ConfigDataDB.sStandbyUsername = txtStandbyUsername.Text.Trim();
+                ConfigDataDB.sStandbyPassword = txtStandbyPassword.Text.Trim();
+                ConfigDataDB.sUseReadWriteSplit = chkReadWriteSplit.Checked;
+                ConfigDataDB.sAutoFailover = chkAutoFailover.Checked;
 
                 // 설정 파일 저장
                 SaveConfigFile();
@@ -330,16 +372,37 @@ namespace AutoLibLocal.PostgresSQL
                                 txtDatabase.Text = value;
                                 sPostgresDatabase = value; //원래 DB명을 기억.
                             }
-
                             break;
                         case "timezone":
                             if (!string.IsNullOrWhiteSpace(value))
                                 cmbTimezone.Text = value;
                             break;
-                        //case "dataretentiondays":
-                        //    if (int.TryParse(value, out int days))
-                        //        numericUpDownRetetionDay.Value = days;
-                        //    break;
+                        // 이중화 설정 로드
+                        case "usereplication":
+                            chkUseReplication.Checked = value.Equals("true", StringComparison.OrdinalIgnoreCase);
+                            break;
+                        case "standbyhost":
+                            if (!string.IsNullOrWhiteSpace(value))
+                                txtStandbyHost.Text = value;
+                            break;
+                        case "standbyport":
+                            if (!string.IsNullOrWhiteSpace(value))
+                                txtStandbyPort.Text = value;
+                            break;
+                        case "standbyusername":
+                            if (!string.IsNullOrWhiteSpace(value))
+                                txtStandbyUsername.Text = value;
+                            break;
+                        case "standbypassword":
+                            if (!string.IsNullOrWhiteSpace(value))
+                                txtStandbyPassword.Text = ConfigDataDB.DecryptPassword(value);
+                            break;
+                        case "usereadwritesplit":
+                            chkReadWriteSplit.Checked = value.Equals("true", StringComparison.OrdinalIgnoreCase);
+                            break;
+                        case "autofailover":
+                            chkAutoFailover.Checked = value.Equals("true", StringComparison.OrdinalIgnoreCase);
+                            break;
                     }
                 }
             }
@@ -376,7 +439,21 @@ namespace AutoLibLocal.PostgresSQL
                 configContent.AppendLine($"Password={encryptedPassword}");
                 configContent.AppendLine($"Database={txtDatabase.Text.Trim()}");
                 configContent.AppendLine($"Timezone={cmbTimezone.SelectedItem?.ToString() ?? "Asia/Seoul"}");
-                //configContent.AppendLine($"DataRetentionDays={numericUpDownRetetionDay.Value}");
+
+                // 이중화 설정 저장
+                configContent.AppendLine();
+                configContent.AppendLine("[Replication Configuration]");
+                configContent.AppendLine($"UseReplication={chkUseReplication.Checked.ToString().ToLower()}");
+                configContent.AppendLine($"StandbyHost={txtStandbyHost.Text.Trim()}");
+                configContent.AppendLine($"StandbyPort={txtStandbyPort.Text.Trim()}");
+                configContent.AppendLine($"StandbyUsername={txtStandbyUsername.Text.Trim()}");
+                string encStandbyPwd = !string.IsNullOrEmpty(txtStandbyPassword.Text)
+                    ? ConfigDataDB.EncryptPassword(txtStandbyPassword.Text)
+                    : "";
+                configContent.AppendLine($"StandbyPassword={encStandbyPwd}");
+                configContent.AppendLine($"UseReadWriteSplit={chkReadWriteSplit.Checked.ToString().ToLower()}");
+                configContent.AppendLine($"AutoFailover={chkAutoFailover.Checked.ToString().ToLower()}");
+
                 configContent.AppendLine($"# Last Updated: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
 
                 File.WriteAllText(dbConfigFile, configContent.ToString(), Encoding.UTF8);
@@ -388,7 +465,6 @@ namespace AutoLibLocal.PostgresSQL
                 sPostgresPassword = txtPassword.Text;
                 sPostgresDatabase = txtDatabase.Text.Trim();
                 sPostgresTimezone = cmbTimezone.SelectedItem?.ToString() ?? "Asia/Seoul";
-                //sOperationalDataRetentionDays = (int)numericUpDownRetetionDay.Value;
 
                 // 기존 DB명 업데이트
                 sOriginalDatabase = sPostgresDatabase;
@@ -517,6 +593,110 @@ namespace AutoLibLocal.PostgresSQL
 
         }
 
+        #region 이중화 UI 이벤트
 
+        /// <summary>
+        /// 이중화 사용 체크박스 변경 시 Standby 컨트롤 활성화/비활성화
+        /// </summary>
+        private void ChkUseReplication_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enabled = chkUseReplication.Checked;
+            txtStandbyHost.Enabled = enabled;
+            txtStandbyPort.Enabled = enabled;
+            txtStandbyUsername.Enabled = enabled;
+            txtStandbyPassword.Enabled = enabled;
+            chkReadWriteSplit.Enabled = enabled;
+            chkAutoFailover.Enabled = enabled;
+            btnTestStandby.Enabled = enabled;
+
+            if (!enabled)
+            {
+                lblStandbyStatus.Text = "";
+            }
+        }
+
+        /// <summary>
+        /// Standby 서버 연결 테스트
+        /// </summary>
+        private void BtnTestStandby_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtStandbyHost.Text))
+            {
+                if (Tools.IsLangKorean())
+                    MessageBox.Show("Standby 호스트를 입력해주세요.", "입력 확인",
+                                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                    MessageBox.Show("Please enter the Standby host.", "Input Check",
+                                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtStandbyHost.Focus();
+                return;
+            }
+
+            lblStandbyStatus.ForeColor = Color.Blue;
+            lblStandbyStatus.Text = Tools.IsLangKorean() ? "연결 테스트 중..." : "Testing...";
+            Application.DoEvents();
+
+            string standbyConnStr = BuildStandbyConnectionString();
+
+            try
+            {
+                using (var conn = new NpgsqlConnection(standbyConnStr))
+                {
+                    conn.Open();
+
+                    // Standby 서버인지 확인 (pg_is_in_recovery)
+                    using (var cmd = new NpgsqlCommand("SELECT pg_is_in_recovery()", conn))
+                    {
+                        bool isStandby = (bool)cmd.ExecuteScalar();
+                        if (isStandby)
+                        {
+                            lblStandbyStatus.ForeColor = Color.Green;
+                            lblStandbyStatus.Text = Tools.IsLangKorean()
+                                ? "✓ Standby 연결 성공 (복제 모드)"
+                                : "✓ Standby OK (Recovery mode)";
+                        }
+                        else
+                        {
+                            lblStandbyStatus.ForeColor = Color.Orange;
+                            lblStandbyStatus.Text = Tools.IsLangKorean()
+                                ? "✓ 연결 성공 (Primary 모드 - Standby 아님)"
+                                : "✓ Connected (Primary - not Standby)";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblStandbyStatus.ForeColor = Color.Red;
+                lblStandbyStatus.Text = Tools.IsLangKorean()
+                    ? $"✗ 연결 실패: {ex.Message}"
+                    : $"✗ Failed: {ex.Message}";
+            }
+        }
+
+        /// <summary>
+        /// Standby 서버 연결 문자열 생성
+        /// </summary>
+        private string BuildStandbyConnectionString()
+        {
+            string username = !string.IsNullOrWhiteSpace(txtStandbyUsername.Text)
+                ? txtStandbyUsername.Text.Trim()
+                : txtUsername.Text.Trim();
+            string password = !string.IsNullOrWhiteSpace(txtStandbyPassword.Text)
+                ? txtStandbyPassword.Text.Trim()
+                : txtPassword.Text.Trim();
+
+            var builder = new StringBuilder();
+            builder.Append($"Host={txtStandbyHost.Text.Trim()};");
+            builder.Append($"Port={txtStandbyPort.Text.Trim()};");
+            builder.Append($"Username={username};");
+            builder.Append($"Password={password};");
+            builder.Append($"Database={txtDatabase.Text.Trim()};");
+            builder.Append("Timeout=10;");
+            builder.Append("CommandTimeout=30;");
+            return builder.ToString();
+        }
+
+        #endregion
     }
 }
