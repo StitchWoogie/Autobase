@@ -34,7 +34,226 @@ Autobase에는 이미 Python AI Engine(`python_ai_engine/`)이 존재하며 다�
 
 ---
 
-### A2. 태그 자동 바인딩 제안
+### A2. AI 기반 태그 대량 자동 생성 & 바인딩
+
+#### A2-1. 태그 대량 자동 생성 (핵심 기능)
+
+**현재 워크플로우의 문제점:**
+
+PLC 주소 M1000~M2000에 대해 AI 태그 1000개를 생성하려면:
+```
+현재 절차 (5단계, 수작업 집약적):
+① FormTagEditor에서 CSV 내보내기 (exportToCSVFileToolStripMenuItem)
+② Excel에서 CSV 열기
+③ 1000행 수작업 편집 (태그명, port, station, address, fn 등 컬럼별 입력)
+④ CSV 저장
+⑤ FormTagEditor에서 CSV 불러오기 (importFromCSVFileToolStripMenuItem)
+```
+
+CSV 컬럼 구조 (`TagFile.cs` 기준):
+```
+TagType, Tag, Description, Active, LinkType, LocalTag,
+OpcServer, OpcGroup, OpcItem, ...,
+port, station, address, extra1, extra2, ...,
+fn, unit, fBase, fFull, fPlcBase, fPlcFull, hihi, high, low, lolo, ...
+```
+
+**AI 자동 생성 기능 제안:**
+
+FormTagEditor에 "AI 태그 생성" 버튼/대화상자를 추가하여,
+자연어 또는 간단한 양식으로 대량 태그를 자동 생성.
+
+**입력 방식 1: 간단 양식 (Form-based)**
+
+```
+┌─────────────────────────────────────────────────┐
+│  AI 태그 자동 생성                               │
+├─────────────────────────────────────────────────┤
+│                                                  │
+│  태그 타입:    [AI ▼]                            │
+│  이름 패턴:    [Boiler1_Temp_####]               │
+│  시작 번호:    [0]      끝 번호: [999]            │
+│  설명 패턴:    [보일러1 온도센서 ####]             │
+│                                                  │
+│  ── PLC SCAN 설정 ──                             │
+│  Port:         [1]                               │
+│  Station:      [1]                               │
+│  시작 주소:    [1000]                             │
+│  주소 증분:    [1]                                │
+│  Extra Addr:   [D]  (MELSEC 등)                  │
+│  Function:     [0] (16bit whole)                 │
+│                                                  │
+│  ── 엔지니어링 단위 ──                           │
+│  Unit:         [℃]                               │
+│  Base(min):    [0]      Full(max): [100]          │
+│  PLC Base:     [0]      PLC Full:  [4095]         │
+│  Display:      [10.1]                             │
+│                                                  │
+│  ── 알람 설정 (선택) ──                          │
+│  □ 알람 사용   HiHi:[90] Hi:[80] Lo:[10] LoLo:[5]│
+│                                                  │
+│  [미리보기]  [생성]  [취소]                        │
+└─────────────────────────────────────────────────┘
+```
+
+**입력 방식 2: 자연어 (LLM 기반)**
+
+```
+사용자 입력:
+"Port 1, Station 1, MELSEC D레지스터 1000번부터 1999번까지
+ AI 태그 1000개 생성해줘.
+ 이름은 Boiler1_Temp_0000~0999,
+ 단위는 ℃, 범위 0~200, PLC 0~4095,
+ 80도 이상 Hi알람, 150도 이상 HiHi알람"
+
+AI 파싱 결과:
+→ 타입: AI
+→ 이름: Boiler1_Temp_{0000..0999}
+→ port: 1, station: 1
+→ address: 1000~1999 (증분 1)
+→ sExtraAddr: "D"
+→ unit: "℃", fBase: 0, fFull: 200
+→ fPlcBase: 0, fPlcFull: 4095
+→ high: 80, hihi: 150, alarm: 1
+```
+
+**구현 위치 및 방법:**
+
+```csharp
+// FormTagEditor.cs에 메뉴 항목 추가
+// 기존 importFromCSVFileToolStripMenuItem 옆에 배치
+private void aiGenerateTagsToolStripMenuItem_Click(object sender, EventArgs e)
+{
+    using (var dialog = new FormAiTagGenerator())
+    {
+        if (dialog.ShowDialog() == DialogResult.OK)
+        {
+            TagGrClass generatedTags = dialog.GeneratedTags;
+
+            // 기존 TagFile/TagGrClass 구조 그대로 활용
+            // importFromCSV와 동일한 병합 로직 사용
+            MergeGeneratedTags(generatedTags);
+        }
+    }
+}
+```
+
+```csharp
+// FormAiTagGenerator.cs (신규)
+public class FormAiTagGenerator : Form
+{
+    public TagGrClass GeneratedTags { get; private set; }
+
+    // 방식 1: 양식 기반 생성
+    private TagGrClass GenerateFromForm()
+    {
+        var gr = new TagGrClass();
+        string namePattern = txtNamePattern.Text;   // "Boiler1_Temp_####"
+        int startNum = (int)nudStartNum.Value;      // 0
+        int endNum = (int)nudEndNum.Value;           // 999
+        int startAddr = (int)nudStartAddr.Value;     // 1000
+        int addrStep = (int)nudAddrStep.Value;       // 1
+
+        for (int i = startNum; i <= endNum; i++)
+        {
+            var tag = new TagAiClass();
+            tag.name = namePattern.Replace("####", i.ToString("D4"));
+            tag.port = (short)nudPort.Value;
+            tag.station = (short)nudStation.Value;
+            tag.address = startAddr + (i - startNum) * addrStep;
+            tag.fn = (short)cmbFunction.SelectedIndex;
+            tag.cTagLinkType = 0; // PLC_SCAN
+            tag.unit = txtUnit.Text;
+            tag.fBase = (double)nudBase.Value;
+            tag.fFull = (double)nudFull.Value;
+            tag.fPlcBase = (double)nudPlcBase.Value;
+            tag.fPlcFull = (double)nudPlcFull.Value;
+
+            if (chkAlarm.Checked)
+            {
+                tag.alarm = 1;
+                tag.hihi = (double)nudHiHi.Value;
+                tag.high = (double)nudHigh.Value;
+                tag.low = (double)nudLow.Value;
+                tag.lolo = (double)nudLoLo.Value;
+            }
+
+            gr.aiList.Add(tag);
+        }
+        return gr;
+    }
+
+    // 방식 2: 자연어 → LLM 파싱 → 양식 자동 채움
+    private async Task ParseNaturalLanguage(string userInput)
+    {
+        // PythonAiScriptBridge 또는 직접 LLM API 호출
+        // 파싱 결과로 양식 필드 자동 채움
+        var parsed = await AiService.ParseTagGenerationRequest(userInput);
+        nudPort.Value = parsed.Port;
+        nudStation.Value = parsed.Station;
+        nudStartAddr.Value = parsed.StartAddress;
+        // ... 나머지 필드 자동 채움
+        // 사용자가 확인 후 [생성] 클릭
+    }
+}
+```
+
+**미리보기 기능:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│  미리보기 (처음 5개 / 총 1000개)                              │
+├──────┬──────────────────┬───┬───┬──────┬────┬───────────────┤
+│ Type │ Tag              │Prt│Stn│ Addr │ Fn │ Unit/Range    │
+├──────┼──────────────────┼───┼───┼──────┼────┼───────────────┤
+│ AI   │ Boiler1_Temp_0000│ 1 │ 1 │ D1000│ 0  │ ℃ 0~200      │
+│ AI   │ Boiler1_Temp_0001│ 1 │ 1 │ D1001│ 0  │ ℃ 0~200      │
+│ AI   │ Boiler1_Temp_0002│ 1 │ 1 │ D1002│ 0  │ ℃ 0~200      │
+│ AI   │ Boiler1_Temp_0003│ 1 │ 1 │ D1003│ 0  │ ℃ 0~200      │
+│ AI   │ Boiler1_Temp_0004│ 1 │ 1 │ D1004│ 0  │ ℃ 0~200      │
+│ ...  │ ...              │...│...│ ...  │... │ ...           │
+│ AI   │ Boiler1_Temp_0999│ 1 │ 1 │ D1999│ 0  │ ℃ 0~200      │
+├──────┴──────────────────┴───┴───┴──────┴────┴───────────────┤
+│ 총 1000개 태그 생성 예정        [CSV로 내보내기] [바로 적용]   │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**DI 태그의 비트 주소 자동 계산 예:**
+```
+"Port 1, Station 1, M1000~M1999까지 DI 태그 16000개 생성"
+→ DI_M1000_B00 (address_word=1000, address_bit=0)
+→ DI_M1000_B01 (address_word=1000, address_bit=1)
+→ ...
+→ DI_M1000_B15 (address_word=1000, address_bit=15)
+→ DI_M1001_B00 (address_word=1001, address_bit=0)
+→ ...
+→ DI_M1999_B15 (address_word=1999, address_bit=15)
+```
+
+**고급 기능: PLC 메모리맵 기반 자동 생성**
+```
+입력: PLC 메모리맵 문서 (Excel/PDF)
+┌────────┬──────────────┬──────┬───────┐
+│ 주소   │ 설명          │ 타입 │ 범위  │
+├────────┼──────────────┼──────┼───────┤
+│ D1000  │ 보일러 온도   │ INT  │ 0~200 │
+│ D1001  │ 보일러 압력   │ INT  │ 0~50  │
+│ M2000  │ 펌프1 운전    │ BIT  │ 0/1   │
+│ M2001  │ 밸브1 열림    │ BIT  │ 0/1   │
+└────────┴──────────────┴──────┴───────┘
+
+AI 파싱 → 혼합 태그 자동 생성:
+- AI: Boiler_Temp (D1000, ℃, 0~200)
+- AI: Boiler_Press (D1001, bar, 0~50)
+- DI: Pump1_Run (M2000, ON/OFF)
+- DI: Valve1_Open (M2001, 열림/닫힘)
+```
+
+**실용성:** ★★★★★ (현장 최고 빈도 작업의 자동화)
+**구현 난이도:** ★★☆☆☆ (양식 기반) / ★★★☆☆ (자연어 + LLM)
+
+---
+
+#### A2-2. 태그 자동 바인딩 제안
 
 **기능:** SCADA 객체를 배치하면 AI가 적절한 태그를 자동 추천
 
@@ -318,8 +537,9 @@ AI: "2번 펌프(P-002) 기동 명령을 전송할까요? [확인/취소]"
 
 | 순위 | 기능 | 적용 영역 | 실용성 | 난이도 | 비고 |
 |------|------|----------|--------|--------|------|
-| 1 | 스크립트 자동 생성 (A4) | Studio | ★★★★★ | ★★★☆☆ | LLM API로 빠르게 구현 가능 |
-| 2 | 태그 자동 바인딩 (A2) | Studio | ★★★★★ | ★★☆☆☆ | 텍스트 유사도로 시작 |
+| **1** | **태그 대량 자동 생성 (A2-1)** | **Studio** | **★★★★★** | **★★☆☆☆** | **현장 최고빈도 작업, 양식 기반으로 빠르게 구현** |
+| 2 | 스크립트 자동 생성 (A4) | Studio | ★★★★★ | ★★★☆☆ | LLM API로 빠르게 구현 가능 |
+| 3 | 태그 자동 바인딩 (A2-2) | Studio | ★★★★★ | ★★☆☆☆ | 텍스트 유사도로 시작 |
 | 3 | 이상 탐지 (B4) | Runtime | ★★★★★ | ★★★☆☆ | python_ai_engine 활용 |
 | 4 | 예측 정비 (B1) | Runtime | ★★★★★ | ★★★☆☆ | 산업 현장 최우선 니즈 |
 | 5 | 지능형 알람 (B2) | Runtime | ★★★★★ | ★★★☆☆ | 운전원 피로도 감소 |
@@ -336,8 +556,9 @@ AI: "2번 펌프(P-002) 기동 명령을 전송할까요? [확인/취소]"
 ## 권장 구현 순서
 
 ### Phase 1: Quick Win (1~2개월)
+- **A2-1 태그 대량 자동 생성**: FormAiTagGenerator 양식 기반 (LLM 없이도 즉시 구현 가능)
 - **A4 스크립트 자동 생성**: LLM API 연동 + ScriptFunction 시그니처 프롬프트
-- **A2 태그 자동 바인딩**: 태그명 유사도 매칭 (Levenshtein / TF-IDF)
+- **A2-2 태그 자동 바인딩**: 태그명 유사도 매칭 (Levenshtein / TF-IDF)
 - **A5 디자인 검사**: 규칙 기반 일관성 체크
 
 ### Phase 2: Core AI (2~4개월)
