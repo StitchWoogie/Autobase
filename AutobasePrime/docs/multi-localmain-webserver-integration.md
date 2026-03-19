@@ -27,9 +27,75 @@ Web Client
 
 ---
 
-## 2. Multi-LocalMain 통합 아키텍처 제안
+## 2. ViewMain/OpenSilver에 Multi-Site를 넣지 않는 이유
 
-### 2.1 방안 A: Gateway Router 패턴 (권장)
+### 2.1 현재 클라이언트 구조 분석
+
+| 클라이언트 | 연결 방식 | Multi-Site 제약 |
+|-----------|----------|----------------|
+| **ViewMain** (데스크톱) | `InitSite(site)` → `nConnectionID` 발급, TCP/WCF 1:1 | `CallBackWebClientChangeSite()`로 전환 가능하나 동시 연결 불가 |
+| **OpenSilver** (웹) | URL `?site=IP`로 1대 지정 | 브라우저 탭 당 1사이트 |
+| **PortalServerWeb** (서버) | `Web.config`에 `LocalMainIP` 단일값 | 1:1 고정 |
+
+### 2.2 기술적 제약 사항
+
+**1) 태그 네임스페이스 충돌**
+- `TagLib`는 단일 네임스페이스: `TagAiClass[]` 배열 인덱스 기반 (MAX 30,000개)
+- Site-A의 `TT-001`과 Site-B의 `TT-001`이 동일 이름 → 충돌
+- 다중 사이트 태그를 한 프로젝트에 합치려면 태그 시스템 전면 재설계 필요
+
+**2) ThreadDataChange 단일 서버 폴링**
+- `CheckCurrentValue()`가 단일 `DataGate` 통해 태그 폴링
+- 다중 서버 동시 폴링은 대규모 리팩토링 필요
+
+**3) 프로젝트 재구성 비용**
+- 각 사이트의 태그(최대 30,000×5종), 통신설정, 화면을 하나의 프로젝트로 합치는 것은 사실상 새 프로젝트
+
+**4) 역할 분리**
+- ViewMain/OpenSilver = **운전 화면 뷰어** (운전원이 자기 사이트에 집중)
+- Multi-Site Dashboard = **관제 개요 화면** (관제자가 전체 사이트 파악)
+- 목적이 다르므로 분리가 적절
+
+### 2.3 권장 접근: PortalServerWeb 확장 + 기존 뷰어 드릴다운
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│           Multi-Site Monitor (PortalServerWeb 내 신규 페이지)  │
+│           /AutoWeb/MultiSite/Dashboard.html                   │
+│                                                              │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐                     │
+│  │ Site-A  │  │ Site-B  │  │ Site-C  │  ← 요약 카드        │
+│  │ ●Online │  │ ●Online │  │ ○Offline│                     │
+│  │ Alm: 2  │  │ Alm: 0  │  │         │                     │
+│  │ [Open]  │  │ [Open]  │  │         │  ← 클릭 시 드릴다운  │
+│  └────┬────┘  └────┬────┘  └─────────┘                     │
+│       │            │                                         │
+│       ▼            ▼                                         │
+│  OpenSilver    OpenSilver   ← 기존 1:1 뷰어 그대로 활용     │
+│  ?site=.10    ?site=.20    (새 탭 또는 iframe)               │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**별도 프로그램이 아닌 PortalServerWeb 확장인 이유:**
+1. 완전 별도 프로그램은 인증/배포/운영 관리 포인트 증가
+2. PortalServerWeb에 이미 WCF/TCP 통신 인프라 존재
+3. 웹 페이지 추가만으로 구현 가능 (기존 코드 수정 제로)
+4. 드릴다운 시 OpenSilver `?site=IP` 파라미터로 기존 뷰어 바로 활용
+
+### 2.4 변경 영향도
+
+| 구성요소 | 변경 내용 | 영향도 |
+|----------|----------|--------|
+| **LocalMain** | 변경 없음 (기존 DataGateServer API 사용) | 없음 |
+| **ViewMain** | 변경 없음 | 없음 |
+| **OpenSilver** | 변경 없음 (`?site=` 그대로) | 없음 |
+| **PortalServerWeb** | `Web.config` 사이트목록 + `ServiceMultiSite.svc` + `/MultiSite/` 페이지 | 추가만 |
+
+---
+
+## 3. Multi-LocalMain 통합 아키텍처 제안
+
+### 3.1 방안 A: Gateway Router 패턴 (권장)
 
 PortalServerWeb 내부에 **LocalMain Router/Registry** 레이어를 추가하여, 여러 LocalMain 인스턴스를 등록하고 라우팅하는 방식.
 
@@ -188,7 +254,7 @@ public class MultiSiteDataGate
 └─────────────────────────────────────────────────────────┘
 ```
 
-### 2.2 방안 B: Aggregator 서비스 (별도 프로세스)
+### 3.2 방안 B: Aggregator 서비스 (별도 프로세스)
 
 별도의 Aggregator 프로세스를 두어 여러 LocalMain의 데이터를 수집/캐싱하는 방식.
 
@@ -208,7 +274,7 @@ public class MultiSiteDataGate
 **장점:** PortalServerWeb 수정 최소화, 데이터 캐싱/버퍼링 가능
 **단점:** 추가 프로세스 관리 필요, 레이턴시 증가
 
-### 2.3 방안 비교
+### 3.3 방안 비교
 
 | 항목 | 방안 A (Gateway Router) | 방안 B (Aggregator) |
 |------|----------------------|-------------------|
@@ -222,7 +288,46 @@ public class MultiSiteDataGate
 
 ---
 
-## 3. 단계별 구현 로드맵
+### 3.4 대시보드 구현 구조
+
+```
+PortalServerWeb (기존 IIS)
+│
+├── /AutoWeb/WebPages/         ← 기존 (변경 없음)
+├── /AutoWeb/MobilePages/      ← 기존 (변경 없음)
+├── /AutoWeb/Service/          ← 기존 + ServiceMultiSite.svc 추가
+│
+├── /AutoWeb/MultiSite/        ← 신규 (관제 대시보드)
+│   ├── Dashboard.html         ← SPA (순수 HTML+JS)
+│   ├── js/
+│   │   ├── multi-site-app.js  ← 대시보드 로직
+│   │   ├── site-card.js       ← 사이트 카드 컴포넌트
+│   │   └── alarm-feed.js      ← 통합 알람 피드
+│   └── css/
+│       └── dashboard.css
+│
+└── /AutoWeb/Service/
+    └── ServiceMultiSite.svc   ← 신규 (다중 LocalMain 연결)
+```
+
+**드릴다운 연동:**
+```javascript
+function openSiteDetail(siteIP) {
+    // 방법 1: 새 탭에서 OpenSilver 열기
+    window.open(`https://views.autobase.biz/?site=${siteIP}`, '_blank');
+
+    // 방법 2: iframe으로 현재 페이지 내 임베드
+    document.getElementById('detail-frame').src =
+        `https://views.autobase.biz/?site=${siteIP}`;
+
+    // 방법 3: ViewMain 실행 (데스크톱 환경)
+    // URL scheme: autobase://viewmain?site=${siteIP}
+}
+```
+
+---
+
+## 4. 단계별 구현 로드맵
 
 ### Phase 1: 기반 구축 (핵심)
 1. `LocalMainRegistry` 클래스 구현 및 `Web.config` multi-instance 설정
@@ -248,7 +353,7 @@ public class MultiSiteDataGate
 
 ---
 
-## 4. 주요 변경 대상 파일
+## 5. 주요 변경 대상 파일
 
 | 파일 | 변경 내용 |
 |------|----------|
@@ -260,7 +365,7 @@ public class MultiSiteDataGate
 
 ---
 
-## 5. LocalMain 측 변경 사항
+## 6. LocalMain 측 변경 사항
 
 LocalMain 자체는 최소한의 변경만 필요합니다:
 
