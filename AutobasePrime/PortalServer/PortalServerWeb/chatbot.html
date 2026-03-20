@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autobase AI ChatBot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .chat-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            max-width: 900px;
+            width: 100%;
+            height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .chat-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chat-avatar {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .chat-header-info h1 {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .chat-header-info span {
+            font-size: 0.8em;
+            opacity: 0.85;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #2ecc71;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Messages Area */
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f5f7fb;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #c0c5ce;
+            border-radius: 3px;
+        }
+
+        .message {
+            display: flex;
+            gap: 10px;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.bot {
+            align-self: flex-start;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 16px;
+            line-height: 1.5;
+            font-size: 0.95em;
+            word-break: break-word;
+        }
+
+        .message.bot .message-bubble {
+            background: white;
+            color: #2c3e50;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.7em;
+            opacity: 0.6;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .message.user .message-time {
+            text-align: right;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            gap: 10px;
+            max-width: 80%;
+        }
+
+        .typing-indicator.visible {
+            display: flex;
+        }
+
+        .typing-dots {
+            background: white;
+            padding: 14px 18px;
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .typing-dots span {
+            width: 7px;
+            height: 7px;
+            background: #adb5bd;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            padding: 10px 20px;
+            background: #f5f7fb;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .quick-action-btn {
+            padding: 7px 14px;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            font-size: 0.82em;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .quick-action-btn:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Input Area */
+        .chat-input-area {
+            padding: 16px 20px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            flex-shrink: 0;
+        }
+
+        .chat-input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 24px;
+            font-size: 0.95em;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            transition: border-color 0.2s;
+            max-height: 120px;
+            overflow-y: auto;
+            line-height: 1.4;
+        }
+
+        .chat-input:focus {
+            border-color: #667eea;
+        }
+
+        .chat-input::placeholder {
+            color: #adb5bd;
+        }
+
+        .send-btn {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Settings Panel */
+        .settings-panel {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 320px;
+            height: 100%;
+            background: white;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .settings-panel.visible {
+            display: block;
+        }
+
+        .settings-panel h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .setting-group {
+            margin-bottom: 18px;
+        }
+
+        .setting-group label {
+            display: block;
+            font-size: 0.85em;
+            color: #6c757d;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .setting-group input,
+        .setting-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 0.9em;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .setting-group input:focus,
+        .setting-group select:focus {
+            border-color: #667eea;
+        }
+
+        .settings-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #6c757d;
+        }
+
+        .settings-save {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9em;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+
+        .settings-save:hover {
+            opacity: 0.9;
+        }
+
+        /* Back link */
+        .back-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+            display: inline-block;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: white;
+        }
+
+        /* Code blocks in messages */
+        .message-bubble pre {
+            background: #f1f3f5;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin: 8px 0;
+            overflow-x: auto;
+            font-size: 0.88em;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+
+        .message.user .message-bubble pre {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+            }
+
+            .chat-container {
+                border-radius: 0;
+                height: 100vh;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+
+            .back-link {
+                display: none;
+            }
+
+            .settings-panel {
+                width: 100%;
+            }
+
+            .quick-actions {
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link" id="back-link">&larr; Autobase 홈으로 돌아가기</a>
+
+    <div class="chat-container" style="position: relative;">
+        <!-- Header -->
+        <div class="chat-header">
+            <div class="chat-header-left">
+                <div class="chat-avatar">&#x1F916;</div>
+                <div class="chat-header-info">
+                    <h1 id="chat-title">Autobase AI Assistant</h1>
+                    <span><span class="status-dot"></span><span id="status-text">온라인</span></span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" onclick="clearChat()" title="대화 초기화">&#x1F5D1;</button>
+                <button class="header-btn" onclick="toggleSettings()" title="설정">&#x2699;</button>
+            </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="settings-panel" id="settings-panel">
+            <button class="settings-close" onclick="toggleSettings()">&times;</button>
+            <h3 id="settings-title">설정</h3>
+            <div class="setting-group">
+                <label id="lbl-endpoint">AI 엔진 엔드포인트</label>
+                <input type="text" id="api-endpoint" value="http://127.0.0.1:5678" placeholder="http://host:port">
+            </div>
+            <div class="setting-group">
+                <label id="lbl-language">언어 / Language</label>
+                <select id="lang-select" onchange="switchLanguage(this.value)">
+                    <option value="ko">한국어</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <label id="lbl-fontsize">글꼴 크기</label>
+                <select id="fontsize-select" onchange="changeFontSize(this.value)">
+                    <option value="small">Small</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+            <button class="settings-save" onclick="saveSettings()" id="btn-save-settings">설정 저장</button>
+        </div>
+
+        <!-- Messages -->
+        <div class="chat-messages" id="chat-messages">
+            <!-- Welcome message rendered by JS -->
+        </div>
+
+        <!-- Typing Indicator -->
+        <div class="typing-indicator" id="typing-indicator">
+            <div class="message-avatar" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">&#x1F916;</div>
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions" id="quick-actions">
+            <!-- Rendered by JS -->
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-area">
+            <div class="chat-input-wrapper">
+                <textarea class="chat-input" id="chat-input" rows="1"
+                    placeholder="메시지를 입력하세요..."
+                    onkeydown="handleKeyDown(event)"></textarea>
+            </div>
+            <button class="send-btn" id="send-btn" onclick="sendMessage()" disabled>&#x27A4;</button>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // State
+        // ============================================================
+        let chatHistory = [];
+        let currentLang = 'ko';
+        let isProcessing = false;
+
+        const apiEndpointInput = document.getElementById('api-endpoint');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        // ============================================================
+        // Translations
+        // ============================================================
+        const i18n = {
+            ko: {
+                chatTitle: 'Autobase AI Assistant',
+                statusOnline: '온라인',
+                placeholder: '메시지를 입력하세요...',
+                backLink: '\u2190 Autobase 홈으로 돌아가기',
+                settingsTitle: '설정',
+                lblEndpoint: 'AI 엔진 엔드포인트',
+                lblLanguage: '언어 / Language',
+                lblFontsize: '글꼴 크기',
+                btnSave: '설정 저장',
+                welcomeMsg: '안녕하세요! Autobase AI Assistant입니다.\nSCADA 시스템에 대해 무엇이든 물어보세요.',
+                errorMsg: '죄송합니다. 응답을 가져오는 중 오류가 발생했습니다. 연결 설정을 확인해주세요.',
+                clearConfirm: '대화 내용을 모두 삭제하시겠습니까?',
+                quickActions: [
+                    '시스템 상태 확인',
+                    '태그 데이터 분석',
+                    '전력 예측',
+                    '트렌드 분석',
+                    '도움말'
+                ]
+            },
+            en: {
+                chatTitle: 'Autobase AI Assistant',
+                statusOnline: 'Online',
+                placeholder: 'Type a message...',
+                backLink: '\u2190 Back to Autobase Home',
+                settingsTitle: 'Settings',
+                lblEndpoint: 'AI Engine Endpoint',
+                lblLanguage: 'Language',
+                lblFontsize: 'Font Size',
+                btnSave: 'Save Settings',
+                welcomeMsg: 'Hello! I\'m the Autobase AI Assistant.\nAsk me anything about your SCADA system.',
+                errorMsg: 'Sorry, an error occurred while fetching the response. Please check your connection settings.',
+                clearConfirm: 'Clear all messages?',
+                quickActions: [
+                    'System Status',
+                    'Tag Data Analysis',
+                    'Power Prediction',
+                    'Trend Analysis',
+                    'Help'
+                ]
+            }
+        };
+
+        // ============================================================
+        // Initialization
+        // ============================================================
+        function init() {
+            const browserLang = (navigator.language || 'ko').startsWith('ko') ? 'ko' : 'en';
+            const savedLang = localStorage.getItem('autobase_chat_lang');
+            currentLang = savedLang || browserLang;
+
+            document.getElementById('lang-select').value = currentLang;
+
+            const savedEndpoint = localStorage.getItem('autobase_chat_endpoint');
+            if (savedEndpoint) apiEndpointInput.value = savedEndpoint;
+
+            const savedFontSize = localStorage.getItem('autobase_chat_fontsize');
+            if (savedFontSize) {
+                document.getElementById('fontsize-select').value = savedFontSize;
+                changeFontSize(savedFontSize);
+            }
+
+            applyLanguage();
+            addBotMessage(i18n[currentLang].welcomeMsg);
+            renderQuickActions();
+            autoResizeInput();
+        }
+
+        // ============================================================
+        // Language
+        // ============================================================
+        function applyLanguage() {
+            const t = i18n[currentLang];
+            document.getElementById('chat-title').textContent = t.chatTitle;
+            document.getElementById('status-text').textContent = t.statusOnline;
+            chatInput.placeholder = t.placeholder;
+            document.getElementById('back-link').innerHTML = t.backLink;
+            document.getElementById('settings-title').textContent = t.settingsTitle;
+            document.getElementById('lbl-endpoint').textContent = t.lblEndpoint;
+            document.getElementById('lbl-language').textContent = t.lblLanguage;
+            document.getElementById('lbl-fontsize').textContent = t.lblFontsize;
+            document.getElementById('btn-save-settings').textContent = t.btnSave;
+        }
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('autobase_chat_lang', lang);
+            applyLanguage();
+            renderQuickActions();
+        }
+
+        // ============================================================
+        // Quick Actions
+        // ============================================================
+        function renderQuickActions() {
+            const container = document.getElementById('quick-actions');
+            container.innerHTML = '';
+            i18n[currentLang].quickActions.forEach(function(label) {
+                var btn = document.createElement('button');
+                btn.className = 'quick-action-btn';
+                btn.textContent = label;
+                btn.onclick = function() { sendQuickAction(label); };
+                container.appendChild(btn);
+            });
+        }
+
+        function sendQuickAction(text) {
+            chatInput.value = text;
+            sendMessage();
+        }
+
+        // ============================================================
+        // Messages
+        // ============================================================
+        function getTimeString() {
+            var now = new Date();
+            return now.getHours().toString().padStart(2, '0') + ':' +
+                   now.getMinutes().toString().padStart(2, '0');
+        }
+
+        function escapeHtml(text) {
+            var div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatMessage(text) {
+            // Simple markdown-like formatting
+            var html = escapeHtml(text);
+
+            // Code blocks (```)
+            html = html.replace(/```([\s\S]*?)```/g, '<pre>$1</pre>');
+
+            // Inline code
+            html = html.replace(/`([^`]+)`/g, '<code style="background:#f1f3f5;padding:2px 5px;border-radius:3px;font-size:0.9em;">$1</code>');
+
+            // Bold
+            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+            // Line breaks
+            html = html.replace(/\n/g, '<br>');
+
+            return html;
+        }
+
+        function addBotMessage(text) {
+            var time = getTimeString();
+            chatHistory.push({ role: 'bot', text: text, time: time });
+
+            var msgDiv = document.createElement('div');
+            msgDiv.className = 'message bot';
+            msgDiv.innerHTML =
+                '<div class="message-avatar">&#x1F916;</div>' +
+                '<div>' +
+                    '<div class="message-bubble">' + formatMessage(text) + '</div>' +
+                    '<span class="message-time">' + time + '</span>' +
+                '</div>';
+            chatMessages.appendChild(msgDiv);
+            scrollToBottom();
+        }
+
+        function addUserMessage(text) {
+            var time = getTimeString();
+            chatHistory.push({ role: 'user', text: text, time: time });
+
+            var msgDiv = document.createElement('div');
+            msgDiv.className = 'message user';
+            msgDiv.innerHTML =
+                '<div class="message-avatar">&#x1F464;</div>' +
+                '<div>' +
+                    '<div class="message-bubble">' + formatMessage(text) + '</div>' +
+                    '<span class="message-time">' + time + '</span>' +
+                '</div>';
+            chatMessages.appendChild(msgDiv);
+            scrollToBottom();
+        }
+
+        function scrollToBottom() {
+            requestAnimationFrame(function() {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+        }
+
+        function showTyping() {
+            typingIndicator.classList.add('visible');
+            scrollToBottom();
+        }
+
+        function hideTyping() {
+            typingIndicator.classList.remove('visible');
+        }
+
+        // ============================================================
+        // Send Message
+        // ============================================================
+        async function sendMessage() {
+            var text = chatInput.value.trim();
+            if (!text || isProcessing) return;
+
+            addUserMessage(text);
+            chatInput.value = '';
+            chatInput.style.height = 'auto';
+            sendBtn.disabled = true;
+            isProcessing = true;
+
+            showTyping();
+
+            try {
+                var response = await callAIEngine(text);
+                hideTyping();
+                addBotMessage(response);
+            } catch (err) {
+                hideTyping();
+                addBotMessage(i18n[currentLang].errorMsg);
+                console.error('AI Engine Error:', err);
+            }
+
+            isProcessing = false;
+            updateSendButton();
+        }
+
+        // ============================================================
+        // AI Engine Communication
+        // ============================================================
+        async function callAIEngine(userMessage) {
+            var endpoint = apiEndpointInput.value.trim();
+
+            // Build request matching python_ai_engine protocol
+            var request = {
+                service: 'chat/message',
+                payload: {
+                    message: userMessage,
+                    history: chatHistory.slice(-10).map(function(m) {
+                        return { role: m.role === 'bot' ? 'assistant' : 'user', content: m.text };
+                    }),
+                    language: currentLang
+                }
+            };
+
+            // Try REST endpoint first
+            try {
+                var res = await fetch(endpoint + '/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(request)
+                });
+
+                if (res.ok) {
+                    var data = await res.json();
+                    return data.reply || data.response || data.result || JSON.stringify(data);
+                }
+            } catch (e) {
+                // REST not available, fall back to local responses
+            }
+
+            // Fallback: local rule-based responses when AI engine is not connected
+            return getLocalResponse(userMessage);
+        }
+
+        function getLocalResponse(msg) {
+            var lower = msg.toLowerCase();
+
+            if (currentLang === 'ko') {
+                if (lower.includes('상태') || lower.includes('status'))
+                    return '**시스템 상태 조회**\n\nAI 엔진 서비스에 연결할 수 없습니다.\n설정에서 엔드포인트 주소를 확인해주세요.\n\n기본 주소: `http://127.0.0.1:5678`';
+                if (lower.includes('태그') || lower.includes('tag'))
+                    return '**태그 데이터 분석**\n\n태그 데이터 분석을 수행하려면 AI 엔진이 실행 중이어야 합니다.\n\n지원 기능:\n- `analysis/trend` - 시계열 트렌드 분석\n- `analysis/correlation` - 상관관계 분석\n- `analysis/report` - 종합 리포트';
+                if (lower.includes('예측') || lower.includes('predict'))
+                    return '**전력 예측**\n\n전력 예측 서비스는 3단계 전략으로 동작합니다:\n1. 등록된 모델을 통한 추론\n2. 통계 기반 OLS 선형 회귀\n3. 현재 값 기반 폴백\n\nAI 엔진에 연결하여 실시간 예측을 수행하세요.';
+                if (lower.includes('트렌드') || lower.includes('trend'))
+                    return '**트렌드 분석**\n\n시계열 데이터에 대한 선형 회귀 분석을 수행합니다.\n- 기울기(slope) 및 R² 값 산출\n- 이상 패턴 탐지\n\n분석할 태그명과 기간을 지정해주세요.';
+                if (lower.includes('도움') || lower.includes('help'))
+                    return '**Autobase AI Assistant 도움말**\n\n사용 가능한 기능:\n- **시스템 상태 확인** - AI 엔진 및 SCADA 시스템 상태\n- **태그 데이터 분석** - 태그 트렌드, 상관관계 분석\n- **전력 예측** - 전력 부하 예측\n- **트렌드 분석** - 시계열 데이터 분석\n- **스크립트 실행** - 커스텀 Python 스크립트\n\n자세한 내용은 관리자에게 문의하세요.';
+                return '입력하신 내용을 처리하고 있습니다.\n\n현재 AI 엔진에 연결되어 있지 않아 제한된 응답만 가능합니다.\n설정에서 AI 엔진 엔드포인트를 확인하고, 엔진이 실행 중인지 확인해주세요.';
+            } else {
+                if (lower.includes('status'))
+                    return '**System Status**\n\nCannot connect to the AI engine service.\nPlease check the endpoint address in settings.\n\nDefault: `http://127.0.0.1:5678`';
+                if (lower.includes('tag'))
+                    return '**Tag Data Analysis**\n\nThe AI engine must be running for tag data analysis.\n\nAvailable services:\n- `analysis/trend` - Time-series trend analysis\n- `analysis/correlation` - Correlation analysis\n- `analysis/report` - Summary report';
+                if (lower.includes('predict'))
+                    return '**Power Prediction**\n\nThe prediction service operates with a 3-tier strategy:\n1. Registry model inference\n2. Statistics-based OLS linear regression\n3. Current value fallback\n\nConnect to the AI engine for real-time predictions.';
+                if (lower.includes('trend'))
+                    return '**Trend Analysis**\n\nPerforms linear regression on time-series data.\n- Calculates slope and R² values\n- Detects anomalous patterns\n\nSpecify the tag name and time range.';
+                if (lower.includes('help'))
+                    return '**Autobase AI Assistant Help**\n\nAvailable features:\n- **System Status** - AI engine & SCADA system status\n- **Tag Data Analysis** - Tag trend & correlation analysis\n- **Power Prediction** - Power load forecasting\n- **Trend Analysis** - Time-series data analysis\n- **Script Execution** - Custom Python scripts\n\nContact your administrator for details.';
+                return 'Processing your request.\n\nCurrently not connected to the AI engine, so only limited responses are available.\nPlease check the AI engine endpoint in settings and ensure the engine is running.';
+            }
+        }
+
+        // ============================================================
+        // Input Handling
+        // ============================================================
+        function handleKeyDown(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        }
+
+        function autoResizeInput() {
+            chatInput.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+                updateSendButton();
+            });
+        }
+
+        function updateSendButton() {
+            sendBtn.disabled = !chatInput.value.trim() || isProcessing;
+        }
+
+        // ============================================================
+        // Settings
+        // ============================================================
+        function toggleSettings() {
+            document.getElementById('settings-panel').classList.toggle('visible');
+        }
+
+        function saveSettings() {
+            localStorage.setItem('autobase_chat_endpoint', apiEndpointInput.value.trim());
+            localStorage.setItem('autobase_chat_lang', currentLang);
+            localStorage.setItem('autobase_chat_fontsize', document.getElementById('fontsize-select').value);
+            toggleSettings();
+        }
+
+        function changeFontSize(size) {
+            var sizes = { small: '13px', medium: '15px', large: '17px' };
+            chatMessages.style.fontSize = sizes[size] || '15px';
+        }
+
+        // ============================================================
+        // Clear Chat
+        // ============================================================
+        function clearChat() {
+            if (!confirm(i18n[currentLang].clearConfirm)) return;
+            chatHistory = [];
+            chatMessages.innerHTML = '';
+            addBotMessage(i18n[currentLang].welcomeMsg);
+        }
+
+        // ============================================================
+        // Start
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

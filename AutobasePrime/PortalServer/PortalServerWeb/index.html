@@ -176,6 +176,12 @@
         </div>
 
         <div class="section">
+            <h2 id="section-chatbot-title">4. AI ChatBot</h2>
+            <p class="description" id="chatbot-desc">Autobase AI 엔진과 연동된 챗봇 어시스턴트입니다.</p>
+            <a href="chatbot.html" class="button" id="chatbot-btn" style="background: linear-gradient(45deg, #667eea, #764ba2);">AI ChatBot 열기</a>
+        </div>
+
+        <div class="section">
             <h2 id="section3-title">3. 모바일 어플 접속</h2>
             
             <div class="subsection">
@@ -210,7 +216,10 @@
                 subsection31: "3-1. 안드로이드 앱",
                 subsection32: "3-2. iOS 앱",
                 androidBtn: "Google Play에서 다운로드",
-                iosBtn: "App Store에서 다운로드"
+                iosBtn: "App Store에서 다운로드",
+                chatbotTitle: "4. AI ChatBot",
+                chatbotDesc: "Autobase AI 엔진과 연동된 챗봇 어시스턴트입니다.",
+                chatbotBtn: "AI ChatBot 열기"
             },
             en: {
                 title: "Autobase WebServer Client",
@@ -227,7 +236,10 @@
                 subsection31: "3-1. Android App",
                 subsection32: "3-2. iOS App",
                 androidBtn: "Download from Google Play",
-                iosBtn: "Download from App Store"
+                iosBtn: "Download from App Store",
+                chatbotTitle: "4. AI ChatBot",
+                chatbotDesc: "AI-powered chatbot assistant connected to the Autobase AI engine.",
+                chatbotBtn: "Open AI ChatBot"
             }
         };
 
@@ -256,7 +268,10 @@
             document.getElementById('subsection3-2').textContent = t.subsection32;
             document.getElementById('android-btn').textContent = t.androidBtn;
             document.getElementById('ios-btn').textContent = t.iosBtn;
-            
+            document.getElementById('section-chatbot-title').textContent = t.chatbotTitle;
+            document.getElementById('chatbot-desc').textContent = t.chatbotDesc;
+            document.getElementById('chatbot-btn').textContent = t.chatbotBtn;
+
             // 현재 IP 텍스트 업데이트
             updateCurrentIpText();
         }
