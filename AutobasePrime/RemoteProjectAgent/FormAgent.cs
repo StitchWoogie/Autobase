@@ -8,19 +8,23 @@ namespace RemoteProjectAgent
     {
         private NotifyIcon notifyIcon;
         private TextBox textBoxLog;
+        private TextBox textBoxApiKey;
         private Label labelStatus;
         private Label labelPort;
         private Label labelProjectDir;
         private Button buttonStart;
         private Button buttonStop;
+        private CheckBox checkBoxShowKey;
         private RemoteProjectServer server;
         private int port;
         private string projectDir;
+        private string apiKey;
 
-        public FormAgent(int port, string projectDir)
+        public FormAgent(int port, string projectDir, string apiKey = "")
         {
             this.port = port;
             this.projectDir = projectDir;
+            this.apiKey = apiKey;
             InitializeComponent();
             StartServer();
         }
@@ -28,7 +32,7 @@ namespace RemoteProjectAgent
         private void InitializeComponent()
         {
             this.Text = "Remote Project Agent";
-            this.Size = new Size(600, 420);
+            this.Size = new Size(600, 460);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -39,7 +43,29 @@ namespace RemoteProjectAgent
             var labelDirTitle = new Label { Text = "Project Dir:", Location = new Point(12, 38), AutoSize = true };
             labelProjectDir = new Label { Text = projectDir, Location = new Point(100, 38), AutoSize = true, Font = new Font(Font, FontStyle.Bold) };
 
-            labelStatus = new Label { Text = "Status: Stopped", Location = new Point(12, 62), AutoSize = true, ForeColor = Color.Red };
+            var labelKeyTitle = new Label { Text = "API Key:", Location = new Point(12, 63), AutoSize = true };
+            textBoxApiKey = new TextBox
+            {
+                Location = new Point(100, 60),
+                Size = new Size(200, 22),
+                Text = apiKey,
+                UseSystemPasswordChar = true
+            };
+            textBoxApiKey.TextChanged += (s, e) => apiKey = textBoxApiKey.Text.Trim();
+
+            checkBoxShowKey = new CheckBox { Text = "Show", Location = new Point(308, 62), AutoSize = true };
+            checkBoxShowKey.CheckedChanged += (s, e) => textBoxApiKey.UseSystemPasswordChar = !checkBoxShowKey.Checked;
+
+            var labelKeyHint = new Label
+            {
+                Text = "(empty = no authentication)",
+                Location = new Point(370, 63),
+                AutoSize = true,
+                ForeColor = Color.Gray,
+                Font = new Font(Font.FontFamily, 8)
+            };
+
+            labelStatus = new Label { Text = "Status: Stopped", Location = new Point(12, 90), AutoSize = true, ForeColor = Color.Red };
 
             buttonStart = new Button { Text = "Start", Location = new Point(400, 12), Size = new Size(80, 28) };
             buttonStart.Click += (s, e) => StartServer();
@@ -49,15 +75,20 @@ namespace RemoteProjectAgent
 
             textBoxLog = new TextBox
             {
-                Location = new Point(12, 90),
-                Size = new Size(560, 280),
+                Location = new Point(12, 115),
+                Size = new Size(560, 290),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 ReadOnly = true,
                 Font = new Font("Consolas", 9)
             };
 
-            this.Controls.AddRange(new Control[] { labelPortTitle, labelPort, labelDirTitle, labelProjectDir, labelStatus, buttonStart, buttonStop, textBoxLog });
+            this.Controls.AddRange(new Control[]
+            {
+                labelPortTitle, labelPort, labelDirTitle, labelProjectDir,
+                labelKeyTitle, textBoxApiKey, checkBoxShowKey, labelKeyHint,
+                labelStatus, buttonStart, buttonStop, textBoxLog
+            });
 
             // System tray icon
             notifyIcon = new NotifyIcon
@@ -87,14 +118,18 @@ namespace RemoteProjectAgent
         {
             if (server != null && server.IsRunning) return;
 
-            server = new RemoteProjectServer(port, projectDir, AppendLog);
+            server = new RemoteProjectServer(port, projectDir, apiKey, AppendLog);
             server.Start();
 
             labelStatus.Text = $"Status: Running on port {port}";
             labelStatus.ForeColor = Color.Green;
             buttonStart.Enabled = false;
             buttonStop.Enabled = true;
+            textBoxApiKey.Enabled = false;
+
+            string authStatus = string.IsNullOrEmpty(apiKey) ? "No authentication" : "API Key authentication enabled";
             AppendLog($"Server started on port {port}, project dir: {projectDir}");
+            AppendLog(authStatus);
         }
 
         private void StopServer()
@@ -109,6 +144,7 @@ namespace RemoteProjectAgent
             labelStatus.ForeColor = Color.Red;
             buttonStart.Enabled = true;
             buttonStop.Enabled = false;
+            textBoxApiKey.Enabled = true;
             AppendLog("Server stopped.");
         }
 

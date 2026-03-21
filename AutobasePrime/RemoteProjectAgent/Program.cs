@@ -23,6 +23,7 @@ namespace RemoteProjectAgent
             {
                 int port = 18080;
                 string projectDir = "";
+                string apiKey = "";
 
                 for (int i = 0; i < args.Length; i++)
                 {
@@ -30,6 +31,8 @@ namespace RemoteProjectAgent
                         int.TryParse(args[i].Substring(6), out port);
                     else if (args[i].StartsWith("/project=", StringComparison.OrdinalIgnoreCase))
                         projectDir = args[i].Substring(9).Trim('"');
+                    else if (args[i].StartsWith("/apikey=", StringComparison.OrdinalIgnoreCase))
+                        apiKey = args[i].Substring(8).Trim('"');
                 }
 
                 if (string.IsNullOrEmpty(projectDir))
@@ -39,7 +42,7 @@ namespace RemoteProjectAgent
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new FormAgent(port, projectDir));
+                Application.Run(new FormAgent(port, projectDir, apiKey));
             }
             finally
             {

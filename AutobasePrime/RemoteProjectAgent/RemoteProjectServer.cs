@@ -19,15 +19,17 @@ namespace RemoteProjectAgent
         private HttpListener listener;
         private readonly int port;
         private readonly string projectDir;
+        private readonly string apiKey;
         private readonly Action<string> log;
         private CancellationTokenSource cts;
 
         public bool IsRunning { get; private set; }
 
-        public RemoteProjectServer(int port, string projectDir, Action<string> log)
+        public RemoteProjectServer(int port, string projectDir, string apiKey, Action<string> log)
         {
             this.port = port;
             this.projectDir = projectDir;
+            this.apiKey = apiKey ?? "";
             this.log = log;
         }
 
@@ -81,6 +83,25 @@ namespace RemoteProjectAgent
             }
         }
 
+        private bool Authenticate(HttpListenerRequest request, HttpListenerResponse response)
+        {
+            if (string.IsNullOrEmpty(apiKey))
+                return true;
+
+            string clientKey = request.Headers["X-API-Key"];
+            if (string.IsNullOrEmpty(clientKey))
+                clientKey = request.QueryString["apikey"];
+
+            if (clientKey == apiKey)
+                return true;
+
+            string remoteIp = request.RemoteEndPoint?.Address?.ToString() ?? "unknown";
+            log?.Invoke($"Authentication failed from {remoteIp}");
+            response.StatusCode = 401;
+            SendJson(response, new { error = "Unauthorized. Invalid or missing API Key." });
+            return false;
+        }
+
         private void HandleRequest(HttpListenerContext context)
         {
             var request = context.Request;
@@ -90,6 +111,10 @@ namespace RemoteProjectAgent
             {
                 string path = request.Url.AbsolutePath.ToLower().TrimEnd('/');
                 log?.Invoke($"{request.HttpMethod} {path}");
+
+                // API Key 인증 (ping은 인증 불필요)
+                if (path != "/api/ping" && !Authenticate(request, response))
+                    return;
 
                 switch (path)
                 {

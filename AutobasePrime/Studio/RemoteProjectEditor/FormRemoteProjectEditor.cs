@@ -20,6 +20,8 @@ namespace Studio.RemoteProjectEditor
         private TextBox textBoxHost;
         private Label labelPort;
         private TextBox textBoxPort;
+        private Label labelApiKey;
+        private TextBox textBoxApiKey;
         private Button buttonConnect;
         private Button buttonDisconnect;
         private Label labelConnectionStatus;
@@ -83,7 +85,7 @@ namespace Studio.RemoteProjectEditor
             {
                 Text = "Remote Connection",
                 Location = new Point(12, 12),
-                Size = new Size(500, 70)
+                Size = new Size(500, 95)
             };
 
             labelHost = new Label { Text = "Host:", Location = new Point(10, 25), AutoSize = true };
@@ -92,22 +94,25 @@ namespace Studio.RemoteProjectEditor
             labelPort = new Label { Text = "Port:", Location = new Point(210, 25), AutoSize = true };
             textBoxPort = new TextBox { Location = new Point(250, 22), Size = new Size(60, 22), Text = "18080" };
 
+            labelApiKey = new Label { Text = "API Key:", Location = new Point(10, 50), AutoSize = true };
+            textBoxApiKey = new TextBox { Location = new Point(70, 47), Size = new Size(240, 22), UseSystemPasswordChar = true };
+
             buttonConnect = new Button { Text = "Connect", Location = new Point(320, 20), Size = new Size(80, 28) };
             buttonConnect.Click += ButtonConnect_Click;
 
             buttonDisconnect = new Button { Text = "Disconnect", Location = new Point(405, 20), Size = new Size(85, 28), Enabled = false };
             buttonDisconnect.Click += ButtonDisconnect_Click;
 
-            labelConnectionStatus = new Label { Text = "● Disconnected", Location = new Point(10, 50), AutoSize = true, ForeColor = Color.Red, Font = new Font(Font, FontStyle.Bold) };
+            labelConnectionStatus = new Label { Text = "● Disconnected", Location = new Point(10, 74), AutoSize = true, ForeColor = Color.Red, Font = new Font(Font, FontStyle.Bold) };
 
-            groupBoxConnection.Controls.AddRange(new Control[] { labelHost, textBoxHost, labelPort, textBoxPort, buttonConnect, buttonDisconnect, labelConnectionStatus });
+            groupBoxConnection.Controls.AddRange(new Control[] { labelHost, textBoxHost, labelPort, textBoxPort, labelApiKey, textBoxApiKey, buttonConnect, buttonDisconnect, labelConnectionStatus });
 
             // ── LocalMain Control Group ──
             groupBoxLocalMain = new GroupBox
             {
                 Text = "LocalMain Control",
                 Location = new Point(520, 12),
-                Size = new Size(500, 70)
+                Size = new Size(500, 95)
             };
 
             buttonLocalMainStart = new Button { Text = "Start", Location = new Point(10, 22), Size = new Size(70, 28), Enabled = false };
@@ -122,7 +127,7 @@ namespace Studio.RemoteProjectEditor
             buttonRefreshStatus = new Button { Text = "Refresh", Location = new Point(240, 22), Size = new Size(70, 28), Enabled = false };
             buttonRefreshStatus.Click += ButtonRefreshStatus_Click;
 
-            labelLocalMainStatus = new Label { Text = "Status: Unknown", Location = new Point(10, 50), AutoSize = true };
+            labelLocalMainStatus = new Label { Text = "Status: Unknown", Location = new Point(10, 60), AutoSize = true };
 
             groupBoxLocalMain.Controls.AddRange(new Control[] { buttonLocalMainStart, buttonLocalMainStop, buttonLocalMainRestart, buttonRefreshStatus, labelLocalMainStatus });
 
@@ -130,7 +135,7 @@ namespace Studio.RemoteProjectEditor
             groupBoxProject = new GroupBox
             {
                 Text = "Project Management",
-                Location = new Point(12, 88),
+                Location = new Point(12, 113),
                 Size = new Size(500, 80)
             };
 
@@ -153,7 +158,7 @@ namespace Studio.RemoteProjectEditor
             groupBoxScreen = new GroupBox
             {
                 Text = "Screen Monitor",
-                Location = new Point(520, 88),
+                Location = new Point(520, 113),
                 Size = new Size(500, 80)
             };
 
@@ -177,8 +182,8 @@ namespace Studio.RemoteProjectEditor
             // ── PictureBox for screen ──
             pictureBoxScreen = new PictureBox
             {
-                Location = new Point(520, 172),
-                Size = new Size(500, 380),
+                Location = new Point(520, 197),
+                Size = new Size(500, 355),
                 SizeMode = PictureBoxSizeMode.Zoom,
                 BorderStyle = BorderStyle.FixedSingle,
                 BackColor = Color.Black
@@ -188,14 +193,14 @@ namespace Studio.RemoteProjectEditor
             groupBoxPages = new GroupBox
             {
                 Text = "Page Navigation",
-                Location = new Point(12, 172),
-                Size = new Size(500, 380)
+                Location = new Point(12, 197),
+                Size = new Size(500, 355)
             };
 
             listBoxPages = new ListBox
             {
                 Location = new Point(10, 22),
-                Size = new Size(370, 310)
+                Size = new Size(370, 285)
             };
             listBoxPages.DoubleClick += ListBoxPages_DoubleClick;
 
@@ -245,14 +250,40 @@ namespace Studio.RemoteProjectEditor
                 return;
             }
 
-            client = new RemoteProjectClient(host, port);
+            string apiKey = textBoxApiKey.Text.Trim();
+            client = new RemoteProjectClient(host, port, apiKey);
             AppendLog($"Connecting to {host}:{port}...");
 
             buttonConnect.Enabled = false;
 
-            bool success = await Task.Run(() => client.Ping());
+            bool pingOk = await Task.Run(() => client.Ping());
 
-            if (success)
+            if (!pingOk)
+            {
+                isConnected = false;
+                labelConnectionStatus.Text = "● Connection Failed";
+                labelConnectionStatus.ForeColor = Color.Red;
+                buttonConnect.Enabled = true;
+                AppendLog("Connection failed. Make sure RemoteProjectAgent is running on the remote PC.");
+                return;
+            }
+
+            // Verify API Key authentication
+            string authResult = await Task.Run(() => client.TestAuthentication());
+
+            if (authResult == "unauthorized")
+            {
+                isConnected = false;
+                labelConnectionStatus.Text = "● Authentication Failed";
+                labelConnectionStatus.ForeColor = Color.Red;
+                buttonConnect.Enabled = true;
+                AppendLog("Authentication failed. Check the API Key.");
+                MessageBox.Show("API Key가 올바르지 않습니다.\nRemote Agent에 설정된 API Key를 확인하세요.",
+                    "Authentication Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (authResult == "ok")
             {
                 isConnected = true;
                 labelConnectionStatus.Text = $"● Connected ({host}:{port})";
@@ -260,7 +291,7 @@ namespace Studio.RemoteProjectEditor
                 buttonConnect.Enabled = false;
                 buttonDisconnect.Enabled = true;
                 SetControlsEnabled(true);
-                AppendLog("Connected successfully.");
+                AppendLog("Connected and authenticated successfully.");
                 SaveSettings();
 
                 // Auto-refresh status and pages
@@ -270,10 +301,10 @@ namespace Studio.RemoteProjectEditor
             else
             {
                 isConnected = false;
-                labelConnectionStatus.Text = "● Connection Failed";
+                labelConnectionStatus.Text = "● Connection Error";
                 labelConnectionStatus.ForeColor = Color.Red;
                 buttonConnect.Enabled = true;
-                AppendLog("Connection failed. Make sure RemoteProjectAgent is running on the remote PC.");
+                AppendLog($"Connection error: {authResult}");
             }
         }
 
@@ -657,6 +688,7 @@ namespace Studio.RemoteProjectEditor
             {
                 textBoxHost.Text = TotalConfigProject.LoadConfig("RemoteProjectEditor", "Connection", "Host", "192.168.0.1");
                 textBoxPort.Text = TotalConfigProject.LoadConfig("RemoteProjectEditor", "Connection", "Port", "18080");
+                textBoxApiKey.Text = TotalConfigProject.LoadConfig("RemoteProjectEditor", "Connection", "ApiKey", "");
                 localProjectDir = TotalConfigProject.LoadConfig("RemoteProjectEditor", "Project", "LocalDir", "");
             }
             catch { }
@@ -668,6 +700,7 @@ namespace Studio.RemoteProjectEditor
             {
                 TotalConfigProject.SaveConfig("RemoteProjectEditor", "Connection", "Host", textBoxHost.Text.Trim());
                 TotalConfigProject.SaveConfig("RemoteProjectEditor", "Connection", "Port", textBoxPort.Text.Trim());
+                TotalConfigProject.SaveConfig("RemoteProjectEditor", "Connection", "ApiKey", textBoxApiKey.Text.Trim());
                 if (!string.IsNullOrEmpty(localProjectDir))
                     TotalConfigProject.SaveConfig("RemoteProjectEditor", "Project", "LocalDir", localProjectDir);
             }

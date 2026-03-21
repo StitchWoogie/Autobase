@@ -15,14 +15,16 @@ namespace Studio.RemoteProjectEditor
     {
         public string Host { get; set; }
         public int Port { get; set; }
+        public string ApiKey { get; set; }
         public int TimeoutMs { get; set; } = 30000;
 
         private string BaseUrl => $"http://{Host}:{Port}";
 
-        public RemoteProjectClient(string host, int port)
+        public RemoteProjectClient(string host, int port, string apiKey = "")
         {
             Host = host;
             Port = port;
+            ApiKey = apiKey ?? "";
         }
 
         #region Connection
@@ -37,6 +39,27 @@ namespace Studio.RemoteProjectEditor
             catch
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Tests authentication by calling an endpoint that requires API Key.
+        /// Returns: "ok" on success, "unauthorized" on 401, or error message.
+        /// </summary>
+        public string TestAuthentication()
+        {
+            try
+            {
+                var result = GetLocalMainStatus();
+                return "ok";
+            }
+            catch (WebException ex) when (ex.Response is HttpWebResponse resp && resp.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                return "unauthorized";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
             }
         }
 
@@ -154,6 +177,8 @@ namespace Studio.RemoteProjectEditor
         {
             var client = new WebClient();
             client.Encoding = Encoding.UTF8;
+            if (!string.IsNullOrEmpty(ApiKey))
+                client.Headers.Add("X-API-Key", ApiKey);
             return client;
         }
 
@@ -163,6 +188,8 @@ namespace Studio.RemoteProjectEditor
             request.Method = method;
             request.Timeout = TimeoutMs;
             request.ReadWriteTimeout = TimeoutMs;
+            if (!string.IsNullOrEmpty(ApiKey))
+                request.Headers.Add("X-API-Key", ApiKey);
             return request;
         }
 
