@@ -27,6 +27,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ViewMainPublic;
 using static AutoLibLocal.LanguageManager;
@@ -1402,13 +1403,30 @@ namespace LocalMain
         //윈도우 디바이스 변경 알림 추가 20241025 PSU
         private const int WM_DEVICECHANGE = 0x219;
         private const int DBT_DEVNODES_CHANGED = 0x0007;  //디바이스 노드 변경.
+        private const int WM_COPYDATA = 0x004A;
         private const int WM_QUERYENDSESSION = 0x11;
         private const int WM_ENTERSIZEMOVE = 0x0231;
         private const int WM_EXITSIZEMOVE = 0x0232;
         private bool _isUserResizing = false;
 
+        // RemoteProjectAgent 명령 ID
+        private const int CYCOPYDATA_CYCNAVIGATE = 1001;
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct CYCOPYDATA_CYSTRUCT
+        {
+            public IntPtr dwData;
+            public int cbData;
+            public IntPtr lpData;
+        }
+
         protected override void WndProc(ref Message m)
         {
+            if (m.Msg == WM_COPYDATA)
+            {
+                HandleCopyData(m);
+                return;
+            }
             if (m.Msg == WM_QUERYENDSESSION)
             {
                 systemShutDown = true;
@@ -1449,6 +1467,48 @@ namespace LocalMain
                 }
             }
             base.WndProc(ref m);
+        }
+
+        private void HandleCopyData(Message m)
+        {
+            try
+            {
+                var cds = (CYCOPYDATA_CYSTRUCT)Marshal.PtrToStructure(m.LParam, typeof(CYCOPYDATA_CYSTRUCT));
+                int commandId = (int)cds.dwData;
+
+                if (commandId == CYCOPYDATA_CYCNAVIGATE && cds.cbData > 0)
+                {
+                    string pageName = Marshal.PtrToStringUni(cds.lpData, cds.cbData / 2);
+                    if (!string.IsNullOrEmpty(pageName))
+                    {
+                        NavigateToPage(pageName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SmLog.Error($"HandleCopyData error: {ex.Message}");
+            }
+        }
+
+        private void NavigateToPage(string pageName)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<string>(NavigateToPage), pageName);
+                return;
+            }
+
+            string path;
+            if (Path.IsPathRooted(pageName))
+                path = pageName;
+            else
+                path = Path.Combine(TotalConfig.sDirWorkProject, "graphic", pageName);
+
+            if (File.Exists(path))
+            {
+                GraphicTool.RestoreGraphicWindow(path, -1, 0, 0);
+            }
         }
 
         private void ViewgraphicsToolStripMenuItem_Click(object sender, EventArgs e)

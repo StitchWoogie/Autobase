@@ -439,6 +439,20 @@ namespace RemoteProjectAgent
         [DllImport("user32.dll")]
         private static extern bool PrintWindow(IntPtr hwnd, IntPtr hdcBlt, uint nFlags);
 
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+        private const uint WM_COPYDATA = 0x004A;
+        private const int CYCOPYDATA_CYCNAVIGATE = 1001;
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct COPYDATASTRUCT
+        {
+            public IntPtr dwData;
+            public int cbData;
+            public IntPtr lpData;
+        }
+
         [StructLayout(LayoutKind.Sequential)]
         private struct RECT
         {
@@ -532,14 +546,71 @@ namespace RemoteProjectAgent
             string page = body["page"]?.ToString() ?? "";
             log?.Invoke($"Navigating to page: {page}");
 
-            // Navigate by restarting LocalMain with the page argument
-            // Or use shared memory / IPC mechanism
-            // For now, use process restart approach
-            StopLocalMainProcess();
-            Thread.Sleep(1500);
-            string result = StartLocalMainProcess(page);
+            var process = FindProcess("LocalMain");
+            if (process == null)
+            {
+                response.StatusCode = 404;
+                SendJson(response, new { error = "LocalMain is not running" });
+                return;
+            }
 
-            SendJson(response, new { status = "ok", page, message = result });
+            IntPtr hwnd = process.MainWindowHandle;
+            if (hwnd == IntPtr.Zero)
+            {
+                response.StatusCode = 500;
+                SendJson(response, new { error = "LocalMain main window not found" });
+                return;
+            }
+
+            // WM_COPYDATA로 페이지 전환 명령 전송 (재시작 불필요)
+            bool sent = SendNavigateCommand(hwnd, page);
+
+            if (sent)
+            {
+                log?.Invoke($"Navigate command sent: {page}");
+                SendJson(response, new { status = "ok", page, message = $"Navigate command sent: {page}" });
+            }
+            else
+            {
+                log?.Invoke($"Failed to send navigate command: {page}");
+                response.StatusCode = 500;
+                SendJson(response, new { error = "Failed to send navigate command" });
+            }
+        }
+
+        private bool SendNavigateCommand(IntPtr hwnd, string pageName)
+        {
+            IntPtr pData = IntPtr.Zero;
+            IntPtr pCds = IntPtr.Zero;
+            try
+            {
+                byte[] data = Encoding.Unicode.GetBytes(pageName);
+                pData = Marshal.AllocHGlobal(data.Length);
+                Marshal.Copy(data, 0, pData, data.Length);
+
+                var cds = new COPYDATASTRUCT
+                {
+                    dwData = (IntPtr)CYCOPYDATA_CYCNAVIGATE,
+                    cbData = data.Length,
+                    lpData = pData
+                };
+
+                pCds = Marshal.AllocHGlobal(Marshal.SizeOf(cds));
+                Marshal.StructureToPtr(cds, pCds, false);
+
+                SendMessage(hwnd, WM_COPYDATA, IntPtr.Zero, pCds);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                log?.Invoke($"SendNavigateCommand error: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                if (pData != IntPtr.Zero) Marshal.FreeHGlobal(pData);
+                if (pCds != IntPtr.Zero) Marshal.FreeHGlobal(pCds);
+            }
         }
 
         private void HandleScreenPages(HttpListenerRequest request, HttpListenerResponse response)

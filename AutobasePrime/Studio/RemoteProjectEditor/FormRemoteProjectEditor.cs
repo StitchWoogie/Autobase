@@ -663,8 +663,8 @@ namespace Studio.RemoteProjectEditor
                 string msg = result.ContainsKey("message") ? result["message"].ToString() : "OK";
                 AppendLog($"Navigate result: {msg}");
 
-                // Wait and capture screen after navigation
-                await Task.Delay(3000);
+                // Wait briefly for page to render, then capture screen
+                await Task.Delay(1000);
                 await CaptureScreenAsync();
             }
             catch (Exception ex)
