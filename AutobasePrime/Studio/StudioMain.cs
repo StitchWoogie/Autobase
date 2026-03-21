@@ -128,6 +128,7 @@ namespace Studio
         private ToolStripMenuItem modelsToolStripMenuItem;
         private ToolStripMenuItem weeklySchedulesToolStripMenuItem;
         private ToolStripMenuItem deploymentToolStripMenuItem;
+        private ToolStripMenuItem remoteProjectEditorToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem1;
         private ToolStripMenuItem remoteASToolStripMenuItem;
@@ -321,6 +322,7 @@ namespace Studio
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.scheduleDesignerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deploymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.remoteProjectEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GlobalSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
@@ -838,6 +840,7 @@ namespace Studio
             this.recipeToolStripMenuItem,
             this.schedulesToolStripMenuItem,
             this.deploymentToolStripMenuItem,
+            this.remoteProjectEditorToolStripMenuItem,
             this.globalizationToolStripMenuItem});
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
             resources.ApplyResources(this.configToolStripMenuItem, "configToolStripMenuItem");
@@ -1076,7 +1079,14 @@ namespace Studio
             this.deploymentToolStripMenuItem.Name = "deploymentToolStripMenuItem";
             resources.ApplyResources(this.deploymentToolStripMenuItem, "deploymentToolStripMenuItem");
             this.deploymentToolStripMenuItem.Click += new System.EventHandler(this.menuItemConfigDeployment_Click);
-            // 
+            //
+            // remoteProjectEditorToolStripMenuItem
+            //
+            this.remoteProjectEditorToolStripMenuItem.Name = "remoteProjectEditorToolStripMenuItem";
+            this.remoteProjectEditorToolStripMenuItem.Text = "Remote Project Editor";
+            this.remoteProjectEditorToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.remoteProjectEditorToolStripMenuItem.Click += new System.EventHandler(this.menuItemRemoteProjectEditor_Click);
+            //
             // globalizationToolStripMenuItem
             // 
             this.globalizationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -3027,6 +3037,15 @@ namespace Studio
             FutureVersion.FormConfigCompactVersion dialog = new FutureVersion.FormConfigCompactVersion();
             dialog.StartPosition = FormStartPosition.CenterParent;
 
+            dialog.ShowDialog(this);
+        }
+
+        private void menuItemRemoteProjectEditor_Click(object sender, EventArgs e)
+        {
+            if (!SaveAllDocuments()) return;
+
+            var dialog = new Studio.RemoteProjectEditor.FormRemoteProjectEditor();
+            dialog.StartPosition = FormStartPosition.CenterParent;
             dialog.ShowDialog(this);
         }
 
