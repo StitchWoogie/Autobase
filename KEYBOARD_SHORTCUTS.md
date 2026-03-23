@@ -242,7 +242,6 @@
 | 단축키 | 충돌 항목 | 비고 |
 |--------|-----------|------|
 | `Ctrl+Shift+V` | Auto Paste / Display Changes | 두 기능에 동일 단축키 할당됨 |
-| `Ctrl+Left/Right/Up/Down` | 정렬(메뉴) / 이동(KeyDown) | 메뉴 단축키와 KeyDown 핸들러에서 다른 동작 가능 |
 
 ---
 
