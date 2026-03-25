@@ -736,3 +736,130 @@ Hang 시간은 줄지만, 근본 해결은 아님.
 | **3** | `ChangeDualSystem` 잠금 범위 축소 | 낮음 | 시나리오 2: 교착 해소 | `Scanstat.cpp` |
 | **4** | `WaitThreadProtocolDrawWorking` 타임아웃 단축 | 낮음 | 시나리오 2: Hang 시간 단축 | `Pro_main.cpp` |
 | **5** | TCP 포트 `bActiveThread` 강제 ON | 낮음 | 시나리오 1: 메인스레드 connect 차단 | `Scanfile.cpp` |
+
+---
+
+## 6. DLL 유지 + PLC_SCAN 본체 리팩토링 시 개선 효과 분석
+
+### 6.1 현재 DLL 인터페이스 경계
+
+PLC_SCAN은 장비 프로토콜별로 DLL을 로드하여 사용합니다. DLL과 본체의 경계는 명확합니다.
+
+```
+┌─────────────────────────────────────────────────────┐
+│                    PLC_SCAN 본체                      │
+│                                                       │
+│  ┌──────────┐  ┌──────────┐  ┌───────────────────┐   │
+│  │ 스레드    │  │ TCP/IP   │  │ UI (WM_TIMER,    │   │
+│  │ 관리     │  │ 소켓관리  │  │  WM_PAINT)       │   │
+│  └────┬─────┘  └────┬─────┘  └────────┬──────────┘   │
+│       │              │                 │               │
+│       v              v                 v               │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │         LOCAL_PORT_STRUCT *pt                    │   │
+│  │  (소켓핸들, 디바이스정보, 통신버퍼, 콜백포인터)    │   │
+│  └──────────────────┬──────────────────────────────┘   │
+│                     │                                   │
+└─────────────────────┼───────────────────────────────────┘
+                      │  함수 포인터 호출
+                      v
+┌─────────────────────────────────────────────────────┐
+│              장비 프로토콜 DLL                         │
+│                                                       │
+│  ProtocolInit()      ProtocolRead()                   │
+│  ProtocolUnInit()    ProtocolWriteWord()              │
+│  ProtocolDrawMethod()  ProtocolWriteBit()             │
+│  GetErrMsg()         WriteBlock()                     │
+│                                                       │
+│  → LOCAL_PORT_STRUCT *pt 만 참조                      │
+│  → 소켓/스레드/UI 코드 없음                            │
+└─────────────────────────────────────────────────────┘
+```
+
+### 6.2 DLL이 의존하는 것 vs 의존하지 않는 것
+
+| 구분 | DLL이 의존 | DLL이 의존하지 않음 |
+|------|-----------|-------------------|
+| 데이터 | `LOCAL_PORT_STRUCT` 레이아웃 | `GLOBAL_PORT_STRUCT` 내부 구조 |
+| 통신 | `pt->local.device` (소켓 핸들) | 소켓 생성/연결 방식 |
+| 콜백 | `SetProtocolProc()` 등록 패턴 | 스레드 생성/관리 방식 |
+| UI | `ProtocolDrawMethod(HDC, ...)` | `WM_TIMER`, `WM_PAINT` 처리 방식 |
+| 동기화 | 없음 | `bThreadProtocolDrawWorking` 플래그 |
+| 네트워크 | 없음 | `ScanServer`, `NetworkClient` 전체 |
+
+**핵심:** DLL은 `LOCAL_PORT_STRUCT *pt`를 통해 이미 열린 소켓과 디바이스 정보만 사용합니다.
+소켓을 어떻게 열었는지(blocking/non-blocking), 어떤 스레드에서 열었는지는 DLL과 무관합니다.
+
+### 6.3 DLL 변경 없이 가능한 성능 개선
+
+| 개선 항목 | 수정 파일 | 수정 규모 | 효과 |
+|-----------|-----------|-----------|------|
+| **connect() non-blocking 전환** | `Comtcpip.cpp` | ~15줄 추가 | UI Hang 완전 제거 |
+| **gethostbyname() → getaddrinfo() 비동기** | `Comtcpip.cpp` | ~10줄 변경 | DNS 블로킹 제거 |
+| **TCP_NODELAY 설정** | `Comtcpip.cpp` | 2줄 추가 | Nagle 지연 200ms 제거 |
+| **SO_KEEPALIVE 설정** | `Comtcpip.cpp` | 2줄 추가 | 좀비 연결 자동 감지 |
+| **주석 처리된 소켓 타임아웃 활성화** | `Comtcpip.cpp` | 주석 해제 | 수신 타임아웃 적용 |
+| **CreateThread dwStackSize 지정** | `PortThread.cpp` | 1줄 변경 | 스택 메모리 82% 감소 |
+| **ScanServerPause 범위 축소** | `ScanEdit.cpp` | ~10줄 변경 | 편집 시 무관한 포트 중단 제거 |
+| **ChangeDualSystem 잠금 범위 축소** | `Scanstat.cpp` | ~5줄 변경 | 이중화 절체 시 UI Hang 제거 |
+| **WaitThreadProtocolDrawWorking 타임아웃 단축** | `Pro_main.cpp` | 1줄 변경 | 최악 대기 30초→2초 |
+| **ScanServerStatus dirty flag** | `ScanServerStatus.cpp` | ~20줄 추가 | 불필요한 데이터 전송 제거 |
+
+### 6.4 DLL 변경 없이 가능한 안정성 개선
+
+| 개선 항목 | 수정 파일 | 수정 규모 | 효과 |
+|-----------|-----------|-----------|------|
+| **sprintf → snprintf** | `NetworkClientMulti.cpp` 외 | 각 1줄 변경 | 버퍼 오버플로 방지 |
+| **delete → delete[]** | `NetWorkProtocol.cpp` | 2줄 변경 | 메모리 누수/UB 제거 |
+| **MaxPorts 범위 검증** | `Scanmain.cpp` | 3줄 추가 | INI 오류 시 크래시 방지 |
+| **소켓 에러 핸들링 강화** | `Comtcpip.cpp` | ~5줄 추가 | 연결 실패 시 정상 복구 |
+
+### 6.5 정량적 개선 추정
+
+#### 성능
+
+| 지표 | 현재 | 개선 후 | 개선율 |
+|------|------|---------|--------|
+| **UI Hang (편집 시)** | 20~60초 | **0초** | 100% |
+| **UI Hang (이중화 절체)** | 최대 30초 | **0초** | 100% |
+| **스레드 스택 메모리 (256포트)** | 256MB | **32~48MB** | 82~88% 감소 |
+| **TCP 소패킷 지연** | 최대 200ms (Nagle) | **즉시 전송** | 200ms 단축 |
+| **포트 편집 시 다른 포트 중단** | 256개 전부 | **관련 포트만** | 불필요 중단 제거 |
+| **DNS 조회 블로킹** | 30초+ | **3초 이내** | 90% 단축 |
+
+#### 안정성
+
+| 지표 | 현재 | 개선 후 |
+|------|------|---------|
+| **버퍼 오버플로 위험** | 5~7건 | **0건** |
+| **메모리 누수 (delete vs delete[])** | 2건 | **0건** |
+| **좀비 TCP 연결** | 감지 불가 | **자동 감지/정리** |
+
+### 6.6 수정 범위 요약
+
+```
+수정 파일 총 6개, 각각 수~수십 줄 수준:
+
+1. Comtcpip.cpp       — non-blocking connect, TCP_NODELAY, SO_KEEPALIVE, 타임아웃 (~30줄)
+2. PortThread.cpp     — dwStackSize 지정 (1줄)
+3. ScanEdit.cpp       — ScanServerPause 범위 축소 (~10줄)
+4. Scanstat.cpp       — ChangeDualSystem 잠금 범위 축소 (~5줄)
+5. Pro_main.cpp       — 타임아웃 단축 (1줄)
+6. ScanServerStatus.cpp — dirty flag 전송 (~20줄)
+
++ 안정성 패치:
+7. NetworkClientMulti.cpp — snprintf (수 줄)
+8. NetWorkProtocol.cpp    — delete[] (2줄)
+9. Scanmain.cpp           — MaxPorts 검증 (3줄)
+```
+
+### 6.7 결론
+
+**장비 프로토콜 DLL을 전혀 변경하지 않고도, PLC_SCAN 본체만 수정하여:**
+
+- **UI Hang 문제** → 완전히 제거 가능 (connect non-blocking + 잠금 범위 축소)
+- **메모리 사용량** → 82% 이상 감소 (스택 128KB 지정)
+- **통신 지연** → 200ms 단축 (TCP_NODELAY)
+- **안정성** → 버퍼 오버플로·메모리 누수 제거
+
+DLL이 `LOCAL_PORT_STRUCT *pt`만 참조하고, 소켓/스레드/UI/네트워크 서버 코드에 전혀 의존하지 않기 때문에 가능합니다. 수정 파일 6~9개, 총 수정량 약 70~80줄 수준으로 위 모든 개선이 달성 가능합니다.
