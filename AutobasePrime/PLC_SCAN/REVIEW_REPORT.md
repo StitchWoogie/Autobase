@@ -122,10 +122,12 @@ typedef struct {
 
 ## HIGH-1: sprintf/strcpy 버퍼 오버플로우 위험
 
-**심각도**: HIGH
-**영향**: 스택 손상, 원격 코드 실행 가능성
+**심각도**: HIGH (단, 전체가 위험한 것은 아님)
+**영향**: 네트워크/가변 입력이 관련된 약 20건 정도가 실제 위험
 
 프로젝트 전체에서 **sprintf 842건**, **strcpy 143건**이 경계 검사 없이 사용되고 있습니다.
+단, `sprintf(buf,"%d",value)`, `sprintf(buf,"%04X",addr)` 같은 고정 크기 출력은 안전하며,
+실제 위험한 경우는 **네트워크 수신 데이터나 가변 길이 문자열이 고정 버퍼에 들어가는 약 20건** 수준입니다.
 
 ### 위험한 사례
 
@@ -325,10 +327,10 @@ char bThreadProtocolDrawWorking;  // 이것은 스레드 사용시 각 프로토
 
 ---
 
-## CRITICAL-4: VIP 스캔 위치 공유 변수 경쟁 조건
+## ~~CRITICAL-4~~ → HIGH: VIP 스캔 위치 공유 변수 경쟁 조건
 
-**심각도**: CRITICAL
-**영향**: 안전 중요 데이터의 스캔 누락
+**심각도**: HIGH (즉시 크래시는 아니나 스캔 순서 꼬임 발생)
+**영향**: 멀티포트 운용 시 VIP 스캔 위치 간섭으로 스캔 skip 가능
 
 **Scanstat.cpp:952** - `CommStatusLocalOne()` 함수 내부의 static 변수:
 ```cpp
@@ -348,10 +350,10 @@ VIP 스캔은 일반적으로 안전 중요(safety-critical) 고속 폴링 항�
 
 ---
 
-## CRITICAL-5: 재진입 방지 플래그 비원자적 연산
+## ~~CRITICAL-5~~ → HIGH: 재진입 방지 플래그 비원자적 연산
 
-**심각도**: CRITICAL
-**영향**: 쓰기 처리 함수의 동시 실행으로 데이터 손상
+**심각도**: HIGH (이론적 경쟁 조건이나 실제 발생 빈도 낮음)
+**영향**: 극히 드문 타이밍에서 쓰기 처리 함수 동시 실행 가능
 
 **Scanstat.cpp:1041-1049**:
 ```cpp
@@ -423,8 +425,8 @@ conn->hThread = CreateThread(NULL, 0, ServerThreadFunc, conn, 0, &conn->idThread
 
 ## HIGH-8: TCP 연결 타임아웃 미설정 (블로킹 connect)
 
-**심각도**: HIGH
-**영향**: PLC 장애 시 통신 스레드 무한 대기
+**심각도**: HIGH (MEDIUM 수준 — SO_SNDTIMEO/SO_RCVTIMEO 추가로 간단 해결)
+**영향**: PLC 장애 시 통신 스레드가 OS 기본 타임아웃(수십 초)까지 대기
 
 **Comtcpip.cpp:130-191** - `connect()` 호출 전 SO_RCVTIMEO/SO_SNDTIMEO 미설정:
 ```cpp
@@ -731,10 +733,10 @@ Unicode 빌드에서 `char[]` 데이터를 `wchar_t[]`에 `memcpy`하면 문자 
 
 ---
 
-## CRITICAL-9: Modbus 프로토콜 수신 버퍼 범위 초과 읽기
+## ~~CRITICAL-9~~ → HIGH: Modbus 프로토콜 수신 버퍼 범위 초과 읽기
 
-**심각도**: CRITICAL
-**영향**: 잘못된 PLC 데이터 저장, 프로세스 크래시
+**심각도**: HIGH (외부 공격이 아닌 설정값 오입력 기반)
+**영향**: 설정 파일 오류 시 잘못된 PLC 데이터 저장 또는 크래시 가능
 
 **Modicon.cpp:198-199** - `sm->size`가 설정 파일에서 오는 값으로 범위 미검증:
 ```cpp
@@ -748,10 +750,10 @@ for(i = 0; i < sm->size; i++) {
 
 ---
 
-## CRITICAL-10: UDP 링버퍼 데이터 무단 덮어쓰기
+## ~~CRITICAL-10~~ → HIGH: UDP 링버퍼 데이터 무단 덮어쓰기
 
-**심각도**: CRITICAL
-**영향**: PLC 데이터 무단 손실
+**심각도**: HIGH (PLC는 대부분 polling 프로토콜이라 다음 scan에서 복구됨)
+**영향**: 고속 통신 시 일시적 PLC 데이터 손실 (다음 폴링 주기에 복구 가능)
 
 **Comudpip.cpp:339-343**:
 ```cpp
@@ -795,10 +797,10 @@ TestDoubleInt64Memory, TestOptionDialogBox)이 `ProtocolWriteBit`과 `ProtocolWr
 
 ---
 
-## HIGH-21: 내부 프로토콜 Write 주소 손상 (sprintf/atoi 변환 버그)
+## ~~HIGH-21~~ → CRITICAL: 내부 프로토콜 Write 주소 손상 (sprintf/atoi 변환 버그)
 
-**심각도**: HIGH
-**영향**: 내부 프로토콜(~20개)의 Write 시 잘못된 PLC 주소에 쓰기 가능
+**심각도**: CRITICAL (SCADA 관점 가장 위험 — 잘못된 PLC 주소에 쓰기 → 설비 오작동)
+**영향**: 내부 프로토콜(~20개)의 Write 시 완전히 다른 PLC 주소에 값을 쓸 수 있음
 
 **Pro_main.cpp:392-394** (PlcProtocolWriteWord) 및 **537-539** (PlcProtocolWriteBit):
 ```cpp
@@ -878,11 +880,11 @@ memcpy(sharePlcscanNetclient->buf, buf, count);  // count 크기 미검증
 | 3 | **공유 메모리 링버퍼 동기화 추가** | CRITICAL | **주의** - Interlocked/SpinLock 권장 (Mutex 시 성능저하) | 3시간 |
 | 4 | **공유 메모리 Open 시 기존 데이터 보존** | CRITICAL | **안전** | 30분 |
 | 5 | THREAD_PORT_STRUCT volatile 추가 | CRITICAL | **안전** | 30분 |
-| 6 | VIP 스캔 static 변수 -> 포트별 변수 이동 | CRITICAL | **주의** - 동작 변경됨 (전체→포트별 독립) | 1시간 |
-| 7 | 재진입 플래그 InterlockedCompareExchange 적용 | CRITICAL | **안전** | 30분 |
+| 6 | VIP 스캔 static 변수 -> 포트별 변수 이동 | HIGH | **주의** - 동작 변경됨 (전체→포트별 독립) | 1시간 |
+| 7 | 재진입 플래그 InterlockedCompareExchange 적용 | HIGH | **안전** | 30분 |
 | 8 | MAX_PORT INI 입력값 범위 검증 추가 | CRITICAL | **안전** | 30분 |
-| 9 | **Modbus sm->size 범위 검증 추가** | CRITICAL | **안전** | 30분 |
-| 10 | **UDP 링버퍼 Full 검사 추가** | CRITICAL | **안전** | 1시간 |
+| 9 | **Modbus sm->size 범위 검증 추가** | HIGH | **안전** - 설정값 오입력 방어 | 30분 |
+| 10 | **UDP 링버퍼 Full 검사 추가** | HIGH | **안전** - polling 프로토콜이라 다음 scan에서 복구 | 1시간 |
 | 11 | 네트워크 입력 strcpy 경계 검사 추가 | HIGH | **안전** | 2시간 |
 | 12 | sprintf -> _snprintf 일괄 교체 | HIGH | **안전** | 4시간 |
 | 13 | TCP 수신 버퍼 경계 검사 수정 | HIGH | **안전** | 1시간 |
@@ -904,7 +906,7 @@ memcpy(sharePlcscanNetclient->buf, buf, count);  // count 크기 미검증
 | 29 | **UDP SocketUnPrepare Dead Code 수정** | HIGH | **주의** - 소켓 정리 후 재연결 동작 확인 필요 | 30분 |
 | 30 | **공유 메모리 보안 속성(ACL) 설정** | HIGH | **위험** - 다른 Autobase 모듈과 동시 수정 필요 | 설계 필요 |
 | 31 | **ComDeviceNetClient memcpy 크기 검증** | HIGH | **안전** | 30분 |
-| 32 | **Pro_main.cpp Write 주소 sprintf/atoi 변환 제거** | HIGH | **안전** - Read와 동일하게 주소 직접 사용 | 30분 |
+| 32 | **Pro_main.cpp Write 주소 sprintf/atoi 변환 제거** | CRITICAL | **안전** - Read와 동일하게 주소 직접 사용. SCADA 관점 최우선 | 30분 |
 | 33 | PortThread.cpp 레거시 코드 정리 | MEDIUM | **안전** | 1시간 |
 | 34 | #pragma pack 포인터 구조체 분리 | MEDIUM | **주의** - 바이너리 호환성 확인 필요 | 설계 필요 |
 | 35 | 포트 인덱스 범위 검사 추가 | MEDIUM | **안전** | 1시간 |
@@ -914,17 +916,40 @@ memcpy(sharePlcscanNetclient->buf, buf, count);  // count 크기 미검증
 
 ## 결론
 
-PLC_SCAN은 오랜 기간 산업 현장에서 검증된 안정적인 시스템이지만,
-C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`), 멀티스레드/멀티프로세스 동기화 문제,
-**공유 메모리 무보호 접근** 등이 잠재적으로 **힙 손상, 통신 장애, 이중화 절체 실패**를
-유발할 수 있습니다.
+PLC_SCAN은 오랜 기간(10~20년) 산업 현장에서 운용되어 온 성숙한 시스템입니다.
+**"위험하지만 이미 운용은 되는 상태"**로, 대부분의 버그가 Debug 빌드에서 가려지거나
+특정 조건(Release 빌드, 멀티코어, 고속 통신)에서만 발현됩니다.
 
-가장 위험한 순서:
-1. **CRITICAL-7 (공유 메모리 동기화 부재)** - PLC 프로토콜 프레임 실시간 손상 가능
-2. **CRITICAL-8 (공유 메모리 데이터 삭제)** - 이중화 절체 시 데이터 소실
-3. **CRITICAL-9 (Modbus 버퍼 범위 초과)** - 잘못된 PLC 데이터 또는 크래시
-4. **CRITICAL-10 (UDP 링버퍼 덮어쓰기)** - 고속 통신 시 데이터 무단 손실
-5. **CRITICAL-1 (`delete[]` 문제)** - 힙 커럽션으로 프로세스 크래시
+### 현업 기준 위험도 계층
+
+40건 전체가 동일한 수준의 위험이 아닙니다. 현실적 영향 기준으로 분류하면:
+
+| 구분 | 건수 | 실제 위험도 | 내용 |
+|------|------|-----------|------|
+| **P0 (즉시 수정)** | 6건 | 실제 crash / 데이터 손상 가능 | 아래 참조 |
+| **P1 (조기 수정)** | 8~10건 | 장기 운용 시 장애 | static 변수, 소켓 누수, 재진입 등 |
+| **P2 (개선)** | ~10건 | 환경에 따라 위험 | 보안, 설정 검증 등 |
+| **P3 (코드 품질)** | 나머지 | 유지보수성 | 레거시 코드 정리, 타입 안전성 등 |
+
+**실제로 약 15개가 "진짜 문제"이며, 핵심 6개만 먼저 수정하면 주요 위험이 제거됩니다.**
+
+### P0 — 즉시 수정 필요 (예상 4~6시간)
+
+| 순위 | 항목 | 예상 시간 | 이유 |
+|------|------|----------|------|
+| 1 | **Write 주소 sprintf/atoi 제거** (HIGH-21→CRITICAL) | 30분 | SCADA 관점 1위. 잘못된 PLC 주소에 Write → 설비 오작동 |
+| 2 | **new[] → delete[] 수정** (CRITICAL-1) | 30분 | 힙 커럽션. Debug에서는 숨겨지고 Release에서 랜덤 크래시 |
+| 3 | **WRITE_WAIT_STRUCT race** (CRITICAL-2) | 1시간 | PLC write 명령 유실/순서 뒤바뀜. 밸브 open/close 순서 뒤바뀌면 사고 |
+| 4 | **공유 메모리 동기화** (CRITICAL-7) | 2시간 | PLC 프레임 half-write → CRC 깨진 잘못된 명령 가능 |
+| 5 | **공유 메모리 Open 시 데이터 보존** (CRITICAL-8) | 30분 | 이중화 절체 시 데이터 소실 |
+| 6 | **RetryConnect 소켓 누수** (HIGH-3) | 20분 | 반복 실패 시 소켓 핸들 고갈 |
+
+### "당장 터질 수준인가?"
+
+솔직히 말하면 **아마 수년간 이미 돌아가고 있을 가능성이 높습니다.** PLC/SCADA 코드는
+보통 10~20년 코드이며, 전형적으로 "Debug에서는 정상, Release에서 가끔 죽음" 패턴입니다.
+특히 `new[]→delete` 문제는 Debug CRT가 `delete`와 `delete[]`를 동일한 디버그 free
+루틴으로 처리하여 차이가 드러나지 않습니다. 컴파일러/OS 업데이트 시 갑자기 발현될 수 있습니다.
 
 ## 수정 시 주의사항
 
@@ -934,7 +959,7 @@ C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`), 멀티스레드/�
    동일 공유 메모리에 접근합니다. ACL 추가 시 **모든 연관 프로세스를 동시에 수정**하지 않으면
    기존 프로세스가 공유 메모리에 접근 불가하게 됩니다.
 
-2. **sprintf/atoi 주소 변환 제거 (순위 32)**: Read 경로는 주소를 직접 사용하는 반면
+2. **sprintf/atoi 주소 변환 제거 (P0 최우선)**: Read 경로는 주소를 직접 사용하는 반면
    Write 경로만 sprintf/atoi 변환을 거칩니다. 동일 프로토콜에서 Read/Write의 주소 처리가
    비대칭인 버그이므로, 변환 블록을 제거하여 Write도 Read와 동일하게 수정해야 합니다.
    `PlcProtocolWriteWord`와 `PlcProtocolWriteBit` 두 함수 모두 수정 필요.
@@ -942,4 +967,15 @@ C++ 메모리 안전성 관련 이슈(`delete` vs `delete[]`), 멀티스레드/�
 3. **VIP 스캔 static 변수 (순위 6)**: 현재 전체 포트에서 static 공유. 포트별 분리 시
    VIP 스캔 동작이 달라지므로 원래 의도 확인 후 수정해야 합니다.
 
-총 발견 건수: **CRITICAL 10건, HIGH 23건, MEDIUM 6건, LOW 1건** = 40건
+### 리포트 과장 여부
+
+- **sprintf/strcpy 985건**: 전체가 위험한 것은 아닙니다. `sprintf(buf,"%d",value)` 같은
+  안전한 패턴이 대부분이며, 실제 위험한 경우(네트워크 입력, 가변 길이 문자열)는 약 20건 수준입니다.
+- **ScanServer 인증 없음**: SCADA는 원래 내부 네트워크 전제이므로, 보안 취약점은 맞지만
+  즉시 위험은 아닙니다. (IEC 62443 관점에서 장기 개선 대상)
+- **connect timeout**: `SO_SNDTIMEO`/`SO_RCVTIMEO` 설정으로 간단히 해결 가능한 수준입니다.
+
+### 총 발견 건수
+
+재분류 후: **CRITICAL 7건, HIGH 25건, MEDIUM 6건, LOW 1건, INFO 1건** = 40건
+이 중 **실제 수정 필요 약 15건**, P0(즉시) 6건을 먼저 수정하면 핵심 위험이 제거됩니다.
