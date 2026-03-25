@@ -127,7 +127,12 @@ typedef struct {
 
 프로젝트 전체에서 **sprintf 842건**, **strcpy 143건**이 경계 검사 없이 사용되고 있습니다.
 단, `sprintf(buf,"%d",value)`, `sprintf(buf,"%04X",addr)` 같은 고정 크기 출력은 안전하며,
-실제 위험한 경우는 **네트워크 수신 데이터나 가변 길이 문자열이 고정 버퍼에 들어가는 약 20건** 수준입니다.
+실제 위험한 경우는 **5~7건** 수준입니다:
+- **NetworkClientMulti.cpp:422-432** — strcat 체인이 256바이트 `commSendBuf`에 누적, `device` 미검증
+- **Pro_main.cpp:429,576** — `sprintf(imsi,"Extra1=%s,",extra1)`, extra1 크기 무제한 → 80바이트 버퍼
+- **Pro_main.cpp:822,846** — `strcpy(item.filename, finder.GetFileName())`, 파일명 80자 초과 가능
+- **Glofa.cpp:141** — `sprintf(buf,"%s",sm->type,sm->address)`, 포맷 인자 불일치 (인자 2개, 포맷 1개)
+- **Scanstat.cpp:1786** — 네트워크 수신 데이터 strcpy (동일 크기 버퍼이나 외부 데이터)
 
 ### 위험한 사례
 
@@ -970,7 +975,7 @@ PLC_SCAN은 오랜 기간(10~20년) 산업 현장에서 운용되어 온 성숙�
 ### 리포트 과장 여부
 
 - **sprintf/strcpy 985건**: 전체가 위험한 것은 아닙니다. `sprintf(buf,"%d",value)` 같은
-  안전한 패턴이 대부분이며, 실제 위험한 경우(네트워크 입력, 가변 길이 문자열)는 약 20건 수준입니다.
+  안전한 패턴이 95% 이상이며, 실제 위험한 경우(네트워크 입력, 가변 길이 문자열)는 **5~7건**입니다.
 - **ScanServer 인증 없음**: SCADA는 원래 내부 네트워크 전제이므로, 보안 취약점은 맞지만
   즉시 위험은 아닙니다. (IEC 62443 관점에서 장기 개선 대상)
 - **connect timeout**: `SO_SNDTIMEO`/`SO_RCVTIMEO` 설정으로 간단히 해결 가능한 수준입니다.
