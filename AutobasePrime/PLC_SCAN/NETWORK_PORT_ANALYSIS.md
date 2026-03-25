@@ -551,3 +551,246 @@ select(0, NULL, &writefds, NULL, &tv);
 mode = 0;
 ioctlsocket(tcpip->socket, FIONBIO, &mode);
 ```
+
+---
+
+## 5. 실제 UI Hang 시나리오 분석
+
+### 5.1 시나리오 1: 통신파일 편집 시 디바이스 연결 불가 → 전체 Hang
+
+#### 재현 경로
+
+```
+사용자: 메뉴 → 포트 편집 (IDM_PORT_EDIT)
+  ↓
+Scanmain.cpp:1142 → ScanFileEdit(hwnd)
+  ↓
+ScanEdit.cpp:45 → CDialogPortEdit 다이얼로그 표시
+  ↓
+사용자: OK 클릭
+  ↓
+ScanEdit.cpp:20 → RestartOnePort(port)
+```
+
+#### `RestartOnePort()` 코드 — 메인 스레드에서 실행 (ScanEdit.cpp:20-43)
+
+```cpp
+void RestartOnePort(int port)
+{
+    ScanServerPause(ON);          // ① 모든 서버 포트 일시정지 (256개 전부)
+
+    SendMessage(hwndMainFrame, WM_COMMAND, IDM_CLOSEALL, 0L);  // ② 모든 창 닫기
+    ScanPortUnInitOne(port);      // ③ 해당 포트만 해제
+    ScanPortInitOne(hwndMainFrame, port);   // ④ 해당 포트만 재초기화
+
+    PostMessage(hwndMainFrame, WM_COMMAND, IDM_VIEW_SCANMEMORY, 0L);  // ⑤ 메모리 창 열기
+
+    ScanServerPause(OFF);         // ⑥ 모든 서버 포트 재개
+}
+```
+
+#### Hang이 발생하는 시점
+
+④번 `ScanPortInitOne()` 자체는 안전합니다 — 디바이스 초기화를 하지 않고 스레드만 생성합니다.
+
+**문제는 ⑥번 `ScanServerPause(OFF)` 이후, 다음 `WM_TIMER`에서:**
+
+```
+ScanServerPause(OFF) 이후
+  ↓
+WM_TIMER 발생 (Scanmain.cpp:1489)
+  ↓
+CommStatus() 호출 (Scanmain.cpp:1498)         ← 메인 스레드
+  ↓
+CommStatusLocal() → CommStatusLocalOne(pt)     ← bActiveThread=OFF인 포트
+  ↓
+bDeviceInitialFlag == 0 (재초기화됨)
+  ↓
+PlcDeviceInit() → PlcDeviceInitTCPIP()        ← Scanstat.cpp:736
+  ↓
+gethostbyname() → 블로킹 30초+               ← Comtcpip.cpp:87
+connect()        → 블로킹 20~60초             ← Comtcpip.cpp:182
+  ↓
+⚠️ 메인 스레드 Hang → UI 응답 불가 → Network Memory Server도 응답 불가
+```
+
+#### "모든 포트 일시정지"가 필요한가?
+
+`ScanServerPause(ON)` (ScanServerStatus.cpp:1329-1339):
+```cpp
+void ScanServerPause(char flag)
+{
+    for(i = 0; i < MAX_SCAN_SERVER_LIST; i++) {   // 256개 전부 순회
+        conn = &scanServerList[i];
+        ScanServerPauseOne(conn, flag);             // 각각 ACK 대기 (최대 5초)
+    }
+}
+```
+
+**필요하지 않습니다.**
+
+| 관점 | 분석 |
+|------|------|
+| `ScanPortUnInitOne(port)` | **1개 포트**만 해제. 다른 포트 상태 변경 없음 |
+| `ScanPortInitOne(port)` | **1개 포트**만 초기화. 다른 포트 메모리 접근 없음 |
+| 포트 스레드 독립성 | 각 포트 스레드는 자기 `portBuf[port]`만 접근 |
+| ScanServer와의 관계 | ScanServer가 편집 중인 포트의 `portBuf[port]` 데이터를 전송하는 중에 구조체가 해제될 수 있음 |
+
+**유일한 이유:** ScanServer가 편집 중인 포트의 데이터를 전송하다가 구조체가 해제/재할당되면 크래시.
+하지만 이것은 **해당 포트를 참조하는 ScanServer만 일시정지**하면 됩니다.
+
+#### Network Memory Server 끊김 원인
+
+메인 스레드 Hang → `WM_TIMER` 처리 불가 → `ScanServerStatus()` (Scanmain.cpp:1499) 미호출
+→ `bThreadFlag=OFF`인 서버는 데이터 전송 중단 → 클라이언트 타임아웃 → 연결 끊김.
+
+(Hang 풀리면 자동 복구되는 이유: 클라이언트가 Life Signal 재전송 → 서버 재인식)
+
+#### 해결 방법
+
+**방법 1: 전체 일시정지 → 해당 포트 관련 서버만 일시정지 (권장)**
+```cpp
+void RestartOnePort(int port)
+{
+    // 해당 포트를 참조하는 ScanServer만 일시정지
+    for(i = 0; i < MAX_SCAN_SERVER_LIST; i++) {
+        if(scanServerList[i].wCastPort[port/16] & WORD_MASK[port%16]) {
+            ScanServerPauseOne(&scanServerList[i], ON);
+        }
+    }
+
+    ScanPortUnInitOne(port);
+    ScanPortInitOne(hwndMainFrame, port);
+
+    // 일시정지한 서버만 재개
+    for(i = 0; i < MAX_SCAN_SERVER_LIST; i++) {
+        if(scanServerList[i].wCastPort[port/16] & WORD_MASK[port%16]) {
+            ScanServerPauseOne(&scanServerList[i], OFF);
+        }
+    }
+}
+```
+
+**방법 2: connect() non-blocking화 (근본 해결)** — 4.3절 참조
+
+**방법 3: TCP 포트는 bActiveThread 강제 ON**
+→ 메인 스레드에서 `PlcDeviceInit` 호출 자체가 발생하지 않음.
+
+---
+
+### 5.2 시나리오 2: 선로이중화 절체 시 통신 메모리 창 열려있으면 UI Hang
+
+#### 이 시나리오의 원인은 `connect()` 블로킹이 아닙니다
+
+시나리오 2는 `bThreadProtocolDrawWorking` 플래그를 사용한 **동기화 교착**이 원인입니다.
+
+#### 관련 코드: `bThreadProtocolDrawWorking` 동기화 메커니즘
+
+```cpp
+// Pro_main.cpp:55-66 — 화면 그리기 완료 대기 (최대 30초)
+void WaitThreadProtocolDrawWorking(GLOBAL_PORT_STRUCT *pt)
+{
+    TimeOutClass timeout;
+    while(1) {
+        if(timeout.IsTimeOut(30))  break;     // 30초 타임아웃
+        if(pt->bThreadProtocolDrawWorking == OFF) break;
+        Sleep(1);
+    }
+    pt->bThreadProtocolDrawWorking = OFF;
+}
+```
+
+이 플래그는 **두 곳에서 ON/OFF**됩니다:
+
+| 호출자 | 스레드 | 코드 위치 |
+|--------|--------|-----------|
+| `PlcProtocolDrawMethod()` | **메인 스레드** (WM_PAINT) | Pro_main.cpp:173-178 |
+| `ChangeDualSystem()` | **포트 스레드** | Scanstat.cpp:574-583 |
+
+#### 교착 시나리오
+
+```
+시간 →   T1                    T2                       T3
+
+[포트스레드]
+          ChangeDualSystem()
+          ├─ WaitThread...()     → OK (OFF 상태)
+          ├─ flag = ON ──────────────────────────────────┐
+          ├─ PlcDeviceUnInit()                           │
+          ├─ PlcDeviceInit()                             │
+          │   └─ connect() 블로킹 20~60초...            │ flag=ON 유지
+          │                                              │
+[메인스레드]                                             │
+               WM_PAINT 발생 (메모리 창 갱신)            │
+               └─ PlcProtocolDrawMethod()                │
+                  └─ WaitThread...()                     │
+                     └─ flag == ON이므로 대기 ──────────>│
+                        Sleep(1) 반복... 최대 30초       │
+                        ⚠️ 메인 스레드 Hang              │
+                                                         │
+          ├─ connect() 완료 (또는 타임아웃)              │
+          ├─ flag = OFF ─────────────────────────────────┘
+               WaitThread...() 해제
+               UI 응답 복귀
+```
+
+**핵심:** 포트 스레드가 `flag=ON`을 설정한 채 `connect()`에서 20~60초 블로킹
+→ 메인 스레드의 화면 갱신이 `WaitThreadProtocolDrawWorking()`에서 30초 대기
+→ **UI Hang** (최대 30초).
+
+#### 왜 Network Memory Server는 계속 동작하는가?
+
+시나리오 1과 달리:
+- `ScanServerPause()`가 호출되지 않음 → 서버 스레드 영향 없음
+- 서버 스레드(`bThreadFlag=ON`)는 독립적으로 데이터 전송 지속
+- 메인 스레드만 `WaitThreadProtocolDrawWorking()`에서 대기
+
+#### 해결 방법
+
+**방법 1: `ChangeDualSystem()`의 잠금 범위 축소 (가장 효과적)**
+```cpp
+// 현재 — connect() 동안 flag=ON 유지 (Scanstat.cpp:574-583)
+WaitThreadProtocolDrawWorking(pt);
+pt->bThreadProtocolDrawWorking = ON;
+PlcProtocolUnInitOne(pt);              // 해제
+PlcDeviceUnInit(&pt->local.device);    // 해제
+pt->nScanDevice = PlcDeviceInit(...);  // ← 여기서 오래 블로킹!
+PlcProtocolInitOne(...);               // 초기화
+pt->bThreadProtocolDrawWorking = OFF;
+
+// 개선 — 해제 후 잠금 해제, connect 완료 후 다시 잠금
+WaitThreadProtocolDrawWorking(pt);
+pt->bThreadProtocolDrawWorking = ON;
+PlcProtocolUnInitOne(pt);
+PlcDeviceUnInit(&pt->local.device);
+pt->bThreadProtocolDrawWorking = OFF;     // ← 해제 완료 후 즉시 잠금 해제
+
+pt->nScanDevice = PlcDeviceInit(...);     // 블로킹해도 UI 무관
+
+WaitThreadProtocolDrawWorking(pt);
+pt->bThreadProtocolDrawWorking = ON;
+PlcProtocolInitOne(...);
+pt->bThreadProtocolDrawWorking = OFF;
+```
+
+**방법 2: connect() non-blocking화 (근본 해결)**
+`connect()`가 즉시 반환하면 `flag=ON` 유지 시간이 수 ms → 교착 해소.
+
+**방법 3: WaitThreadProtocolDrawWorking 타임아웃 단축**
+```cpp
+// Pro_main.cpp:60 — 30초 → 1~2초로 단축
+if(timeout.IsTimeOut(2))  break;   // 30 → 2
+```
+Hang 시간은 줄지만, 근본 해결은 아님.
+
+---
+
+### 5.3 두 시나리오 종합 해결 방안
+
+| 순서 | 방법 | 난이도 | 효과 | 수정 파일 |
+|------|------|--------|------|-----------|
+| **1** | **`connect()` non-blocking 전환** | 중간 | **시나리오 1, 2 모두 근본 해결** | `Comtcpip.cpp` |
+| **2** | `ScanServerPause` → 해당 포트 관련만 | 낮음 | 시나리오 1: 다른 포트 중단 해소 | `ScanEdit.cpp` |
+| **3** | `ChangeDualSystem` 잠금 범위 축소 | 낮음 | 시나리오 2: 교착 해소 | `Scanstat.cpp` |
+| **4** | `WaitThreadProtocolDrawWorking` 타임아웃 단축 | 낮음 | 시나리오 2: Hang 시간 단축 | `Pro_main.cpp` |
+| **5** | TCP 포트 `bActiveThread` 강제 ON | 낮음 | 시나리오 1: 메인스레드 connect 차단 | `Scanfile.cpp` |
