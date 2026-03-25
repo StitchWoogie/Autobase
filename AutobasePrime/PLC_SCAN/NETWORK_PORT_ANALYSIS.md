@@ -454,102 +454,44 @@ static DWORD WINAPI PortThread_Common(LPVOID lpparam) {
 
 ---
 
-### 4.3 디바이스 연결 불가 시 UI Hang 원인 분석
+### 4.3 디바이스 연결 불가 시 UI Hang 원인 요약
 
-#### 결론: **네, `connect()` 블로킹이 주요 원인입니다. 단, 경로가 2개입니다.**
+> 상세 시나리오 분석 및 해결 방법은 5장 참조.
 
-#### 원인 1: 디바이스 초기화 시 `connect()` 블로킹
+**근본 원인:** `Comtcpip.cpp`의 `connect()`와 `gethostbyname()`이 블로킹 모드로 동작.
 
-`CommStatusLocalOne()` (`Scanstat.cpp:730-736`)에서 디바이스 미초기화 시:
-```cpp
-if(pt->bDeviceInitialFlag == 0) {
-    pt->nScanDevice = PlcDeviceInit(hwndMainFrame, &pt->local.device, pt->sScanDevice, pt);
-    // ...
-    pt->bDeviceInitialFlag = 1;
-}
-```
+| 원인 | 위치 | 블로킹 시간 |
+|------|------|-------------|
+| `connect()` 블로킹 | `Comtcpip.cpp:182` | 20~60초 (OS 타임아웃) |
+| `gethostbyname()` DNS 조회 | `Comtcpip.cpp:87` | 30초+ |
+| 소켓 타임아웃 코드 주석 처리됨 | `Comtcpip.cpp:140-154` | — |
 
-이 `PlcDeviceInit()` → `PlcDeviceInitTCPIP()` → `connect()` 호출 체인:
-
-```cpp
-// Comtcpip.cpp:182 — 블로킹 connect()
-if (connect(tcpip->socket, (PSOCKADDR)&dest_sin, sizeof(dest_sin)) == SOCKET_ERROR) {
-    // 실패 시 반환, 하지만 여기 도달하기까지 20~60초 블로킹
-}
-```
-
-**`CommStatusLocalOne()`은 누가 호출하는가?**
+**메인 스레드에서 블로킹 발생 조건:**
 
 | 호출자 | 스레드 | Hang 여부 |
 |--------|--------|-----------|
 | `PortThread_Common()` (PortThread.cpp:32) | **포트 스레드** | UI에 영향 없음 |
-| `CommStatus()` → `CommStatusLocal()` (Scanstat.cpp:1039) | **메인 스레드** | **UI Hang 발생!** |
+| `CommStatus()` → `CommStatusLocal()` (Scanstat.cpp:1039) | **메인 스레드** | **UI Hang!** |
 
-`CommStatus()`는 메인 윈도우 메시지 루프에서 호출됩니다 (`Scanmain.cpp`).
-`bActiveThread = OFF`인 포트는 메인 스레드에서 `CommStatusLocalOne()`이 실행되므로,
-이 포트의 TCP 연결이 실패하면 **메인 스레드가 20~60초간 블로킹** → **UI Hang**.
+`CommStatus()`는 `WM_TIMER` 핸들러에서 호출 (Scanmain.cpp:1498).
+`bActiveThread = OFF`인 포트만 메인 스레드에서 처리되므로, 해당 포트의 TCP 연결 실패 시 Hang.
 
-#### 원인 2: `gethostbyname()` DNS 조회 블로킹
-
-`connect()` 이전에 호출되는 DNS 조회도 블로킹입니다:
-
+**non-blocking connect 해결 코드:**
 ```cpp
-// Comtcpip.cpp:87 — 블로킹 DNS 조회
-phe = gethostbyname(tcpip->ip);  // DNS 실패 시 30초+ 대기
-```
-
-IP 주소가 아닌 호스트명을 사용하는 경우, DNS 타임아웃까지 추가 대기.
-
-#### 원인 3: 소켓 타임아웃 코드가 주석 처리됨
-
-```cpp
-// Comtcpip.cpp:140-154 — 주석 처리되어 비활성
-/*
-char timeout_size;
-int  size = 80;
-retn = getsockopt(tcpip->socket, SOL_SOCKET, SO_RCVTIMEO, &timeout_size, &size);
-...
-*/
-```
-
-**누군가 타임아웃 설정을 시도했으나 주석 처리**한 상태. 소켓이 기본 블로킹 모드로 생성됩니다.
-
-#### 해결 방법
-
-| 방법 | 난이도 | 효과 |
-|------|--------|------|
-| **Non-blocking connect + select** | 중간 | connect 타임아웃 제어 가능 (예: 3초) |
-| **SO_RCVTIMEO / SO_SNDTIMEO 설정** | 낮음 | 읽기/쓰기 타임아웃 설정 |
-| **bActiveThread를 기본 ON 강제** | 낮음 | 메인 스레드에서 connect 호출 차단 |
-| **디바이스 초기화를 별도 스레드로 분리** | 중간 | 초기화 중에도 UI 응답 유지 |
-
-**가장 빠른 해결:** `Comtcpip.cpp:130` 소켓 생성 직후에 connect 타임아웃 추가:
-```cpp
-// 소켓 생성 후 연결 타임아웃 3초 설정
-int timeout_ms = 3000;
-setsockopt(tcpip->socket, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout_ms, sizeof(timeout_ms));
-setsockopt(tcpip->socket, SOL_SOCKET, SO_SNDTIMEO, (char*)&timeout_ms, sizeof(timeout_ms));
-```
-
-또는 non-blocking 방식:
-```cpp
-// Non-blocking 모드로 전환
+// Comtcpip.cpp:130 이후 — 소켓 생성 직후 추가
 u_long mode = 1;
-ioctlsocket(tcpip->socket, FIONBIO, &mode);
+ioctlsocket(tcpip->socket, FIONBIO, &mode);    // Non-blocking 모드
 
-// connect() — 즉시 반환 (WSAEWOULDBLOCK)
-connect(tcpip->socket, ...);
+connect(tcpip->socket, ...);                     // 즉시 반환 (WSAEWOULDBLOCK)
 
-// select()로 타임아웃 대기
 fd_set writefds;
 FD_ZERO(&writefds);
 FD_SET(tcpip->socket, &writefds);
-struct timeval tv = {3, 0};  // 3초 타임아웃
+struct timeval tv = {3, 0};                      // 3초 타임아웃
 select(0, NULL, &writefds, NULL, &tv);
 
-// 다시 blocking 모드로 복원
 mode = 0;
-ioctlsocket(tcpip->socket, FIONBIO, &mode);
+ioctlsocket(tcpip->socket, FIONBIO, &mode);    // Blocking 모드 복원
 ```
 
 ---
