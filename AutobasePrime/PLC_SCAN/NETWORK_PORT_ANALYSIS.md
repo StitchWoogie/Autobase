@@ -327,3 +327,227 @@ static MODEM_LIST modemList[256];
 | `PROTOCOL/NetworkClientMulti.cpp` | `wActPort[16]` 확장, 255 제한 해제, `imsi` 버퍼 확장 |
 | `DEVICE/ComModem.cpp` | `modemList[256]` 확장 (모뎀 사용 시) |
 | `Scanmain.cpp` | `SCAN.%03d` → `%05d`, LPARAM 인코딩 검증 |
+
+---
+
+## 4. 추가 질의 분석
+
+### 4.1 하위 호환성: 새 클라이언트(10000포트) → 구 서버(256포트) 통신 가능 여부
+
+#### 시나리오
+
+```
+[통합 PC - 새버전]              [로컬 PC A - 구버전]
+ NetworkClient(10000포트)  ←→   NetworkServer(256포트)
+                                [로컬 PC B - 구버전]
+                           ←→   NetworkServer(256포트)
+```
+
+#### 현재 프로토콜 통신 흐름
+
+1. **클라이언트 → 서버**: Life Signal 전송 (`NetworkClientMulti.cpp:41`)
+   ```cpp
+   sprintf(commSendBuf, "Port=%d,BroadCastPorts=%s,Version=8.7", pt->no, imsi);
+   ```
+   - `imsi`는 `wActPort[16]`을 16진수 문자열로 직렬화한 것 (64바이트)
+   - 서버는 이 문자열을 파싱하여 어떤 포트 데이터를 보낼지 결정
+
+2. **서버 측 파싱** (`ScanServerStatus.cpp:307-312`)
+   ```cpp
+   for(int i = 0; i < 16; i++) {
+       conn->wCastPort[i] = recv.wBroadCastPorts[i];
+   }
+   ```
+
+3. **서버 → 클라이언트**: 등록된 포트의 데이터를 전송
+
+#### 분석 결과: **조건부 가능**
+
+**읽기는 가능합니다.** 단, 다음 조건이 필요합니다:
+
+| 조건 | 가능 여부 | 설명 |
+|------|-----------|------|
+| 통합 PC가 로컬 PC의 **0~255번 포트**만 읽는 경우 | **가능** | 기존 `WORD[16]` 비트마스크로 충분 |
+| 통합 PC가 로컬 PC의 **256번 이상 포트**를 읽는 경우 | **불가능** | 구 서버가 확장 비트마스크를 이해 못함 |
+
+**이유:**
+- `nPort` 필드는 `int`이므로 데이터 수신 자체에는 문제 없음
+- Life Signal의 `BroadCastPorts` 문자열이 핵심: 구 서버는 16개 WORD만 파싱
+- 새 클라이언트가 구 서버에 연결할 때, **요청 포트 범위가 0~255 이내**이면 기존 프로토콜과 동일
+
+#### 구현 방법
+
+```
+새 클라이언트의 Life Signal 전송 로직:
+1. 서버 버전 확인 (Version 필드)
+2. 구 서버(v8.7): 기존 WORD[16] 포맷으로 BroadCastPorts 전송
+3. 새 서버(v9.x): 확장 포맷으로 전송
+```
+
+**결론:** 통합 PC에서 로컬 PC의 포트 0~255만 읽으면 **코드 변경 없이 호환 가능**.
+로컬 PC가 256번 이상 포트를 사용하려면 로컬 PC도 업데이트 필수.
+
+---
+
+### 4.2 개별 스레드 → 스레드 풀 전환의 이점과 단점
+
+#### 현재 구조 (포트당 개별 스레드)
+
+```cpp
+// PortThread.cpp:11-45
+static DWORD WINAPI PortThread_Common(LPVOID lpparam) {
+    GLOBAL_PORT_STRUCT *pt = (GLOBAL_PORT_STRUCT*)lpparam;
+    while(thread->bDo) {
+        Sleep(sleep_cycle);        // 기본 1ms
+        CommStatusLocalOne(pt);    // 스캔 1회
+    }
+}
+
+// CreateThread(NULL, 0, ...)  ← dwStackSize = 0 → 기본 1MB 스택
+```
+
+- 모든 `CreateThread` 호출에서 `dwStackSize = 0` (Windows 기본 1MB)
+- `Sleep(1)` 반복 폴링
+- `bActiveThread` 플래그로 포트별 스레드 사용 여부 제어 가능
+
+#### 이점
+
+| 항목 | 개별 스레드 (현재) | 스레드 풀 |
+|------|-------------------|-----------|
+| **메모리** | N × 1MB 스택 = 256포트→256MB | 고정 스레드 수 × 1MB (예: 32MB) |
+| **컨텍스트 스위칭** | N개 스레드 스케줄링 → OS 부담 | 고정 수 스레드만 스케줄링 |
+| **생성/종료 비용** | 포트마다 CreateThread/WaitForSingleObject | 풀 재사용, 생성/종료 비용 없음 |
+| **CPU 활용** | 대부분 Sleep 상태로 CPU 낭비 | 작업 있을 때만 깨어남 |
+| **확장성** | 1000개 이상에서 OS 한계 접근 | 10000포트도 동일 성능 |
+
+#### 단점
+
+| 항목 | 설명 |
+|------|------|
+| **구현 복잡도** | 작업 큐, 스케줄링 로직 신규 구현 필요 |
+| **실시간성 저하 가능** | 풀 스레드가 모두 사용 중이면 대기 발생 |
+| **디버깅 난이도** | 포트-스레드 1:1 매핑이 아니라 추적 어려움 |
+| **기존 코드 변경 범위** | `CommStatusLocalOne()` 내부에서 블로킹 호출 사용 → 풀 스레드 점유 시간 길어질 수 있음 |
+| **PLC 통신 특성** | PLC 응답 대기(수십~수백ms)가 풀 스레드를 점유 → 풀 크기를 충분히 키워야 함 |
+
+#### 개별 스레드 사용 시 문제가 두드러지는 시점
+
+| 스레드 수 | 증상 | 근거 |
+|-----------|------|------|
+| **~500개** | 컨텍스트 스위칭 오버헤드 체감 시작 | Windows 스케줄러가 수백 개 ready 스레드 관리 부담 증가 |
+| **~1000개** | 스택 메모리 1GB 소비, 스케줄링 지연 | 1MB × 1000 = 1GB. `Sleep(1)` 스레드가 1000개씩 깨어남 |
+| **~2000개** | 성능 급격 저하 | 32비트 프로세스의 가상 주소 공간(2GB) 중 스택만 2GB 점유 |
+| **~4000개+** | 프로세스 메모리 한계 도달 | 32비트: CreateThread 실패 가능. 64비트에서도 OS 스케줄링 비효율 |
+
+**참고:** 현재 코드는 32비트 빌드(`.vcxproj`)이므로, 가상 주소 공간 2GB 제한이 적용됩니다.
+실질적으로 **1000~2000개**가 32비트 환경의 실용적 한계입니다.
+
+#### 권장: 단계적 접근
+
+1. **즉시 적용 가능**: `CreateThread`의 `dwStackSize`를 **64KB~128KB**로 지정
+   - 현재 스레드 함수에서 큰 로컬 변수 없음 (최대 `StackChar(5000)` 정도)
+   - 256포트: 256MB → 16~32MB로 감소
+   - 2000포트까지 가능해짐
+
+2. **중기**: Windows `QueueUserWorkItem()` 또는 `CreateThreadpoolWork()` 활용
+3. **장기**: IOCP 기반 비동기 I/O로 전면 전환
+
+---
+
+### 4.3 디바이스 연결 불가 시 UI Hang 원인 분석
+
+#### 결론: **네, `connect()` 블로킹이 주요 원인입니다. 단, 경로가 2개입니다.**
+
+#### 원인 1: 디바이스 초기화 시 `connect()` 블로킹
+
+`CommStatusLocalOne()` (`Scanstat.cpp:730-736`)에서 디바이스 미초기화 시:
+```cpp
+if(pt->bDeviceInitialFlag == 0) {
+    pt->nScanDevice = PlcDeviceInit(hwndMainFrame, &pt->local.device, pt->sScanDevice, pt);
+    // ...
+    pt->bDeviceInitialFlag = 1;
+}
+```
+
+이 `PlcDeviceInit()` → `PlcDeviceInitTCPIP()` → `connect()` 호출 체인:
+
+```cpp
+// Comtcpip.cpp:182 — 블로킹 connect()
+if (connect(tcpip->socket, (PSOCKADDR)&dest_sin, sizeof(dest_sin)) == SOCKET_ERROR) {
+    // 실패 시 반환, 하지만 여기 도달하기까지 20~60초 블로킹
+}
+```
+
+**`CommStatusLocalOne()`은 누가 호출하는가?**
+
+| 호출자 | 스레드 | Hang 여부 |
+|--------|--------|-----------|
+| `PortThread_Common()` (PortThread.cpp:32) | **포트 스레드** | UI에 영향 없음 |
+| `CommStatus()` → `CommStatusLocal()` (Scanstat.cpp:1039) | **메인 스레드** | **UI Hang 발생!** |
+
+`CommStatus()`는 메인 윈도우 메시지 루프에서 호출됩니다 (`Scanmain.cpp`).
+`bActiveThread = OFF`인 포트는 메인 스레드에서 `CommStatusLocalOne()`이 실행되므로,
+이 포트의 TCP 연결이 실패하면 **메인 스레드가 20~60초간 블로킹** → **UI Hang**.
+
+#### 원인 2: `gethostbyname()` DNS 조회 블로킹
+
+`connect()` 이전에 호출되는 DNS 조회도 블로킹입니다:
+
+```cpp
+// Comtcpip.cpp:87 — 블로킹 DNS 조회
+phe = gethostbyname(tcpip->ip);  // DNS 실패 시 30초+ 대기
+```
+
+IP 주소가 아닌 호스트명을 사용하는 경우, DNS 타임아웃까지 추가 대기.
+
+#### 원인 3: 소켓 타임아웃 코드가 주석 처리됨
+
+```cpp
+// Comtcpip.cpp:140-154 — 주석 처리되어 비활성
+/*
+char timeout_size;
+int  size = 80;
+retn = getsockopt(tcpip->socket, SOL_SOCKET, SO_RCVTIMEO, &timeout_size, &size);
+...
+*/
+```
+
+**누군가 타임아웃 설정을 시도했으나 주석 처리**한 상태. 소켓이 기본 블로킹 모드로 생성됩니다.
+
+#### 해결 방법
+
+| 방법 | 난이도 | 효과 |
+|------|--------|------|
+| **Non-blocking connect + select** | 중간 | connect 타임아웃 제어 가능 (예: 3초) |
+| **SO_RCVTIMEO / SO_SNDTIMEO 설정** | 낮음 | 읽기/쓰기 타임아웃 설정 |
+| **bActiveThread를 기본 ON 강제** | 낮음 | 메인 스레드에서 connect 호출 차단 |
+| **디바이스 초기화를 별도 스레드로 분리** | 중간 | 초기화 중에도 UI 응답 유지 |
+
+**가장 빠른 해결:** `Comtcpip.cpp:130` 소켓 생성 직후에 connect 타임아웃 추가:
+```cpp
+// 소켓 생성 후 연결 타임아웃 3초 설정
+int timeout_ms = 3000;
+setsockopt(tcpip->socket, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout_ms, sizeof(timeout_ms));
+setsockopt(tcpip->socket, SOL_SOCKET, SO_SNDTIMEO, (char*)&timeout_ms, sizeof(timeout_ms));
+```
+
+또는 non-blocking 방식:
+```cpp
+// Non-blocking 모드로 전환
+u_long mode = 1;
+ioctlsocket(tcpip->socket, FIONBIO, &mode);
+
+// connect() — 즉시 반환 (WSAEWOULDBLOCK)
+connect(tcpip->socket, ...);
+
+// select()로 타임아웃 대기
+fd_set writefds;
+FD_ZERO(&writefds);
+FD_SET(tcpip->socket, &writefds);
+struct timeval tv = {3, 0};  // 3초 타임아웃
+select(0, NULL, &writefds, NULL, &tv);
+
+// 다시 blocking 모드로 복원
+mode = 0;
+ioctlsocket(tcpip->socket, FIONBIO, &mode);
+```
