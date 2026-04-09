@@ -525,11 +525,50 @@ ProtocolRead와 WriteWord가 같은 포트 스레드에서 순차 실행되므�
 
 | 증상 | DLL 원인 | PLC_SCAN 원인 |
 |------|---------|--------------|
-| **이벤트 소실** | recvBuf 덮어쓰기 | bUseNewValueOnAnalogOut |
+| **이벤트 소실** | recvBuf 덮어쓰기, TNS 미검증 | bUseNewValueOnAnalogOut |
 | **이벤트 중복** | saveBuf 미초기화 | — |
 | **Sleep 필수** | nBlockNo 리셋 타이밍 | 1사이클 1쓰기 |
 | **Sleep 크기 다름** | 다중 블록 패킷 크기 차이 | — |
 | **UI Hang** | checkWaitOkSignal 블로킹 | 메인 스레드 Sleep |
+
+### 9.8 DLL 내부 문제 6: 응답 매칭에 Transaction ID(TNS) 미사용
+
+**위치:** `SECS_Hsms.cpp:210`
+
+```cpp
+// 응답 매칭 — Stream/Function만 비교, TNS 비교 없음!
+localVars->bReadDone = (localVars->cSendStream == cStream &&
+    (BYTE)(localVars->cSendFunction + 1) == cFunction &&
+    localVars->bEqualStation) ? true : false;
+```
+
+SECS/GEM에서 Transaction Number(TNS)는 요청-응답을 정확히 매칭하는 **필수 식별자**입니다.
+현재 코드는 Stream/Function 번호만 비교하므로:
+
+- Write #1 (S1F13, TNS=100) 전송
+- Write #2 (S1F13, TNS=101) 전송
+- Response #1 (S1F14, TNS=100) 도착 → `bReadDone = true`
+- Write #1의 응답이 Write #2도 만족시킴 → **Write #2의 실제 응답은 무시됨**
+
+TNS는 `SECS_Hsms.cpp:31`에서 `localVars->dTns++`로 증가하고, 수신 시 `SECS_Hsms.cpp:163`에서 읽지만 **비교에 사용되지 않습니다.**
+
+### 9.9 DLL 내부 문제 7: setInitRecvStatus()의 조기 버퍼 초기화
+
+**위치:** `SECS_Host.cpp:341-348`, `SECS_Hsms.cpp:268,275`
+
+```cpp
+void setInitRecvStatus(LOCAL_PORT_STRUCT *pt) {
+    pt->commCountCurr = 0;   // ← 수신 버퍼 위치 초기화!
+    localVars->bSize = false;
+}
+```
+
+응답 처리 후 `setInitRecvStatus()` → `continue`로 다시 루프:
+- 응답 #1의 데이터 부분이 아직 소켓 버퍼에 남아있어도 `commCountCurr=0`으로 리셋
+- 다음 루프에서 응답 #2의 헤더를 위치 0부터 읽기 시작
+- 응답 #1의 남은 데이터는 **영구 유실**
+
+고속 이벤트에서 파이프라인 응답이 겹칠 때 특히 심각.
 
 ---
 
@@ -553,6 +592,8 @@ ProtocolRead와 WriteWord가 같은 포트 스레드에서 순차 실행되므�
 | **B** | **saveBuf memset(0) 추가** | `SECS_Host.cpp:449` | 1줄 | 이전 데이터 잔존 방지 |
 | **C** | **nBlockNo 즉시 리셋** | `SECS_Host.cpp:858` | ~3줄 | Sleep 의존 제거 |
 | **D** | **checkWaitOkSignal 비동기화** | `SECS_Host.cpp:805` | ~20줄 | 블로킹 대기 제거 |
+| **E** | **응답 매칭에 TNS 비교 추가** | `SECS_Hsms.cpp:210` | ~3줄 | 요청-응답 정확 매칭 |
+| **F** | **setInitRecvStatus 호출 시점 조정** | `SECS_Hsms.cpp:268,275` | ~5줄 | 파이프라인 응답 유실 방지 |
 
 ### 적용 우선순위
 
