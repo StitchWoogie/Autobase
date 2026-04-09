@@ -380,3 +380,192 @@ SECS/GEM 이벤트 보고(S6F11)는 **순서와 무결성이 필수**:
 - CEID=1 출력 큐잉 → CEID=2 출력 시 같은 주소면 값 덮어쓰기 → **CEID=1 소실**
 - Sleep으로 우회하면 → 이벤트 처리 지연 → 장비 통신 타임아웃
 - MES(Manufacturing Execution System)에 잘못된 이벤트 보고 → **공정 추적 불가**
+
+---
+
+## 9. SECS Host DLL 내부 분석
+
+### 9.1 DLL 구조 개요
+
+SECS_Host_2.zip 소스 분석 결과, **PLC_SCAN 쓰기 큐 문제와 별개로 DLL 자체에도 심각한 문제**가 있습니다.
+
+```
+SECS_Host.cpp      — 메인 DLL (ProtocolRead/WriteWord/WriteBit)
+SECS_Hsms.cpp      — HSMS TCP 통신 (WriteWordHsms, ReadHsms)
+SECS_HostDef.h     — 데이터 구조 (LOCAL_VARS_STRUCT)
+SECS_Tools.cpp     — 데이터 디코딩 (readUserDataToMemory, PokeValueAll)
+makeSecsFunctionMessage.cpp — SECS 메시지 생성
+```
+
+### 9.2 DLL 내부 문제 1: 단일 수신 버퍼 — 이벤트 덮어쓰기
+
+**위치:** `SECS_HostDef.h:200-202`
+
+```cpp
+typedef struct {
+    ...
+    BYTE sendBuf[MAX_SECS_SEND_BUF];    // 송신 버퍼 — 1개
+    BYTE saveBuf[MAX_SECS_SAVE_BUF];    // 저장 버퍼 — 1개
+    BYTE recvBuf[MAX_SECS_RECV_BUF];    // 수신 버퍼 — 1개
+    READ_DATA_STRUCT readDataSt;         // 수신 패킷 정보 — 1개
+    ...
+} LOCAL_VARS_STRUCT;
+```
+
+**이벤트 큐가 없습니다.** 모든 수신 데이터가 단일 `recvBuf`에 덮어씌워집니다.
+
+**`SECS_Host.cpp:665`:**
+```cpp
+memcpy(&localVars->recvBuf[0], &pt->commRecvBuf[0], dataLen + 11);
+```
+
+이벤트 A(S6F11) 처리 중에 이벤트 B(S6F11)가 도착하면:
+→ `recvBuf`가 이벤트 B 데이터로 덮어씌워짐
+→ 이벤트 A의 데이터 처리가 이벤트 B의 데이터로 진행됨
+→ **이벤트 A 소실 + 이벤트 B 중복 출력**
+
+### 9.3 DLL 내부 문제 2: saveBuf 미초기화 — 이전 데이터 잔존
+
+**위치:** `SECS_Host.cpp:443-458`
+
+```cpp
+if(localVars->nBlockNo == 1) {
+    getStreamFunctionData(device, localVars->cStream, localVars->cFunction);
+    localVars->nSendSave = makeSfMemoryDataToBuf(pt, localVars->saveBuf);
+}
+```
+
+`saveBuf`에 `memset(0)` 없이 바로 데이터를 씁니다.
+이전 이벤트가 100바이트, 새 이벤트가 50바이트면 → 뒤쪽 50바이트에 이전 데이터 잔존
+→ SECS 메시지에 **이전 이벤트 데이터가 섞여서 전송**
+
+### 9.4 DLL 내부 문제 3: 블로킹 대기 루프 — checkWaitOkSignal
+
+**위치:** `SECS_Host.cpp:805-831`
+
+```cpp
+void checkWaitOkSignal(LOCAL_PORT_STRUCT *pt)
+{
+    TimeOutClass timeout;
+    bool flag = false;
+    char curr[256];
+    
+    while(1) {
+        if(timeout.IsTimeOut(localVars->nResponseCheckTimeout)) return;
+        if(Tag9GetCurr(localVars->sCurrWaitOkTag, curr) == false) return;
+        val = atoi(curr);
+        if(val == 1) flag = true;
+        if(flag && val != 1) {
+            return;
+        }
+    }
+}
+```
+
+외부 프로그램의 OK 신호를 **무한 폴링**으로 대기합니다.
+이 동안 ProtocolRead 스레드가 **완전히 블로킹** → 새 이벤트 수신 불가.
+
+### 9.5 DLL 내부 문제 4: nBlockNo 미리셋 — Sleep 필요 원인
+
+**위치:** `SECS_Host.cpp:858, 428-436`
+
+```cpp
+// 블록 전송 완료 후 리셋
+localVars->nBlockNo = 1;  // line 858
+```
+
+```cpp
+// 다음 블록 데이터 계산
+start = (localVars->nBlockNo - 1) * MAX_ONE_PACKET_DATA;  // 244바이트/블록
+```
+
+WriteWord 호출 시 `nBlockNo`가 아직 리셋 안 되어 있으면:
+→ 새 데이터가 이전 메시지의 **연속 블록**으로 처리됨
+→ 패킷 연결(concatenation) 오류
+
+**이것이 Sleep() 크기가 패킷마다 다른 이유:**
+- 작은 패킷(1블록): `nBlockNo` 리셋이 빠름 → Sleep(100) 충분
+- 큰 패킷(다중 블록): 여러 Read 사이클 필요 → Sleep(1000) 필요
+
+### 9.6 DLL 내부 문제 5: 플래그 동기화 없음
+
+```cpp
+// 상태 플래그들 (SECS_HostDef.h)
+bool bSendDataPacket;      // 데이터 전송 중
+bool bReadRequest;         // 읽기 요청 중
+bool bReadWriteRequest;    // 읽기/쓰기 요청 중
+bool bReadDone;            // 읽기 완료
+bool bRespRequire;         // 응답 필요
+bool bWaitSendOkSignal;    // OK 신호 대기 중
+```
+
+이 플래그들은 mutex/critical section **없이** 사용됩니다.
+ProtocolRead와 WriteWord가 같은 포트 스레드에서 순차 실행되므로 이론상 충돌은 없지만,
+`checkWaitOkSignal()`의 블로킹 루프 중에 플래그 변경이 발생하면 불일치 가능.
+
+### 9.7 문제 계층 정리
+
+```
+[문제 발생 계층]
+
+계층 1: SECS Host DLL 내부 (프로토콜 레벨)
+  ├─ 단일 recvBuf → 이벤트 간 덮어쓰기
+  ├─ saveBuf 미초기화 → 이전 데이터 잔존
+  ├─ nBlockNo 리셋 타이밍 → Sleep 크기 의존
+  └─ checkWaitOkSignal 블로킹 → 이벤트 수신 불가
+
+계층 2: PLC_SCAN 쓰기 큐 (본체 레벨)
+  ├─ bUseNewValueOnAnalogOut → 같은 주소 값 덮어쓰기
+  ├─ 1사이클 1쓰기 → 처리 속도 병목
+  ├─ char 플래그 동기화 → 경쟁 조건
+  └─ 큐 Full 시 유실 → 조용한 데이터 손실
+
+두 계층의 문제가 복합적으로 작용하여 증상이 심화됨
+```
+
+| 증상 | DLL 원인 | PLC_SCAN 원인 |
+|------|---------|--------------|
+| **이벤트 소실** | recvBuf 덮어쓰기 | bUseNewValueOnAnalogOut |
+| **이벤트 중복** | saveBuf 미초기화 | — |
+| **Sleep 필수** | nBlockNo 리셋 타이밍 | 1사이클 1쓰기 |
+| **Sleep 크기 다름** | 다중 블록 패킷 크기 차이 | — |
+| **UI Hang** | checkWaitOkSignal 블로킹 | 메인 스레드 Sleep |
+
+---
+
+## 10. 종합 해결 방안
+
+### PLC_SCAN 본체 수정 (DLL 변경 없음)
+
+| 순서 | 개선 | 수정 위치 | 수정량 | 효과 |
+|------|------|-----------|--------|------|
+| **1** | **RunWriteWait()에서 N건 연속 처리** | `Scanstat.cpp:1760` | ~5줄 | 쓰기 처리량 N배 증가 |
+| **2** | **bUseNewValueOnAnalogOut 기본값 OFF** | config 초기화 | 1줄 | 값 덮어쓰기 방지 |
+| **3** | **char → InterlockedExchange** | `Scanstat.cpp:1477-1507` | ~10줄 | 경쟁 조건 제거 |
+| **4** | **공유메모리 폴링 → Event 기반** | `Scanstat.cpp:1807-1812` | ~5줄 | 즉시 반응 |
+| **5** | **큐 Full 시 대기/확장** | `Scanstat.cpp:1590` | ~5줄 | 유실 방지 |
+
+### SECS Host DLL 수정
+
+| 순서 | 개선 | 수정 위치 | 수정량 | 효과 |
+|------|------|-----------|--------|------|
+| **A** | **이벤트 큐 추가** (recvBuf 링 버퍼화) | `SECS_HostDef.h` | ~30줄 | 이벤트 덮어쓰기 방지 |
+| **B** | **saveBuf memset(0) 추가** | `SECS_Host.cpp:449` | 1줄 | 이전 데이터 잔존 방지 |
+| **C** | **nBlockNo 즉시 리셋** | `SECS_Host.cpp:858` | ~3줄 | Sleep 의존 제거 |
+| **D** | **checkWaitOkSignal 비동기화** | `SECS_Host.cpp:805` | ~20줄 | 블로킹 대기 제거 |
+
+### 적용 우선순위
+
+```
+[1순위: PLC_SCAN 본체 — 모든 프로토콜에 효과]
+  1번(연속 처리) + 2번(덮어쓰기 OFF)
+  → SECS 뿐 아니라 MELSEC, OMRON 멀티출력도 개선
+
+[2순위: SECS Host DLL — SECS/GEM 전용]
+  B번(saveBuf 초기화) + C번(nBlockNo 리셋)
+  → 1줄+3줄 수정으로 Sleep 의존 대폭 감소
+
+[3순위: 근본 해결]
+  A번(이벤트 큐) + D번(비동기 대기)
+  → 시간당 수천 건 이벤트 무손실 처리
+```
