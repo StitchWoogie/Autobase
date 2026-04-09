@@ -570,6 +570,103 @@ void setInitRecvStatus(LOCAL_PORT_STRUCT *pt) {
 
 고속 이벤트에서 파이프라인 응답이 겹칠 때 특히 심각.
 
+### 9.10 DLL 내부 문제 8: WriteWord 2회차부터 전송 자체가 안 됨 (HSMS)
+
+**위치:** `SECS_Hsms.cpp:292-293`, `SECS_Host.cpp:467`
+
+```cpp
+// WriteWordHsms() — SECS_Hsms.cpp:287-330
+int WriteWordHsms(LOCAL_PORT_STRUCT *pt, int station, char *device)
+{
+    sendControlCodeOrdReadWriteCommand(pt, station, device);
+    
+    // ↓ 이미 전송 중이고 응답 불필요하면 → 즉시 리턴!
+    if(localVars->bSendDataPacket && localVars->bReadRequest == false)
+        return COMMUNICATION_OK;   // ← SUCCESS 반환하지만 실제로는 전송 안 함!
+    ...
+}
+```
+
+```cpp
+// sendReadWriteRequestDataReal() — SECS_Host.cpp:460-471
+localVars->bSendDataPacket = true;   // line 467 — 첫 번째 Write에서 설정
+localVars->bReadRequest = ...;       // 함수번호가 홀수면 true
+```
+
+**시나리오:**
+```
+Write #1: bSendDataPacket=false → makeDataReadBufHsms() 실행 → 실제 전송 ✓
+          → bSendDataPacket=true로 설정
+
+Write #2: bSendDataPacket=true 확인 → 즉시 COMMUNICATION_OK 반환
+          → 실제로는 아무것도 전송하지 않음!
+          → PLC_SCAN은 성공으로 인식 → "보냈다고 거짓말"
+
+Write #3: 동일 → 전송 안 됨
+...
+(ProtocolRead가 응답을 수신하여 bSendDataPacket=false로 리셋할 때까지)
+```
+
+**이것이 "50번 출력하면 50이 50번 출력"의 DLL 레벨 원인입니다.**
+PLC_SCAN 쓰기 큐에서 1건씩 꺼내 WriteWord를 호출하지만, DLL이 첫 번째만 실제 전송하고
+나머지는 SUCCESS를 반환하면서 무시합니다. 큐에서 꺼낸 49건은 전송되었다고 표시되지만 실제로는 유실됩니다.
+
+### 9.11 DLL 내부 문제 9: checkWaitOkSignal 블로킹 중 이벤트 수신 불가
+
+```
+S6F11 이벤트 도착
+  → readDataToMemoryHsms() → 메모리에 기록
+  → bRespRequire = true
+  → checkWaitOkSignal() 진입 — 최대 2000ms 블로킹!
+    │
+    │  이 동안 TCP 소켓 버퍼에 S6F11 #2, #3, #4 쌓임
+    │  하지만 ProtocolRead 루프가 블로킹 중이므로 수신 불가
+    │
+  → 타임아웃 또는 OK 신호 수신
+  → S6F12 응답 전송
+  → 루프 재개 → S6F11 #2 처리 시작
+    (이미 수백~수천 ms 지연됨)
+```
+
+시간당 수천 건이면 이벤트 간격 < 1초. `checkWaitOkSignal()` 타임아웃이 2초면 → **이벤트 적체 → TCP 버퍼 오버플로 → 연결 끊김.**
+
+### 9.12 문제 계층 최종 정리
+
+```
+[계층 1: SECS Host DLL — 프로토콜 레벨]
+
+  치명적:
+  ├─ WriteWord 2회차부터 전송 안 됨 (bSendDataPacket 조기 리턴)
+  ├─ 응답 매칭에 TNS 미사용 (Stream/Function만 비교)
+  ├─ 단일 recvBuf — 이벤트 간 덮어쓰기
+  └─ checkWaitOkSignal 블로킹 — 이벤트 수신 중단
+
+  높음:
+  ├─ saveBuf 미초기화 — 이전 데이터 잔존
+  ├─ nBlockNo 리셋 타이밍 — Sleep 크기 의존
+  └─ setInitRecvStatus 조기 호출 — 파이프라인 응답 유실
+
+[계층 2: PLC_SCAN 본체 — 쓰기 큐 레벨]
+
+  치명적:
+  ├─ bUseNewValueOnAnalogOut — 같은 주소 값 덮어쓰기
+  └─ 1사이클 1쓰기 — 처리 속도 병목
+
+  높음:
+  ├─ char 플래그 동기화 — 경쟁 조건
+  ├─ 공유메모리 Sleep(1) 폴링 — 지연
+  └─ 큐 Full 시 유실 — 조용한 데이터 손실
+```
+
+| 증상 | DLL 원인 | PLC_SCAN 원인 |
+|------|---------|--------------|
+| **이벤트 소실** | bSendDataPacket 조기 리턴 (전송 거짓말) | bUseNewValueOnAnalogOut |
+| **이벤트 중복** | saveBuf 미초기화, TNS 미검증 | — |
+| **Sleep 필수** | nBlockNo 리셋 타이밍, bSendDataPacket 리셋 대기 | 1사이클 1쓰기 |
+| **Sleep 크기 다름** | 다중 블록 패킷 크기 차이 | — |
+| **UI Hang** | checkWaitOkSignal 블로킹 | 메인 스레드 Sleep |
+| **연결 끊김** | checkWaitOkSignal 중 이벤트 적체 | — |
+
 ---
 
 ## 10. 종합 해결 방안
