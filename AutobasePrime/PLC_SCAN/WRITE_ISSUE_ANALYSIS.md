@@ -1,0 +1,382 @@
+# PLC_SCAN 쓰기(Write) 이벤트 소실/중복 문제 분석
+
+## 1. 문제 현상
+
+### 1.1 보고된 증상
+
+| 증상 | 설명 |
+|------|------|
+| **이벤트 값 중복** | 1~50 순차 출력 시 50이 50번 출력됨 |
+| **이벤트 소실** | 동시 다발 이벤트에서 중간 이벤트 누락 |
+| **Sleep 필수** | 출력 사이 Sleep(400) 삽입해야 정상 동작 |
+| **패킷별 딜레이 다름** | 100ms~1초로 제각각 |
+| **Sleep 시 UI Hang** | Sleep이 메인 스레드 블로킹 |
+| **새 엔진 미동작** | 새 스크립트 엔진에서 멀티출력/WriteBlock 불가 |
+
+### 1.2 영향 범위
+
+SECS Host/Equipment 드라이버만의 문제가 아니라, 쓰기 큐 구조 자체의 문제:
+- SECS Host/Equipment — 이벤트 보고 소실/중복
+- MELSEC ENET 3E — 멀티출력
+- OMRON PLC — @PlcScanWriteBlock 함수
+
+---
+
+## 2. 쓰기 데이터 흐름
+
+```
+[스크립트/태그 출력]
+      │
+      ├─ PLC_SCAN 내부 호출 (Plcwrite.cpp)
+      │   └─ AddWaitWriteAnalogOut() / AddWaitWriteDigitalOut()
+      │       └─ InsertWriteWaitOne()  ← 직접 큐 삽입
+      │
+      ├─ LocalMain (감시 프로그램) — 별도 프로세스
+      │   └─ PlcScan.cs → AddWriteList() → Win32Common.dll
+      │       └─ 공유메모리 "SHARE_MAIN_PLCSCAN" 링 버퍼에 기록
+      │           └─ ProcEventRecv 스레드가 Sleep(1) 폴링으로 수신
+      │               └─ InsertWriteWaitFromRing()
+      │                   └─ InsertWriteWaitOne()  ← 큐 삽입
+      │
+      ├─ NetworkServer (원격 클라이언트)
+      │   └─ ScanServerStatus.cpp:283-290
+      │       └─ AddWaitWriteAnalogOut() / AddWaitWriteDigitalOut()
+      │           └─ InsertWriteWaitOne()  ← 큐 삽입
+      │
+      └─ DLL 내부 콜백 (프로토콜 DLL이 다른 포트에 쓰기)
+          └─ Pro_main.cpp:1300-1305 — SetProc으로 등록된 콜백
+              └─ AddWaitWriteAnalogOut() / AddWaitWriteDigitalOut()
+                  └─ InsertWriteWaitOne()  ← 큐 삽입
+                                │
+                                v
+                  ┌─ 포트별 링 버퍼 큐 ──────────────────────┐
+                  │  WRITE_WAIT_STRUCT                        │
+                  │  ring_current ──→ ring_target             │
+                  │  최대 4000개 (MAX_SCAN_WRITE_LOCAL_ITEM)  │
+                  │  bPushing / bPoping char 플래그 동기화     │
+                  └──────────────┬────────────────────────────┘
+                                 │
+                  ┌──────────────v────────────────────────────┐
+                  │  RunWriteWait() — 포트 스레드에서 실행      │
+                  │                                            │
+                  │  큐에서 1개 팝 → 프로토콜 Write 호출       │
+                  │  → return;  ← **1개 처리 후 즉시 리턴**   │
+                  │                                            │
+                  │  다음 사이클(Sleep(1)+Read) 후 또 1개 처리  │
+                  └──────────────┬────────────────────────────┘
+                                 │
+                                 v
+                  DLL: ProtocolWriteWord / WriteBit / WriteBlock
+```
+
+---
+
+## 3. 근본 원인 분석
+
+### 원인 1: 값 덮어쓰기 — `bUseNewValueOnAnalogOut` (핵심 원인)
+
+**위치:** `Scanstat.cpp:1553-1580`
+
+```cpp
+else if(item->command == 1) {   // Word write
+    if(config.bUseNewValueOnAnalogOut) {
+        SetPushing(pt);
+        // 큐에서 같은 주소의 기존 항목 검색
+        while(true) {
+            if(wait->command == 1 &&
+               wait->port == item->port &&
+               wait->station == item->station &&
+               wait->address == item->address &&
+               strcmp(wait->sExtraAddr, item->sExtraAddr) == 0) {
+
+                wait->value = item->value;   // ← 기존 값을 최신값으로 덮어씀!
+                ResetPushing(pt);
+                return;                       // ← 새 항목 추가하지 않고 리턴
+            }
+            ...
+        }
+    }
+}
+```
+
+**동작:**
+```
+스크립트: for(i=1; i<=50; i++) { @PlcScanWriteWord(port, addr, i); }
+
+큐 상태:
+  i=1  → 큐: [addr=100, value=1]       ← 새로 추가
+  i=2  → 큐 검색: addr=100 발견!
+         → [addr=100, value=2]          ← 1을 2로 덮어씀
+  i=3  → [addr=100, value=3]           ← 2를 3으로 덮어씀
+  ...
+  i=50 → [addr=100, value=50]          ← 49를 50으로 덮어씀
+
+포트 스레드 처리 시: value=50 하나만 출력
+→ "50이 50번 출력" 현상은 아니지만 "1~49 소실" 발생
+```
+
+**"최종값으로 출력" 해제하면?**
+큐에 50개가 모두 들어감. 하지만 원인 2로 인해 별도 문제 발생.
+
+### 원인 2: 1사이클 1쓰기 병목
+
+**위치:** `Scanstat.cpp:1706-1765`
+
+```cpp
+void RunWriteWait(GLOBAL_PORT_STRUCT *pt)
+{
+    for(int i = 0; i < MAX_SCAN_WRITE_LOCAL_ITEM_COUNT; i++) {
+        // 큐에서 1개 팝
+        // 프로토콜 Write 실행
+        
+        return;   // ← 1개 처리 후 즉시 리턴!
+        // 주석: "하나만 보내고 돌아간다."
+    }
+}
+```
+
+**1760번 줄의 `return;`이 핵심 병목입니다.**
+
+포트 스레드 사이클:
+```
+Sleep(1ms) → ReadScan → RunWriteWait(1건만 처리) → 다음 사이클
+```
+
+| 항목 | 값 |
+|------|---|
+| 사이클 시간 | Sleep(1) + Read 시간 = 수 ms ~ 수십 ms |
+| 쓰기 처리량 | **사이클당 1건** |
+| 50건 처리 시간 | 50 × 사이클 시간 = 수백 ms |
+| 스크립트 투입 속도 | for 루프 = 마이크로초 단위로 50건 즉시 투입 |
+
+**결과:** 큐에 50건이 쌓이는데, 처리는 사이클당 1건 → 큐 적체.
+큐 적체 중에 `bUseNewValueOnAnalogOut=ON`이면 후속 쓰기가 기존 항목 덮어씀.
+
+### 원인 3: char 플래그 동기화 경쟁 조건
+
+**위치:** `Scanstat.cpp:1477-1507`
+
+```cpp
+static void SetPushing(GLOBAL_PORT_STRUCT *pt)
+{
+    TimeOutClass timeout;
+    while(pt->blockWriteWait->bPoping) {   // volatile 아님!
+        Sleep(1);
+        if(timeout.IsTimeOut(3)) break;     // 3초 후 강제 진행!
+    }
+    pt->blockWriteWait->bPushing = 1;       // 원자적 연산 아님!
+}
+```
+
+| 문제 | 설명 |
+|------|------|
+| `char` 타입 | CPU 캐시로 인해 다른 스레드에서 변경을 못 볼 수 있음 |
+| `volatile` 없음 | 컴파일러 최적화로 읽기 자체를 생략할 수 있음 |
+| 원자적 연산 아님 | 두 스레드가 동시에 SetPushing 진입 가능 |
+| 3초 타임아웃 후 **무시하고 진행** | 경합 시 데이터 손실/손상 |
+
+#### bPushing/bPoping은 어떤 스레드끼리 경합하는가?
+
+**포트별 큐(`blockWriteWait`)는 포트마다 독립**입니다. 따라서 SECS 포트의 bPoping은 다른 DLL(Melsec, Modbus 등) 스레드와 경합하지 않습니다.
+
+경합하는 스레드는:
+
+```
+[Port N의 blockWriteWait 큐]
+
+Push하는 스레드들 (SetPushing):
+  ├─ ProcEventRecv 스레드 — LocalMain 공유메모리 폴링
+  │   (Scanstat.cpp:1810-1811, InsertWriteWaitFromRing)
+  │
+  ├─ ProcEventRecv 스레드 — NetworkServer 이벤트
+  │   (Scanstat.cpp:1814-1823, InsertWriteCommand)
+  │
+  ├─ PLC_SCAN 메인 스레드 — UI 수동 출력 (Plcwrite.cpp:206)
+  │
+  └─ 다른 포트의 DLL 스레드 — DLL 콜백으로 이 포트에 쓰기
+      (Pro_main.cpp:433, InsertWriteWaitOne)
+
+Pop하는 스레드 (SetPoping):
+  └─ Port N의 포트 스레드 — RunWriteWait()
+      (Scanstat.cpp:1722, 1750)
+```
+
+**경합 시나리오:**
+- ProcEventRecv 스레드가 LocalMain에서 받은 쓰기를 큐에 넣는 중 (SetPushing)
+- 동시에 포트 스레드가 큐에서 꺼내는 중 (SetPoping)
+- 동시에 NetworkServer가 원격 쓰기를 큐에 넣으려 함 (SetPushing)
+
+→ 3개 스레드가 **같은 포트의 같은 큐**에 동시 접근.
+
+### 원인 4: 공유메모리 폴링 `Sleep(1)`
+
+**위치:** `Scanstat.cpp:1802-1812`
+
+```cpp
+static DWORD WINAPI ProcEventRecv(LPVOID)
+{
+    while(bThreadFlag) {
+        Sleep(1);                            // ← 1ms 간격 폴링
+        if(share_Main_PlcScan) {
+            InsertWriteWaitFromRing(share_Main_PlcScan);  // 공유메모리 → 포트별 큐
+        }
+    }
+}
+```
+
+LocalMain에서 공유메모리에 쓰기를 넣어도, PLC_SCAN이 **1ms 간격 폴링**으로 가져감.
+공유메모리 링 버퍼(`SCAN_WRITE_EXCHANGE_INFO`)의 `ring_current`/`ring_target`은 `short` 타입이고 원자적 연산 없음 → 프로세스 간 경쟁 조건 존재.
+
+### 원인 5: 큐 Full 시 조용한 유실
+
+**위치:** `Scanstat.cpp:1588-1598`
+
+```cpp
+next_pos = (pt->blockWriteWait->ring_target+1) % MAX_SCAN_WRITE_LOCAL_ITEM_COUNT;
+
+if(next_pos == pt->blockWriteWait->ring_current) {
+    // 큐 꽉 참!
+    MessageDisplay("Write items are too many >= 1000.");
+    return;   // ← 쓰기 명령 버림!
+}
+```
+
+로그 메시지만 남기고 쓰기를 **조용히 버립니다.**
+
+---
+
+## 4. Sleep(400)이 "해결"되는 이유
+
+```
+Sleep(400) 삽입 시:
+  Write(value=1) → Sleep(400) → Write(value=2) → Sleep(400) → ...
+  
+  400ms 동안 포트 스레드가 ~수백 사이클 실행
+  → 큐의 value=1이 처리 완료됨
+  → value=2 삽입 시 큐에 같은 주소 항목 없음
+  → 덮어쓰기 발생 안 함 ✓
+  
+  하지만:
+  → 스크립트 스레드 블로킹 → UI 멈춤
+  → 시간당 수천 건 이벤트 × 400ms = 처리 불가능
+```
+
+---
+
+## 5. 새 스크립트 엔진에서 더 심각한 이유
+
+### 구 엔진 vs 새 엔진 경로
+
+| 항목 | 구 엔진 | 새 엔진 (`bUseNewEngine`) |
+|------|--------|--------------------------|
+| 실행 위치 | 같은 프로세스 내 | 같은 프로세스 (delegate 경유) |
+| 쓰기 경로 | ScriptFunction → delegate → AddWriteList() → 공유메모리 | 동일 |
+| 실행 속도 | 인터프리터 오버헤드로 약간 느림 | 더 빠르게 실행 가능 |
+| 결과 | 암묵적 지연이 있어 일부 동작 | **더 빠른 투입 → 덮어쓰기 빈번** |
+
+두 엔진 모두 동일한 공유메모리 경로를 사용:
+```
+ScriptFunctionPlcScan.cs → PlcScan.cs → AddWriteList()
+  → Win32Common.dll (P/Invoke)
+    → 공유메모리 SHARE_MAIN_PLCSCAN 링 버퍼
+      → ProcEventRecv Sleep(1) 폴링
+        → InsertWriteWaitFromRing() → InsertWriteWaitOne()
+```
+
+새 엔진이 더 빠르게 쓰기를 투입하면:
+1. 공유메모리 링 버퍼에 빠르게 쌓임
+2. ProcEventRecv가 1ms 간격으로 가져와서 포트별 큐에 삽입
+3. 삽입 시 `bUseNewValueOnAnalogOut` 로직으로 값 덮어쓰기
+4. RunWriteWait는 1사이클 1건만 처리 → 적체 심화
+
+---
+
+## 6. 이전 PLC_SCAN 분석과의 연관
+
+| 이전 분석 항목 (NETWORK_PORT_ANALYSIS.md) | 쓰기 문제와의 연관 |
+|------------------------------------------|-------------------|
+| **`connect()` 블로킹** (Comtcpip.cpp:182) | 연결 실패 시 Write 타임아웃 → 큐 적체 → 후속 쓰기 유실 |
+| **1사이클 = Sleep(1) + Read + Write** (PortThread.cpp:29-33) | Read가 느리면 Write 처리 간격도 벌어짐 |
+| **bThreadProtocolDrawWorking 잠금** (Pro_main.cpp:55-66) | UI 그리기와 쓰기가 같은 잠금 경쟁 → 쓰기 지연 |
+| **ScanServerPause 전체 중단** (ScanEdit.cpp:20) | 편집 중 쓰기도 함께 중단되어 큐 적체 |
+| **메인 스레드 Hang** (시나리오 1, 2) | Hang 중 ProcEventRecv 스레드 자체는 동작하나, UI 출력 불가 |
+
+---
+
+## 7. 해결 방향
+
+### 즉시 적용 가능 (DLL 변경 없음)
+
+| 순서 | 개선 | 수정 위치 | 수정량 | 효과 |
+|------|------|-----------|--------|------|
+| **1** | **RunWriteWait()에서 N건 연속 처리** | `Scanstat.cpp:1760` | 1줄: `return;` → `continue;` 또는 `if(count >= N) return;` | 쓰기 처리량 N배 증가 |
+| **2** | **bUseNewValueOnAnalogOut 기본값 OFF** | `config` 초기화 | 1줄 | 값 덮어쓰기 방지 (모든 쓰기 큐잉) |
+| **3** | **char → InterlockedExchange** | `Scanstat.cpp:1477-1507` | ~10줄 | 경쟁 조건 제거 |
+| **4** | **공유메모리 폴링 → Event 기반** | `Scanstat.cpp:1807-1812` | ~5줄 | Sleep(1) 폴링 → 즉시 반응 |
+| **5** | **큐 Full 시 대기 또는 확장** | `Scanstat.cpp:1590` | ~5줄 | 조용한 유실 방지 |
+
+### 1번 수정의 구체적 방법
+
+```cpp
+// 현재 (Scanstat.cpp:1706-1765)
+void RunWriteWait(GLOBAL_PORT_STRUCT *pt)
+{
+    for(int i = 0; i < MAX_SCAN_WRITE_LOCAL_ITEM_COUNT; i++) {
+        // ... 큐에서 1개 팝 → Write 실행 ...
+        
+        if(retn == COMMUNICATION_NEXT_WRITE_GO) goto next_write;
+        VipScanRegister(&wait);
+        return;   // ← 1개 후 리턴
+    }
+}
+
+// 개선안: 최대 N건까지 연속 처리
+void RunWriteWait(GLOBAL_PORT_STRUCT *pt)
+{
+    int maxBatch = 16;  // 한 사이클에 최대 16건
+    
+    for(int i = 0; i < maxBatch; i++) {
+        SetPoping(pt);
+        if(pt->blockWriteWait->ring_current == pt->blockWriteWait->ring_target) break;
+        // ... 팝 & Write 실행 ...
+        
+        pt->blockWriteWait->ring_current = next_pos;
+        ResetPoping(pt);
+        SetWriteWaitCount(pt);
+        
+        if(retn == COMMUNICATION_TIME_OUT) {
+            // 타임아웃 시 리트라이 로직 유지
+            break;
+        }
+        VipScanRegister(&wait);
+        // return 제거 → continue로 다음 건 처리
+    }
+}
+```
+
+### 중기 개선
+
+| 순서 | 개선 | 효과 |
+|------|------|------|
+| **6** | 비동기 쓰기 완료 콜백 (스크립트에서 Sleep 대신 대기) | Sleep 제거, UI Hang 방지 |
+| **7** | 쓰기 전용 스레드 분리 (Read/Write 독립) | Read 지연이 Write에 영향 안 줌 |
+| **8** | SECS/GEM 전용 이벤트 큐 (순서 보장, 값 덮어쓰기 금지) | 반도체 공정 무결성 보장 |
+
+---
+
+## 8. SECS/GEM에서 특히 심각한 이유
+
+SECS/GEM 이벤트 보고(S6F11)는 **순서와 무결성이 필수**:
+
+```
+[장비]                          [Host]
+  S6F11 (CEID=1, 기판 투입)  →
+  S6F11 (CEID=2, 공정 시작)  →   ← 시간당 수천 건
+  S6F11 (CEID=3, 공정 완료)  →
+  S6F11 (CEID=4, 기판 배출)  →
+```
+
+현재 구조에서 발생하는 문제:
+- CEID=1 출력 큐잉 → CEID=2 출력 시 같은 주소면 값 덮어쓰기 → **CEID=1 소실**
+- Sleep으로 우회하면 → 이벤트 처리 지연 → 장비 통신 타임아웃
+- MES(Manufacturing Execution System)에 잘못된 이벤트 보고 → **공정 추적 불가**
