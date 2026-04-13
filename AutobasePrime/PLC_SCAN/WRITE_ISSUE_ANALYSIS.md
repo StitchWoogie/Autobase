@@ -411,11 +411,7 @@ SECS_Tools.cpp     — 데이터 디코딩 (readUserDataToMemory, PokeValueAll)
 makeSecsFunctionMessage.cpp — SECS 메시지 생성
 ```
 
-### 9.2 DLL 내부 문제 1: 단일 수신 버퍼 — 이벤트 덮어쓰기 [재검증 필요]
-
-> **재검증 결과:** 동일 포트에서 수신/처리는 **순차적**입니다 (`ProtocolReadHsms`의 while 루프는 `PlcDeviceReadContinue(..., 1)`로 1바이트씩 읽어 처리).
-> 한 패킷을 읽고 처리(`readDataToMemoryHsms` → memory 기록)를 끝낸 뒤 다음 패킷을 읽으므로, **recvBuf가 1개라는 사실만으로 overwrite 버그라 단정할 수 없습니다.**
-> 실제 문제는 "처리 중 backlog가 TCP 소켓 버퍼에 쌓이는 상황"이며, 이는 단일 recvBuf가 아니라 `checkWaitOkSignal` 블로킹(9.4)으로 설명하는 게 맞습니다.
+### 9.2 DLL 내부 문제 1: 단일 수신 버퍼 [재검증 결과: 약함 — 즉시 overwrite 버그 아님]
 
 **위치:** `SECS_HostDef.h:200-202`
 
@@ -425,22 +421,24 @@ typedef struct {
     BYTE sendBuf[MAX_SECS_SEND_BUF];    // 송신 버퍼 — 1개
     BYTE saveBuf[MAX_SECS_SAVE_BUF];    // 저장 버퍼 — 1개
     BYTE recvBuf[MAX_SECS_RECV_BUF];    // 수신 버퍼 — 1개
-    READ_DATA_STRUCT readDataSt;         // 수신 패킷 정보 — 1개
+    READ_DATA_STRUCT readDataSt;        // 수신 패킷 정보 — 1개
     ...
 } LOCAL_VARS_STRUCT;
 ```
 
-**이벤트 큐가 없습니다.** 모든 수신 데이터가 단일 `recvBuf`에 덮어씌워집니다.
+**재검증 결과:**
+`recvBuf`가 단일 버퍼인 것은 사실이지만, 현재 구현은 `PlcDeviceReadContinue(..., 1)`로 한 메시지를
+**1바이트씩 순차적으로 읽고**, 한 패킷을 완료한 뒤 `readDataToMemoryHsms()`로 메모리에 반영하고 나서야
+다음 바이트 수신으로 진행합니다 (`SECS_Hsms.cpp:247, 303` 참조).
+즉, 이벤트 A 처리 도중에 이벤트 B가 같은 `recvBuf`를 **동시에 덮어쓰는** 구조는 아닙니다.
 
-**`SECS_Host.cpp:665`:**
-```cpp
-memcpy(&localVars->recvBuf[0], &pt->commRecvBuf[0], dataLen + 11);
-```
+→ **"단일 recvBuf가 곧바로 이벤트 간 overwrite를 만든다"는 원래 주장은 코드와 맞지 않으므로 철회합니다.**
 
-이벤트 A(S6F11) 처리 중에 이벤트 B(S6F11)가 도착하면:
-→ `recvBuf`가 이벤트 B 데이터로 덮어씌워짐
-→ 이벤트 A의 데이터 처리가 이벤트 B의 데이터로 진행됨
-→ **이벤트 A 소실 + 이벤트 B 중복 출력**
+남는 실제 위험:
+- 한 메시지 처리 중 TCP 소켓 버퍼에 backlog가 쌓이는 **지연/적체** 문제 — 이는 `recvBuf` 단일성이 아니라
+  `checkWaitOkSignal` 블로킹(9.4)과 DLL 전체의 블로킹 read 루프 구조로 설명하는 게 맞습니다.
+- 고속 이벤트 흐름에서 프레이밍/싱크 오류가 났을 때 복구가 어렵다는 일반 위험은 존재하나, 현재 증상의
+  주원인으로 올리기에는 근거가 부족합니다.
 
 ### 9.3 DLL 내부 문제 2: saveBuf 미초기화 [재검증 결과: 성립하지 않음]
 
