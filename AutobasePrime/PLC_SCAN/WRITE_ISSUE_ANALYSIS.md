@@ -6,12 +6,24 @@
 
 | 증상 | 설명 |
 |------|------|
-| **이벤트 값 중복** | 1~50 순차 출력 시 50이 50번 출력됨 |
+| **이벤트 값 중복** | 1~50 순차 출력 시 50이 50번 출력됨 (보고 기준) |
 | **이벤트 소실** | 동시 다발 이벤트에서 중간 이벤트 누락 |
 | **Sleep 필수** | 출력 사이 Sleep(400) 삽입해야 정상 동작 |
 | **패킷별 딜레이 다름** | 100ms~1초로 제각각 |
 | **Sleep 시 UI Hang** | Sleep이 메인 스레드 블로킹 |
 | **새 엔진 미동작** | 새 스크립트 엔진에서 멀티출력/WriteBlock 불가 |
+
+> **주의:** "50이 50번 출력" 현상은 현재 분석된 코드 경로로는 직접 설명되지 않습니다.
+> 본 문서의 PLC_SCAN 큐 분석이 직접 설명하는 현상은 **"1~49 소실, 마지막 값(50)만 1회 남음"** 에 가깝습니다.
+> "50번 중복 출력" 시나리오는 별도 재현 로그로 추가 확인이 필요합니다.
+
+### 1.3 분석 신뢰도 구분
+
+본 문서의 각 원인 항목은 아래 신뢰도로 분류합니다:
+
+- **[확정]** — 코드로 직접 확인되는 강한 근거. 즉시 수정 후보.
+- **[가능성 있음]** — 코드 경로상 문제 가능성은 있으나 현재 증상의 주원인인지 추가 검증 필요.
+- **[재검증 필요]** — 단독으로 현상을 설명하지 못하거나 다른 경로로 회피되는 가설. 재현 로그 확보 전까지 수정 보류 권장.
 
 ### 1.2 영향 범위
 
@@ -73,9 +85,9 @@ SECS Host/Equipment 드라이버만의 문제가 아니라, 쓰기 큐 구조 �
 
 ## 3. 근본 원인 분석
 
-### 원인 1: 값 덮어쓰기 — `bUseNewValueOnAnalogOut` (핵심 원인)
+### 원인 1: 값 덮어쓰기 — `bUseNewValueOnAnalogOut` (핵심 원인) [확정]
 
-**위치:** `Scanstat.cpp:1553-1580`
+**위치:** `Scanstat.cpp:1553-1580`, 기본값 ON: `Scanconf.cpp:68`
 
 ```cpp
 else if(item->command == 1) {   // Word write
@@ -118,9 +130,10 @@ else if(item->command == 1) {   // Word write
 **"최종값으로 출력" 해제하면?**
 큐에 50개가 모두 들어감. 하지만 원인 2로 인해 별도 문제 발생.
 
-### 원인 2: 1사이클 1쓰기 병목
+### 원인 2: 1사이클 1쓰기 병목 [확정]
 
-**위치:** `Scanstat.cpp:1706-1765`
+**위치:** `Scanstat.cpp:1706-1765` (1건 처리 후 return은 `Scanstat.cpp:1760`, 예외는 `COMMUNICATION_NEXT_WRITE_GO`)
+**포트 스레드 루프:** `PortThread.cpp:29` → `CommStatusLocalOne()` → `Scanstat.cpp:774`에서 `RunWriteWait()` 호출
 
 ```cpp
 void RunWriteWait(GLOBAL_PORT_STRUCT *pt)
@@ -152,9 +165,9 @@ Sleep(1ms) → ReadScan → RunWriteWait(1건만 처리) → 다음 사이클
 **결과:** 큐에 50건이 쌓이는데, 처리는 사이클당 1건 → 큐 적체.
 큐 적체 중에 `bUseNewValueOnAnalogOut=ON`이면 후속 쓰기가 기존 항목 덮어씀.
 
-### 원인 3: char 플래그 동기화 경쟁 조건
+### 원인 3: char 플래그 동기화 경쟁 조건 [가능성 있음 — 위험 요소이나 현재 증상의 주원인 근거는 부족]
 
-**위치:** `Scanstat.cpp:1477-1507`
+**위치:** `Scanstat.cpp:1477-1507`, 플래그 정의 `plc_scan.h:264`
 
 ```cpp
 static void SetPushing(GLOBAL_PORT_STRUCT *pt)
@@ -208,7 +221,7 @@ Pop하는 스레드 (SetPoping):
 
 → 3개 스레드가 **같은 포트의 같은 큐**에 동시 접근.
 
-### 원인 4: 공유메모리 폴링 `Sleep(1)`
+### 원인 4: 공유메모리 폴링 `Sleep(1)` [가능성 있음]
 
 **위치:** `Scanstat.cpp:1802-1812`
 
@@ -227,9 +240,9 @@ static DWORD WINAPI ProcEventRecv(LPVOID)
 LocalMain에서 공유메모리에 쓰기를 넣어도, PLC_SCAN이 **1ms 간격 폴링**으로 가져감.
 공유메모리 링 버퍼(`SCAN_WRITE_EXCHANGE_INFO`)의 `ring_current`/`ring_target`은 `short` 타입이고 원자적 연산 없음 → 프로세스 간 경쟁 조건 존재.
 
-### 원인 5: 큐 Full 시 조용한 유실
+### 원인 5: 큐 Full 시 조용한 유실 [확정]
 
-**위치:** `Scanstat.cpp:1588-1598`
+**위치:** 내부 큐 `Scanstat.cpp:1588-1598` (MessageDisplay 후 drop), 공유메모리 링 `FuturePlcScan.cpp:314` (조용히 drop)
 
 ```cpp
 next_pos = (pt->blockWriteWait->ring_target+1) % MAX_SCAN_WRITE_LOCAL_ITEM_COUNT;
@@ -387,7 +400,8 @@ SECS/GEM 이벤트 보고(S6F11)는 **순서와 무결성이 필수**:
 
 ### 9.1 DLL 구조 개요
 
-SECS_Host_2.zip 소스 분석 결과, **PLC_SCAN 쓰기 큐 문제와 별개로 DLL 자체에도 심각한 문제**가 있습니다.
+SECS_Host_2.zip 소스 분석 결과, PLC_SCAN 쓰기 큐 문제와 별개로 DLL 자체에도 일부 개선이 필요한 지점이 있습니다.
+다만 당초 작성된 여러 시나리오 중 상당수는 코드 재확인 결과 **성립하지 않거나 약한 가설**로 재분류되었습니다 (9.13 참조).
 
 ```
 SECS_Host.cpp      — 메인 DLL (ProtocolRead/WriteWord/WriteBit)
@@ -397,7 +411,11 @@ SECS_Tools.cpp     — 데이터 디코딩 (readUserDataToMemory, PokeValueAll)
 makeSecsFunctionMessage.cpp — SECS 메시지 생성
 ```
 
-### 9.2 DLL 내부 문제 1: 단일 수신 버퍼 — 이벤트 덮어쓰기
+### 9.2 DLL 내부 문제 1: 단일 수신 버퍼 — 이벤트 덮어쓰기 [재검증 필요]
+
+> **재검증 결과:** 동일 포트에서 수신/처리는 **순차적**입니다 (`ProtocolReadHsms`의 while 루프는 `PlcDeviceReadContinue(..., 1)`로 1바이트씩 읽어 처리).
+> 한 패킷을 읽고 처리(`readDataToMemoryHsms` → memory 기록)를 끝낸 뒤 다음 패킷을 읽으므로, **recvBuf가 1개라는 사실만으로 overwrite 버그라 단정할 수 없습니다.**
+> 실제 문제는 "처리 중 backlog가 TCP 소켓 버퍼에 쌓이는 상황"이며, 이는 단일 recvBuf가 아니라 `checkWaitOkSignal` 블로킹(9.4)으로 설명하는 게 맞습니다.
 
 **위치:** `SECS_HostDef.h:200-202`
 
@@ -424,22 +442,36 @@ memcpy(&localVars->recvBuf[0], &pt->commRecvBuf[0], dataLen + 11);
 → 이벤트 A의 데이터 처리가 이벤트 B의 데이터로 진행됨
 → **이벤트 A 소실 + 이벤트 B 중복 출력**
 
-### 9.3 DLL 내부 문제 2: saveBuf 미초기화 — 이전 데이터 잔존
+### 9.3 DLL 내부 문제 2: saveBuf 미초기화 [재검증 결과: 성립하지 않음]
 
-**위치:** `SECS_Host.cpp:443-458`
+**위치:** `SECS_Host.cpp:443-458`, `makeSecsFunctionMessage.cpp:271-285`, `SECS_Hsms.cpp:36-49`
 
 ```cpp
-if(localVars->nBlockNo == 1) {
-    getStreamFunctionData(device, localVars->cStream, localVars->cFunction);
-    localVars->nSendSave = makeSfMemoryDataToBuf(pt, localVars->saveBuf);
+// makeSecsFunctionMessage.cpp:271
+int makeSfMemoryDataToBuf(LOCAL_PORT_STRUCT *pt, BYTE *data)
+{
+    int buf_pos = 0, ...
+    ...
+    return buf_pos;   // ← 현재 메시지 길이를 새로 계산해 반환
 }
+
+// SECS_Hsms.cpp:40-46
+getStreamFunctionData(device, localVars->cStream, localVars->cFunction);
+makeSecsHeaderHsms(pt, localVars->saveBuf, station, bReadRequest);
+localVars->nSendSave = makeSfMemoryDataToBuf(pt, &localVars->saveBuf[HSMS_HEADER_SIZE]);
+buf_pos = HSMS_HEADER_SIZE + localVars->nSendSave;
+...
+if(buf_pos > 0) PlcDeviceWriteContinue(&pt->device, (char*)localVars->saveBuf, buf_pos);
+                                                                         // ↑ buf_pos 길이만큼만 전송
 ```
 
-`saveBuf`에 `memset(0)` 없이 바로 데이터를 씁니다.
-이전 이벤트가 100바이트, 새 이벤트가 50바이트면 → 뒤쪽 50바이트에 이전 데이터 잔존
-→ SECS 메시지에 **이전 이벤트 데이터가 섞여서 전송**
+실제 전송은 항상 **새로 계산된 `buf_pos` 길이**만큼만 수행됩니다 (`PlcDeviceWriteContinue(..., buf_pos)`).
+이전 메시지가 100바이트, 새 메시지가 50바이트라도, 전송되는 것은 **새 메시지의 50바이트**뿐입니다.
+saveBuf의 나머지 영역에 이전 데이터가 남아 있어도 TCP 스트림에 나가지 않습니다.
 
-### 9.4 DLL 내부 문제 3: 블로킹 대기 루프 — checkWaitOkSignal
+→ **"이전 이벤트 데이터가 섞여서 전송"이라는 원래 주장은 코드와 맞지 않으므로 철회합니다.**
+
+### 9.4 DLL 내부 문제 3: 블로킹 대기 루프 — checkWaitOkSignal [확정]
 
 **위치:** `SECS_Host.cpp:805-831`
 
@@ -465,29 +497,36 @@ void checkWaitOkSignal(LOCAL_PORT_STRUCT *pt)
 외부 프로그램의 OK 신호를 **무한 폴링**으로 대기합니다.
 이 동안 ProtocolRead 스레드가 **완전히 블로킹** → 새 이벤트 수신 불가.
 
-### 9.5 DLL 내부 문제 4: nBlockNo 미리셋 — Sleep 필요 원인
+### 9.5 DLL 내부 문제 4: nBlockNo 미리셋 [재검증 결과: 성립하지 않음]
 
-**위치:** `SECS_Host.cpp:858, 428-436`
-
-```cpp
-// 블록 전송 완료 후 리셋
-localVars->nBlockNo = 1;  // line 858
-```
+**위치:** `SECS_Host.cpp:858` (블록 전송 완료 후 리셋), `SECS_Host.cpp:350-358` (`setStartInitFlag`에서 nBlockNo=1 초기화), `SECS_Host.cpp:960-...` (`WriteWordSerial`)
 
 ```cpp
-// 다음 블록 데이터 계산
-start = (localVars->nBlockNo - 1) * MAX_ONE_PACKET_DATA;  // 244바이트/블록
+// SECS_Host.cpp:350
+void setStartInitFlag(LOCAL_PORT_STRUCT *pt) {
+    ...
+    localVars->bSendDataPacket = false;
+    ...
+    localVars->nBlockNo = 1;   // ← Write 진입 시 초기화
+}
+
+// SECS_Host.cpp:960 WriteWordSerial
+static int WriteWordSerial(LOCAL_PORT_STRUCT *pt, int station, char *device) {
+    ...
+    setStartInitFlag(pt);                 // ← 진입 시 nBlockNo=1 리셋
+    localVars->nStatus = READ_EOT_STATUS;
+    ...
+    while(1) { ... }                      // ← 완료/타임아웃까지 블로킹
+}
 ```
 
-WriteWord 호출 시 `nBlockNo`가 아직 리셋 안 되어 있으면:
-→ 새 데이터가 이전 메시지의 **연속 블록**으로 처리됨
-→ 패킷 연결(concatenation) 오류
+Serial 경로는 `WriteWordSerial` 진입 시 `setStartInitFlag`로 `nBlockNo=1` 즉시 리셋되고, 블로킹 루프로 완료까지 진행합니다.
+HSMS 경로도 `checkConnectAndSendSelectRequest` → `setStartInitFlag`로 진입 시 리셋됩니다.
 
-**이것이 Sleep() 크기가 패킷마다 다른 이유:**
-- 작은 패킷(1블록): `nBlockNo` 리셋이 빠름 → Sleep(100) 충분
-- 큰 패킷(다중 블록): 여러 Read 사이클 필요 → Sleep(1000) 필요
+→ **"nBlockNo 리셋 타이밍이 Sleep 필요의 원인"이라는 주장은 현재 코드와 맞지 않으므로 철회합니다.**
+Sleep 크기가 패킷마다 다른 현상은 재현 로그 확보 전까지 원인 보류.
 
-### 9.6 DLL 내부 문제 5: 플래그 동기화 없음
+### 9.6 DLL 내부 문제 5: 플래그 동기화 없음 [재검증 결과: 현재 구조상 과장]
 
 ```cpp
 // 상태 플래그들 (SECS_HostDef.h)
@@ -499,39 +538,17 @@ bool bRespRequire;         // 응답 필요
 bool bWaitSendOkSignal;    // OK 신호 대기 중
 ```
 
-이 플래그들은 mutex/critical section **없이** 사용됩니다.
-ProtocolRead와 WriteWord가 같은 포트 스레드에서 순차 실행되므로 이론상 충돌은 없지만,
-`checkWaitOkSignal()`의 블로킹 루프 중에 플래그 변경이 발생하면 불일치 가능.
+이 플래그들은 mutex/critical section **없이** 사용되는 것은 사실입니다.
+그러나 이 DLL은 **PLC_SCAN의 해당 포트 스레드가 순차적으로** `ProtocolRead`/`WriteWord`를 호출합니다 (`PortThread.cpp:29`, `Scanstat.cpp:774`).
+즉 동일 포트에서 read/write 여러 스레드가 동시에 내부 플래그를 건드리는 구조가 아니므로, 원래 문서가 묘사한 "동시 충돌" 시나리오는 현재 구조상 과장된 면이 있습니다.
+위험 요소로 기록하되, 현재 증상의 주원인 근거로 쓰기는 부적절합니다.
 
-### 9.7 문제 계층 정리
+### 9.7 (구) 문제 계층 정리 — 재검증 후 9.13으로 대체
 
-```
-[문제 발생 계층]
+> 본 절의 초기 계층 정리는 재검증 결과 일부 항목이 성립하지 않아 **9.13 "재검증 후 계층 정리"로 대체**합니다.
+> 원 표는 혼선을 피하기 위해 제거했습니다.
 
-계층 1: SECS Host DLL 내부 (프로토콜 레벨)
-  ├─ 단일 recvBuf → 이벤트 간 덮어쓰기
-  ├─ saveBuf 미초기화 → 이전 데이터 잔존
-  ├─ nBlockNo 리셋 타이밍 → Sleep 크기 의존
-  └─ checkWaitOkSignal 블로킹 → 이벤트 수신 불가
-
-계층 2: PLC_SCAN 쓰기 큐 (본체 레벨)
-  ├─ bUseNewValueOnAnalogOut → 같은 주소 값 덮어쓰기
-  ├─ 1사이클 1쓰기 → 처리 속도 병목
-  ├─ char 플래그 동기화 → 경쟁 조건
-  └─ 큐 Full 시 유실 → 조용한 데이터 손실
-
-두 계층의 문제가 복합적으로 작용하여 증상이 심화됨
-```
-
-| 증상 | DLL 원인 | PLC_SCAN 원인 |
-|------|---------|--------------|
-| **이벤트 소실** | recvBuf 덮어쓰기, TNS 미검증 | bUseNewValueOnAnalogOut |
-| **이벤트 중복** | saveBuf 미초기화 | — |
-| **Sleep 필수** | nBlockNo 리셋 타이밍 | 1사이클 1쓰기 |
-| **Sleep 크기 다름** | 다중 블록 패킷 크기 차이 | — |
-| **UI Hang** | checkWaitOkSignal 블로킹 | 메인 스레드 Sleep |
-
-### 9.8 DLL 내부 문제 6: 응답 매칭에 Transaction ID(TNS) 미사용
+### 9.8 DLL 내부 문제 6: 응답 매칭에 Transaction ID(TNS) 미사용 [확정 — 프로토콜 정합성 허점]
 
 **위치:** `SECS_Hsms.cpp:210`
 
@@ -552,66 +569,56 @@ SECS/GEM에서 Transaction Number(TNS)는 요청-응답을 정확히 매칭하�
 
 TNS는 `SECS_Hsms.cpp:31`에서 `localVars->dTns++`로 증가하고, 수신 시 `SECS_Hsms.cpp:163`에서 읽지만 **비교에 사용되지 않습니다.**
 
-### 9.9 DLL 내부 문제 7: setInitRecvStatus()의 조기 버퍼 초기화
+### 9.9 DLL 내부 문제 7: setInitRecvStatus()의 조기 버퍼 초기화 [재검증 결과: 약함]
 
 **위치:** `SECS_Host.cpp:341-348`, `SECS_Hsms.cpp:268,275`
 
 ```cpp
 void setInitRecvStatus(LOCAL_PORT_STRUCT *pt) {
-    pt->commCountCurr = 0;   // ← 수신 버퍼 위치 초기화!
+    pt->commCountCurr = 0;   // 로컬 위치 인덱스만 0으로 리셋
     localVars->bSize = false;
 }
 ```
 
-응답 처리 후 `setInitRecvStatus()` → `continue`로 다시 루프:
-- 응답 #1의 데이터 부분이 아직 소켓 버퍼에 남아있어도 `commCountCurr=0`으로 리셋
-- 다음 루프에서 응답 #2의 헤더를 위치 0부터 읽기 시작
-- 응답 #1의 남은 데이터는 **영구 유실**
+`SECS_Hsms.cpp`의 수신 루프는 `PlcDeviceReadContinue(&pt->device, ..., 1)`로 **1바이트씩** 읽습니다 (line 247, 303).
+즉 응답 #1 다음에 아직 읽지 않은 #2 데이터는 **장치/TCP 버퍼에 그대로 남아** 있고, `commCountCurr=0`은 `localVars->recvBuf`에서의 기록 위치를 다시 0으로 두는 것뿐입니다.
+→ "응답 #1의 남은 데이터가 영구 유실"이라는 원래 주장은 성립하지 않습니다.
 
-고속 이벤트에서 파이프라인 응답이 겹칠 때 특히 심각.
+다만 파이프라인/backlog 상황에서 헤더 싱크 감지가 복잡해질 수 있다는 수준의 위험 요소로는 남습니다. 수정 보류.
 
-### 9.10 DLL 내부 문제 8: WriteWord 2회차부터 전송 자체가 안 됨 (HSMS)
+### 9.10 DLL 내부 문제 8: WriteWord 2회차부터 전송 자체가 안 됨 (HSMS) [재검증 결과: 성립하지 않음]
 
-**위치:** `SECS_Hsms.cpp:292-293`, `SECS_Host.cpp:467`
+**위치:** `SECS_Hsms.cpp:124-137` (`checkConnectAndSendSelectRequest`), `SECS_Host.cpp:350-358` (`setStartInitFlag`)
 
 ```cpp
-// WriteWordHsms() — SECS_Hsms.cpp:287-330
-int WriteWordHsms(LOCAL_PORT_STRUCT *pt, int station, char *device)
+// SECS_Hsms.cpp:124
+bool checkConnectAndSendSelectRequest(LOCAL_PORT_STRUCT *pt, bool bRead)
 {
-    sendControlCodeOrdReadWriteCommand(pt, station, device);
-    
-    // ↓ 이미 전송 중이고 응답 불필요하면 → 즉시 리턴!
-    if(localVars->bSendDataPacket && localVars->bReadRequest == false)
-        return COMMUNICATION_OK;   // ← SUCCESS 반환하지만 실제로는 전송 안 함!
+    setStartInitFlag(pt);                        // ← 진입 시 호출
     ...
+}
+
+// SECS_Host.cpp:350
+void setStartInitFlag(LOCAL_PORT_STRUCT *pt)
+{
+    localVars->bReadRequest = false;
+    localVars->bReadOkFlag = false;
+    localVars->bSendDataPacket = false;          // ← 매 write 진입 시 false로 리셋
+    localVars->bSendControlCode = false;
+    localVars->cSendHsmsControl = HSMS_DATA_CODE;
+    localVars->nBlockNo = 1;
 }
 ```
 
-```cpp
-// sendReadWriteRequestDataReal() — SECS_Host.cpp:460-471
-localVars->bSendDataPacket = true;   // line 467 — 첫 번째 Write에서 설정
-localVars->bReadRequest = ...;       // 함수번호가 홀수면 true
-```
+`WriteWordHsms` → `sendControlCodeOrdReadWriteCommand` → `checkConnectAndSendSelectRequest` → `setStartInitFlag`의 경로로,
+**매 write 진입마다 `bSendDataPacket`이 false로 초기화**됩니다.
+따라서 "2회차부터 이전 write의 true 상태가 남아 조기 리턴되어 실제 전송되지 않는다"는 원래 시나리오는 **현재 코드와 맞지 않으므로 철회합니다.**
 
-**시나리오:**
-```
-Write #1: bSendDataPacket=false → makeDataReadBufHsms() 실행 → 실제 전송 ✓
-          → bSendDataPacket=true로 설정
+참고: `WriteWordHsms:293`의 `if(bSendDataPacket && bReadRequest == false) return COMMUNICATION_OK;`는,
+이번 write가 "응답 불필요(짝수 function)" 종류일 때 **실제 전송을 끝낸 뒤 read 루프로 내려가지 않고 즉시 OK 리턴**하기 위한 정상 경로입니다.
+bSendDataPacket은 바로 직전 `sendReadWriteRequestDataReal`에서 방금 true로 설정된 것이며, "이전 write의 잔류값"이 아닙니다.
 
-Write #2: bSendDataPacket=true 확인 → 즉시 COMMUNICATION_OK 반환
-          → 실제로는 아무것도 전송하지 않음!
-          → PLC_SCAN은 성공으로 인식 → "보냈다고 거짓말"
-
-Write #3: 동일 → 전송 안 됨
-...
-(ProtocolRead가 응답을 수신하여 bSendDataPacket=false로 리셋할 때까지)
-```
-
-**이것이 "50번 출력하면 50이 50번 출력"의 DLL 레벨 원인입니다.**
-PLC_SCAN 쓰기 큐에서 1건씩 꺼내 WriteWord를 호출하지만, DLL이 첫 번째만 실제 전송하고
-나머지는 SUCCESS를 반환하면서 무시합니다. 큐에서 꺼낸 49건은 전송되었다고 표시되지만 실제로는 유실됩니다.
-
-### 9.11 DLL 내부 문제 9: checkWaitOkSignal 블로킹 중 이벤트 수신 불가
+### 9.11 DLL 내부 문제 9: checkWaitOkSignal 블로킹 중 이벤트 수신 불가 [가능성 있음 — 옵션 켜진 경우]
 
 ```
 S6F11 이벤트 도착
@@ -630,80 +637,101 @@ S6F11 이벤트 도착
 
 시간당 수천 건이면 이벤트 간격 < 1초. `checkWaitOkSignal()` 타임아웃이 2초면 → **이벤트 적체 → TCP 버퍼 오버플로 → 연결 끊김.**
 
-### 9.12 문제 계층 최종 정리
+### 9.12 (구) 최종 계층 정리 — 9.13으로 대체
+
+### 9.13 재검증 후 문제 계층 최종 정리
+
+코드 재확인을 반영하여 신뢰도별로 재분류합니다.
 
 ```
 [계층 1: SECS Host DLL — 프로토콜 레벨]
 
-  치명적:
-  ├─ WriteWord 2회차부터 전송 안 됨 (bSendDataPacket 조기 리턴)
-  ├─ 응답 매칭에 TNS 미사용 (Stream/Function만 비교)
-  ├─ 단일 recvBuf — 이벤트 간 덮어쓰기
-  └─ checkWaitOkSignal 블로킹 — 이벤트 수신 중단
+  [확정]
+  ├─ 응답 매칭에 TNS 미사용 (Stream/Function + station만 비교) — SECS_Hsms.cpp:210
+  └─ checkWaitOkSignal 블로킹 루프 (옵션 켜진 경우) — SECS_Host.cpp:805
 
-  높음:
-  ├─ saveBuf 미초기화 — 이전 데이터 잔존
-  ├─ nBlockNo 리셋 타이밍 — Sleep 크기 의존
-  └─ setInitRecvStatus 조기 호출 — 파이프라인 응답 유실
+  [가능성 있음]
+  └─ checkWaitOkSignal 중 backlog로 인한 지연 악화 — 옵션/타임아웃 설정에 의존
+
+  [재검증 결과 철회 또는 약함]
+  ├─ 단일 recvBuf → 이벤트 덮어쓰기  (순차 처리로 곧바로 버그는 아님)
+  ├─ saveBuf 미초기화 → 이전 데이터 전송  (송신 길이 재계산으로 미발생)
+  ├─ nBlockNo 리셋 타이밍 → Sleep 필요  (setStartInitFlag에서 진입 시 리셋)
+  ├─ bSendDataPacket 조기 리턴 → 2회차 미전송  (setStartInitFlag에서 초기화)
+  ├─ setInitRecvStatus → 응답 유실  (1바이트 read로 TCP 버퍼에 데이터 잔존)
+  └─ DLL 내부 플래그 비동기화 → 충돌  (동일 포트 순차 호출 구조로 과장)
 
 [계층 2: PLC_SCAN 본체 — 쓰기 큐 레벨]
 
-  치명적:
-  ├─ bUseNewValueOnAnalogOut — 같은 주소 값 덮어쓰기
-  └─ 1사이클 1쓰기 — 처리 속도 병목
+  [확정]
+  ├─ bUseNewValueOnAnalogOut — 같은 주소 값 덮어쓰기 (Scanstat.cpp:1553, 기본값 ON Scanconf.cpp:68)
+  ├─ 1사이클 1쓰기 — RunWriteWait return (Scanstat.cpp:1760)
+  └─ 큐 Full 시 drop — 내부 큐(MessageDisplay) + 공유링(조용히)
 
-  높음:
-  ├─ char 플래그 동기화 — 경쟁 조건
-  ├─ 공유메모리 Sleep(1) 폴링 — 지연
-  └─ 큐 Full 시 유실 — 조용한 데이터 손실
+  [가능성 있음]
+  ├─ char 플래그 비동기화 — 위험 요소이나 현재 증상 주원인 근거 부족
+  └─ 공유메모리 Sleep(1) 폴링 — 지연 기여
 ```
 
-| 증상 | DLL 원인 | PLC_SCAN 원인 |
-|------|---------|--------------|
-| **이벤트 소실** | bSendDataPacket 조기 리턴 (전송 거짓말) | bUseNewValueOnAnalogOut |
-| **이벤트 중복** | saveBuf 미초기화, TNS 미검증 | — |
-| **Sleep 필수** | nBlockNo 리셋 타이밍, bSendDataPacket 리셋 대기 | 1사이클 1쓰기 |
-| **Sleep 크기 다름** | 다중 블록 패킷 크기 차이 | — |
-| **UI Hang** | checkWaitOkSignal 블로킹 | 메인 스레드 Sleep |
-| **연결 끊김** | checkWaitOkSignal 중 이벤트 적체 | — |
+| 증상 | DLL 원인 (확정만) | PLC_SCAN 원인 (확정만) |
+|------|-------------------|------------------------|
+| **이벤트 소실 (1~49 누락)** | — | bUseNewValueOnAnalogOut + 1사이클 1쓰기 적체 |
+| **응답 오매칭** | TNS 미검증 | — |
+| **이벤트 처리 지연/연결 위험** | checkWaitOkSignal 블로킹 (옵션 켜진 경우) | 1사이클 1쓰기 + 큐 적체 |
+| **Sleep 필수** | (주원인 미확정 — 재현 로그 필요) | 1사이클 1쓰기 (유입 속도 > drain 속도 시 큐 덮어쓰기 유발) |
+| **UI Hang** | — | 메인 스레드 Sleep(400) |
+| **"50번 중복 출력"** | (재현 로그 필요) | (현재 코드로는 직접 설명되지 않음) |
 
 ---
 
-## 10. 종합 해결 방안
+## 10. 종합 해결 방안 (재검증 반영)
 
-### PLC_SCAN 본체 수정 (DLL 변경 없음)
+### 10.1 수정 우선순위 (재정렬)
+
+재검증 결과, **우선순위는 PLC_SCAN 본체 쪽에 집중**하고 SECS DLL은 확정된 항목(TNS, checkWaitOkSignal)만 착수, 나머지는 재현 로그 확보 후 진행합니다.
+
+```
+[1순위: PLC_SCAN — 근거 확정, 모든 프로토콜에 효과]
+  1) same-address overwrite 정책 재검토 — bUseNewValueOnAnalogOut 기본값 OFF 또는 주소별 정책화
+  2) RunWriteWait() 배치 처리 — 한 사이클 N건 처리로 drain 속도 확보
+  3) 큐 동기화 개선 (InterlockedExchange/CRITICAL_SECTION) + 큐 Full 정책 개선 (drop → wait/확장 + 로그)
+
+[2순위: SECS Host DLL — 확정 근거 있는 항목만]
+  4) HSMS 응답 매칭에 TNS 비교 추가 (SECS_Hsms.cpp:210)
+  5) checkWaitOkSignal 비동기화/타임아웃 단축 검토 (SECS_Host.cpp:805)
+
+[보류: 재현 로그 확보 전까지]
+  - saveBuf memset, nBlockNo 즉시 리셋, bSendDataPacket 조기 리턴
+  - setInitRecvStatus 조기 호출, DLL 내부 플래그 락
+  → 현재 코드 경로로는 직접 설명되지 않거나 다른 메커니즘으로 회피됨.
+     실제 장비 로그 (Wireshark/포트 캡처, 순차 write 실측)로 재현이 잡힐 때 재평가.
+```
+
+### 10.2 확정 수정 항목 상세
+
+**PLC_SCAN 본체**
 
 | 순서 | 개선 | 수정 위치 | 수정량 | 효과 |
 |------|------|-----------|--------|------|
-| **1** | **RunWriteWait()에서 N건 연속 처리** | `Scanstat.cpp:1760` | ~5줄 | 쓰기 처리량 N배 증가 |
-| **2** | **bUseNewValueOnAnalogOut 기본값 OFF** | config 초기화 | 1줄 | 값 덮어쓰기 방지 |
-| **3** | **char → InterlockedExchange** | `Scanstat.cpp:1477-1507` | ~10줄 | 경쟁 조건 제거 |
-| **4** | **공유메모리 폴링 → Event 기반** | `Scanstat.cpp:1807-1812` | ~5줄 | 즉시 반응 |
-| **5** | **큐 Full 시 대기/확장** | `Scanstat.cpp:1590` | ~5줄 | 유실 방지 |
+| **1** | `bUseNewValueOnAnalogOut` 기본값 OFF 또는 주소별 opt-in | `Scanconf.cpp:68` 기본값, `Scanstat.cpp:1553` 정책 분기 | 수 줄 | 같은 주소 값 덮어쓰기로 인한 중간값 소실 방지 |
+| **2** | RunWriteWait()에서 N건 연속 처리 | `Scanstat.cpp:1706-1765` (`return` → 배치 루프) | ~10줄 | 사이클당 처리량 N배 향상 |
+| **3** | 내부 큐 동기화 개선 + Full 시 정책 변경 | `Scanstat.cpp:1477-1507`, `Scanstat.cpp:1588-1598`, `FuturePlcScan.cpp:314` | ~20줄 | 경쟁 조건 완화 및 조용한 drop 제거 |
 
-### SECS Host DLL 수정
+**SECS Host DLL**
 
 | 순서 | 개선 | 수정 위치 | 수정량 | 효과 |
 |------|------|-----------|--------|------|
-| **A** | **이벤트 큐 추가** (recvBuf 링 버퍼화) | `SECS_HostDef.h` | ~30줄 | 이벤트 덮어쓰기 방지 |
-| **B** | **saveBuf memset(0) 추가** | `SECS_Host.cpp:449` | 1줄 | 이전 데이터 잔존 방지 |
-| **C** | **nBlockNo 즉시 리셋** | `SECS_Host.cpp:858` | ~3줄 | Sleep 의존 제거 |
-| **D** | **checkWaitOkSignal 비동기화** | `SECS_Host.cpp:805` | ~20줄 | 블로킹 대기 제거 |
-| **E** | **응답 매칭에 TNS 비교 추가** | `SECS_Hsms.cpp:210` | ~3줄 | 요청-응답 정확 매칭 |
-| **F** | **setInitRecvStatus 호출 시점 조정** | `SECS_Hsms.cpp:268,275` | ~5줄 | 파이프라인 응답 유실 방지 |
+| **4** | 응답 매칭에 TNS 비교 추가 | `SECS_Hsms.cpp:210` (기록은 `:163`, 송신은 `:31/115/129`) | ~3줄 | 요청-응답 정확 매칭, 고속 파이프라인 시 오매칭 방지 |
+| **5** | `checkWaitOkSignal` 비동기화/타임아웃 단축 | `SECS_Host.cpp:805-831` | ~20줄 | 이벤트 수신 루프 블로킹 최소화 |
 
-### 적용 우선순위
+### 10.3 보류 항목
 
-```
-[1순위: PLC_SCAN 본체 — 모든 프로토콜에 효과]
-  1번(연속 처리) + 2번(덮어쓰기 OFF)
-  → SECS 뿐 아니라 MELSEC, OMRON 멀티출력도 개선
+| 항목 | 보류 사유 |
+|------|-----------|
+| saveBuf memset | 송신 길이 재계산으로 잔여 바이트가 전송되지 않음 |
+| nBlockNo 즉시 리셋 | `setStartInitFlag`에서 write 진입 시 이미 리셋됨 |
+| bSendDataPacket 조기 리턴 (2회차 미전송) | `setStartInitFlag`에서 매 write 진입 시 false로 초기화됨 |
+| setInitRecvStatus 조기 호출 | 1바이트 read 구조상 TCP 버퍼에 데이터 잔존, 로컬 리셋이 곧바로 유실을 의미하지 않음 |
+| DLL 내부 플래그 락 | 동일 포트에서 PLC_SCAN 포트 스레드가 순차 호출 — 동시 충돌 시나리오 과장 |
 
-[2순위: SECS Host DLL — SECS/GEM 전용]
-  B번(saveBuf 초기화) + C번(nBlockNo 리셋)
-  → 1줄+3줄 수정으로 Sleep 의존 대폭 감소
-
-[3순위: 근본 해결]
-  A번(이벤트 큐) + D번(비동기 대기)
-  → 시간당 수천 건 이벤트 무손실 처리
-```
+> 위 항목들은 **"위험 요소"로는 기록하되**, 별도 재현 로그(예: Wireshark HSMS 캡처, WriteWord 순차 호출 시 실제 송출 패킷 비교)로 확인되기 전까지는 수정 진행을 보류합니다.
