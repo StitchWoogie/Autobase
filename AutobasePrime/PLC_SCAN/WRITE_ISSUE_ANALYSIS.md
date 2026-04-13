@@ -492,8 +492,9 @@ void checkWaitOkSignal(LOCAL_PORT_STRUCT *pt)
 }
 ```
 
-외부 프로그램의 OK 신호를 **무한 폴링**으로 대기합니다.
-이 동안 ProtocolRead 스레드가 **완전히 블로킹** → 새 이벤트 수신 불가.
+외부 프로그램의 OK 신호를 **타임아웃 있는 busy-wait**(`while(1)` + `IsTimeOut(nResponseCheckTimeout)`)로 대기합니다.
+무한 대기는 아니지만 타임아웃(기본 2000ms) 전까지는 `Sleep` 없이 `Tag9GetCurr`만 반복 호출하므로,
+이 동안 ProtocolRead 스레드가 사실상 **완전히 블로킹** → 새 이벤트 수신 불가.
 
 ### 9.5 DLL 내부 문제 4: nBlockNo 미리셋 [재검증 결과: 성립하지 않음]
 
