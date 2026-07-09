@@ -1,0 +1,326 @@
+<title>진법 디펜스 — 젬 타워 디펜스 게임 화면 목업</title>
+<style>
+  :root{
+    --bg0:#10151a; --bg1:#161d23; --panel:#1a232a; --panel-hi:#212c34;
+    --ink:#eaf1ec; --mute:#8c9a92; --dim:#5f6d66; --line:rgba(255,255,255,.08);
+    --jade:#37cf9a; --jade-deep:#1f8f6a; --jade-glow:rgba(55,207,154,.4);
+    --gold:#e2b653; --crimson:#e85a52; --crimson-glow:rgba(232,90,82,.5);
+    --cell:#1e2a25; --cell-b:#243a31;
+    --path:#2c2118; --path-flow:rgba(226,182,83,.22);
+    --disp:system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    /* gem hues */
+    --g0:#33c58f; --g1:#4f92f2; --g2:#ef5f6d; --g3:#ab7bf2; --g4:#f0bb52; --g5:#bfe6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; display:grid; place-items:center; padding:24px;
+    background:radial-gradient(130% 100% at 50% -10%,#1d2830,#0b0e11 70%);
+    font-family:var(--disp); color:var(--ink); -webkit-font-smoothing:antialiased;
+  }
+  .wrap{width:min(1140px,100%)}
+  .cap{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:0 4px 14px; color:var(--mute)}
+  .cap b{color:var(--ink); font-size:15px}
+  .cap span{font-size:12.5px}
+  .tag{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--jade);
+    border:1px solid var(--jade); padding:3px 9px; border-radius:999px; font-weight:700}
+
+  /* frame */
+  .frame{
+    position:relative; aspect-ratio:16/9; width:100%; border-radius:20px; overflow:hidden;
+    background:linear-gradient(180deg,var(--bg1),var(--bg0));
+    box-shadow:0 40px 90px -30px rgba(0,0,0,.8),0 0 0 2px #05080699,inset 0 0 0 1px rgba(255,255,255,.05);
+    display:grid; grid-template-rows:auto 1fr; isolation:isolate;
+  }
+  .frame::before{content:""; position:absolute; inset:0; opacity:.4;
+    background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0);
+    background-size:26px 26px; mask-image:linear-gradient(180deg,#000,transparent 70%)}
+
+  /* top hud */
+  .hud{position:relative; z-index:3; display:flex; align-items:center; gap:14px;
+    padding:12px 18px; background:linear-gradient(180deg,rgba(8,11,13,.78),transparent)}
+  .title{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.02em}
+  .title .seal{width:34px; height:34px; border-radius:9px; display:grid; place-items:center;
+    background:linear-gradient(180deg,#b23c34,#7d2620); color:#ffe9c9; font-size:18px; font-weight:800;
+    box-shadow:inset 0 1px 1px #ffffff40,0 4px 10px -3px #000}
+  .title .nm{font-size:clamp(14px,1.8vw,18px)}
+  .title .nm small{display:block; font-size:10px; letter-spacing:.2em; color:var(--gold); font-weight:700}
+  .stats{display:flex; gap:8px; margin-left:auto; flex-wrap:wrap}
+  .stat{display:flex; align-items:center; gap:8px; background:#ffffff0e; border:1px solid var(--line);
+    border-radius:11px; padding:7px 12px}
+  .stat .ic{font-size:15px}
+  .stat b{font-size:15px; font-weight:800; font-variant-numeric:tabular-nums}
+  .stat small{display:block; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute)}
+  .stat.hp b{color:var(--crimson)} .stat.gold b{color:var(--gold)} .stat.wave b{color:var(--jade)}
+  .seed{display:flex; align-items:center; gap:7px; background:linear-gradient(90deg,var(--jade-glow),#ffffff0e 70%);
+    border:1px solid var(--jade); border-radius:11px; padding:7px 12px; font-size:12px; font-weight:700}
+  .seed small{color:var(--jade); letter-spacing:.1em}
+
+  /* body split */
+  .body{position:relative; z-index:2; display:grid; grid-template-columns:1fr clamp(210px,24vw,268px);
+    gap:14px; padding:6px 16px 16px; min-height:0}
+
+  /* board */
+  .board-wrap{position:relative; display:flex; flex-direction:column; min-height:0}
+  .board{
+    position:relative; flex:1; display:grid; gap:4px; padding:12px;
+    border-radius:16px; background:
+      linear-gradient(180deg,#141d18,#101512);
+    box-shadow:inset 0 0 0 1px var(--line),inset 0 12px 30px -14px #000;
+    grid-auto-rows:1fr;
+  }
+  .cell{position:relative; border-radius:7px; display:grid; place-items:center}
+  .cell.empty{background:var(--cell); box-shadow:inset 0 0 0 1px var(--cell-b)}
+  .cell.empty::after{content:"+"; color:#ffffff1c; font-size:18px; font-weight:700}
+  .cell.buildable{background:repeating-linear-gradient(45deg,#1f2b25 0 6px,#233029 6px 12px);
+    box-shadow:inset 0 0 0 1px var(--jade-deep)}
+  .cell.buildable::after{content:"건설 가능"; font-size:8px; letter-spacing:.05em; color:var(--jade); font-weight:700}
+  .cell.path{background:var(--path);
+    background-image:repeating-linear-gradient(var(--dir,90deg),transparent 0 10px,var(--path-flow) 10px 20px);
+    background-size:200% 100%; animation:flow 1.4s linear infinite; box-shadow:inset 0 0 0 1px #3a2c1e}
+  .cell.path[data-dir="left"]{--dir:270deg; animation-direction:reverse}
+  .cell.start,.cell.finish{background:#1c2b24}
+  .cell .port{font-size:10px; font-weight:800; letter-spacing:.08em; text-align:center; line-height:1.15}
+  .cell.start .port{color:var(--crimson)} .cell.finish .port{color:var(--jade)}
+
+  /* gem tower */
+  .gem{width:66%; aspect-ratio:1; transform:rotate(45deg); border-radius:22%;
+    background:linear-gradient(135deg,var(--gc,#33c58f),#ffffffcc 45%,var(--gc,#33c58f) 55%,#00000055);
+    box-shadow:0 0 12px -1px var(--gcg,rgba(55,207,154,.5)),inset 0 0 0 1.5px #ffffff70,inset -4px -4px 8px #00000055;
+    position:relative}
+  .gem::after{content:""; position:absolute; inset:22%; border-radius:20%;
+    background:linear-gradient(135deg,#ffffffaa,transparent 60%); opacity:.7}
+  .gem.t2{width:74%} .gem.t2::before{content:"◆"; position:absolute; inset:0; transform:rotate(-45deg);
+    display:grid; place-items:center; font-size:9px; color:#fff9; z-index:2}
+  .cell.newgem{box-shadow:inset 0 0 0 2px var(--gold),0 0 0 1px var(--gold)}
+  .cell.newgem .gem{animation:pop 1.8s ease-in-out infinite}
+  .newtag{position:absolute; top:-7px; left:50%; transform:translateX(-50%); z-index:4;
+    background:var(--gold); color:#2a1e08; font-size:8.5px; font-weight:800; padding:2px 6px; border-radius:6px;
+    letter-spacing:.05em; white-space:nowrap}
+
+  /* creeps */
+  .creep{position:relative; width:60%; aspect-ratio:1; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#ff8c85,var(--crimson) 60%,#8f2b26);
+    box-shadow:0 0 10px -1px var(--crimson-glow),inset 0 -2px 3px #00000060; display:grid; place-items:center;
+    font-size:10px}
+  .creep .hp{position:absolute; left:6%; right:6%; top:-7px; height:4px; border-radius:3px;
+    background:#00000066; overflow:hidden; box-shadow:0 0 0 1px #0006}
+  .creep .hp i{display:block; height:100%; background:linear-gradient(90deg,#6ee89a,#37cf9a)}
+  .creep.boss{width:86%; background:radial-gradient(circle at 35% 30%,#ffcf6e,#c8412f 55%,#6e1f18);
+    box-shadow:0 0 16px -1px #e0b64e88,inset 0 -2px 4px #00000070; font-size:14px}
+  .creep.boss .crown{position:absolute; top:-11px; font-size:12px}
+  .dmg{position:absolute; z-index:5; font-size:12px; font-weight:800; color:var(--gold);
+    text-shadow:0 1px 2px #000; animation:dmg 1.9s ease-out infinite; pointer-events:none}
+
+  /* board footer */
+  .board-ft{display:flex; align-items:center; gap:10px; margin-top:10px}
+  .speed{display:flex; gap:4px; background:#ffffff0e; border:1px solid var(--line); border-radius:10px; padding:4px}
+  .speed button{border:0; background:transparent; color:var(--mute); font-family:inherit; font-weight:700;
+    font-size:12px; padding:5px 9px; border-radius:7px; cursor:pointer}
+  .speed button.on{background:var(--jade); color:#08110c}
+  .relics{display:flex; align-items:center; gap:6px; color:var(--mute); font-size:11px}
+  .relics .r{width:30px; height:30px; border-radius:8px; display:grid; place-items:center; font-size:15px;
+    background:#ffffff0e; border:1px solid var(--line)}
+  .relics .r.locked{color:var(--dim); border-style:dashed}
+  .nextwave{margin-left:auto; border:0; cursor:pointer; font-family:inherit; font-weight:800; font-size:14px;
+    color:#08110c; background:linear-gradient(180deg,#5fe0ac,var(--jade)); padding:11px 18px; border-radius:12px;
+    box-shadow:0 10px 22px -8px var(--jade-glow); display:flex; align-items:center; gap:8px}
+  .nextwave em{font-style:normal; background:#08110c22; padding:1px 7px; border-radius:6px; font-size:12px}
+
+  /* right panel */
+  .side{display:flex; flex-direction:column; gap:12px; min-height:0}
+  .card{background:linear-gradient(180deg,var(--panel-hi),var(--panel)); border:1px solid var(--line);
+    border-radius:16px; padding:14px}
+  .card h4{margin:0 0 10px; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold);
+    font-weight:800; display:flex; align-items:center; gap:6px}
+  .draft{text-align:center}
+  .draft .bigem{width:70px; aspect-ratio:1; margin:2px auto 10px; transform:rotate(45deg); border-radius:22%;
+    background:linear-gradient(135deg,var(--g3),#fff 45%,var(--g3) 55%,#0006);
+    box-shadow:0 0 22px -2px #ab7bf288,inset 0 0 0 2px #ffffff80,inset -6px -6px 12px #00000055;
+    animation:pop 2.2s ease-in-out infinite}
+  .draft .gname{font-size:16px; font-weight:800}
+  .draft .gname .rk{color:var(--g3)}
+  .draft .gdesc{font-size:11px; color:var(--mute); margin:3px 0 12px; line-height:1.4}
+  .draft .choose{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .draft .choose button{border:0; cursor:pointer; font-family:inherit; font-weight:800; font-size:13px;
+    padding:10px 0; border-radius:11px}
+  .draft .keep{background:linear-gradient(180deg,#5fe0ac,var(--jade)); color:#08110c}
+  .draft .sell{background:#ffffff12; color:var(--ink); border:1px solid var(--line)!important}
+  .draft .sell small{display:block; font-size:9px; color:var(--gold); font-weight:700}
+
+  .recipe .row{display:flex; align-items:center; gap:8px; font-size:12px; padding:6px 0}
+  .recipe .row+.row{border-top:1px solid var(--line)}
+  .recipe .mini{width:18px; height:18px; transform:rotate(45deg); border-radius:20%; flex:0 0 auto;
+    box-shadow:inset 0 0 0 1px #ffffff55}
+  .recipe .arrow{color:var(--dim); margin:0 2px}
+  .recipe .res{font-weight:800}
+  .recipe .have{margin-left:auto; font-size:11px; color:var(--mute); font-variant-numeric:tabular-nums}
+  .recipe .have.ok{color:var(--jade)}
+
+  @keyframes flow{to{background-position:200% 0}}
+  @keyframes pop{0%,100%{transform:rotate(45deg) scale(1)}50%{transform:rotate(45deg) scale(1.08)}}
+  @keyframes dmg{0%{transform:translateY(0); opacity:0}15%{opacity:1}100%{transform:translateY(-22px); opacity:0}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+  @media (max-width:720px){
+    .body{grid-template-columns:1fr}
+    .side{flex-direction:row; overflow-x:auto}
+    .card{min-width:220px}
+    .stat small,.seed{display:none}
+  }
+</style>
+
+<div class="wrap">
+  <div class="cap">
+    <span class="tag">Concept Mockup</span>
+    <b>진법 디펜스</b>
+    <span>· 삼국지 테마 젬 타워 디펜스 — 진법(미로)을 설계해 적 부대를 최대한 오래 가두는 순간</span>
+  </div>
+
+  <div class="frame">
+    <header class="hud">
+      <div class="title">
+        <div class="seal">陣</div>
+        <div class="nm">진법 디펜스<small>천하 디펜스</small></div>
+      </div>
+      <div class="stats">
+        <div class="stat wave"><span class="ic">🌊</span><div><b>12</b><small>웨이브 /30</small></div></div>
+        <div class="stat gold"><span class="ic">🪙</span><div><b>1,340</b><small>군량</small></div></div>
+        <div class="stat hp"><span class="ic">🏯</span><div><b>18</b><small>성문 내구도</small></div></div>
+        <div class="seed"><span>🎲</span><div><small>오늘의 시드</small><b style="font-size:12px">#0709-赤壁</b></div></div>
+      </div>
+    </header>
+
+    <div class="body">
+      <div class="board-wrap">
+        <div class="board" id="board"></div>
+        <div class="board-ft">
+          <div class="speed">
+            <button>⏸</button><button class="on">▶ 1×</button><button>▶▶ 2×</button>
+          </div>
+          <div class="relics">
+            유물
+            <span class="r" title="관통의 옥">🟣</span>
+            <span class="r" title="연환계">🔗</span>
+            <span class="r locked" title="미해금">＋</span>
+          </div>
+          <button class="nextwave">다음 웨이브 소환 <em>13</em></button>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="card draft">
+          <h4>◈ 이번 라운드 젬</h4>
+          <div class="bigem"></div>
+          <div class="gname"><span class="rk">희귀</span> 자수정 궁병진</div>
+          <div class="gdesc">넓은 범위 원거리 · 명중 시 <b style="color:var(--jade)">둔화</b> 부여.<br>같은 젬 3개 조합 시 <b style="color:var(--gold)">벽력차진</b>으로 승급.</div>
+          <div class="choose">
+            <button class="keep">남기기</button>
+            <button class="sell">팔기<small>+40 군량</small></button>
+          </div>
+        </div>
+
+        <div class="card recipe">
+          <h4>⚙ 조합 승급</h4>
+          <div class="row">
+            <span class="mini" style="background:linear-gradient(135deg,var(--g3),#fff)"></span>×3
+            <span class="arrow">→</span>
+            <span class="mini" style="background:linear-gradient(135deg,var(--g4),#fff)"></span>
+            <span class="res">벽력차진</span>
+            <span class="have ok">2/3</span>
+          </div>
+          <div class="row">
+            <span class="mini" style="background:linear-gradient(135deg,var(--g0),#fff)"></span>×3
+            <span class="arrow">→</span>
+            <span class="mini" style="background:linear-gradient(135deg,var(--g5),#fff)"></span>
+            <span class="res">백마의종</span>
+            <span class="have">1/3</span>
+          </div>
+          <div class="row">
+            <span class="mini" style="background:linear-gradient(135deg,var(--g2),#fff)"></span>×3
+            <span class="arrow">→</span>
+            <span class="mini" style="background:linear-gradient(135deg,var(--crimson),#fff)"></span>
+            <span class="res">화공진</span>
+            <span class="have">0/3</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="cap" style="margin-top:14px">
+    <span>🏗 <b style="color:var(--jade)">건설 페이즈</b> → 랜덤 젬을 배치해 진법(미로)을 설계</span>
+    <span style="color:var(--dim)">|</span>
+    <span>⚔ <b style="color:var(--crimson)">방어 페이즈</b> → 적 부대가 진법을 통과, 오래 가둘수록 유리 (현재 화면)</span>
+  </div>
+</div>
+
+<script>
+  // ASCII 맵으로 보드 구성 — S:시작 F:도착 .:길 c:적 B:보스 #:젬 @:새젬 _:건설가능 " ":빈칸
+  const MAP = [
+    "S...c....",
+    "###@###_.",
+    "...B.....",
+    ".#####_##",
+    "......c..",
+    "###_###_.",
+    "F.c......",
+  ];
+  const GEM_HUES = [
+    ["--g0","rgba(51,197,143,.5)"],["--g1","rgba(79,146,242,.5)"],
+    ["--g2","rgba(239,95,109,.5)"],["--g3","rgba(171,123,242,.5)"],
+    ["--g4","rgba(240,187,82,.5)"],["--g5","rgba(191,230,255,.5)"],
+  ];
+  const board = document.getElementById("board");
+  const cols = MAP[0].length;
+  board.style.gridTemplateColumns = "repeat(" + cols + ",1fr)";
+  // 길 흐름 방향: 짝수 길 행은 오른쪽, 홀수 길 행은 왼쪽
+  MAP.forEach(function(rowStr, r){
+    const rowChars = rowStr.split("");
+    rowChars.forEach(function(ch, c){
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      const isPath = ".cBSF".indexOf(ch) > -1;
+      if(ch === " "){ cell.classList.add("empty"); board.appendChild(cell); return; }
+      if(ch === "_"){ cell.classList.add("buildable"); board.appendChild(cell); return; }
+
+      if(isPath){
+        cell.classList.add("path");
+        cell.dataset.dir = (r % 4 === 2 || r === 6) ? "left" : "right";
+      }
+      if(ch === "S"){ cell.classList.add("start"); cell.innerHTML = '<div class="port">적<br>진입</div>'; }
+      if(ch === "F"){ cell.classList.add("finish"); cell.innerHTML = '<div class="port">성문</div>'; }
+
+      if(ch === "c" || ch === "B"){
+        const cr = document.createElement("div");
+        cr.className = "creep" + (ch === "B" ? " boss" : "");
+        cr.innerHTML = (ch === "B"
+          ? '<span class="crown">👑</span><div class="hp"><i style="width:72%"></i></div>⚔'
+          : '<div class="hp"><i style="width:'+(40+((r*7+c*13)%50))+'%"></i></div>');
+        cell.appendChild(cr);
+      }
+
+      if(ch === "#" || ch === "@"){
+        const g = document.createElement("div");
+        const hue = GEM_HUES[(r + c) % GEM_HUES.length];
+        g.className = "gem" + ((r + c) % 3 === 0 ? " t2" : "");
+        g.style.setProperty("--gc", "var(" + hue[0] + ")");
+        g.style.setProperty("--gcg", hue[1]);
+        cell.appendChild(g);
+        if(ch === "@"){
+          cell.classList.add("newgem");
+          const t = document.createElement("div");
+          t.className = "newtag"; t.textContent = "NEW ▸ 배치됨";
+          cell.appendChild(t);
+        }
+        // 몇몇 젬에 데미지 숫자
+        if((r * 3 + c) % 5 === 1){
+          const d = document.createElement("div");
+          d.className = "dmg"; d.textContent = "-" + (80 + ((r + c) * 37) % 260);
+          d.style.left = "30%"; d.style.top = "10%";
+          d.style.animationDelay = (((r + c) % 4) * 0.4) + "s";
+          cell.appendChild(d);
+        }
+      }
+      board.appendChild(cell);
+    });
+  });
+</script>
